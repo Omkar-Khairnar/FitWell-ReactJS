@@ -7,14 +7,14 @@ require('dotenv').config()
 
 
 router.post('/createTrainer', async(req, res)=>{
-    const res=await TrainerService.createTrainer(req.body);
-    return res.send(res); 
+    const response=await TrainerService.createTrainer(req.body);
+    return res.send(response); 
 })
 
 
 router.post('/deleteTrainer', async(req, res)=>{
-    const res=await TrainerService.deleteTrainer(req.body);
-    return res.send(res); 
+    const response=await TrainerService.deleteTrainer(req.body);
+    return res.send(response); 
 })
 
 router.post('/getAllTrainers', async(req,res)=>{

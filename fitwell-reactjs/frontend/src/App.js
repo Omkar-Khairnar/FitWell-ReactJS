@@ -12,6 +12,7 @@ import ProductSearch from './components/home/products/ProductSearch';
 import Centers from './components/home/centers/Centers';
 import Reviews from './components/home/reviews/Reviews';
 import ContactUS from './components/home/contactUs/ContactUS';
+import Signin from './components/UserAuthentication/UserSignIn';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/Centers" element={<Centers />} />
             <Route path="/Reviews" element={<Reviews />} />
             <Route path="/ContactUS" element={<ContactUS />} />
+            <Route path="/UserSignIn" element={<Signin/>} />
             
 
           </Route>

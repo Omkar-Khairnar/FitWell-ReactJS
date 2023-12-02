@@ -29,3 +29,5 @@ router.post('/updateprofile', async(req,res)=>{
     const response=await UserActionServices.updateProfile(req);
     return res.send(response);
 })
+
+module.exports=router;

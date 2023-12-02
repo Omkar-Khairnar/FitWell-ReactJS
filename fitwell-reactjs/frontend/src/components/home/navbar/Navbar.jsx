@@ -43,10 +43,10 @@ const Home = () => {
         <div class="signinup">
           <ul class="navbar-nav me-auto mb-2 navbar-list-items">
             <li class="nav-item nav-item1 mx-2">
-              <a class="nav-link" href="/SignIn">SIGN IN</a>
+              <a class="nav-link" href="/UserSignIn">SIGN IN</a>
             </li>
             <li class="nav-item nav-item1 mx-2">
-              <a class="nav-link" href="/SignUp">SIGN UP</a>
+              <a class="nav-link" href="/UserSignIn">SIGN UP</a>
             </li>
           </ul>
         </div>   

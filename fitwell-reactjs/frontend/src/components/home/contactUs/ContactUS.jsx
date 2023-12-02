@@ -1,8 +1,31 @@
-import React from "react";
+import React, {useState} from "react";
 import "./ContactUS.css";
 import ContactUsValidateForm from "./ContactUsFormValidate";
+import UserActionService from "../../../services/UserActionService";
 
 const ContactUS = () => {
+  const initialData={
+    name:'',
+    phone:'',
+    email:'',
+    subject:'',
+    message:''
+  }
+  const [data, setData]=useState(initialData)
+
+  const formHandler=(e)=>{
+    const {name, value}=e.target;
+    data[name]=value;
+    setData({...data});
+  }
+
+  const handleClickSubmit=async()=>{
+    const res=await UserActionService.contactUs(data);
+    if(!res.error){
+      setData(initialData)
+    }
+    alert(res.msg);
+  }
   return (
     <div>
       <div class="containerContactUs">
@@ -19,9 +42,7 @@ const ContactUS = () => {
 
             <form
               name="contact"
-              method="post"
-              action="/useractions/contactus"
-              // onsubmit={ContactUsValidateForm()}
+              onSubmit={handleClickSubmit}
             >
               <div class="input-row">
                 <div class="input-group">
@@ -30,6 +51,7 @@ const ContactUS = () => {
                     type="text"
                     placeholder="Enter Your Name"
                     name="name"
+                    onChange={formHandler}
                   />
                 </div>
                 <div class="input-group">
@@ -38,6 +60,7 @@ const ContactUS = () => {
                     type="text"
                     placeholder="Enter Contact No."
                     name="phone"
+                    onChange={formHandler}
                   />
                 </div>
               </div>
@@ -48,6 +71,7 @@ const ContactUS = () => {
                     type="text"
                     placeholder="Enter email address"
                     name="email"
+                    onChange={formHandler}
                   />
                 </div>
                 <div class="input-group">
@@ -56,6 +80,7 @@ const ContactUS = () => {
                     type="text"
                     placeholder="Enter Subject"
                     name="subject"
+                    onChange={formHandler}
                   />
                 </div>
               </div>
@@ -65,9 +90,9 @@ const ContactUS = () => {
                 class="contactUsTextarea"
                 placeholder="What's on your mind"
                 name="message"
+                onChange={formHandler}
               ></textarea>
-
-              <button class="contactUsSubmit" type="submit">Send</button>
+              <button class="contactUsSubmit" type="submit">Submit</button>
             </form>
           </div>
 
@@ -78,7 +103,6 @@ const ContactUS = () => {
                 <td>Email</td>
                 <td>fitwell@gmail.com</td>
               </tr>
-
               <tr>
                 <td>Phone</td>
                 <td>+91 7865******</td>
