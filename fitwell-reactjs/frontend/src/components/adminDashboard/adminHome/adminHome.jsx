@@ -1,7 +1,7 @@
 import React from 'react';
 import './AdminHome.css';
 
-const adminHome = () => {
+const AdminHome = () => {
   return (
     <div class="container-fluid">
             <div class="row g-3 my-2">
@@ -212,4 +212,4 @@ const adminHome = () => {
   )
 }
 
-export default adminHome
+export default AdminHome
