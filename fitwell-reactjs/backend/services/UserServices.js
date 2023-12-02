@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 
-class UserAuthServices{
+class UserServices{
 
     async createUser(reqData){
         try{
@@ -81,5 +81,19 @@ class UserAuthServices{
         }
     }
 
+    async getAllUsers(reqData){
+        try{
+            const users=await User.find().sort({_id:-1});
+            if(!users){
+                return {error:true, msg:'Internal Server Error'};
+            }
+
+            return {error:false, msg:'Users Fetched Successfully', data:users};
+        }
+        catch(error){
+            return {error:true, msg:error.message};
+        }
+    }
+
 }
-module.exports=new UserAuthServices();
+module.exports=new UserServices();
