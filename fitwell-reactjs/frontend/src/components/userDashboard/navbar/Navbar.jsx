@@ -1,15 +1,16 @@
 import React from 'react'
+import logo from '../../../assets/img/Logo/logo1.png'
 
 const Navbar = () => {
   return (
     <div class="dashboard-nav">
-    <div class="top" style="height: 100%;">
+    <div class="top" style={{height: '100%'}}>
         <div class="d-flex flex-column justify-content-between">
             <header>
                 <a href="#" class="menu-toggle"><i class="fas fa-bars"></i></a>
                 <div class="brand-logo-img">
                     <a href="./" class="brand-logo">
-                        <img src="./img/Logo/logo1.png" alt="logo" class="logo-img">
+                        <img src={logo} alt="logo" class="logo-img" />
                     </a>
                 </div>
             </header>
@@ -31,10 +32,10 @@ const Navbar = () => {
                     <i class="fas fa-running bg-transparent"></i>
                     Challenges
                 </a>
-                <!-- <a href="./user_dashboard_chat" class="dashboard-nav-item">
+                {/* <a href="./user_dashboard_chat" class="dashboard-nav-item">
                     <i class="fas fa-users bg-transparent"></i>
                     Chat with us
-                </a> -->
+                </a>  */}
                 <a href="./user_Dashboard_reviews" class="dashboard-nav-item">
                     <i class="fas fa-comment bg-transparent"></i>
                     Put a Review
@@ -55,7 +56,7 @@ const Navbar = () => {
             </nav>
         </div>
 
-        <nav style="position: absolute; ;bottom: 0;border-top: 2px solid rgba(161, 51, 0, 0.959);width: 100%;">
+        <nav style={{position: 'absolute' , bottom: "0", borderTop: "2px solid rgba(161, 51, 0, 0.959)", width: '100%'}}>
             <a href="./" class="dashboard-nav-item">
                 <i class="fas fa-home bg-transparent"></i>
                 Home
