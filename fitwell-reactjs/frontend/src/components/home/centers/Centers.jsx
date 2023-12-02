@@ -39,11 +39,11 @@ const Centers = () => {
             <span style={{ color: "white" }}>: Our Location</span>
           </a>
           <div class="ratings">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
           </div>
         </div>
         <div class="center mb-3">
@@ -65,11 +65,11 @@ const Centers = () => {
             </a>
           </p>
           <div class="ratings">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
           </div>
         </div>
         <div class="center mb-3">
@@ -91,11 +91,11 @@ const Centers = () => {
             </a>
           </p>
           <div class="ratings">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
           </div>
         </div>
         <div class="center mb-3">
@@ -117,11 +117,11 @@ const Centers = () => {
             </a>
           </p>
           <div class="ratings">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
           </div>
         </div>
         <div class="center mb-3">
@@ -143,11 +143,11 @@ const Centers = () => {
             </a>
           </p>
           <div class="ratings">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
           </div>
         </div>
         <div class="center mb-3">
@@ -169,11 +169,11 @@ const Centers = () => {
             </a>
           </p>
           <div class="ratings">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
           </div>
         </div>
         <div class="center mb-3">
@@ -195,11 +195,11 @@ const Centers = () => {
             </a>
           </p>
           <div class="ratings">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
           </div>
         </div>
         <div class="center mb-3">
@@ -220,11 +220,11 @@ const Centers = () => {
             </a>
           </p>
           <div class="ratings">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
           </div>
         </div>
         <div class="center mb-3">
@@ -246,11 +246,11 @@ const Centers = () => {
             </a>
           </p>
           <div class="ratings">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
+            <i class="fa fa-star checked m-1"></i>
           </div>
         </div>
       </section>
