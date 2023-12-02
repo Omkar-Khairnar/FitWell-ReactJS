@@ -1,5 +1,5 @@
 import React from 'react';
-import './Trainer.css';
+// import './Trainers.module.css';
 
 const Trainers = () => {
   return (
@@ -54,7 +54,7 @@ const Trainers = () => {
                             // value=<%=trainer._id%> 
                             class="d-none" 
                             name="trainerid" />
-                          <td> <button type="submit" style="border: none; background-color: transparent;"><i class="fa-solid fa-trash" style="color:red; cursor: pointer;"></i></button></td>
+                          <td> <button type="submit" style={{border: 'none', backgroundColor: 'transparent'}}><i class="fa-solid fa-trash" style={{color:'red', cursor: 'pointer'}}></i></button></td>
                         </form>
                       </tr>
                     {/* <% })%> */}

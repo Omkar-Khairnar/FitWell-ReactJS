@@ -13,7 +13,7 @@ const Pricing = () => {
             <div class="price-row">
                 <div class="price-col">
                     <p>SINGLE CLASS</p>
-                    <h2 id="title">Class <br /> Drop-in</h2>
+                    <h2 id="title">Class Drop-in</h2>
                     <h3 id="pri"> ₹ 4200 </h3>
                     <ul>
                         <li>Free riding</li>
@@ -22,9 +22,9 @@ const Pricing = () => {
                         <li>Weight losing classes</li>
                         <li>No time restriction</li>
                     </ul>
-                    <form method="post" action="/userActions/enroll">
+                    <form class="pricingForm"  method="post" action="/userActions/enroll">
                       <input type="text" value="enroll1" class="d-none" name="enrolltype" />
-                     <button type="submit" id="enroll1"> ENROLL NOW</button>
+                     <button type="submit" class="enrollNowButton" id="enroll1"> ENROLL NOW</button>
                     </form>
                 </div>
                 <div class="price-col">
@@ -38,9 +38,9 @@ const Pricing = () => {
                         <li>Weight losing classes</li>
                         <li>No time restriction</li>
                     </ul>
-                    <form method="post" action="/userActions/enroll">
+                    <form class="pricingForm" method="post" action="/userActions/enroll">
                         <input type="text" value="enroll2" class="d-none" name="enrolltype"/>
-                       <button type="submit" id="enroll"> ENROLL NOW</button>
+                        <button type="submit" class="enrollNowButton" id="enroll"> ENROLL NOW</button>
                     </form>
                 </div>
                 <div class="price-col">
@@ -54,9 +54,9 @@ const Pricing = () => {
                         <li>Weight losing classes</li>
                         <li>No time restriction</li>
                     </ul>
-                    <form method="post" action="/userActions/enroll">
+                    <form class="pricingForm" method="post" action="/userActions/enroll">
                         <input type="text" value="enroll3" class="d-none" name="enrolltype"/>
-                       <button type="submit" id="enroll"> ENROLL NOW</button>
+                        <button type="submit" class="enrollNowButton" id="enroll"> ENROLL NOW</button>
                     </form>
                 </div>
             </div>

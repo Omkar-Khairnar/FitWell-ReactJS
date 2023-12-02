@@ -1,7 +1,7 @@
 import React from 'react'
-import './.css'
+import "../User_Dashboard.css";
 
-const Cart = () => {
+const UserCart = () => {
   return (
     <div class="dashboard-content" id="dashboard-review-page">
           <div class="parent-container">
@@ -42,7 +42,6 @@ const Cart = () => {
             </div> 
 
             <div class="total-price">
-              <h3></h3>
               <table>
                 <tr>
                   <th colspan="2">Price Details</th>
@@ -84,4 +83,4 @@ const Cart = () => {
   )
 }
 
-export default Cart
+export default UserCart

@@ -18,7 +18,10 @@ import AdminPayment from './components/adminDashboard/payment/AdminPayment';
 import Trainers from './components/adminDashboard/trainers/Trainers';
 import Challenges from './components/userDashboard/challenges/Challenges';
 import UserNavbar from './components/userDashboard/navbar/UserNavbar';
+import UserHome from './components/userDashboard/home/UserHome';
 import Workouts from './components/userDashboard/workouts/Workouts';
+import UserOrders from './components/userDashboard/myOrders/UserOrders';
+import UserCart from './components/userDashboard/cart/UserCart';
 
 function App() {
   return (
@@ -39,9 +42,8 @@ function App() {
             <Route path="/Centers" element={<Centers />} />
             <Route path="/Reviews" element={<Reviews />} />
             <Route path="/ContactUS" element={<ContactUS />} />
-            
-
           </Route>
+            {/* <Route path="/" element={<UserCart/>} />  */}
         </Routes>
       </BrowserRouter>
     </div>

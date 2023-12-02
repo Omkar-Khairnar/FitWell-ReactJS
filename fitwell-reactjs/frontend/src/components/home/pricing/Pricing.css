@@ -1,14 +1,10 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Oswald', sans-serif;  
-}
+
 .container1{
   width: 100%;
   min-height: 100vh;
   background-color: rgb(29, 29, 29);
 }
+
 
 .container1 h2, h3{
   color: #fff;
@@ -54,7 +50,8 @@
 }
 .price-col ul{
   text-align: left;
-  margin: 15px 0;
+  margin: 5px 0;
+  padding: 0%;
   color: #ddd;
  list-style: none;
 
@@ -69,7 +66,7 @@
   margin-right: 8px;
 }
 .price-col button{
-  width: 100%;
+  width: 75%;
   padding: 10px 0;
   background: transparent;
   color: #fff;
@@ -117,3 +114,8 @@
       transition:none;
   }
   } 
+
+.pricingForm {
+  display: flex;
+  align-items: center;
+}

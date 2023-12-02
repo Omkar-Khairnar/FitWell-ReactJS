@@ -1,7 +1,7 @@
 import React from 'react'
-import './.css'
+import "../User_Dashboard.css";
 
-const MyOrders = () => {
+const UserOrders = () => {
   return (
     <div class="dashboard-content" id="dashboard-order-page">
           <h1 class="past-order-heading">YOUR ORDERS</h1>
@@ -10,7 +10,7 @@ const MyOrders = () => {
               {/* <% orders.forEach((order)=>{ %> */}
                 <div id="card-user-order" class="card text-center"> 
                   <div class="card-body">
-                    <div class="past-order-img" style="width: 30%;">
+                    <div class="past-order-img" style={{width: '30%'}}>
                       <img src="data:image/<%=order.image.contentType%>;base64, <%=order.image.data.toString('base64')%>" alt="order-item-img" id="past-order-item-img"/>
                     </div>
                     <div class="past-order-info-content mx-auto">
@@ -33,7 +33,7 @@ const MyOrders = () => {
                         <input type="text" 
                         // value=<%=order._id%> 
                         class="d-none" name="orderid" />
-                        <td> <button type="submit"  style="border: none; background-color: white;width: 50px; align-self: center;"><i class="fa-solid fa-trash" style="color:red; cursor: pointer;"></i></button></td>
+                        <td> <button type="submit"  style={{border: 'none', backgroundColor: 'white', width: '50px', alignSelf: 'center' }}><i class="fa-solid fa-trash" style={{color: 'red', cursor: 'pointer'}}></i></button></td>
                       </form>
                     </div>
                   </div>
@@ -45,4 +45,4 @@ const MyOrders = () => {
   )
 }
 
-export default MyOrders
+export default UserOrders

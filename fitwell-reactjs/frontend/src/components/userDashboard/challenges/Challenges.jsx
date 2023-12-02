@@ -4,7 +4,7 @@ const Challenges = () => {
   return (
     <div>
       <div class="dashboard-content" id="dashboard-challenge-page">
-          <h1 class="challenge-heading" style="color: black;font-weight: bold;">CHALLENGE YOURSELF</h1>
+          <h1 class="challenge-heading" style={{color: 'black' , fontWeight: 'bold'}}>CHALLENGE YOURSELF</h1>
           <div class="container">
             <div class="row row-cols-2 row-cols-md-3 container-fluid">
 
