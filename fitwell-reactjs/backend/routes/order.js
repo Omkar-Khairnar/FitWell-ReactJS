@@ -15,3 +15,6 @@ router.post('/deleteOrder', async(req,res)=>{
     const response=await OrderService.deleteOrder(req.body);
     return res.send(response);
 })
+
+
+module.exports=router

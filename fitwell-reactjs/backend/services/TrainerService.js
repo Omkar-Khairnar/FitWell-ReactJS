@@ -44,7 +44,7 @@ class TrainerService{
 
     async getAllTrainers(reqData){
         try{
-            const trainers=await Trainer.find().sort({_id:-1});
+            const trainers=await Trainer.find().sort({_id:1}).limit(4);
             if(!trainers){
                 return {error:true, msg:'Internal Server Error'};
             }

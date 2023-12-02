@@ -1,9 +1,32 @@
-import React from "react";
+import React, {useState} from "react";
 import "./ContactUS.css";
 import ContactUsValidateForm from "./ContactUsFormValidate";
+import UserActionService from "../../../services/UserActionService";
 import Centers from "../centers/Centers";
 
 const ContactUS = () => {
+  const initialData={
+    name:'',
+    phone:'',
+    email:'',
+    subject:'',
+    message:''
+  }
+  const [data, setData]=useState(initialData)
+
+  const formHandler=(e)=>{
+    const {name, value}=e.target;
+    data[name]=value;
+    setData({...data});
+  }
+
+  const handleClickSubmit=async()=>{
+    const res=await UserActionService.contactUs(data);
+    if(!res.error){
+      setData(initialData)
+    }
+    alert(res.msg);
+  }
   return (
     <div style={{padding : "0vw", margin:"0vw"}}>
       <div class="containerContactUs">
@@ -21,9 +44,7 @@ const ContactUS = () => {
             <form
               className="contactUsForm"
               name="contact"
-              method="post"
-              action="/useractions/contactus"
-              // onsubmit={ContactUsValidateForm()}
+              onSubmit={handleClickSubmit}
             >
               <div class="input-row">
                 <div class="input-group">
@@ -32,6 +53,7 @@ const ContactUS = () => {
                     type="text" class="contactUsInputText"
                     placeholder="Enter Your Name"
                     name="name"
+                    onChange={formHandler}
                   />
                 </div>
                 <div class="input-group">
@@ -40,6 +62,7 @@ const ContactUS = () => {
                     type="text" class="contactUsInputText"
                     placeholder="Enter Contact No."
                     name="phone"
+                    onChange={formHandler}
                   />
                 </div>
               </div>
@@ -50,6 +73,7 @@ const ContactUS = () => {
                     type="text" class="contactUsInputText"
                     placeholder="Enter email address"
                     name="email"
+                    onChange={formHandler}
                   />
                 </div>
                 <div class="input-group">
@@ -58,6 +82,7 @@ const ContactUS = () => {
                     type="text" class="contactUsInputText"
                     placeholder="Enter Subject"
                     name="subject"
+                    onChange={formHandler}
                   />
                 </div>
               </div>
@@ -67,9 +92,9 @@ const ContactUS = () => {
                 class="contactUsTextarea"
                 placeholder="What's on your mind"
                 name="message"
+                onChange={formHandler}
               ></textarea>
-
-              <button class="contactUsSubmit" type="submit">Send</button>
+              <button class="contactUsSubmit" type="submit">Submit</button>
             </form>
           </div>
 
@@ -80,7 +105,6 @@ const ContactUS = () => {
                 <td className="contactUsTD">Email</td>
                 <td className="contactUsTD">fitwell@gmail.com</td>
               </tr>
-
               <tr className="contactUsTR">
                 <td className="contactUsTD">Phone</td>
                 <td className="contactUsTD">+91 7865******</td>

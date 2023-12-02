@@ -23,6 +23,7 @@ import Workouts from './components/userDashboard/workouts/Workouts';
 import UserOrders from './components/userDashboard/myOrders/UserOrders';
 import UserCart from './components/userDashboard/cart/UserCart';
 import Profile from './components/userDashboard/profile/Profile';
+import Signin from './components/UserAuthentication/UserSignIn';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
             <Route path="/Centers" element={<Centers />} />
             <Route path="/Reviews" element={<Reviews />} />
             <Route path="/ContactUS" element={<ContactUS />} />
+            <Route path="/UserSignIn" element={<Signin/>} />
           </Route>
           <Route element={<UserNavbar />} >
             <Route path="/UserHome" element={<Navigate to='/UserNavbar' replace/>} />

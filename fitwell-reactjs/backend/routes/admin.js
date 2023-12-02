@@ -20,4 +20,5 @@ router.post('/getAllAdmins', async(req,res)=>{
     return res.send(response);
 })
 
+
 module.exports=router;

@@ -72,7 +72,7 @@ const AdminHome = () => {
                   </div>
                   <div class="modal-body">
                     <div class="form-container add-challenge-container">
-                      <form name="addNewChallenge" action="/adminActions/newChallenge" method="POST" enctype="multipart/form-data">
+                      <form class="AdminHomeForm" name="addNewChallenge" action="/adminActions/newChallenge" method="POST" enctype="multipart/form-data">
                         <label for="description">Description of Challenge
                           <textarea type="text" id="description" placeholder="Enter Description of Challenge"
                             name="ChallengeDescription" required></textarea>
@@ -81,7 +81,7 @@ const AdminHome = () => {
                           <input class="product-img" type="file" id="challengeImg" name="challengeImg"
                             placeholder="Upload Image" required/>
                         </label>
-                        <button id="add-challenge-btn" type="submit">Add Challenge</button>
+                        <button id="add-challenge-btn" class="addChallengeAdminHomeBtn" type="submit">Add Challenge</button>
 
                       </form>
                     </div>
@@ -98,7 +98,7 @@ const AdminHome = () => {
                   </div>
                   <div class="modal-body">
                     <div class="form-container add-workout-container">
-                      <form name="addNewWorkout" action="/adminactions/newWorkout" method="POST" enctype="multipart/form-data">
+                      <form class="AdminHomeForm" name="addNewWorkout" action="/adminactions/newWorkout" method="POST" enctype="multipart/form-data">
                         <label for="description">Description of Workout
                           <textarea type="text" id="description" placeholder="Enter Description of new Workout"
                             name="WorkoutDescription" required></textarea>
