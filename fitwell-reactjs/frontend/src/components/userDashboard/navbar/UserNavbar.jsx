@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../../../assets/img/Logo/logo.png";
 import '../User_Dashboard.css';
+import Profile from "../profile/Profile";
 
 const UserNavbar = () => {
   return (
@@ -18,20 +19,20 @@ const UserNavbar = () => {
             </div>
           </header>
           <nav class="dashboard-nav-list my-4">
-            <a href="./user_Dashboard_home" class="dashboard-nav-item">
+            <a href="/UserHome" class="dashboard-nav-item">
               <i class="fas fa-dashboard bg-transparent"></i>
               Dashboard
             </a>
 
-            <a href="./user_Dashboard_profile" class="dashboard-nav-item">
+            <a href="/UserProfile" class="dashboard-nav-item">
               <i class="fas fa-user bg-transparent"></i>
               Profile
             </a>
-            <a href="./user_dashboard_workout" class="dashboard-nav-item">
+            <a href="/UserWorkout" class="dashboard-nav-item">
               <i class="fas fa-dumbbell bg-transparent"></i>
               Home WorkOut
             </a>
-            <a href="./user_Dashboard_challenges" class="dashboard-nav-item">
+            <a href="/UserChallenges" class="dashboard-nav-item">
               <i class="fas fa-running bg-transparent"></i>
               Challenges
             </a>
@@ -39,7 +40,7 @@ const UserNavbar = () => {
                     <i class="fas fa-users bg-transparent"></i>
                     Chat with us
                 </a>  */}
-            <a href="./user_Dashboard_reviews" class="dashboard-nav-item">
+            <a href="/UserReviews" class="dashboard-nav-item">
               <i class="fas fa-comment bg-transparent"></i>
               Put a Review
             </a>
@@ -77,6 +78,14 @@ const UserNavbar = () => {
           </a>
         </nav>
       </div>
+      <header class="dashboard-toolbar">
+        <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+        <a href="/userlogout" class="menu-toggle">
+          <i class="fas fa-right-from-bracket"></i>
+          Logout
+        </a>
+      </header> 
+      <Profile />
     </div>
   );
 };

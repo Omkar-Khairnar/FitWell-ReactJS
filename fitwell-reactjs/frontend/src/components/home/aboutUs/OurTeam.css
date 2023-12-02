@@ -51,11 +51,12 @@ background-color: #000;
 .ourteam-firstline{
 color:#ea3209ef;
 font-family: 'Mulish', sans-serif; 
+text-align: center;
 font-size: 25px;
 }
 .ourteam-secondline{
 color: white;
-
+text-align: center;
 font-family: 'Anton', sans-serif;
 font-size: 30px;
 }

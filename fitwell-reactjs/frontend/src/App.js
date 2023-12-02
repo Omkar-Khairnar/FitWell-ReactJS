@@ -22,6 +22,7 @@ import UserHome from './components/userDashboard/home/UserHome';
 import Workouts from './components/userDashboard/workouts/Workouts';
 import UserOrders from './components/userDashboard/myOrders/UserOrders';
 import UserCart from './components/userDashboard/cart/UserCart';
+import Profile from './components/userDashboard/profile/Profile';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
           <Route element={<UserNavbar />} >
             <Route path="/UserHome" element={<Navigate to='/UserNavbar' replace/>} />
             <Route path='/UserNavbar' element={<UserNavbar />} />
+            <Route path='/UserProfile' element={<Profile />}/>
           </Route>
         </Routes>
       </BrowserRouter>
