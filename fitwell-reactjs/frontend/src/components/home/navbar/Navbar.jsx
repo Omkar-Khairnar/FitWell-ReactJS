@@ -56,7 +56,7 @@ const Home = () => {
             My Account
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/User_Dashboard_home">Dashboard</a></li>
+            <li><a class="dropdown-item" href="/UserHome">Dashboard</a></li>
             <li><a class="dropdown-item" href="/User_Dashboard_cart">Cart</a></li>
             <li><a class="dropdown-item" href="/Userlogout">Logout</a></li>
           </ul>

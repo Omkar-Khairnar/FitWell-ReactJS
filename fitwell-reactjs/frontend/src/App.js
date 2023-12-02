@@ -43,7 +43,10 @@ function App() {
             <Route path="/Reviews" element={<Reviews />} />
             <Route path="/ContactUS" element={<ContactUS />} />
           </Route>
-            {/* <Route path="/" element={<UserCart/>} />  */}
+          <Route element={<UserNavbar />} >
+            <Route path="/UserHome" element={<Navigate to='/UserNavbar' replace/>} />
+            <Route path='/UserNavbar' element={<UserNavbar />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,87 +1,27 @@
-*{
-  padding: 0;
-  margin: 0;
-}
-
-
-.topbg img{
-  height: 50vh;
-  width: 100vw;
-}
-.topbg{
-  position: relative; 
-}
-.toptitle{
-  font-size: 58px;
-  color: white;
-  position: absolute;
-  top: 40%;
-  left: 40%;
-  font-family: 'Anton', sans-serif;
-  font-stretch: extra-expanded;
-}
-.reasonToChoose{
-  text-align: center;
-  background-color: black;
-  color: white;
-  padding-top: 6%;
-  padding-bottom: 6%;
-}
-.reasonToChoose-firstLine{
-  color: #ea3209ef;
-  font-family: 'Mulish', sans-serif; 
-}
-.reasonToChoose-secondLine{
-  font-family: 'Secular One', sans-serif;
-}
-.resonToChoose-reasonItems{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-.resonToChoose-Item{
-  width: 20rem;
-}
-.resonToChoose-Item h5{
-  font-family: 'Secular One', sans-serif;
-}
-.resonToChoose-Item i{
-  color:#ea3209ef;
- 
-}
-
-@media screen and (max-width: 600px) {
-  .toptitle{
-      left: 30%;
-  }
-}
-
-
-
-body{
-  /* background: darkgrey; */
-  font-size: 14px;
-  font-family: 'Poppins', sans-serif;
-}
 
 .containerContactUs{
-  width: 80%;
-  margin: 50px auto; /*AUTOMATICALLY CENTRES THE ELEMENT*/
+  margin: 50px auto; 
   color: black;
 }
 
 .containerContactUs h1{
   color: orangered;
+  margin: 0%;
 }
 
 .contact-box{
-  background: white;
   display: flex;
+  width: 90%;
+  /* padding: 2%; */
+  margin: auto;
+  margin-top: 0%;
 }
 
 .contact-left{
-  flex-basis: 60%;
-  padding: 40px 60px;
+  /* flex-basis: 60%; */
+  padding: 20px 20px;
+  width: 70%;
+  background-color: white;
 }
 
 .contact-left h3{
@@ -89,7 +29,8 @@ body{
 }
 
 .contact-right{
-  flex-basis: 40%;
+  /* flex-basis: 40%; */
+  width: 30%;
   padding: 40px;
   background: orangered;
   color: #fff;
@@ -99,13 +40,17 @@ body{
 
 .input-row{
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
+  justify-content: space-around;
+  
 }
 
 .input-row .input-group{
   flex-basis: 45%;
+  display: flex;
+  flex-direction: column;
 }
+
+
 
 .input-group input{
   margin: 0.3rem;
@@ -115,38 +60,47 @@ body{
   outline: none;
   padding-bottom: 5px;
   padding: 0.5rem;
+  box-shadow: black;
+
 }
 
 .contactUsTextarea{
-  width: 100%;
+  width: 95%;
   border: 1px solid #ccc;
   outline: none;
   padding: 10px;
   box-sizing: border-box;
+  height: 10vw;
+  box-shadow: none;
+  margin: 10px auto;
 }
 
 .input-group label{
   margin-left:0.2rem;
-  margin-bottom: 6px;
+  margin: 0%;  
   display: block;
   color: orangered;
 }
 
 .contactUsSubmit {
   background: orangered;
-  width: 100px;
   border: none;
   outline: none;
   color: #fff;
   height: 35px;
-  border-radius: 30px;
-  margin-top: 1rem;
+  text-align: center;
+  height: auto;
+  width: 40%;
+  margin: auto;
+  border-radius: 5px;
+  
 }
 
 .contact-left h3{
   color: orangered;
   font-weight: 600;
   margin-bottom: 30px;
+  
 }
 
 .contact-right h3{
@@ -154,11 +108,11 @@ body{
   margin-bottom: 30px;
 }
 
-tr td:first-child{
+.contactUsTR td:first-child{
   padding-right: 20px;
 }
 
-tr td{
+.contactUsTR td{
   padding-top: 20px;
 }
 
@@ -173,9 +127,23 @@ tr td{
       left: 30%;
   }
 }
-.containerContactUs{
-  margin-top: 8%;
-}
 .map iframe{
   width: 50%;
 }
+
+.containerContactUs{
+  margin-top: 6vw;
+  padding-left: 50px;
+  padding-right: 70px;
+  position: relative;
+}
+.contactUsInputText {
+  box-shadow: none;
+  width: 100%;
+}
+
+.contactUsForm {
+  width: 100%;
+  justify-content: center;
+}
+/* .contactUsForm in */

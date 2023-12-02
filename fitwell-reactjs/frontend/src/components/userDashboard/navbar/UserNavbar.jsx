@@ -1,5 +1,6 @@
 import React from "react";
-import logo from "../../../assets/img/Logo/logo.png"
+import logo from "../../../assets/img/Logo/logo.png";
+import '../User_Dashboard.css';
 
 const UserNavbar = () => {
   return (

@@ -1,14 +1,15 @@
 import React from "react";
 import "./ContactUS.css";
 import ContactUsValidateForm from "./ContactUsFormValidate";
+import Centers from "../centers/Centers";
 
 const ContactUS = () => {
   return (
-    <div>
+    <div style={{padding : "0vw", margin:"0vw"}}>
       <div class="containerContactUs">
         <h1>CONNECT WITH US</h1>
         <br />
-        <p style={{ color: "white" }}>
+        <p style={{ color: "white" , textAlign:"center"}}>
           We would love to respond to your queries and help you succeed
           <br />
           Feel free to get in touch with us
@@ -18,6 +19,7 @@ const ContactUS = () => {
             <h3>Tell us about you</h3>
 
             <form
+              className="contactUsForm"
               name="contact"
               method="post"
               action="/useractions/contactus"
@@ -27,7 +29,7 @@ const ContactUS = () => {
                 <div class="input-group">
                   <label>Name</label>
                   <input
-                    type="text"
+                    type="text" class="contactUsInputText"
                     placeholder="Enter Your Name"
                     name="name"
                   />
@@ -35,7 +37,7 @@ const ContactUS = () => {
                 <div class="input-group">
                   <label>Phone</label>
                   <input
-                    type="text"
+                    type="text" class="contactUsInputText"
                     placeholder="Enter Contact No."
                     name="phone"
                   />
@@ -45,7 +47,7 @@ const ContactUS = () => {
                 <div class="input-group">
                   <label>Email</label>
                   <input
-                    type="text"
+                    type="text" class="contactUsInputText"
                     placeholder="Enter email address"
                     name="email"
                   />
@@ -53,13 +55,13 @@ const ContactUS = () => {
                 <div class="input-group">
                   <label>Subject</label>
                   <input
-                    type="text"
+                    type="text" class="contactUsInputText"
                     placeholder="Enter Subject"
                     name="subject"
                   />
                 </div>
               </div>
-              <label>Message</label>
+              <label style={{textAlign : 'center', color:'orangered'}}>Message</label>
               <textarea
                 rows="5"
                 class="contactUsTextarea"
@@ -74,19 +76,19 @@ const ContactUS = () => {
           <div class="contact-right">
             <h3>Reach Us</h3>
             <table>
-              <tr>
-                <td>Email</td>
-                <td>fitwell@gmail.com</td>
+              <tr className="contactUsTR">
+                <td className="contactUsTD">Email</td>
+                <td className="contactUsTD">fitwell@gmail.com</td>
               </tr>
 
-              <tr>
-                <td>Phone</td>
-                <td>+91 7865******</td>
+              <tr className="contactUsTR">
+                <td className="contactUsTD">Phone</td>
+                <td className="contactUsTD">+91 7865******</td>
               </tr>
 
-              <tr>
-                <td>Address</td>
-                <td>
+              <tr className="contactUsTR">
+                <td className="contactUsTD">Address</td>
+                <td className="contactUsTD">
                   603 , Gnan Marg , SriCity
                   <br />
                   Some layout , Some Road , Sricity
