@@ -13,8 +13,8 @@ app.get('/', (req, res) => {
   res.send('hello world')  
 })
 
-app.use('/api/adminAuth', require('./routes/adminAuth'))
-app.use('/api/UserAuth', require('./routes/userAuth'))
+app.use('/api/adminAuth', require('./routes/admin'))
+app.use('/api/UserAuth', require('./routes/user'))
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

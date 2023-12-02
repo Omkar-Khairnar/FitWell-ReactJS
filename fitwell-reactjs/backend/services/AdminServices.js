@@ -1,7 +1,7 @@
 const Admin=require('../models/Admin')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-class AdminAuthServices{
+class AdminServices{
     async adminLogin(reqData){
         try{
             var email=reqData.email;
@@ -63,5 +63,19 @@ class AdminAuthServices{
             return {error:true, msg:err.message};
         }
     }
+
+    async getAllAdmins(reqData){
+        try{
+            const admins=await Admin.find().sort({_id:-1});
+            if(!admins){
+                return {error:true, msg:'Internal Server Error'};
+            }
+
+            return {error:false, msg:'Admins Fetched Successfully', data:admins};
+        }
+        catch(error){
+            return {error:true, msg:error.message};
+        }
+    }
 }
-module.exports= new AdminAuthServices();
+module.exports= new AdminServices();
