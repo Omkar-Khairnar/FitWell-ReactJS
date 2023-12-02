@@ -4,7 +4,7 @@ import './Trainer.css';
 const Trainers = () => {
   return (
     <div>
-       <div class="container-fluid px-4 overflow-scroll">
+        <div class="container-fluid px-4 overflow-scroll">
             <button type="button" class="button my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Add New Trainer
             </button>
@@ -62,7 +62,7 @@ const Trainers = () => {
                 </table>
               </div>
             </div>
-          </div>
+        </div>
 
           
           <div class="modal" id="exampleModal">

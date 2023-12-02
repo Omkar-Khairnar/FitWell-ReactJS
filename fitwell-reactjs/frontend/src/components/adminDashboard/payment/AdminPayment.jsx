@@ -1,7 +1,7 @@
 import React from 'react'
-import './Payment.css'
+import './AdminPayment.css'
 
-const Payment = () => {
+const AdminPayment = () => {
   return (
     <div class="container-fluid px-4">
                         <h2 style={{textAlign: 'center'}}>All Payments...</h2>
@@ -51,4 +51,4 @@ const Payment = () => {
   )
 }
 
-export default Payment
+export default AdminPayment
