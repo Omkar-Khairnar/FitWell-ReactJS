@@ -5,8 +5,8 @@ const Pricing = () => {
     
     <div>
       
-        <div class="container1 my-4">
-            <div class="title container my-3">
+        <div class="container1 my-0">
+            <div class="titlePricing container my-0">
                 <h3 id="title-0" class="my-3 ">OUR PLAN</h3>
                 <h2 id="title-1" class="my-2"> CHOOSE YOUR PRICING PLAN</h2>
             </div>

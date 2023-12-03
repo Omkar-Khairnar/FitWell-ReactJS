@@ -7,6 +7,10 @@
     height: 100vh;
     width: 100vw;
 }
+
+.mainHomeSlider {
+    margin: 0%;
+}
 #infobutton{
     /* height: 200px; */
     position: absolute;
@@ -85,6 +89,18 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
+
+.card-img-top-home {
+    height:auto ;
+    width: auto;
+    margin: 0%;
+}
+
+.HomeWhatWeOffer {
+    display: flex;
+    flex-direction: column;
+    height: 30px;
+}
 .ourClasses-firstLine{
     font-family: 'Mulish', sans-serif;
     font-stretch: extra-expanded;
@@ -115,7 +131,7 @@
 }
 .appointment{
     background-color: black;
-    padding-bottom: 5em ;
+    /* padding-bottom: 5em ; */
     position: relative;
 }
 .appoint-img img{

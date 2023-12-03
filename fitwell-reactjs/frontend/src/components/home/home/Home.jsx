@@ -6,7 +6,7 @@ import slider3 from "../../../assets/img/corousel_item3.png";
 import home1 from "../../../assets/img/home1.jpg";
 import home2 from "../../../assets/img/home2.jpg";
 import home3 from "../../../assets/img/home3.jpg";
-// import home5 from "../../../assets/img/home5.jpg";
+import home5 from "../../../assets/img/home5.jpg";
 import home6 from "../../../assets/img/home6.jpg";
 import home7 from "../../../assets/img/home7.jpg";
 import home8 from "../../../assets/img/home8.jpg";
@@ -24,13 +24,13 @@ const Home = () => {
           >
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src={slider1} class="s1" alt="slide 1" />
+                <img src={slider1} class="mainHomeSlider" alt="slide 1" />
               </div>
               <div class="carousel-item">
-                <img src={slider2} class="s2" alt="slide 2" />
+                <img src={slider2} class="mainHomeSlider" alt="slide 2" />
               </div>
               <div class="carousel-item">
-                <img src={slider3} class="s3" alt="slide 3" />
+                <img src={slider3} class="mainHomeSlider" alt="slide 3" />
               </div>
             </div>
             <button
@@ -130,46 +130,46 @@ const Home = () => {
           <div class="ouClasses-cards">
             <div class="card border-0 my-3" style={{ width: "20rem" }}>
               <img src={home2} class="card-img-top-home" alt="..." />
-              <div class="card-body bg-black justify-content-center">
-                <span class="card-desc-1">STRENGTH</span> <br />
+              <div class="card-body bg-black HomeWhatWeOffer justify-content-center py-0">
+                <span class="card-desc-1">STRENGTH</span>
                 <span class="card-desc-2">WEIGHTLIFTING</span>
               </div>
             </div>
             <div class="card border-0 my-3" style={{ width: "20rem" }}>
               <img src={home3} class="card-img-top-home" alt="..." />
-              <div class="card-body bg-black justify-content-center">
-                <span class="card-desc-1">CARDIO</span> <br />
+              <div class="card-body bg-black HomeWhatWeOffer justify-content-center">
+                <span class="card-desc-1">CARDIO</span>
                 <span class="card-desc-2">INDOOR EXERCISES</span>{" "}
               </div>
             </div>
-            {/* <div class="card border-0 my-3" style={{ width: "20rem" }}>
-              <img src={home5} class="card-img-top-home" alt="..." />
-              <div class="card-body bg-black">
-                <span class="card-desc-1">FLEXIBILITY</span> <br />
+            <div class="card border-0 my-3" style={{ width: "20rem" }}>
+              <img src={home5} class="card-img-top-home" style={{height : "213px"}} alt="..." />
+              <div class="card-body HomeWhatWeOffer justify-content-center bg-black">
+                <span class="card-desc-1">FLEXIBILITY</span>
                 <span class="card-desc-2">YOGA</span>{" "}
               </div>
-            </div> */}
+            </div>
           </div>
 
           <div class="ouClasses-cards-2">
             <div class="card border-0 my-3" style={{ width: "20rem" }}>
               <img src={home6} class="card-img-top-home" alt="..." />
-              <div class="card-body bg-black">
-                <span class="card-desc-1">FITNESS</span> <br />
+              <div class="card-body HomeWhatWeOffer justify-content-center bg-black">
+                <span class="card-desc-1">FITNESS</span>
                 <span class="card-desc-2">ZUMBA CLASSES</span>{" "}
               </div>
             </div>
             <div class="card border-0 my-3" style={{ width: "20rem" }}>
               <img src={home7} class="card-img-top-home" alt="..." />
-              <div class="card-body bg-black">
-                <span class="card-desc-1">STRENGTH</span> <br />
+              <div class="card-body HomeWhatWeOffer justify-content-center bg-black">
+                <span class="card-desc-1">STRENGTH</span>
                 <span class="card-desc-2">KETBELL POWER</span>
               </div>
             </div>
             <div class="card border-0 my-3" style={{ width: "20rem" }}>
               <img src={home8} class="card-img-top-home" alt="..." />
-              <div class="card-body bg-black">
-                <span class="card-desc-1">STRENGTH</span> <br />
+              <div class="card-body HomeWhatWeOffer justify-content-center bg-black">
+                <span class="card-desc-1">STRENGTH</span>
                 <span class="card-desc-2">Boxing</span>
               </div>
             </div>
@@ -182,6 +182,7 @@ const Home = () => {
               src={home1}
               alt="REGISTER_NOW_AND_GET_EXCITING_DEALS"
               class="REGISTER_NOW_AND_GET_EXCITING_DEALS overflow-x-hidden"
+              style={{margin : "0px"}}
             />
           </div>
           <div class="appoint-info container">
