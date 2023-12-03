@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../../../assets/img/Logo/logo.png";
-import '../User_Dashboard.css';
+import "../User_Dashboard.css";
+import Profile from "../profile/Profile";
 
 const UserNavbar = () => {
   return (
@@ -18,20 +19,20 @@ const UserNavbar = () => {
             </div>
           </header>
           <nav class="dashboard-nav-list my-4">
-            <a href="./user_Dashboard_home" class="dashboard-nav-item">
+            <a href="/UserHome" class="dashboard-nav-item">
               <i class="fas fa-dashboard bg-transparent"></i>
               Dashboard
             </a>
 
-            <a href="./user_Dashboard_profile" class="dashboard-nav-item">
+            <a href="/UserProfile" class="dashboard-nav-item">
               <i class="fas fa-user bg-transparent"></i>
               Profile
             </a>
-            <a href="./user_dashboard_workout" class="dashboard-nav-item">
+            <a href="/UserWorkout" class="dashboard-nav-item">
               <i class="fas fa-dumbbell bg-transparent"></i>
               Home WorkOut
             </a>
-            <a href="./user_Dashboard_challenges" class="dashboard-nav-item">
+            <a href="/UserChallenges" class="dashboard-nav-item">
               <i class="fas fa-running bg-transparent"></i>
               Challenges
             </a>
@@ -39,20 +40,20 @@ const UserNavbar = () => {
                     <i class="fas fa-users bg-transparent"></i>
                     Chat with us
                 </a>  */}
-            <a href="./user_Dashboard_reviews" class="dashboard-nav-item">
+            <a href="/UserReviews" class="dashboard-nav-item">
               <i class="fas fa-comment bg-transparent"></i>
               Put a Review
             </a>
 
-            <a href="./user_Dashboard_cart" class="dashboard-nav-item">
+            <a href="/UserCart" class="dashboard-nav-item">
               <i class="fas fa-shopping-cart bg-transparent"></i>
               Cart
             </a>
-            <a href="./user_dashboard_myorders" class="dashboard-nav-item">
+            <a href="/UserOrders" class="dashboard-nav-item">
               <i class="fas fa-bag-shopping bg-transparent"></i>
               Your Orders
             </a>
-            <a href="./user_Dashboard_payment" class="dashboard-nav-item">
+            <a href="/UserPayment" class="dashboard-nav-item">
               <i class="fas fa-money-check-alt bg-transparent"></i>
               Payment
             </a>
@@ -67,11 +68,11 @@ const UserNavbar = () => {
             width: "100%",
           }}
         >
-          <a href="./" class="dashboard-nav-item">
+          <a href="/" class="dashboard-nav-item">
             <i class="fas fa-home bg-transparent"></i>
             Home
           </a>
-          <a href="./products" class="dashboard-nav-item">
+          <a href="/Products" class="dashboard-nav-item">
             <i class="fas fa-shopping-cart bg-transparent"></i>
             Products
           </a>

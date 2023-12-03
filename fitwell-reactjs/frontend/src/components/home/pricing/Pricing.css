@@ -39,6 +39,11 @@
   margin: 5px 0 44px ;
   font-weight: 500;
 }
+
+.titlePricing {
+  margin-top: 0px;
+}
+
 #title-1{
   color: coral;
   font-weight:700;

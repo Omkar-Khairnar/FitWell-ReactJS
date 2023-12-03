@@ -10,12 +10,14 @@ background-color: #000;
 .ourteam-firstline{
 color:#ea3209ef;
 font-family: 'Mulish', sans-serif; 
-font-size: 28px;
-font-weight: bolder;
+text-align: center;
+font-size: 25px;
 }
+
 .ourteam-secondline{
 color: white;
 font-family: 'Anton', sans-serif;
+text-align: center;
 font-size: 30px;
 font-weight: bolder;
 margin-bottom: 10px;

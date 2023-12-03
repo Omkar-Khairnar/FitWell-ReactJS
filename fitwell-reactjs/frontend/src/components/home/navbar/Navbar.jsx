@@ -7,8 +7,8 @@ const Home = () => {
     
     <div class="container-fluid container-fluid1">
       <nav class="navbar navbar1 navbar-expand-lg navbar-dark fixed-top bg-black p-0">
-      <a class="navbar-brand navbarlogo" href="/Home">
-        <img src={logo} alt="fitwell Logo.png"/>
+      <a class="navbar-brand navbarlogo" style={{margin:"0%", padding:"0%"}} href="/Home">
+        <img class="navbarLogoImg" src={logo} alt="fitwell Logo.png"/>
       </a>
       <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

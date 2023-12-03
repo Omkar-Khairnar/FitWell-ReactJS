@@ -131,6 +131,9 @@ h1, .h1 {
   display: none;
 }
 
+.userHomeInfo{
+  color: #000;
+}
 .dashboard-nav header {
   background-color: #d63d00;
   min-height: 84px;
@@ -1225,12 +1228,14 @@ input[type="submit"]:hover {
   border-radius: 30px;
   padding: 20px;
   justify-content: center;
+  /* border: black solid; */
 }
 
 
 .bmicard{
   color: black;
-  /* box-shadow: none; */
+  box-shadow: none;
+  width: 42 0px;
 }
 .bmicard img{
   height: 300px;
