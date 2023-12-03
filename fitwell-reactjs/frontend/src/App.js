@@ -12,7 +12,7 @@ import ProductSearch from './components/home/products/ProductSearch';
 import Centers from './components/home/centers/Centers';
 import Reviews from './components/home/reviews/Reviews';
 import ContactUS from './components/home/contactUs/ContactUS';
-import AdminHome from './components/adminDashboard/adminHome/AdminHome';
+import AdminHome from './components/adminDashboard/adminHome/adminHome';
 import Order from './components/adminDashboard/order/Order';
 import AdminPayment from './components/adminDashboard/payment/AdminPayment';
 import Trainers from './components/adminDashboard/trainers/Trainers';
@@ -31,7 +31,7 @@ function App() {
         <Routes>
           <Route element={<LandingPage />} >
             <Route path='/' element={<Navigate to="/Home" replace />} />
-            <Route path="/LandingPage" element={<LandingPage />} />
+            {/* <Route path="/LandingPage" element={<LandingPage />} /> */}
             <Route path="/Navbar" element={<Navbar />} />
             <Route path="/Home" element={<Home />} />
             <Route path="/AboutUs" element={<AboutUs />} />

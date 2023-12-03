@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/adminAuth', require('./routes/admin'))
-app.use('/api/UserAuth', require('./routes/user'))
+app.use('/api/userAuth', require('./routes/user'))
 app.use('/api/trainer', require('./routes/trainers'))
 app.use('/api/order', require('./routes/order'))
 app.use('/api/review', require('./routes/reviews'))
