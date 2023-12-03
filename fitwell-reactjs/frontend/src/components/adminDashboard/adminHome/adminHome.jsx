@@ -69,20 +69,20 @@ const AdminHome = () => {
             <div class="modal" id="addChallenge">
               <div class="modal-dialog modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
-                  <div class="modal-header align-self-center">
+                  <div class="modal-header adminModalHeader align-self-center">
                     <h3>Enter New Challenge</h3>
                   </div>
-                  <div class="modal-body">
+                  <div class="modal-body bg-white">
                     <div class="form-container add-challenge-container">
                       <form class="AdminHomeForm" name="addNewChallenge" action="/adminActions/newChallenge" method="POST" enctype="multipart/form-data">
                         <label for="description">Description of Challenge
-                          <textarea type="text" id="description" placeholder="Enter Description of Challenge"
-                            name="ChallengeDescription" required></textarea>
                         </label>
+                          <textarea class='workoutFormText' type="text" id="description" placeholder="Enter Description of Challenge"
+                            name="ChallengeDescription" required></textarea>
                         <label for="challengeImg">Upload Image of Challenge.
+                        </label>
                           <input class="product-img" type="file" id="challengeImg" name="challengeImg"
                             placeholder="Upload Image" required/>
-                        </label>
                         <button id="add-challenge-btn" class="addChallengeAdminHomeBtn" type="submit">Add Challenge</button>
 
                       </form>
@@ -95,20 +95,20 @@ const AdminHome = () => {
             <div class="modal" id="addWorkout">
               <div class="modal-dialog modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
-                  <div class="modal-header align-self-center">
+                  <div class="modal-header adminModalHeader align-self-center">
                     <h3>Enter New Workout</h3>
                   </div>
-                  <div class="modal-body">
+                  <div class="modal-body bg-white">
                     <div class="form-container add-workout-container">
                       <form class="AdminHomeForm" name="addNewWorkout" action="/adminactions/newWorkout" method="POST" enctype="multipart/form-data">
                         <label for="description">Description of Workout
-                          <textarea type="text" id="description" placeholder="Enter Description of new Workout"
-                            name="WorkoutDescription" required></textarea>
                         </label>
+                          <textarea className='workoutFormText' type="text" id="description" placeholder="Enter Description of new Workout"
+                            name="WorkoutDescription" required></textarea>
                         <label for="workoutImg">Upload 5 Images of Workout.
+                        </label>
                           <input class="product-img" multiple type="file" id="workoutImg" name="workoutImg"
                             placeholder="Upload Image" required/>
-                        </label>
                         <button id="add-workout-btn" type="submit">Add Workout</button>
 
                       </form>
@@ -137,9 +137,9 @@ const AdminHome = () => {
                     <tbody>
                       {/* <% payments.forEach((item)=>{ %> */}
                         <tr id="row1">
-                          <th scope="row" id="payment-date1">
+                          <td scope="row" id="payment-date1">
                             {/* <%=item.Dateoforder.toDateString()%> */}
-                            </th>
+                            </td>
                           <td id="payment-transactionID1">
                             {/* <%=item._id%> */}
                             </td>
@@ -176,7 +176,6 @@ const AdminHome = () => {
                         <th scope="col">Amount</th> 
                         <th scope="col">Status</th>
                         <th scope="col">Address</th>
-                        <th scope="col"></th>
                       </tr>
                       </thead>
                     <tbody>
@@ -185,6 +184,7 @@ const AdminHome = () => {
                           <tr>
                               <th scope="row">
                                 {/* <%=count%> */}
+                                
                                 </th>
                               {/* <% count=count+1%> */}
                               <td>
