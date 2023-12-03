@@ -106,3 +106,10 @@ background-color: #d63d00;
     margin-left: -15rem;
   }
 }
+
+
+.adminModalHeader {
+  color: black;
+  background-color: white;
+  font-weight: bolder;
+}

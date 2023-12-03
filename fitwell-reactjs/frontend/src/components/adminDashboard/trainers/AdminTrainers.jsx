@@ -1,11 +1,12 @@
 import React from 'react';
-import './Trainers.css';
+// import './AdminTrainerForm.css'
+// import './Trainers.css';
 
 const AdminTrainers = () => {
   return (
     <div>
         <div class="container-fluid px-4 overflow-scroll">
-            <button type="button" class="button my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button className='adminTrainerButton' type="button" class="button my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Add New Trainer
             </button>
 
@@ -22,7 +23,6 @@ const AdminTrainers = () => {
                       <th scope="col">DOJ</th>
                       <th scope="col" class="text-center">Salary</th> 
                       <th scope="col" class="text-center">Remove Trainer</th> 
-                      <th scope="col"></th>
 
                     </tr>
                   </thead>
@@ -54,7 +54,7 @@ const AdminTrainers = () => {
                             // value=<%=trainer._id%> 
                             class="d-none" 
                             name="trainerid" />
-                          <td> <button type="submit" style={{border: 'none', backgroundColor: 'transparent'}}><i class="fa-solid fa-trash" style={{color:'red', cursor: 'pointer'}}></i></button></td>
+                          <td> <button className='adminTrainerButton' type="submit" style={{border: 'none', backgroundColor: 'transparent'}}><i class="fa-solid fa-trash" style={{color:'red', cursor: 'pointer'}}></i></button></td>
                         </form>
                       </tr>
                     {/* <% })%> */}
@@ -68,7 +68,7 @@ const AdminTrainers = () => {
           <div class="modal" id="exampleModal">
             <div class="modal-dialog modal-dialog-scrollable modal-lg">
               <div class="modal-content">
-                <div class="modal-header align-self-center">
+                <div class="modal-header adminModalHeader align-self-center">
                   <h3>Fill Out Appropriate Details of Trainer</h3> 
                 </div> 
                 <div class="modal-body">
@@ -76,14 +76,14 @@ const AdminTrainers = () => {
                     <form class="adminTrainerForm" name="regform" onchange="return Validation1()" method="POST" action="/adminactions/addTrainer">
                       <fieldset>
                         <input type="text" id="namec" placeholder="Name" name="name" required />
-                        <span class="regemailver">Enter Valid Email Address.</span>
+                        <span class="regemailver adminTrainerSpan">Enter Valid Email Address.</span>
                         <input type="text" id="emailc" placeholder="Email" name="email" required />
                         <input type="text" id="genderc" placeholder="Gender" name="gender" required/>
                         <input type="number" id="salary-trainer" placeholder="Enter salary($)" name="salary" required/>
                         <input class="profile-img" type="url" id="image" name="image"
                           placeholder="Enter Profile Image Url"/>
                       </fieldset>
-                      <button class="btnSubmitTrainers" id="signupbtn" type="submit">Add Trainer</button>
+                      <button class="btnSubmitTrainers adminTrainerButton" id="signupbtn" type="submit">Add Trainer</button>
                     </form>
                   </div>
                 </div>

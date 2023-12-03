@@ -5,7 +5,7 @@ const AdminFeedback = () => {
   return (
     <div class="container-fluid px-5 ">
           <div class="tableheader row my-4">
-              <h3 class="fs-4 mb-3 text-light py-3" style={{backgroundColor: '#de5923'}}>Total Feedback from users</h3>
+              <h3 class="fs-4 mb-3 text-light py-3" style={{backgroundColor: '#de5923'}}>Users Feedbacks</h3>
               <div class = "tableparent px-5 py-4">
                   <table class="table bg-white rounded shadow-sm  table-hover">
                       <thead>

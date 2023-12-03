@@ -7,10 +7,11 @@
 .topbg{
   position: relative;
 }
-.toptitle{
+.toptitleCenter{
   font-size: 58px;
   color: white;
   position: absolute;
+  font-weight: bolder;
   top: 40%;
   left: 40%;
   font-family: 'Anton', sans-serif;
@@ -42,7 +43,7 @@ span.checked{
   transform: scale(1.04);
 }
 
-#title {
+#titleCenter {
   text-align: center;
   margin: 0%;
   color: beige;
@@ -64,7 +65,7 @@ span.checked{
   text-align: center;
   margin-top: 5%;
 }
-p {
+.centersP {
   color: azure;
   line-height: 1.6;
   font-family: "Mulish", sans-serif;

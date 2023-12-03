@@ -5,15 +5,15 @@ const Pricing = () => {
     
     <div>
       
-        <div class="container1 my-0">
+        <div class="container1Pricing my-0">
             <div class="titlePricing container my-0">
-                <h3 id="title-0" class="my-3 ">OUR PLAN</h3>
-                <h2 id="title-1" class="my-2"> CHOOSE YOUR PRICING PLAN</h2>
+                <h3 id="title-0" class="my-3 pricingH2H3">OUR PLAN</h3>
+                <h2 id="title-1" class="my-2 pricingH2H3"> CHOOSE YOUR PRICING PLAN</h2>
             </div>
             <div class="price-row">
                 <div class="price-col">
                     <p>SINGLE CLASS</p>
-                    <h2 id="title">Class Drop-in</h2>
+                    <h2 id="title">Class <br/>Drop-in</h2>
                     <h3 id="pri"> ₹ 4200 </h3>
                     <ul>
                         <li>Free riding</li>

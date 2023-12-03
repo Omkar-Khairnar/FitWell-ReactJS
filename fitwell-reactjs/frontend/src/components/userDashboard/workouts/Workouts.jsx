@@ -33,29 +33,55 @@ const Workouts = () => {
                 <div class="modal" id="<%=image._id%>">
                   <div class="modal-dialog modal-fullscreen">
                     <div class="modal-content">
-                      <div class="modal-header">
-                        <div class="timer">
-                          <div class="timerCustomizer">
+                      <div class="modal-header modal-header-userDashboard">
+                      <div
+                          class="timer"
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            width: "55%",
+                          }}
+                        >
+                          <div
+                            class="timerCustomizer"
+                            style={{ display: "flex" }}
+                          >
                             <button
                               class="timerBtnClass startBtn"
+                              style={{ backgroundColor: "rgb(0, 248, 0)" }}
                               id="startBtn<%=image._id%>"
                             >
                               Start
                             </button>
                             <button
                               class="timerBtnClass stopBtn"
+                              style={{ backgroundColor: "rgb(255, 0, 0)" }}
                               id="stopBtn<%=image._id%>"
                             >
                               Stop
                             </button>
                             <button
                               class="timerBtnClass"
+                              style={{
+                                backgroundColor: "orange",
+                                fontSize: "larger",
+                                border: "none",
+                                margin: "0px 5px",
+                              }}
                               id="setBtn<%=image._id%>"
                             >
                               Set Time
                             </button>
                             <input
                               class="timerInputClass"
+                              style={{
+                                borderRadius: " 5px",
+                                fontSize: "larger",
+                                width: "50px",
+                                textAlign: "center",
+                                padding: "0%",
+                                border: "none",
+                              }}
                               id="inputMin<%=image._id%>"
                               type="number"
                               value="0"
@@ -65,6 +91,14 @@ const Workouts = () => {
                             <h3>:</h3>
                             <input
                               class="timerInputClass"
+                              style={{
+                                borderRadius: " 5px",
+                                fontSize: "larger",
+                                width: "50px",
+                                textAlign: "center",
+                                padding: "0%",
+                                border: "none",
+                              }}
                               id="inputSec<%=image._id%>"
                               type="number"
                               value="0"
@@ -73,8 +107,8 @@ const Workouts = () => {
                             />
                           </div>
 
-                          <h3 id="timerValue">
-                            Time Left -
+                          <h3 id="timerValue" style={{ color: "orangered" }}>
+                            Time Left -{" "}
                             <span id="timer<%=image._id%>">0:00</span>
                           </h3>
                         </div>

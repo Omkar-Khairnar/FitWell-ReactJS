@@ -1,6 +1,6 @@
 .topbg img{
   height: 30vw;
-  width: 100vw;
+  width: 100%;
   opacity: 0.5;
 }
 .topbg{
@@ -9,6 +9,7 @@
 .toptitle{
   font-size: 68px;
   color: white;
+  font-weight: 800;
   position: absolute;
   top: 50%;
   left: 40%;

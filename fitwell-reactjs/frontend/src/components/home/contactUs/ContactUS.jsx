@@ -86,7 +86,7 @@ const ContactUS = () => {
                   />
                 </div>
               </div>
-              <label style={{textAlign : 'center', color:'orangered'}}>Message</label>
+              <label style={{marginLeft : "1.3vw" , color:'orangered'}}>Message</label>
               <textarea
                 rows="5"
                 class="contactUsTextarea"

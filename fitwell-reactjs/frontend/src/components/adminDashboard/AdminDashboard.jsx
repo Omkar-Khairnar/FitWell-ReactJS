@@ -7,7 +7,7 @@ const AdminDashboard = () => {
   return (
     <div class="d-flex" id="wrapper">
       <AdminSideWrapper />
-      <div id="page-content-wrapper" style={{color:"black", }}>
+      <div id="page-content-wrapper" style={{color:"black" }}>
         <AdminTopWrapper />
 
         <Outlet />

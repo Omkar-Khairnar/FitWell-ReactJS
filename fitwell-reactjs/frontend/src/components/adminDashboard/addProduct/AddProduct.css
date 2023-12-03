@@ -60,3 +60,11 @@
   button:active {
     transform: scale(0.95);
   }
+
+  .addProductInputTextSelect {
+    color : black;
+  }
+
+  .adminModalBody {
+    background: white;
+  }

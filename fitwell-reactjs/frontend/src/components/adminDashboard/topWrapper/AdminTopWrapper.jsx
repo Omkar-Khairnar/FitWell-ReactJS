@@ -19,7 +19,7 @@ const AdminTopWrapper = () => {
     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown" role="button"
-          data-bs-toggle="dropdown" aria-expanded="false">
+          data-bs-toggle="dropdown" aria-expanded="false" style={{textDecoration : "none"}}>
           <i class="fas fa-user me-2"></i><span id="admin-dashboard-username">Admin</span>
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">

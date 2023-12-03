@@ -19,7 +19,6 @@ const AdminCustomers = () => {
                         <th scope="col">Weight</th>
                         <th scope="col">Height</th>
                         <th scope="col">Remove</th>
-                        <th scope="col"></th>
                         
                       </tr>
                     </thead>

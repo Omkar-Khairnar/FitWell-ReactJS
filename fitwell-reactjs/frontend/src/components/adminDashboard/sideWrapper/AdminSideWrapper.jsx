@@ -4,7 +4,7 @@ import logo from '../../../assets/img/Logo/logo.png'
 
 const AdminSideWrapper = () => {
   return (
-    <div class="white" id="sidebar-wrapper">
+    <div class="white" id="sidebar-wrapper" >
         <div class="sidebar-heading">
                 <a href="./" class="brand-logo">
                         <img src={logo} alt="logo" class="logo-img"/>
