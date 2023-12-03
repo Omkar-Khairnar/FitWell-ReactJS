@@ -1,7 +1,8 @@
 import React from 'react'
-import './.css'
+import '../User_Dashboard.css';
+import './UserPayment.css'
 
-const Payment = () => {
+const UserPayment = () => {
   return (
     <div class="dashboard-content" id="dashboard-payment-page">
           <div class="container">
@@ -48,4 +49,4 @@ const Payment = () => {
   )
 }
 
-export default Payment
+export default UserPayment

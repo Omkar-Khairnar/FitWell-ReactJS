@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../../assets/img/Logo/logo.png";
-import '../User_Dashboard.css';
+import "../User_Dashboard.css";
 import Profile from "../profile/Profile";
 
 const UserNavbar = () => {
@@ -45,15 +45,15 @@ const UserNavbar = () => {
               Put a Review
             </a>
 
-            <a href="./user_Dashboard_cart" class="dashboard-nav-item">
+            <a href="/UserCart" class="dashboard-nav-item">
               <i class="fas fa-shopping-cart bg-transparent"></i>
               Cart
             </a>
-            <a href="./user_dashboard_myorders" class="dashboard-nav-item">
+            <a href="/UserOrders" class="dashboard-nav-item">
               <i class="fas fa-bag-shopping bg-transparent"></i>
               Your Orders
             </a>
-            <a href="./user_Dashboard_payment" class="dashboard-nav-item">
+            <a href="/UserPayment" class="dashboard-nav-item">
               <i class="fas fa-money-check-alt bg-transparent"></i>
               Payment
             </a>
@@ -68,24 +68,16 @@ const UserNavbar = () => {
             width: "100%",
           }}
         >
-          <a href="./" class="dashboard-nav-item">
+          <a href="/" class="dashboard-nav-item">
             <i class="fas fa-home bg-transparent"></i>
             Home
           </a>
-          <a href="./products" class="dashboard-nav-item">
+          <a href="/Products" class="dashboard-nav-item">
             <i class="fas fa-shopping-cart bg-transparent"></i>
             Products
           </a>
         </nav>
       </div>
-      <header class="dashboard-toolbar">
-        <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
-        <a href="/userlogout" class="menu-toggle">
-          <i class="fas fa-right-from-bracket"></i>
-          Logout
-        </a>
-      </header> 
-      <Profile />
     </div>
   );
 };

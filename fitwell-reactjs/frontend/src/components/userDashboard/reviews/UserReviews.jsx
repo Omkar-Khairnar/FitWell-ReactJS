@@ -1,7 +1,7 @@
 import React from 'react'
-import './.css'
+import '../User_Dashboard.css'
 
-const Reviews = () => {
+const UserReviews = () => {
   return (
     <div class="dashboard-content" id="dashboard-review-page">
         <div class="container">
@@ -32,4 +32,4 @@ const Reviews = () => {
   )
 }
 
-export default Reviews
+export default UserReviews

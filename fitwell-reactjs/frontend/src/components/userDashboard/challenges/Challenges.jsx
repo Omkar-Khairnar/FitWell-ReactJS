@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import '../User_Dashboard.css';
 
 const Challenges = () => {
   return (

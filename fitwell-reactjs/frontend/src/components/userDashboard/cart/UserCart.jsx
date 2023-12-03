@@ -1,9 +1,10 @@
 import React from 'react'
 import "../User_Dashboard.css";
+import './UserCart.css';
 
 const UserCart = () => {
   return (
-    <div class="dashboard-content" id="dashboard-review-page">
+    <div class="dashboard-content" id="dashboard-review-page" style={{backgroundColor:"white"}}>
           <div class="parent-container">
             <div class="cart-container">
               <table>
@@ -42,7 +43,7 @@ const UserCart = () => {
             </div> 
 
             <div class="total-price">
-              <table>
+              <table class='UserCartTotalPrice'>
                 <tr>
                   <th colspan="2">Price Details</th>
                 </tr>

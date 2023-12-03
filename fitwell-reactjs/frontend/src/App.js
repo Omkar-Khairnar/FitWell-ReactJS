@@ -1,5 +1,7 @@
 import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
 import './App.css';
+
+
 import AboutUs from './components/home/aboutUs/AboutUs';
 import Footer from './components/home/footer/Footer';
 import Home from './components/home/home/Home';
@@ -12,10 +14,15 @@ import ProductSearch from './components/home/products/ProductSearch';
 import Centers from './components/home/centers/Centers';
 import Reviews from './components/home/reviews/Reviews';
 import ContactUS from './components/home/contactUs/ContactUS';
+
+
 import AdminHome from './components/adminDashboard/adminHome/AdminHome';
 import Order from './components/adminDashboard/order/Order';
 import AdminPayment from './components/adminDashboard/payment/AdminPayment';
 import Trainers from './components/adminDashboard/trainers/Trainers';
+
+
+import UserDashboard from './components/userDashboard/UserDashboard';
 import Challenges from './components/userDashboard/challenges/Challenges';
 import UserNavbar from './components/userDashboard/navbar/UserNavbar';
 import UserHome from './components/userDashboard/home/UserHome';
@@ -24,6 +31,10 @@ import UserOrders from './components/userDashboard/myOrders/UserOrders';
 import UserCart from './components/userDashboard/cart/UserCart';
 import Profile from './components/userDashboard/profile/Profile';
 import Signin from './components/UserAuthentication/UserSignIn';
+import UserReviews from './components/userDashboard/reviews/UserReviews';
+import UserPayment from './components/userDashboard/payment/UserPayment';
+
+
 
 function App() {
   return (
@@ -46,10 +57,18 @@ function App() {
             <Route path="/ContactUS" element={<ContactUS />} />
             <Route path="/UserSignIn" element={<Signin/>} />
           </Route>
-          <Route element={<UserNavbar />} >
-            <Route path="/UserHome" element={<Navigate to='/UserNavbar' replace/>} />
+          <Route element={<UserDashboard />} >
+            <Route path="/UserDashboard" element={<Navigate to="/UserHome" replace />} />
+            <Route path="/UserDashboard" element={<UserDashboard/>} />
+            <Route path="/UserHome" element={<UserHome/>} />
             <Route path='/UserNavbar' element={<UserNavbar />} />
             <Route path='/UserProfile' element={<Profile />}/>
+            <Route path='/UserOrders' element={<UserOrders />}/>
+            <Route path='/UserCart' element={<UserCart />}/>
+            <Route path='/UserReviews' element={<UserReviews />}/>
+            <Route path='/UserWorkout' element={<Workouts />}/>
+            <Route path='/UserChallenges' element={<Challenges />}/>
+            <Route path='/UserPayment' element={<UserPayment />}/>
           </Route>
         </Routes>
       </BrowserRouter>
