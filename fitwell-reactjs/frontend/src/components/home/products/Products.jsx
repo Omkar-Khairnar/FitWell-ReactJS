@@ -1,6 +1,7 @@
 import React from "react";
 import "./Products.css";
 import ProductSliderCorousel from './ProductSliderCorousel';
+import {Link} from 'react-router-dom'
 
 const Products = () => {
   return (
@@ -19,7 +20,7 @@ const Products = () => {
             ></i>
           </div>
           <div class="search-container">
-          <a href="/ProductSearch">Go to search resultpage</a>
+          <Link to="/ProductSearch">Go to search resultpage</Link>
             <form action="/productSearchResult" name="logform" method="POST">
               <input
                 style={{ marginTop: "0%" }}

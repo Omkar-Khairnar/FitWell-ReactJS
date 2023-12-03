@@ -1,8 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../User_Dashboard.css';
 import './UserPayment.css'
+import UserActionService from '../../../services/UserActionService';
+import { useSelector } from 'react-redux';
 
 const UserPayment = () => {
+  const userDetails= useSelector(state => state.user.userDetails);
+  const [payments, setPayments]=useState([]);
+
+  const getAllPayments=async()=>{
+    const res=await UserActionService.getUserPayments({_id:userDetails._id});
+    if(!res.error){
+      setPayments(res.data);
+    }
+  }
+
+
+  useEffect(()=>{
+    getAllPayments();
+  },[])
   return (
     <div class="dashboard-content" id="dashboard-payment-page" cl>
           <div class="container">
@@ -20,26 +36,30 @@ const UserPayment = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {/* <% payments.forEach((item)=>{ %> */}
-                    <tr id="row1">
-                      <th scope="row" id="payment-date1">
-                        {/* <%=item.Dateoforder.toDateString()%> */}
+                {
+                  payments.length > 0 && (
+                    payments.map((item)=>(
+                      <tr id="row1">
+                      <th scope="row" id="payment-date1"  style={{color:'black'}}>
+                        {item.Dateoforder}
                         </th>
                       <td id="payment-transactionID1">
-                        {/* <%=item._id%> */}
+                        {item._id}
                         </td>
                       <td id="payment-Method1">
-                        {/* <%=item.paymentmethod%> */}
+                        {item.paymentmethod}
                         </td>
                       <td id="payment-desc1">Debited</td> 
                       <td id="payment-amount1">Rs 
-                      {/* <%=item.amount%> */}
+                      {item.amount}
                       </td>
                       <td id="payment-status1">
-                        {/* <%=item.status%> */}
+                        {item.status}
                         </td>
                     </tr>
-                  {/* <%}) %> */}
+                    ))
+                  )
+                }
                 </tbody>
               </table>
             </div>

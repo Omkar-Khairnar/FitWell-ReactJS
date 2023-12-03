@@ -14,6 +14,45 @@ class UserActionService{
         const json = await response.json();
         return json;
     }
+
+    //Updating User Profile
+    async updateProfile(reqData){
+        const response= await fetch(`${host}/api/userActions/updateProfile`, {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(reqData),
+        })
+        const json = await response.json();
+        return json;
+    }
+    
+    //Putting a review
+    async putReview(reqData){
+        const response= await fetch(`${host}/api/userActions/putReview`, {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(reqData),
+        })
+        const json = await response.json();
+        return json;
+    }
+
+    //Getting Particular User Payment
+    async getUserPayments(reqData){
+        const response= await fetch(`${host}/api/userActions/get-user-payments`, {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(reqData),
+        })
+        const json = await response.json();
+        return json;
+    }
 }
 
 module.exports=new UserActionService();

@@ -1,15 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../User_Dashboard.css'
+import UserActionService from '../../../services/UserActionService';
+import { useSelector } from 'react-redux';
+
 
 const UserReviews = () => {
+  const userDetails= useSelector(state => state.user.userDetails);
+  const [data, setData]=useState({
+    name:userDetails.name,
+    image:userDetails.image,
+    _id:userDetails._id,
+    comment:''
+  })
+
+  const formHandler=(e)=>{
+    const {name, value}=e.target;
+    data[name]=value;
+    setData({...data});
+  }
+
+  const handleClickSubmit=async(e)=>{
+    e.preventDefault();
+    const res=await UserActionService.putReview(data);
+    if(!res.msg){
+      data.comment='';
+      setData({...data})
+    }
+    // console.log(res.msg);
+  }
   return (
     <div class="dashboard-content" id="dashboard-review-page">
         <div class="container">
           <div class="container-review">
             <h1>Leave a Review</h1>
-            <form id="review-form" method="post" action="/useractions/putreview">
+            <form id="review-form" onSubmit={handleClickSubmit}>
               <label for="comment">Comment:</label>
-              <textarea id="comment" name="comment" rows="5" required ></textarea>
+              <textarea id="comment" name="comment" rows="5" required onChange={formHandler} value={data.comment} ></textarea>
               
               <label for="rating">Rating:</label> 
               <select id="rating" name="rating" required>

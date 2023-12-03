@@ -1,7 +1,7 @@
 import React from 'react'
 import "../User_Dashboard.css";
 import './UserCart.css';
-
+import {Link} from 'react-router-dom'
 const UserCart = () => {
   return (
     <div class="dashboard-content" id="dashboard-review-page" style={{backgroundColor:"white"}}>
@@ -77,9 +77,9 @@ const UserCart = () => {
               </table>
             </div>
           </div>
-          <a id="back" href="./products">
+          <Link id="back" to="./products">
             <h4>Continue Shopping</h4>
-          </a>
+          </Link>
         </div>
   )
 }

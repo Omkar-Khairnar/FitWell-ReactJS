@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Footer.css'
 import logo from "../../../assets/img/Logo/logo.png"
+import {Link} from 'react-router-dom'
 
 
 const Footer = () => {
@@ -13,9 +14,9 @@ const Footer = () => {
       <div class="footercontainer">
         <div class="info">
             <div class="infoBox">
-                <a class="icon" href="https://goo.gl/maps/cf9CjEf7qd3BM5sx6">
+                <Link class="icon" href="https://goo.gl/maps/cf9CjEf7qd3BM5sx6">
                     <i class="fa-sharp fa-solid fa-location-dot fa-2xl"></i>
-                </a>
+                </Link>
                 <div class="iconinfo">
                     <p>IIIT Sri City, Tirupati district, Andhra Pradesh, India</p>
                 </div>
@@ -47,14 +48,14 @@ const Footer = () => {
                     <img src={logo} alt="" />
                 </div>
                 <div class="icons">
-                    <a class="icon"  href="https://www.instagram.com/iiitsricity/"><i
-                            class="fa-brands fa-instagram"></i></a>
-                    <a class="icon"  href="https://www.facebook.com/IIIT.SriCity/"><i
-                            class="fa-brands fa-facebook"></i></a>
-                    <a class="icon"  href="https://twitter.com/IIITSC"><i class="fa-brands fa-twitter"></i></a>
-                    <a class="icon" 
+                    <Link class="icon"  href="https://www.instagram.com/iiitsricity/"><i
+                            class="fa-brands fa-instagram"></i></Link>
+                    <Link class="icon"  href="https://www.facebook.com/IIIT.SriCity/"><i
+                            class="fa-brands fa-facebook"></i></Link>
+                    <Link class="icon"  href="https://twitter.com/IIITSC"><i class="fa-brands fa-twitter"></i></Link>
+                    <Link class="icon" 
                         href="https://in.linkedin.com/school/indian-institute-of-information-technology-sricity/"><i
-                            class="fa-brands fa-linkedin"></i></a>
+                            class="fa-brands fa-linkedin"></i></Link>
                 </div>
 
 
@@ -64,9 +65,9 @@ const Footer = () => {
                     <h2>UseFul Links</h2>
                 </div>
                 <ul>
-                    <li><a href="./about">About Us</a></li>
-                    <li><a href="./contact">Contact Us</a></li>
-                    <li><a href="./reviews">Blogs</a></li>
+                    <li><Link href="./about">About Us</Link></li>
+                    <li><Link href="./contact">Contact Us</Link></li>
+                    <li><Link href="./reviews">Blogs</Link></li>
 
                 </ul>
             </div>
@@ -75,8 +76,8 @@ const Footer = () => {
                     <h2>Member</h2>
                 </div>
                 <ul>
-                    <li><a href="./signin">Login</a></li>
-                    <li><a href="./signup">Sign Up</a></li>
+                    <li><Link href="./signin">Login</Link></li>
+                    <li><Link href="./signup">Sign Up</Link></li>
                 </ul>
             </div>
             <div class="block">
@@ -84,8 +85,8 @@ const Footer = () => {
                     <h2>Admin</h2>
                 </div>
                 <ul>
-                    <li><a href="./adminlogin">Login</a></li>
-                    <li><a href="./admin_dashboard_home">Admin Dashboard</a></li>
+                    <li><Link href="./adminlogin">Login</Link></li>
+                    <li><Link href="./admin_dashboard_home">Admin Dashboard</Link></li>
                 </ul>
             </div>
         </div>

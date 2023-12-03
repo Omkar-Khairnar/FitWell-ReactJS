@@ -59,7 +59,7 @@ class UserServices{
             var authtoken = await jwt.sign(data, process.env.JWT_SECRET);
             
             const userDetails = {
-                id: user._id,
+                _id: user._id,
                 name: user.name, 
                 email: user.email,
                 age: user.age,
@@ -79,6 +79,8 @@ class UserServices{
             return {error:true, msg:error.message};
         }
     }
+
+    
 
     async getAllUsers(){
         try{

@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import { useNavigate } from 'react-router-dom';
 import UserService from "../../services/UserService";
-
+import { useSelector, useDispatch } from 'react-redux';
+import {userLogin, addAuthtoken} from "../../store/slices/userSlice";
 
 
 
@@ -18,6 +19,7 @@ function SignUpForm() {
     image:"",
   }
   const [state, setState] = useState(initialState);
+  const dispatch=useDispatch();
   const navigate=useNavigate();
   const handleChange = evt => {
     const value = evt.target.value;
@@ -34,7 +36,8 @@ function SignUpForm() {
       alert(res.msg)
       setState(initialState);
       //Setting values to redux store
-
+      dispatch(userLogin(res.data));
+      dispatch(addAuthtoken(res.authtoken))
 
       //Navigating To User Dashboard
       navigate('../UserHome');

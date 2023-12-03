@@ -16,10 +16,10 @@ import Reviews from './components/home/reviews/Reviews';
 import ContactUS from './components/home/contactUs/ContactUS';
 
 
-import AdminHome from './components/adminDashboard/adminHome/adminHome';
-import Order from './components/adminDashboard/order/Order';
-import AdminPayment from './components/adminDashboard/payment/AdminPayment';
-import Trainers from './components/adminDashboard/trainers/Trainers';
+// import AdminHome from './components/adminDashboard/adminHome/adminHome';
+// import Order from './components/adminDashboard/order/Order';
+// import AdminPayment from './components/adminDashboard/payment/AdminPayment';
+// import Trainers from './components/adminDashboard/trainers/Trainers';
 
 
 import UserDashboard from './components/userDashboard/UserDashboard';

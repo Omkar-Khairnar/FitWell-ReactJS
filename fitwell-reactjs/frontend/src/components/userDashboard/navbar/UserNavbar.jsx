@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../../../assets/img/Logo/logo.png";
 import "../User_Dashboard.css";
 import Profile from "../profile/Profile";
+import {Link} from 'react-router-dom'
 
 const UserNavbar = () => {
   return (
@@ -9,54 +10,49 @@ const UserNavbar = () => {
       <div class="top" style={{ height: "100%" }}>
         <div class="d-flex flex-column justify-content-between">
           <header>
-            <a href="#" class="menu-toggle">
+            <Link to="#" class="menu-toggle">
               <i class="fas fa-bars"></i>
-            </a>
+            </Link>
             <div class="brand-logo-img">
-              <a href="./" class="brand-logo">
+              <Link to="./" class="brand-logo">
                 <img src={logo} alt="logo" class="logo-img" />
-              </a>
+              </Link>
             </div>
           </header>
           <nav class="dashboard-nav-list my-4">
-            <a href="/UserHome" class="dashboard-nav-item">
+            <Link to="/UserHome" class="dashboard-nav-item">
               <i class="fas fa-dashboard bg-transparent"></i>
               Dashboard
-            </a>
+            </Link>
 
-            <a href="/UserProfile" class="dashboard-nav-item">
+            <Link to="/UserProfile" class="dashboard-nav-item">
               <i class="fas fa-user bg-transparent"></i>
               Profile
-            </a>
-            <a href="/UserWorkout" class="dashboard-nav-item">
+            </Link>
+            <Link to="/UserWorkout" class="dashboard-nav-item">
               <i class="fas fa-dumbbell bg-transparent"></i>
               Home WorkOut
-            </a>
-            <a href="/UserChallenges" class="dashboard-nav-item">
+            </Link>
+            <Link to="/UserChallenges" class="dashboard-nav-item">
               <i class="fas fa-running bg-transparent"></i>
               Challenges
-            </a>
-            {/* <a href="./user_dashboard_chat" class="dashboard-nav-item">
-                    <i class="fas fa-users bg-transparent"></i>
-                    Chat with us
-                </a>  */}
-            <a href="/UserReviews" class="dashboard-nav-item">
+            </Link>
+            <Link to="/UserReviews" class="dashboard-nav-item">
               <i class="fas fa-comment bg-transparent"></i>
               Put a Review
-            </a>
-
-            <a href="/UserCart" class="dashboard-nav-item">
+            </Link>
+            <Link to="/UserCart" class="dashboard-nav-item">
               <i class="fas fa-shopping-cart bg-transparent"></i>
               Cart
-            </a>
-            <a href="/UserOrders" class="dashboard-nav-item">
+            </Link>
+            <Link to="/UserOrders" class="dashboard-nav-item">
               <i class="fas fa-bag-shopping bg-transparent"></i>
               Your Orders
-            </a>
-            <a href="/UserPayment" class="dashboard-nav-item">
+            </Link>
+            <Link to="/UserPayment" class="dashboard-nav-item">
               <i class="fas fa-money-check-alt bg-transparent"></i>
               Payment
-            </a>
+            </Link>
           </nav>
         </div>
 
@@ -68,14 +64,14 @@ const UserNavbar = () => {
             width: "100%",
           }}
         >
-          <a href="/" class="dashboard-nav-item">
+          <Link to="/" class="dashboard-nav-item">
             <i class="fas fa-home bg-transparent"></i>
             Home
-          </a>
-          <a href="/Products" class="dashboard-nav-item">
+          </Link>
+          <Link to="/Products" class="dashboard-nav-item">
             <i class="fas fa-shopping-cart bg-transparent"></i>
             Products
-          </a>
+          </Link>
         </nav>
       </div>
     </div>

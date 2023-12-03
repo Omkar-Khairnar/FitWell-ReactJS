@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import UserNavbar from "./navbar/UserNavbar";
 import "./User_Dashboard.css";
+import {Link} from 'react-router-dom'
 
 const UserDashboard = () => {
   return (
@@ -10,13 +11,13 @@ const UserDashboard = () => {
 
       <div class="dashboard-app">
         <header class="dashboard-toolbar">
-          <a href="#!" class="menu-toggle">
+          <Link to="#!" class="menu-toggle">
             <i class="fas fa-bars"></i>
-          </a>
-          <a href="/Home" class="menu-toggle">
+          </Link>
+          <Link to="/Home" class="menu-toggle">
             <i class="fas fa-right-from-bracket"></i>
             Logout
-          </a>
+          </Link>
         </header>
         <Outlet />
 
