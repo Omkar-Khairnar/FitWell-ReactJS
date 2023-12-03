@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import "./Navbar.css"
 import logo from "../../../assets/img/Logo/logo.png"
 
@@ -7,9 +8,9 @@ const Home = () => {
     
     <div class="container-fluid container-fluid1">
       <nav class="navbar navbar1 navbar-expand-lg navbar-dark fixed-top bg-black p-0">
-      <a class="navbar-brand navbarlogo" style={{margin:"0%", padding:"0%"}} href="/Home">
+      <Link class="navbar-brand navbarlogo" style={{margin:"0%", padding:"0%"}} to="/Home">
         <img class="navbarLogoImg" src={logo} alt="fitwell Logo.png"/>
-      </a>
+      </Link>
       <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -17,25 +18,25 @@ const Home = () => {
       <div class="collapse navbar-collapse collap " id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 navbar-list-items">
           <li class="nav-item nav-item1 mx-2">
-            <a class="nav-link " aria-current="page" href="/Home">HOME</a>
+            <Link class="nav-link " aria-current="page" to="/Home">HOME</Link>
           </li>
           <li class="nav-item nav-item1 mx-2">
-            <a class="nav-link" href="/AboutUs">ABOUT US</a>
+            <Link class="nav-link" to="/AboutUs">ABOUT US</Link>
           </li>
           <li class="nav-item nav-item1 mx-2">
-            <a class="nav-link" href="/Services">SERVICES</a>
+            <Link class="nav-link" to="/Services">SERVICES</Link>
           </li>
           <li class="nav-item nav-item1 mx-2">
-            <a class="nav-link" href="/Products">PRODUCTS</a>
+            <Link class="nav-link" to="/Products">PRODUCTS</Link>
           </li>
           <li class="nav-item nav-item1 mx-2">
-            <a class="nav-link" href="/Centers">CENTRES</a>
+            <Link class="nav-link" to="/Centers">CENTRES</Link>
           </li>
           <li class="nav-item nav-item1 mx-2">
-            <a class="nav-link" href="/Reviews">REVIEWS</a>
+            <Link class="nav-link" to="/Reviews">REVIEWS</Link>
           </li>
           <li class="nav-item nav-item1 mx-2">
-            <a class="nav-link" href="/ContactUS">CONTACT US</a>
+            <Link class="nav-link" to="/ContactUS">CONTACT US</Link>
           </li>
         </ul>
       </div>
@@ -43,10 +44,10 @@ const Home = () => {
         <div class="signinup">
           <ul class="navbar-nav me-auto mb-2 navbar-list-items">
             <li class="nav-item nav-item1 mx-2">
-              <a class="nav-link" href="/UserSignIn">SIGN IN</a>
+              <Link class="nav-link" to="/UserSignIn">SIGN IN</Link>
             </li>
             <li class="nav-item nav-item1 mx-2">
-              <a class="nav-link" href="/UserSignIn">SIGN UP</a>
+              <Link class="nav-link" to="/UserSignIn">SIGN UP</Link>
             </li>
           </ul>
         </div>   
@@ -56,9 +57,9 @@ const Home = () => {
             My Account
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/UserHome">Dashboard</a></li>
-            <li><a class="dropdown-item" href="/User_Dashboard_cart">Cart</a></li>
-            <li><a class="dropdown-item" href="/Userlogout">Logout</a></li>
+            <li><Link class="dropdown-item" to="/UserHome">Dashboard</Link></li>
+            <li><Link class="dropdown-item" to="/User_Dashboard_cart">Cart</Link></li>
+            <li><Link class="dropdown-item" to="/Userlogout">Logout</Link></li>
           </ul>
         </div>
       {/* // <%} %> */}

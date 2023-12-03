@@ -11,6 +11,7 @@ import home6 from "../../../assets/img/home6.jpg";
 import home7 from "../../../assets/img/home7.jpg";
 import home8 from "../../../assets/img/home8.jpg";
 import Pricing from "../pricing/Pricing";
+import {Link} from 'react-router-dom'
 
 const Home = () => {
   return (
@@ -62,7 +63,7 @@ const Home = () => {
 
         <div id="infobutton">
           <button class="infohome">
-            <a href="./about">Want More Info?</a>
+            <Link to="./about">Want More Info?</Link>
           </button>
         </div>
         <div class="sliderContainer" id="frontinfo">

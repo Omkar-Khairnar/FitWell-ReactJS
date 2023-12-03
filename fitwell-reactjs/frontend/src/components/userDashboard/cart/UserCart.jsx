@@ -1,8 +1,9 @@
 import React from "react";
 import "../User_Dashboard.css";
 import "./UserCart.css";
-// import CheckOut from './CheckOut';
 
+// import CheckOut from './CheckOut';
+import {Link} from 'react-router-dom'
 const UserCart = () => {
   return (
     <div
@@ -108,9 +109,9 @@ const UserCart = () => {
           </table>
         </div>
       </div>
-      <a id="back" href="/Products">
+      <Link id="back" tp="/Products">
         <h4>Continue Shopping</h4>
-      </a>
+      </Link>
       <div
         class="modal fade"
         id="exampleModalCenter"
@@ -236,6 +237,9 @@ const UserCart = () => {
               </section>
             </div>
           </div>
+          <Link id="back" to="./products">
+            <h4>Continue Shopping</h4>
+          </Link>
         </div>
       </div>
     </div>

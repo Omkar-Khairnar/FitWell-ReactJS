@@ -1,7 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import "../User_Dashboard.css";
+import { useSelector, useDispatch } from 'react-redux';
+
+
+
 
 const UserHome = () => {
+  const userDetails= useSelector(state => state.user.userDetails);
+  const isLoggedIn=useSelector(state => state.user.isLoggedIn)
+  const [bmi, setBmi]=useState(
+    (userDetails.weight / Math.pow((parseFloat(userDetails.height)/100),2)).toFixed(2)
+  )
+  const navigate=useNavigate();
+  //Checking User LoggedIn or Session Expired;
+  const checkUserLoggedIn=()=>{
+    console.log(isLoggedIn);
+    if(isLoggedIn === false || userDetails ===null){
+      navigate('../UserSignIn')
+      alert('User Session Expired. Please Login Again')
+    }
+  }
+  useEffect(()=>{
+    checkUserLoggedIn();
+  },[])
+
+  console.log(userDetails);
+
   return (
     <div class="dashboard-content active" id="dashboard-home-page">
       <div class="container">
@@ -46,7 +71,7 @@ const UserHome = () => {
                     </div>
                     <div class="row">
                       <div class="w-100 m-0 p-0">
-                        <h4>{/* <%=userDetails.expirydate%> */}</h4>
+                        <h4>{userDetails.expirydate}</h4>
                       </div>
                     </div>
                   </div>
@@ -100,25 +125,25 @@ const UserHome = () => {
             <div class="userdetails no-gutters">
               <div class="userimg card-body w-100 d-flex justify-content-center" style={{backgroundColor : "white", height : "fit-content"}}>
                 <img
-                  // src=<%=userDetails.image%>
+                  src={userDetails.image}
                   alt=""
                 />
               </div>
               <div class="userinfo" style={{color : "black"}}>
                 <h3 className="userHomeInfo">
                   Hey,
-                  {/* <%=userDetails.name%>   */}
+                  {userDetails.name}
                 </h3>
-                <h5 className="userHomeInfo">Email :{/* <%=userDetails.email%> */}</h5>
+                <h5 className="userHomeInfo">Email :{userDetails.email}</h5>
                 <h4 className="userHomeInfo">
                   Weight:
-                  <span id="bmiweight">{/* <%=userDetails.weight%> */}</span>kg
+                  <span id="bmiweight">{userDetails.weight}</span>kg
                 </h4>
                 <h4 className="userHomeInfo">
                   Height:
-                  <span id="bmiweight">{/* <%=userDetails.height%> */}</span>cm
+                  <span id="bmiweight">{userDetails.height}</span>cm
                 </h4>
-                {/* <% userDetails.expiry=userDetails.DateOfJoin%> */}
+                {/* {userDetails.expiry=userDetails.DateOfJoin} */}
               </div>
             </div>
             <div class="bmi" style={{backgroundColor : "white"}}>
@@ -142,11 +167,8 @@ const UserHome = () => {
 
                   >
                     <h4 className="userHomeInfo" style={{textAlign: 'center', fontFamily: 'Bebas Neue cursive', fontWeight: 'bolder'}}>
-                      {/* <% let weight=parseFloat(userDetails.weight); %> */}
-                      {/* <% let height=parseFloat(userDetails.height)/100; %> */}
-                      {/* <% const bmi = (weight / (height * height)).toFixed(2); userDetails.bmi=bmi;%> */}
-                      BMI:
-                      {/* <%=userDetails.bmi%> */}
+                      BMI: {bmi}
+                     
                     </h4>
                   </div>
                 </div>
@@ -301,7 +323,7 @@ const UserHome = () => {
                         <td class="dark-bg blank-td"></td>
                         <td class="hover-dp ts-meta" data-tsmeta="fitness">
                           <h5>Boxing</h5>
-                          <span>Rachel Adam</span>
+                          <span>Rachel Adam</span> 
                         </td>
                         <td
                           class="dark-bg hover-dp ts-meta"

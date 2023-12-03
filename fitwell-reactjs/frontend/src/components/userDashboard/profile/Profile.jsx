@@ -1,7 +1,36 @@
-import React from "react";
+import React, {useState} from "react";
 import "../User_Dashboard.css";
+import UserActionService from "../../../services/UserActionService";
+import { useSelector, useDispatch } from 'react-redux';
+import {userLogin} from "../../../store/slices/userSlice";
 
 const Profile = () => {
+  const userDetails= useSelector(state => state.user.userDetails);
+  const dispatch = useDispatch()
+  const [data, setData]=useState({
+    name:userDetails.name,
+    DateOfJoin:userDetails.DateOfJoin,
+    email:userDetails.email,
+    age:userDetails.age,
+    gender:userDetails.gender,
+    weight:userDetails.weight,
+    height:userDetails.height,
+    image:userDetails.image,
+  })
+
+  const formHandler=(e)=>{
+    const {name, value}=e.target;
+    data[name]=value;
+    setData({...data});
+  }
+
+  const handleClickSubmit=async(e)=>{
+    e.preventDefault();
+    data['_id']=userDetails._id;
+    setData({...data});
+    const res=await UserActionService.updateProfile(data);
+    dispatch(userLogin(res.data));
+  }
   return (
     <div class="dashboard-content" id="dashboard-review-page">
       <div class="container">
@@ -14,15 +43,15 @@ const Profile = () => {
                   width="200px"
                   height="200px"
                   alt="profilePhoto"
-                  // src=<%=userDetails.image%>
+                 src={data.image}
                 />
                 <h1>
                   <span class="font-weight-bold">
-                    {/* <%=userDetails.name%> */}
+                    {data.name}
                   </span>
                 </h1>
                 <h2>
-                  <span>{/* <%=userDetails.email%> */}</span>
+                  <span>{data.email}</span>
                 </h2>
               </div>
             </div>
@@ -34,7 +63,7 @@ const Profile = () => {
                   </h1>
                 </div>
                 <div class="row mt-1"></div>
-                <form action="/useractions/updateprofile" method="post">
+                <form onSubmit={handleClickSubmit}>
                   <div class="row">
                     <div class="col-md-12 p-0">
                       <label class="labels m-0">Name</label>
@@ -44,7 +73,8 @@ const Profile = () => {
                         class="w-100 p-2 m-2"
                         style={{ fontSize: "medium", fontWeight: "bold" }}
                         placeholder="Username"
-                        // value=<%=userDetails.name%>
+                       value={data.name}
+                       onChange={formHandler}
                       />
                     </div>
                     <div class="col-md-12 p-0">
@@ -54,7 +84,7 @@ const Profile = () => {
                         class=" w-100 p-2 m-2"
                         style={{ fontSize: "medium", fontWeight: "bold" }}
                         placeholder="Date of Join"
-                        //   value=<%=userDetails.DateOfJoin %>
+                        value={data.DateOfJoin}
                         readonly
                       />
                     </div>
@@ -66,7 +96,8 @@ const Profile = () => {
                         class=" w-100 p-2 m-2"
                         style={{ fontSize: "medium", fontWeight: "bold" }}
                         placeholder="Age"
-                        //   value=<%=userDetails.age%>
+                        value={data.age}
+                        onChange={formHandler}
                       />
                     </div>
                     <div class="col-md-12 p-0">
@@ -77,7 +108,8 @@ const Profile = () => {
                         class=" w-100 p-2 m-2"
                         style={{ fontSize: "medium", fontWeight: "bold" }}
                         placeholder="Height"
-                        //   value=<%=userDetails.height%>
+                        value={data.height}
+                        onChange={formHandler}
                       />
                     </div>
                     <div class="col-md-12 p-0">
@@ -88,7 +120,8 @@ const Profile = () => {
                         class=" w-100 p-2 m-2"
                         style={{ fontSize: "medium", fontWeight: "bold" }}
                         placeholder="Weight"
-                        //   value=<%=userDetails.weight%>
+                        value={data.weight}
+                        onChange={formHandler}
                       />
                     </div>
                     <div class="col-md-12 p-0">
@@ -101,7 +134,8 @@ const Profile = () => {
                         class=" w-100 p-2 m-2"
                         style={{ fontSize: "medium", fontWeight: "bold" }}
                         placeholder="Profile Image URL"
-                        //   value=<%=userDetails.image%>
+                        value={data.image}
+                        onChange={formHandler}
                       />
                     </div>
                   </div>

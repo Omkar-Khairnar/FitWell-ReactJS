@@ -1,6 +1,7 @@
 const ContactUs=require('../models/contactform')
 const PaymentSchema=require('../models/payments')
 const UserSchema=require('../models/User')
+const ReviewSchema=require('../models/review')
 class UserActionServices{
 
     //submitting contact form :User login NOT required
@@ -33,25 +34,21 @@ class UserActionServices{
     }
 
     //Submitting review. User Login required
-    async putReview(req){
+    async putReview(reqData){
         try{
-            const comment=req.body.comment;
-            const userDetails = req.session.userDetails;
-            if(!userDetails){
-               return {error:true, msg:'Please Login again. Session Expired.'}
-            }
-
+            const comment=reqData.comment;
+            const id=reqData._id;
+            const image=reqData.image;
+            const name=reqData.name;
             let review=await ReviewSchema.create({
-                user:userDetails.id,
+                user:id,
                 comment:comment,
-                image:userDetails.image,
-                name:userDetails.name,
+                image:image,
+                name:name,
             })
-
             if(!review){
                 return {error:true, msg:'Internal Server Error'};
             }
-
             return {error:false, msg:'Review Submitted Successfully', data:review};
         }
         catch(error){
@@ -118,19 +115,14 @@ class UserActionServices{
 
 
     //Update Profile Updation: User Login Required
-    async updateProfile(req){
+    async updateProfile(reqData){
         try{
-            const userDetails=req.session.userDetails;
-            const id=userDetails.id;
-            const name=req.body.name;
-            const age=req.body.age;
-            const weight=req.body.weight;
-            const height=req.body.height;
-            const image=req.body.image;
-
-            if(!req.session.userDetails){
-                return {error:true, msg:'Session Expired. Please Login again.'}
-            }
+            const id=reqData._id;
+            const name=reqData.name;
+            const age=reqData.age;
+            const weight=reqData.weight;
+            const height=reqData.height;
+            const image=reqData.image;
 
             const user=await UserSchema.findById(id);
             if(!user){
@@ -148,8 +140,22 @@ class UserActionServices{
             if(!updated){
                 return {error:true, msg:'Internal Server Error'}
             }
-
             return {error:false, msg:'User Updated Successfully', data:updated};
+        }
+        catch(error){
+            return {error:true, msg:error.message}
+        }
+    }
+
+    //Getting Particular User Payments
+    async getUserPayments(reqData){
+        try{
+            const id=reqData._id;
+            const res=await PaymentSchema.find({user:id});
+            if(!res){
+                return {error:true, msg:'Internal Server Error'}
+            }
+            return {error:false, msg:'Payments Fetched Successfully', data:res};
         }
         catch(error){
             return {error:true, msg:error.message}

@@ -11,7 +11,7 @@ router.post('/contactus', async(req,res)=>{
 })
 
 router.post('/putReview', async(req,res)=>{
-    const response=await UserActionServices.putReview(req);
+    const response=await UserActionServices.putReview(req.body);
     return res.send(response);
 })
 
@@ -26,7 +26,13 @@ router.post('/checkoutcart', async(req,res)=>{
 })
 
 router.post('/updateprofile', async(req,res)=>{
-    const response=await UserActionServices.updateProfile(req);
+    const response=await UserActionServices.updateProfile(req.body);
+    return res.send(response);
+})
+
+//getting particular user payments
+router.post('/get-user-payments', async(req,res)=>{
+    const response=await UserActionServices.getUserPayments(req.body);
     return res.send(response);
 })
 

@@ -10,6 +10,7 @@ import Center6 from "../../../assets/img/services/service-16.jpg";
 import Center7 from "../../../assets/img/services/service-17.jpg";
 import Center8 from "../../../assets/img/services/service-18.jpg";
 import Center9 from "../../../assets/img/services/service-19.jpg";
+import {Link} from 'react-router-dom'
 
 const Centers = () => {
   return (
@@ -34,10 +35,10 @@ const Centers = () => {
             <i class="fas fa-phone-alt" style={{ color: "orange" }}></i>{" "}
             +91-1283937283
           </p>
-          <a href="https://www.google.com/maps/place/rheas+zumba">
+          <Link to="https://www.google.com/maps/place/rheas+zumba">
             <i class="fas fa-map-marker-alt" style={{ color: "orange" }}></i>{" "}
             <span style={{ color: "white" }}>: Our Location</span>
-          </a>
+          </Link>
           <div class="ratings">
             <i class="fa fa-star checked m-1"></i>
             <i class="fa fa-star checked m-1"></i>
@@ -59,10 +60,10 @@ const Centers = () => {
             +91-1283937283
           </p>
           <p class="centersP" >
-            <a href="https://www.google.com/maps/place/sams+zumba">
+            <Link to="https://www.google.com/maps/place/sams+zumba">
               <i class="fas fa-map-marker-alt" style={{ color: "orange" }}></i>{" "}
               <span style={{ color: "white" }}>: Our Location</span>
-            </a>
+            </Link>
           </p>
           <div class="ratings">
             <i class="fa fa-star checked m-1"></i>
@@ -85,10 +86,10 @@ const Centers = () => {
             +91-1283937283
           </p>
           <p class="centersP" >
-            <a href="https://www.google.com/maps/place/vipassana+kendra+igatpuri">
+            <Link to="https://www.google.com/maps/place/vipassana+kendra+igatpuri">
               <i class="fas fa-map-marker-alt" style={{ color: "orange" }}></i>{" "}
               <span style={{ color: "white" }}>: Our Location</span>
-            </a>
+            </Link>
           </p>
           <div class="ratings">
             <i class="fa fa-star checked m-1"></i>
@@ -111,10 +112,10 @@ const Centers = () => {
             +91-1283937283
           </p>
           <p class="centersP" >
-            <a href="https://www.google.com/maps/place/rishi+yoga">
+            <Link to="https://www.google.com/maps/place/rishi+yoga">
               <i class="fas fa-map-marker-alt" style={{ color: "orange" }}></i>{" "}
               <span style={{ color: "white" }}>: Our Location</span>
-            </a>
+            </Link>
           </p>
           <div class="ratings">
             <i class="fa fa-star checked m-1"></i>
@@ -137,10 +138,10 @@ const Centers = () => {
             +91-1283937283
           </p>
           <p class="centersP" >
-            <a href="https://www.google.com/maps/place/chembur+gymkhana">
+            <Link to="https://www.google.com/maps/place/chembur+gymkhana">
               <i class="fas fa-map-marker-alt" style={{ color: "orange" }}></i>{" "}
               <span style={{ color: "white" }}>: Our Location</span>
-            </a>
+            </Link>
           </p>
           <div class="ratings">
             <i class="fa fa-star checked m-1"></i>
@@ -163,10 +164,10 @@ const Centers = () => {
             +91-1283937283
           </p>
           <p class="centersP" >
-            <a href="https://www.google.com/maps/place/ranbhoomi+turf">
+            <Link to="https://www.google.com/maps/place/ranbhoomi+turf">
               <i class="fas fa-map-marker-alt" style={{ color: "orange" }}></i>{" "}
               <span style={{ color: "white" }}>: Our Location</span>
-            </a>
+            </Link>
           </p>
           <div class="ratings">
             <i class="fa fa-star checked m-1"></i>
@@ -189,10 +190,10 @@ const Centers = () => {
             +91-1283937283
           </p>
           <p class="centersP" >
-            <a href="https://www.google.com/maps/place/nivek+nashik">
+            <Link to="https://www.google.com/maps/place/nivek+nashik">
               <i class="fas fa-map-marker-alt" style={{ color: "orange" }}></i>{" "}
               <span style={{ color: "white" }}>: Our Location</span>
-            </a>
+            </Link>
           </p>
           <div class="ratings">
             <i class="fa fa-star checked m-1"></i>
@@ -214,10 +215,10 @@ const Centers = () => {
             +91-1283937283
           </p>
           <p class="centersP" >
-            <a href="https://www.google.com/maps/place/golds+gym">
+            <Link to="https://www.google.com/maps/place/golds+gym">
               <i class="fas fa-map-marker-alt" style={{ color: "orange" }}></i>{" "}
               <span style={{ color: "white" }}>: Our Location</span>
-            </a>
+            </Link>
           </p>
           <div class="ratings">
             <i class="fa fa-star checked m-1"></i>
@@ -240,10 +241,10 @@ const Centers = () => {
             +91-1283937283
           </p>
           <p class="centersP" >
-            <a href="https://www.google.com/maps/place/golds+gym">
+            <Link to="https://www.google.com/maps/place/golds+gym">
               <i class="fas fa-map-marker-alt" style={{ color: "orange" }}></i>{" "}
               <span style={{ color: "white" }}>: Our Location</span>
-            </a>
+            </Link>
           </p>
           <div class="ratings">
             <i class="fa fa-star checked m-1"></i>

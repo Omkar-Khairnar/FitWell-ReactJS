@@ -1,9 +1,14 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import UserService from "../../services/UserService";
+import { useSelector, useDispatch } from 'react-redux';
+import {userLogin, addAuthtoken} from "../../store/slices/userSlice";
+
+
 
 function SignInForm() {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const [state, setState] = React.useState({
     email: "",
     password: ""
@@ -27,9 +32,11 @@ function SignInForm() {
           [key]: ""
         });
       }
-      //Setting values to redux Store
       
-
+      //Setting values to redux Store
+      dispatch(userLogin(res.data));
+      dispatch(addAuthtoken(res.authtoken))
+      
       //Navigating to User Dashboard
       navigate('../UserHome')
     }
