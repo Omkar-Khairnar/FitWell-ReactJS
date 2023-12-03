@@ -50,7 +50,7 @@ function App() {
         <Routes>
           <Route element={<LandingPage />} >
             <Route path='/' element={<Navigate to="/Home" replace />} />
-            <Route path="/LandingPage" element={<LandingPage />} />
+            {/* <Route path="/LandingPage" element={<LandingPage />} /> */}
             <Route path="/Navbar" element={<Navbar />} />
             <Route path="/Home" element={<Home />} />
             <Route path="/AboutUs" element={<AboutUs />} />

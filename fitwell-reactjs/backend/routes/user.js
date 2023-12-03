@@ -16,7 +16,7 @@ router.post('/createUser', async(req,res)=>{
 })
 
 router.get('/getAllUsers', async(req,res)=>{
-    const response=await UserServices.getAllUsers(req.body);
+    const response=await UserServices.getAllUsers();
     return res.send(response);
 })
 

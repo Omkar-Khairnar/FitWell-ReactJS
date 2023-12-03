@@ -9,7 +9,7 @@ class UserServices{
         try{
             let prevuser = await User.findOne({ email: reqData.email })
             if (prevuser) {
-              return {error:false, msg:'Email Id already Registered.'}
+              return {error:true, msg:'Email Id already Registered.'}
             }
             const pass = reqData.password;
             const salt = bcrypt.genSaltSync(10);
@@ -24,7 +24,6 @@ class UserServices{
                 height: reqData.height,
                 image: reqData.image,
             })
-
             const data = {
                 user: {
                     id: user._id,
@@ -32,7 +31,7 @@ class UserServices{
             }
             var authtoken = jwt.sign(data, process.env.JWT_SECRET);
 
-            return {error:false, msg:'User Created Successfully!', data:user}
+            return {error:false, msg:'User Created Successfully!', data:res, authtoken:authtoken}
         }
         catch(error){
             return {error:true, msg:error.message};
@@ -74,14 +73,14 @@ class UserServices{
             // req.session.userDetails = userDetails;
             // req.session.save();
             
-            return {error:false, msg:'User LoggedIn Successfully!', data:userDetails};
+            return {error:false, msg:'User LoggedIn Successfully!', data:userDetails, authtoken:authtoken};
         }
         catch(error){
             return {error:true, msg:error.message};
         }
     }
 
-    async getAllUsers(reqData){
+    async getAllUsers(){
         try{
             const users=await User.find().sort({_id:-1});
             if(!users){
