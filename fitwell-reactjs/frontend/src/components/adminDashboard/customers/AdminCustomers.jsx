@@ -2,7 +2,7 @@ import React from 'react'
 import '../admin_dashboard.css'
 
 
-const Customers = () => {
+const AdminCustomers = () => {
   return (
     <div class="container-fluid px-4 overflow-scroll">
               <div class="row my-5">
@@ -53,7 +53,7 @@ const Customers = () => {
                             <input type="text" 
                             // value=<%=user.id%> 
                             class="d-none" name="userid"/>
-                            <td> <button type="submit" style="border: none;background-color: transparent;"><i class="fa-solid fa-trash" style="color:red; cursor: pointer;"></i></button></td>
+                            <td> <button type="submit" style={{border: 'none', backgroundColor: 'transparent'}}><i class="fa-solid fa-trash" style={{color: 'red' , cursor: 'pointer'}}></i></button></td>
                           </form>
                         </tr>
                       {/* <% })%> */}
@@ -66,4 +66,4 @@ const Customers = () => {
   )
 }
 
-export default Customers
+export default AdminCustomers

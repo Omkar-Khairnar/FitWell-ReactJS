@@ -1,6 +1,6 @@
 import React from 'react';
 // import styles from './order.module.css'
-import style from './Order.module.css';
+import './Order.css';
 
 const Order = () => {
   return (

@@ -1,11 +1,11 @@
 import React from 'react'
 import '../admin_dashboard.css'
 
-const Feedback = () => {
+const AdminFeedback = () => {
   return (
     <div class="container-fluid px-5 ">
           <div class="tableheader row my-4">
-              <h3 class="fs-4 mb-3 text-light py-3" style="background-color: #de5923;">Total Feedback from users</h3>
+              <h3 class="fs-4 mb-3 text-light py-3" style={{backgroundColor: '#de5923'}}>Total Feedback from users</h3>
               <div class = "tableparent px-5 py-4">
                   <table class="table bg-white rounded shadow-sm  table-hover">
                       <thead>
@@ -49,7 +49,7 @@ const Feedback = () => {
                               <input type="text" 
                             //   value=<%=feedback._id%> 
                               class="d-none" name="feedbackid"/>
-                              <td> <button type="submit" style="border: none; background-color: transparent;"><i class="fa-solid fa-trash" style="color:red; cursor: pointer;"></i></button></td>
+                              <td> <button type="submit" style={{border: 'none', backgroundColor: 'transparent'}}><i class="fa-solid fa-trash" style={{color:'red', cursor: 'pointer'}}></i></button></td>
                             </form>
 
                           </tr>
@@ -63,4 +63,4 @@ const Feedback = () => {
   )
 }
 
-export default Feedback
+export default AdminFeedback

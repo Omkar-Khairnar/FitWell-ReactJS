@@ -64,9 +64,9 @@ const Footer = () => {
                     <h2>UseFul Links</h2>
                 </div>
                 <ul>
-                    <li><a href="./about">About Us</a></li>
-                    <li><a href="./contact">Contact Us</a></li>
-                    <li><a href="./reviews">Blogs</a></li>
+                    <li><a href="/AboutUs">About Us</a></li>
+                    <li><a href="/ContactUS">Contact Us</a></li>
+                    <li><a href="/Reviews">Blogs</a></li>
 
                 </ul>
             </div>
@@ -85,7 +85,7 @@ const Footer = () => {
                 </div>
                 <ul>
                     <li><a href="./adminlogin">Login</a></li>
-                    <li><a href="./admin_dashboard_home">Admin Dashboard</a></li>
+                    <li><a href="/AdminDashboard">Admin Dashboard</a></li>
                 </ul>
             </div>
         </div>

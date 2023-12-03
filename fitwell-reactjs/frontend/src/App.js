@@ -17,9 +17,16 @@ import ContactUS from './components/home/contactUs/ContactUS';
 
 
 import AdminHome from './components/adminDashboard/adminHome/AdminHome';
-import Order from './components/adminDashboard/order/Order';
+import AdminOrder from './components/adminDashboard/order/AdminOrder';
 import AdminPayment from './components/adminDashboard/payment/AdminPayment';
-import Trainers from './components/adminDashboard/trainers/Trainers';
+import AdminTrainers from './components/adminDashboard/trainers/AdminTrainers';
+import AdminDashboard from './components/adminDashboard/AdminDashboard';
+import AdminAddProduct from './components/adminDashboard/addProduct/AdminAddProduct';
+import AdminCustomers from './components/adminDashboard/customers/AdminCustomers';
+import AdminFeedback from './components/adminDashboard/feedback/AdminFeedback';
+import AdminSideWrapper from './components/adminDashboard/sideWrapper/AdminSideWrapper';
+import AdminTopWrapper from './components/adminDashboard/topWrapper/AdminTopWrapper';
+
 
 
 import UserDashboard from './components/userDashboard/UserDashboard';
@@ -69,6 +76,20 @@ function App() {
             <Route path='/UserWorkout' element={<Workouts />}/>
             <Route path='/UserChallenges' element={<Challenges />}/>
             <Route path='/UserPayment' element={<UserPayment />}/>
+          </Route>
+          
+          <Route element={<AdminDashboard />} >
+            <Route path="/AdminDashboard" element={<Navigate to="/AdminHome" replace />} />
+            <Route path="/AdminDashboard" element={<UserDashboard/>} />
+            <Route path="/AdminHome" element={<AdminHome/>} />
+            <Route path='/AdminSideWrapper' element={<AdminSideWrapper />} />
+            <Route path='/AdminTopWrapper' element={<AdminTopWrapper />}/>
+            <Route path='/AdminAddProduct' element={<AdminAddProduct />}/>
+            <Route path='/AdminCustomers' element={<AdminCustomers />}/>
+            <Route path='/AdminFeedback' element={<AdminFeedback />}/>
+            <Route path='/AdminOrder' element={<AdminOrder />}/>
+            <Route path='/AdminPayment' element={<AdminPayment />}/>
+            <Route path='/AdminTrainers' element={<AdminTrainers />}/>
           </Route>
         </Routes>
       </BrowserRouter>

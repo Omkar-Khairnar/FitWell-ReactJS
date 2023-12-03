@@ -1,12 +1,12 @@
 import React from 'react'
 import '../admin_dashboard.css'
 
-const TopWrapper = () => {
+const AdminTopWrapper = () => {
   return (
     <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
   <div class="d-flex align-items-center">
-    <i style="color: #de5923" class="fas fa-align-left  fs-4 me-3" id="menu-toggle"></i>
+    <i style={{color: '#de5923'}} class="fas fa-align-left  fs-4 me-3" id="menu-toggle"></i>
     <h3 class="fs-2 m-0">Admin Dashboard</h3>
   </div>
 
@@ -34,4 +34,4 @@ const TopWrapper = () => {
   )
 }
 
-export default TopWrapper
+export default AdminTopWrapper

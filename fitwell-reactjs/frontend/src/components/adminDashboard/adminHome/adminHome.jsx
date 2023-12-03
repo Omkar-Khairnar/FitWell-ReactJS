@@ -1,5 +1,7 @@
 import React from 'react';
 import './AdminHome.css';
+import '../admin_dashboard.css';
+
 
 const AdminHome = () => {
   return (

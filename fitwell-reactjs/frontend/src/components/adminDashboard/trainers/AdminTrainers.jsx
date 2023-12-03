@@ -1,7 +1,7 @@
 import React from 'react';
-// import './Trainers.module.css';
+import './Trainers.css';
 
-const Trainers = () => {
+const AdminTrainers = () => {
   return (
     <div>
         <div class="container-fluid px-4 overflow-scroll">
@@ -49,7 +49,7 @@ const Trainers = () => {
                         <td>
                           {/* <%=trainer.salary%> */}
                           </td>
-                        <form method="post" action="/adminactions/deletetrainer">
+                        <form class="adminTrainerForm" method="post" action="/adminactions/deletetrainer">
                           <input type="text" 
                             // value=<%=trainer._id%> 
                             class="d-none" 
@@ -73,7 +73,7 @@ const Trainers = () => {
                 </div> 
                 <div class="modal-body">
                   <div class="form-container sign-up-container">
-                    <form name="regform" onchange="return Validation1()" method="POST" action="/adminactions/addTrainer">
+                    <form class="adminTrainerForm" name="regform" onchange="return Validation1()" method="POST" action="/adminactions/addTrainer">
                       <fieldset>
                         <input type="text" id="namec" placeholder="Name" name="name" required />
                         <span class="regemailver">Enter Valid Email Address.</span>
@@ -83,7 +83,7 @@ const Trainers = () => {
                         <input class="profile-img" type="url" id="image" name="image"
                           placeholder="Enter Profile Image Url"/>
                       </fieldset>
-                      <button id="signupbtn" type="submit">Add Trainer</button>
+                      <button class="btnSubmitTrainers" id="signupbtn" type="submit">Add Trainer</button>
                     </form>
                   </div>
                 </div>
@@ -95,4 +95,4 @@ const Trainers = () => {
   )
 }
 
-export default Trainers
+export default AdminTrainers
