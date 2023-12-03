@@ -1,53 +1,53 @@
 import React from 'react'
 import '../admin_dashboard.css'
 import logo from '../../../assets/img/Logo/logo.png'
-
+import {Link} from 'react-router-dom'
 const AdminSideWrapper = () => {
   return (
     <div class="white" id="sidebar-wrapper" >
         <div class="sidebar-heading">
-                <a href="./" class="brand-logo">
+                <Link to="./" class="brand-logo">
                         <img src={logo} alt="logo" class="logo-img"/>
-                </a>
+                </Link>
         </div>
         <div class="list-group list-group-flush my-3">
-                <a href="/AdminHome"
+                <Link to="/AdminHome"
                         class="list-group-item list-group-item-action bg-transparent text-light active"><i
-                                class="fas fa-table-columns bg-transparent"></i>  Dashboard</a>
+                                class="fas fa-table-columns bg-transparent"></i>  Dashboard</Link>
 
 
-                <a href="/AdminTrainers"
+                <Link to="/AdminTrainers"
                         class="list-group-item list-group-item-action bg-transparent text-light  active"><i
-                                class="fas fa-user-md me-2"></i>Trainers</a>
+                                class="fas fa-user-md me-2"></i>Trainers</Link>
 
-                <a href="/AdminCustomers"
+                <Link to="/AdminCustomers"
                         class="list-group-item list-group-item-action bg-transparent text-light  active"><i
-                                class="fas fa-users me-2"></i>Customers</a>
+                                class="fas fa-users me-2"></i>Customers</Link>
 
-                <a href="/AdminPayment"
+                <Link to="/AdminPayment"
                         class="list-group-item list-group-item-action bg-transparent text-light fw-bold"><i
-                                class="fas fa-chart-line me-2"></i>Payments</a>
+                                class="fas fa-chart-line me-2"></i>Payments</Link>
 
-                <a href="/AdminOrder"
+                <Link to="/AdminOrder"
                         class="list-group-item list-group-item-action bg-transparent text-light fw-bold"><i
-                                class="fas fa-shopping-cart me-2"></i>Orders</a>
+                                class="fas fa-shopping-cart me-2"></i>Orders</Link>
 
-                <a href="/AdminAddProduct"
+                <Link to="/AdminAddProduct"
                         class="list-group-item list-group-item-action bg-transparent text-light fw-bold"><i
-                                class="fas fa-plus me-2"></i>Add New Product</a>
+                                class="fas fa-plus me-2"></i>Add New Product</Link>
 
 
-                <a href="/AdminFeedback"
+                <Link to="/AdminFeedback"
                    class="list-group-item list-group-item-action bg-transparent  text-light fw-bold"><i
-                                class="fas fa-comment-dots me-2"></i>Feedbacks</a>
+                                class="fas fa-comment-dots me-2"></i>Feedbacks</Link>
 
-                <a href="/" style={{marginTop: '60px', borderTop: '2px solid rgba(0, 0, 0, 0.247)'}} class="list-group-item list-group-item-action bg-transparent text-light active"><i
-                                class="fas fa-home me-2"></i>Home</a>
-                <a href="/Products" class="list-group-item list-group-item-action bg-transparent text-light active"><i
-                                class="fas fa-shopping-cart me-2 bg-transparent"></i>Products</a>
+                <Link to="/" style={{marginTop: '60px', borderTop: '2px solid rgba(0, 0, 0, 0.247)'}} class="list-group-item list-group-item-action bg-transparent text-light active"><i
+                                class="fas fa-home me-2"></i>Home</Link>
+                <Link to="/Products" class="list-group-item list-group-item-action bg-transparent text-light active"><i
+                                class="fas fa-shopping-cart me-2 bg-transparent"></i>Products</Link>
                                 
-                <a href="/" class="list-group-item list-group-item-action bg-transparent text-light  fw-bold"><i
-                         class="fas fa-power-off me-2"></i> Logout</a>
+                <Link to="/" class="list-group-item list-group-item-action bg-transparent text-light  fw-bold"><i
+                         class="fas fa-power-off me-2"></i> Logout</Link>
                              
                 
         </div>

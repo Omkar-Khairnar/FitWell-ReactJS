@@ -14,7 +14,7 @@ const Footer = () => {
       <div class="footercontainer">
         <div class="info">
             <div class="infoBox">
-                <Link class="icon" href="https://goo.gl/maps/cf9CjEf7qd3BM5sx6">
+                <Link class="icon" to="https://goo.gl/maps/cf9CjEf7qd3BM5sx6">
                     <i class="fa-sharp fa-solid fa-location-dot fa-2xl"></i>
                 </Link>
                 <div class="iconinfo">
@@ -48,13 +48,13 @@ const Footer = () => {
                     <img src={logo} alt="" />
                 </div>
                 <div class="icons">
-                    <Link class="icon"  href="https://www.instagram.com/iiitsricity/"><i
+                    <Link class="icon"  to="https://www.instagram.com/iiitsricity/"><i
                             class="fa-brands fa-instagram"></i></Link>
-                    <Link class="icon"  href="https://www.facebook.com/IIIT.SriCity/"><i
+                    <Link class="icon"  to="https://www.facebook.com/IIIT.SriCity/"><i
                             class="fa-brands fa-facebook"></i></Link>
-                    <Link class="icon"  href="https://twitter.com/IIITSC"><i class="fa-brands fa-twitter"></i></Link>
+                    <Link class="icon"  to="https://twitter.com/IIITSC"><i class="fa-brands fa-twitter"></i></Link>
                     <Link class="icon" 
-                        href="https://in.linkedin.com/school/indian-institute-of-information-technology-sricity/"><i
+                        to="https://in.linkedin.com/school/indian-institute-of-information-technology-sricity/"><i
                             class="fa-brands fa-linkedin"></i></Link>
                 </div>
 
@@ -65,10 +65,9 @@ const Footer = () => {
                     <h2>UseFul Links</h2>
                 </div>
                 <ul>
-                    <li><Link href="/AboutUs">About Us</Link></li>
-                    <li><Link href="/ContactUS">Contact Us</Link></li>
-                    <li><Link href="/Reviews">Blogs</Link></li>
-
+                    <li><Link to="/AboutUs">About Us</Link></li>
+                    <li><Link to="/ContactUS">Contact Us</Link></li>
+                    <li><Link to="/Reviews">Blogs</Link></li>
                 </ul>
             </div>
             <div class="block">
@@ -76,8 +75,8 @@ const Footer = () => {
                     <h2>Member</h2>
                 </div>
                 <ul>
-                    <li><Link href="./signin">Login</Link></li>
-                    <li><Link href="./signup">Sign Up</Link></li>
+                    <li><Link to="/UserSignIn">Login</Link></li>
+                    <li><Link to="/UserSignIn">Sign Up</Link></li>
                 </ul>
             </div>
             <div class="block">
@@ -85,8 +84,8 @@ const Footer = () => {
                     <h2>Admin</h2>
                 </div>
                 <ul>
-                    <li><Link href="./adminlogin">Login</Link></li>
-                    <li><Link href="/AdminDashboard">Admin Dashboard</Link></li>
+                    <li><Link to="./adminlogin">Login</Link></li>
+                    <li><Link to="/AdminDashboard">Admin Dashboard</Link></li>
                 </ul>
             </div>
         </div>
