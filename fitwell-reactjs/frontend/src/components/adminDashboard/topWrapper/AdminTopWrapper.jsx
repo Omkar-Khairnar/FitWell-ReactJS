@@ -1,12 +1,12 @@
 import React from 'react'
 import '../admin_dashboard.css'
-import {Link} from 'react-router-dom'
-const TopWrapper = () => {
+
+const AdminTopWrapper = () => {
   return (
     <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
   <div class="d-flex align-items-center">
-    <i style="color: #de5923" class="fas fa-align-left  fs-4 me-3" id="menu-toggle"></i>
+    <i style={{color: '#de5923'}} class="fas fa-align-left  fs-4 me-3" id="menu-toggle"></i>
     <h3 class="fs-2 m-0">Admin Dashboard</h3>
   </div>
 
@@ -18,12 +18,13 @@ const TopWrapper = () => {
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
       <li class="nav-item dropdown">
-        <Link class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown" role="button"
-          data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown" role="button"
+          data-bs-toggle="dropdown" aria-expanded="false" style={{textDecoration : "none"}}>
           <i class="fas fa-user me-2"></i><span id="admin-dashboard-username">Admin</span>
-        </Link>
+        </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><Link class="dropdown-item" href="/">Logout</Link></li>
+          {/* <!-- <li><a class="dropdown-item" href="#">Profile</a></li> --> */}
+          <li><a class="dropdown-item" href="/">Logout</a></li>
         </ul>
       </li>
     </ul>
@@ -33,4 +34,4 @@ const TopWrapper = () => {
   )
 }
 
-export default TopWrapper
+export default AdminTopWrapper

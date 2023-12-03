@@ -116,12 +116,15 @@
 }
 .card-desc-1{
     color: #f36100;
+    font-weight: 600;
     font-family: 'Mulish', sans-serif;
     justify-content: center;
     vertical-align: middle;
 }
 .card-desc-2{
     font-family: 'Secular One', sans-serif;
+    font-weight: 600;
+
 }
 .ouClasses-cards-2{
     display: flex;

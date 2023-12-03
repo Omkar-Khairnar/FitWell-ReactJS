@@ -132,7 +132,7 @@ const ProductSearch = () => {
                               Category :{/* <%= image.category %> */}
                             </h3>
                             <h3>About</h3>
-                            <p>{/* <%= image.description %> */}</p>
+                            <p class="productsP" >{/* <%= image.description %> */}</p>
                           </div>
                         </div>
                         <div

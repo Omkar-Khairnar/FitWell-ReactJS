@@ -112,7 +112,7 @@ const Products = () => {
                                                 {/* <%= image.category %> */}
                                             </h3>
                                             <h3>About</h3>
-                                            <p>
+                                            <p class="productsP" >
                                                 {/* <%= image.description %> */}
                                             </p>
                                         </div>
@@ -220,7 +220,7 @@ const Products = () => {
                                                 {/* <%= image.category %> */}
                                             </h3>
                                             <h3>About</h3>
-                                            <p>
+                                            <p class="productsP" >
                                                 {/* <%= image.description %> */}
                                             </p>
                                         </div>
@@ -329,7 +329,7 @@ const Products = () => {
                                             {/* <%= image.category %> */}
                                         </h3>
                                         <h3>About</h3>
-                                        <p>
+                                        <p class="productsP" >
                                             {/* <%= image.description %> */}
                                         </p>
                                     </div>
@@ -441,7 +441,7 @@ const Products = () => {
                                                 {/* <%= image.category %> */}
                                             </h3>
                                             <h3>About</h3>
-                                            <p>
+                                            <p class="productsP" >
                                                 {/* <%= image.description %> */}
                                             </p>
                                         </div>
@@ -554,7 +554,7 @@ const Products = () => {
                                                 {/* <%= image.category %> */}
                                             </h3>
                                             <h3>About</h3>
-                                            <p>
+                                            <p class="productsP" >
                                                 {/* <%= image.description %> */}
                                             </p>
                                         </div>

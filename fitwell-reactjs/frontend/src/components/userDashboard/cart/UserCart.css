@@ -7,10 +7,10 @@
 }
 
 .UserCartTotalPrice {
-  width: 90%;
+  width: 100%;
   border: 2px solid rgb(117, 31, 0);
 }
-img {
+.userCartImg {
   width: 150px;
   height: 150px;
   margin-right: 10px;
@@ -121,9 +121,11 @@ th:last-child {
     background-color: aliceblue;
     color: aliceblue;
 }
-th {
+.userCartTH {
   text-align: center;
-  /* padding: 20px; */
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 20px;
   color: aliceblue;
   background-color: rgb(228, 98, 51);
   font-weight: normal;
