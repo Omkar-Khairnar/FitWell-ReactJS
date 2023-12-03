@@ -4,19 +4,19 @@ import './UserPayment.css'
 
 const UserPayment = () => {
   return (
-    <div class="dashboard-content" id="dashboard-payment-page">
+    <div class="dashboard-content" id="dashboard-payment-page" cl>
           <div class="container">
             <h1>Payment Page</h1>
             <div class="table">
               <table class="table table-striped">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Transaction ID</th>
-                    <th scope="col">Payment Method</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Status</th>
+                    <th scope="col" style={{color : "black"}}>Date</th>
+                    <th scope="col" style={{color : "black"}}>Transaction ID</th>
+                    <th scope="col" style={{color : "black"}}>Payment Method</th>
+                    <th scope="col" style={{color : "black"}}>Description</th>
+                    <th scope="col" style={{color : "black"}}>Amount</th>
+                    <th scope="col" style={{color : "black"}}>Status</th>
                   </tr>
                 </thead>
                 <tbody>

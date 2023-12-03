@@ -5,7 +5,7 @@ import "./User_Dashboard.css";
 
 const UserDashboard = () => {
   return (
-    <div className="dashboard">
+    <div className="dashboard" style={{backgroundColor : "white"}}>
       <UserNavbar />
 
       <div class="dashboard-app">

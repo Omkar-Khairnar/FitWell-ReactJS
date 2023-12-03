@@ -96,39 +96,39 @@ const UserHome = () => {
             </div>
           </div>
 
-          <div class="topinfo">
+          <div class="topinfo" >
             <div class="userdetails no-gutters">
-              <div class="userimg card-body w-100 d-flex justify-content-center">
+              <div class="userimg card-body w-100 d-flex justify-content-center" style={{backgroundColor : "white", height : "fit-content"}}>
                 <img
                   // src=<%=userDetails.image%>
                   alt=""
                 />
               </div>
-              <div class="userinfo ">
-                <h3>
+              <div class="userinfo" style={{color : "black"}}>
+                <h3 className="userHomeInfo">
                   Hey,
                   {/* <%=userDetails.name%>   */}
                 </h3>
-                <h5>Email :{/* <%=userDetails.email%> */}</h5>
-                <h4>
+                <h5 className="userHomeInfo">Email :{/* <%=userDetails.email%> */}</h5>
+                <h4 className="userHomeInfo">
                   Weight:
                   <span id="bmiweight">{/* <%=userDetails.weight%> */}</span>kg
                 </h4>
-                <h4>
+                <h4 className="userHomeInfo">
                   Height:
                   <span id="bmiweight">{/* <%=userDetails.height%> */}</span>cm
                 </h4>
                 {/* <% userDetails.expiry=userDetails.DateOfJoin%> */}
               </div>
             </div>
-            <div class="bmi">
+            <div class="bmi" style={{backgroundColor : "white"}}>
               <div
-                class="card bmicard mb-3"
+                class="card bmicard bg-white"
                 onclick=""
                 style={{maxWidth: '540px'}}
               >
-                <div class="row cardrow no-gutters h-100">
-                  <div class="col-md-4 w-100 d-flex justify-content-center">
+                <div class="row cardrow no-gutters h-100 bg-white"  style={{border : "solid", borderRadius : "5px"}}>
+                  <div class="col-md-4 w-100 d-flex justify-content-center bg-white" >
                     <img
                       src="https://thumbs.dreamstime.com/b/bmi-body-mass-index-dial-chart-clipart-image-isolated-white-background-bmi-body-mass-index-dial-chart-136770137.jpg"
                       class="card-img"
@@ -137,10 +137,11 @@ const UserHome = () => {
                   </div>
 
                   <div
-                    class="card-body w-100 justify-content-center p-0"
+                    class="card-body justify-content-center p-0 bg-white h-50"
                     id="bmi-value"
+
                   >
-                    <h4 style={{textAlign: 'center', fontFamily: 'Bebas Neue cursive', fontWeight: 'bolder'}}>
+                    <h4 className="userHomeInfo" style={{textAlign: 'center', fontFamily: 'Bebas Neue cursive', fontWeight: 'bolder'}}>
                       {/* <% let weight=parseFloat(userDetails.weight); %> */}
                       {/* <% let height=parseFloat(userDetails.height)/100; %> */}
                       {/* <% const bmi = (weight / (height * height)).toFixed(2); userDetails.bmi=bmi;%> */}
