@@ -90,7 +90,7 @@ const ProductSearch = () => {
                   >
                     <div class="decs-container">
                       <img
-                        class="card-img-top"
+                        class="card-img-top-product"
                         alt="p1"
                         src="data:image/<%=image.img.contentType%>;base64, <%=image.img.data.toString('base64')%>"
                       />

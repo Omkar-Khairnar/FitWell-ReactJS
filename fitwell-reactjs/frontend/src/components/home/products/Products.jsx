@@ -64,7 +64,7 @@ const Products = () => {
                                     <button type="button" class="btn-decs-container" data-bs-toggle="modal"
                                         data-bs-target="#latestPro<%=image._id%>">
                                         <div class="decs-container">
-                                            <img class="card-img-top" alt="p1"
+                                            <img class="card-img-top-product" alt="p1"
                                                 src="data:image/<%=image.img.contentType%>;base64, <%=image.img.data.toString('base64')%>" />
                                             <div class="card-body p-2">
                                                 <h5 class="card-title text-white">
@@ -172,7 +172,7 @@ const Products = () => {
                                     <button type="button" class="btn-decs-container" data-bs-toggle="modal"
                                         data-bs-target="#wheyProModal<%=image._id%>">
                                         <div class="decs-container">
-                                            <img class="card-img-top" alt="p1"
+                                            <img class="card-img-top-product" alt="p1"
                                                 src="data:image/<%=image.img.contentType%>;base64, <%=image.img.data.toString('base64')%>" />
                                             <div class="card-body p-2">
                                                 <h5 class="card-title text-white">
@@ -281,7 +281,7 @@ const Products = () => {
                                     <button type="button" class="btn-decs-container" data-bs-toggle="modal"
                                         data-bs-target="#vitaminPro<%=image._id%>">
                                         <div class="decs-container">
-                                            <img class="card-img-top" alt="p1"
+                                            <img class="card-img-top-product" alt="p1"
                                                 src="data:image/<%=image.img.contentType%>;base64, <%=image.img.data.toString('base64')%>" />
                                             <div class="card-body p-2">
                                                 <h5 class="card-title text-white">
@@ -391,7 +391,7 @@ const Products = () => {
                                     <button type="button" class="btn-decs-container" data-bs-toggle="modal"
                                         data-bs-target="#energyPro<%=image._id%>">
                                         <div class="decs-container">
-                                            <img class="card-img-top" alt="p1"
+                                            <img class="card-img-top-product" alt="p1"
                                                 src="data:image/<%=image.img.contentType%>;base64, <%=image.img.data.toString('base64')%>" />
                                             <div class="card-body p-2">
                                                 <h5 class="card-title text-white">
@@ -504,7 +504,7 @@ const Products = () => {
                                     <button type="button" class="btn-decs-container" data-bs-toggle="modal"
                                         data-bs-target="#repairPro<%=image._id%>">
                                         <div class="decs-container">
-                                            <img class="card-img-top" alt="p1"
+                                            <img class="card-img-top-product" alt="p1"
                                                 src="data:image/<%=image.img.contentType%>;base64, <%=image.img.data.toString('base64')%>" />
                                             <div class="card-body p-2">
                                                 <h5 class="card-title text-white">
