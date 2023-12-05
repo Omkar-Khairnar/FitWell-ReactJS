@@ -21,6 +21,11 @@ app.use('/api/review', require('./routes/reviews'))
 app.use('/api/userActions', require('./routes/userActions'))
 app.use('/api/workout', require('./routes/homeWorkouts'))
 app.use('/api/challenge', require('./routes/dailyChallenges'))
+app.use('/api/adminTrainer', require('./routes/admin'))
+app.use('/api/adminPayment', require('./routes/admin'))
+app.use('/api/adminFeedback', require('./routes/admin'))
+app.use('/api/adminCustomer', require('./routes/admin'))
+app.use('/api/adminOrder', require('./routes/admin'))
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

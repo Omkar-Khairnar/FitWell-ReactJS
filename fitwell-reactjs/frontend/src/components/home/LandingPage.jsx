@@ -7,8 +7,8 @@ const LandingPage = () => {
   return (
     <div>
       <Outlet />
-      <Footer />
       <Navbar />
+      <Footer />
     </div>
   )
 }

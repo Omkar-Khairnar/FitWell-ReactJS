@@ -11,7 +11,7 @@
 .container-fluid1{
   background-color: black;
   height: 5vw;
-  opacity: 0.6;
+  /* opacity: 0.6; */
   font-family: 'Mulish', sans-serif;
   font-weight: 700;
 }

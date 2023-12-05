@@ -13,52 +13,32 @@ label {
   font-size: larger;
 }
 
-form {
+.adminAddTrainerForm {
   overflow-y: auto;
   width: 50vw;
   max-width: 500px;
   min-width: 300px;
-  margin: 0 auto;
+  margin: 1vw auto;
   padding-bottom: 10px;
+  border: #ff922b 5px solid;
+  border-radius: 20px;
 }
-.sign-up-container {
-  overflow-y: auto;
-  width: 50vw;
-  max-width: 550px;
-  min-width: 400px;
-  margin: 20px auto;
-  border: 5px solid rgb(255, 153, 0);
-  border-radius: 10px;
-  background-color: #ffffff;
-}
-
-.sign-in-container {
-  overflow-y: auto;
-  width: 50vw;
-  height: 250px;
-  max-width: 550px;
-  min-width: 400px;
-  margin: 50px auto;
-  border: 5px solid rgb(255, 153, 0);
-  border-radius: 10px;
-  background-color: #ffffff;
-  vertical-align: middle;
-}
-
 
 fieldset {
   border: none;
+  display: flex;
+  flex-direction: column;
 }
 
-input,
-textarea {
-  background-color: #f02222;
+.addTrainerFormInput {
+  background-color: #f0f0f0bc;
   border: none;
   padding: 10px 15px;
-  margin: 8px 0;
-  width: 95%;
+  margin: 8px auto;
+  width: 80%;
   font-size: medium;
   border-radius: 5px;
+  border: #121212 1px solid;
 }
 
 .inline {
@@ -71,15 +51,21 @@ textarea {
   border: 1px solid black;
 }
 
+.adminTrainerSpan {
+  width: 80%;
+  margin: auto;
+}
 .btnSubmitTrainers {
   border-radius: 10px;
-  border: 1px solid #ff4b2b;
+  border: 3px solid #ff922b;
   background-color: #ff4b2b;
   color: #ffffff;
   font-size: 15px;
   font-weight: bold;
   padding: 12px 45px;
   letter-spacing: 1px;
+  width: 60%;
+  margin: auto;
 }
 
 button:active {

@@ -20,5 +20,31 @@ router.post('/getAllAdmins', async(req,res)=>{
     return res.send(response);
 })
 
+router.post('/getAllAdminTrainer', async(req,res)=>{
+    const response=await AdminServices.getAllAdminTrainer(req.body);
+    return res.send(response);
+})
+
+router.post('/getAllAdminPayment', async(req,res)=>{
+    const response=await AdminServices.getAllAdminPayment(req.body);
+    return res.send(response);
+})
+
+
+router.post('/getAllAdminCustomer', async(req,res)=>{
+    const response=await AdminServices.getAllAdminCustomer(req.body);
+    return res.send(response);
+})
+
+router.post('/getAllAdminFeedback', async(req,res)=>{
+    const response=await AdminServices.getAllAdminFeedback(req.body);
+    return res.send(response);
+})
+
+router.post('/getAllAdminOrder', async(req,res)=>{
+    const response=await AdminServices.getAllAdminOrder(req.body);
+    return res.send(response);
+})
+
 
 module.exports=router;
