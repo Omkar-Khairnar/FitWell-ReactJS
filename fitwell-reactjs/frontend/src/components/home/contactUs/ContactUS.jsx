@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./ContactUS.css";
 import ContactUsValidateForm from "./ContactUsFormValidate";
 import UserActionService from "../../../services/UserActionService";
-import Centers from "../centers/Centers";
+// import Centers from "../centers/Centers";
 
 const ContactUS = () => {
   const initialData={
