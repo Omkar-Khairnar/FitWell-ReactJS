@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import UserActionService from "../../../services/UserActionService";
 const UserCart = () => {
   const [products, setProducts] = useState(null);
-  const [totalAmount, setTotalAmount]=useState(0);
+  const [totalAmount, setTotalAmount]=useState(1700);
   const userDetails = useSelector((state) => state.user.userDetails);
 
   const getCartProducts = async () => {
@@ -44,7 +44,34 @@ const UserCart = () => {
               </th>
             </tr>
 
-            {products &&
+            <tr>
+                  <td>
+                    <div class="cart-info">
+                      <div>
+                        <img
+                          className="userCartImg"
+                          src="data:image/<%=products[i][0].img.contentType%>;base64, <%=products[i][0].img.data.toString('base64')%>"
+                          alt=""
+                        />
+                        <h4>Whey Protein</h4>
+                        <h5>
+                          price :Rs
+                          <span class="cart-product-price">
+                            Rs 1700
+                          </span>
+                        </h5>
+                        <br />
+                      </div>
+                    </div>
+                  </td>
+                  <td>Protein</td>
+                  <td>
+                    Rs
+                    1700
+                  </td>
+                </tr>
+
+            {/* {products &&
               products !== null &&
               products.map((item) => (
                 <tr>
@@ -73,7 +100,7 @@ const UserCart = () => {
                     {item.price}
                   </td>
                 </tr>
-              ))}
+              ))} */}
           </table>
         </div>
 
