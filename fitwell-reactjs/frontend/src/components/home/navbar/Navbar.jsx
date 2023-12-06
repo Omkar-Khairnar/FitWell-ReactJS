@@ -7,7 +7,7 @@ const Home = () => {
   return (
     
     <div class="container-fluid container-fluid1">
-      <nav class="navbar navbar1 navbar-expand-lg navbar-dark fixed-top bg-black p-0">
+      <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-black p-0" style={{opacity : "1", zIndex:"88888"}}>
       <Link class="navbar-brand navbarlogo" style={{margin:"0%", padding:"0%"}} to="/Home">
         <img class="navbarLogoImg" src={logo} alt="fitwell Logo.png"/>
       </Link>
