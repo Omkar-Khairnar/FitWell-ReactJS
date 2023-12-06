@@ -19,6 +19,7 @@ app.use('/api/trainer', require('./routes/trainers'))
 app.use('/api/order', require('./routes/order'))
 app.use('/api/review', require('./routes/reviews'))
 app.use('/api/userActions', require('./routes/userActions'))
+app.use('/api/product', require('./routes/products'))
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

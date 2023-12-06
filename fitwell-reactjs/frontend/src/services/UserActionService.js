@@ -53,6 +53,31 @@ class UserActionService{
         const json = await response.json();
         return json;
     }
+
+    //async addToCart
+    async addToCart(reqData){
+        const response= await fetch(`${host}/api/userActions/addtocart`, {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(reqData),
+        })
+        const json = await response.json();
+        return json;
+    }
+
+    async getUserCartProducts(reqData){
+        const response= await fetch(`${host}/api/userActions/get-user-cart-products`, {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(reqData),
+        })
+        const json = await response.json();
+        return json;
+    }
 }
 
 module.exports=new UserActionService();
