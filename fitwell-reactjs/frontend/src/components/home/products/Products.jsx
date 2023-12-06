@@ -1,26 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Products.css";
-import ProductSliderCorousel from './ProductSliderCorousel';
-import {Link} from 'react-router-dom'
+import ProductSliderCorousel from "./ProductSliderCorousel";
+import { Link, useNavigate } from "react-router-dom";
+import ProductService from "../../../services/ProductService";
+import { Buffer } from 'buffer';
+import UserActionService from "../../../services/UserActionService";
+import { useSelector } from 'react-redux';
 
 const Products = () => {
+  const [data, setData] = useState(null);
+  const userDetails= useSelector(state => state.user.userDetails);
+  const navigate=useNavigate();
+  const getProducts = async () => {
+    try {
+      const res = await ProductService.getProducts();
+      if (!res.error) {
+        setData(res.data);
+      }
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+
+  const handleAddToCart=async(productid)=>{
+    if(userDetails.isLoggedIn === false){
+      alert('Session Expired. Please Login again.')
+    }
+    else{
+      const obj={
+        productid:productid,
+        userid:userDetails._id
+      }
+      const res=await UserActionService.addToCart(obj);
+      if(!res.error){
+        navigate('/Products');
+      }
+    }
+  }
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+
   return (
     <div>
-      
       <ProductSliderCorousel />
 
-      <div class="latestProducts">
-        <div class="latestProductsHeader">
-          <div class="latestTradings">
-            <h3 class="title_LT">Latest Product</h3>
+      <div className="latestProducts">
+        <div className="latestProductsHeader">
+          <div className="latestTradings">
+            <h3 className="title_LT">Latest Product</h3>
             <i
               id="rightArrow"
-              class="fa fa-solid fa-2x fa-angle-right"
+              className="fa fa-solid fa-2x fa-angle-right"
               aria-hidden="true"
             ></i>
           </div>
-          <div class="search-container">
-          <Link to="/ProductSearch">Go to search resultpage</Link>
+          <div className="search-container">
+            <Link to="/ProductSearch">Go to search result page</Link>
             <form action="/productSearchResult" name="logform" method="POST">
               <input
                 style={{ marginTop: "0%" }}
@@ -29,557 +67,819 @@ const Products = () => {
                 name="search"
               />
               <input
-                class="d-none"
+                className="d-none"
                 type="text"
                 name="filter"
                 value="pricelow"
               />
-              <button class="searchIcon" type="submit">
-                
-                    <i class="fa fa-search"></i>
+              <button className="searchIcon" type="submit">
+                <i className="fa fa-search"></i>
               </button>
             </form>
           </div>
         </div>
-        <div class="productsSection">
-          <button id="arrowLeft1" class="arrow arrow-left" type="button">
+        <div className="productsSection">
+          <button id="arrowLeft1" className="arrow arrow-left" type="button">
             <i
               id="latestProductsCategory"
-              class="fa fa-angle-double-left"
+              className="fa fa-angle-double-left"
               aria-hidden="true"
             ></i>
           </button>
-          <button id="arrowRight1" class="arrow arrow-right" type="button">
+          <button id="arrowRight1" className="arrow arrow-right" type="button">
             <i
               id="latestProductsCategory"
-              class="fa fa-angle-double-right"
-              aria-hidden="true"
-            ></i>
-          </button>
-
-          <div id="latestPro" class="allProduct mx-3">
-                    {/* <% LatestCategory.forEach(function(image) { %> */}
-                        <div class="col mx-2">
-                            <div class="inner-col">
-                                <div class="card h-auto bg-dark">
-                                    <button type="button" class="btn-decs-container" data-bs-toggle="modal"
-                                        data-bs-target="#latestPro<%=image._id%>">
-                                        <div class="decs-container">
-                                            <img class="card-img-top-product" alt="p1"
-                                                src="data:image/<%=image.img.contentType%>;base64, <%=image.img.data.toString('base64')%>" />
-                                            <div class="card-body p-2">
-                                                <h5 class="card-title text-white">
-                                                    {/* <%= image.name %> */}
-                                                </h5>
-                                                <p class="card-text">
-                                                    {/* <%= image.category %> */}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </button>
-                                    <div class="card-footer" style={{paddingLeft: '0%', paddingRight: '0%' }}>
-                                        <p class="card-footer-price">Price : Rs.<span id="product-modal-price">
-                                                {/* <%= image.price %> */}
-                                            </span></p>
-                                        <button class="card-footer-AddToCart" data-bs-toggle="modal"
-                                            data-bs-target="#latestPro<%=image._id%>">Add To Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/* <% }) %> */}
-                </div>
-          <div id="latestProModal">
-                    {/* <% LatestCategory.forEach(function(image) { %> */}
-                        <div class="modal" id="latestPro<%=image._id%>">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
-                                            {/* <%= image.name %> */}
-                                        </h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="modal-product_img">
-                                            <img class="card-img-top-modal" alt="p2"
-                                                src="data:image/<%=image.img.contentType%>;base64, <%=image.img.data.toString('base64')%>" />
-                                        </div>
-                                        <div class="modal-product-description">
-                                            <h3 style={{textAlign: 'center'}} class="card-text">
-                                                Category :
-                                                {/* <%= image.category %> */}
-                                            </h3>
-                                            <h3>About</h3>
-                                            <p class="productsP" >
-                                                {/* <%= image.description %> */}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer bg-black"
-                                        style={{display: 'flex', justifyContent: 'space-between' ,fontSize : 'larger'}}>
-                                        <p class="card-footer-price">Price : Rs. <span
-                                                id="product-modal-price">
-                                                {/* <%= image.price %> */}
-                                            </span></p>
-                                        <form method="post" action="/useractions/addtocart">
-                                            <input class="d-none" type="text" name="productid"
-                                                // value=<%=image._id%>
-                                                />
-                                            <button type="submit" class="btn bg-dark">Add To
-                                                Cart</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/* <% }) %> */}
-                </div>
-        </div>
-      </div>
-
-      <div class="ProteinCategory">
-        <div class="latestProductsHeader">
-          <div class="latestTradings">
-            <h3 class="title_LT">Whey Proteins</h3>
-            <i
-              id="rightArrow"
-              class="fa fa-solid fa-2x fa-angle-right"
-              aria-hidden="true"
-            ></i>
-          </div>
-        </div>
-        <div class="productsSection">
-          <button id="arrowLeft2" class="arrow arrow-left" type="button">
-            <i
-              id="latestProductsCategory"
-              class="fa fa-angle-double-left"
-              aria-hidden="true"
-            ></i>
-          </button>
-          <button id="arrowRight2" class="arrow arrow-right" type="button">
-            <i
-              id="latestProductsCategory"
-              class="fa fa-angle-double-right"
-              aria-hidden="true"
-            ></i>
-          </button>
-          <div id="wheyPro" class="allProduct mx-3">
-                    {/* <% ProteinCategory.forEach(function(image) { %> */}
-                        <div class="col mx-2">
-                            <div class="inner-col">
-                                <div class="card h-auto bg-dark">
-                                    <button type="button" class="btn-decs-container" data-bs-toggle="modal"
-                                        data-bs-target="#wheyProModal<%=image._id%>">
-                                        <div class="decs-container">
-                                            <img class="card-img-top-product" alt="p1"
-                                                src="data:image/<%=image.img.contentType%>;base64, <%=image.img.data.toString('base64')%>" />
-                                            <div class="card-body p-2">
-                                                <h5 class="card-title text-white">
-                                                    {/* <%= image.name %> */}
-                                                </h5>
-                                                <p class="card-text">
-                                                    {/* <%= image.category %> */}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </button>
-                                    <div class="card-footer" style={{paddingLeft: '0%' ,paddingRight: '0%' }}>
-                                        <p class="card-footer-price">Price : Rs.<span id="product-modal-price">
-                                                {/* <%= image.price %> */}
-                                            </span></p>
-                                        <button class="card-footer-AddToCart" data-bs-toggle="modal"
-                                            data-bs-target="#wheyProModal<%=image._id%>">Add To Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/* <% }) %> */}
-                </div>
-          <div id="wheyProModal">
-                    {/* <% ProteinCategory.forEach(function(image) { %> */}
-                        <div class="modal" id="wheyProModal<%=image._id%>">
-                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
-                                            {/* <%= image.name %> */}
-                                        </h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="modal-product_img">
-                                            <img class="card-img-top-modal" alt="p2"
-                                                src="data:image/<%=image.img.contentType%>;base64, <%=image.img.data.toString('base64')%>" />
-                                        </div>
-                                        <div class="modal-product-description">
-                                            <h3 style={{textAlign: 'center'}} class="card-text">
-                                                Category :
-                                                {/* <%= image.category %> */}
-                                            </h3>
-                                            <h3>About</h3>
-                                            <p class="productsP" >
-                                                {/* <%= image.description %> */}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer bg-black"
-                                        style={{display: 'flex', justifyContent: 'space-between' ,fontSize : 'larger'}}>
-                                        <p class="card-footer-price">Price : Rs. <span
-                                                id="product-modal-price">
-                                                {/* <%= image.price %> */}
-                                            </span></p>
-                                        <form method="post" action="/useractions/addtocart">
-                                            <input class="d-none" type="text" name="productid"
-                                                // value=<%=image._id%>
-                                                />
-                                            <button type="submit" class="btn bg-dark">Add To
-                                                Cart</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/* <% }) %> */}
-                </div>
-        </div>
-      </div>
-
-      <div class="NutrientsCategory">
-        <div class="latestProductsHeader">
-          <div class="latestTradings">
-            <h3 class="title_LT">Nutrients : Vitamins & Minerals</h3>
-            <i
-              id="rightArrow"
-              class="fa fa-solid fa-2x fa-angle-right"
-              aria-hidden="true"
-            ></i>
-          </div>
-        </div>
-        <div class="productsSection">
-          <button id="arrowLeft3" class="arrow arrow-left" type="button">
-            <i
-              id="latestProductsCategory"
-              class="fa fa-angle-double-left"
-              aria-hidden="true"
-            ></i>
-          </button>
-          <button id="arrowRight3" class="arrow arrow-right" type="button">
-            <i
-              id="latestProductsCategory"
-              class="fa fa-angle-double-right"
+              className="fa fa-angle-double-right"
               aria-hidden="true"
             ></i>
           </button>
 
-          <div id="vitaminPro" class="allProduct mx-3">
-                    {/* <% NutrientsCategory.forEach(function(image) { %> */}
-                        <div class="col mx-2">
-                            <div class="inner-col">
-                                <div class="card h-auto bg-dark">
-                                    <button type="button" class="btn-decs-container" data-bs-toggle="modal"
-                                        data-bs-target="#vitaminPro<%=image._id%>">
-                                        <div class="decs-container">
-                                            <img class="card-img-top-product" alt="p1"
-                                                src="data:image/<%=image.img.contentType%>;base64, <%=image.img.data.toString('base64')%>" />
-                                            <div class="card-body p-2">
-                                                <h5 class="card-title text-white">
-                                                    {/* <%= image.name %> */}
-                                                </h5>
-                                                <p class="card-text">
-                                                    {/* <%= image.category %> */}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </button>
-                                    <div class="card-footer" style={{paddingLeft: '0%' ,paddingRight: '0%' }}>
-                                        <p class="card-footer-price">Price : Rs.<span id="product-modal-price">
-                                                {/* <%= image.price %> */}
-                                            </span></p>
-                                        <button class="card-footer-AddToCart" data-bs-toggle="modal"
-                                            data-bs-target="#vitaminPro<%=image._id%>">Add To Cart</button>
-                                    </div>
-                                </div>
-                            </div>
+          <div id="latestPro" className="allProduct mx-3">
+            {data &&
+              data.LatestCategory !== undefined &&
+              data.LatestCategory !== null &&
+              data.LatestCategory.map((item) => (
+                <div key={item._id} className="col mx-2">
+                  <div className="inner-col">
+                    <div className="card h-auto bg-dark">
+                      <button
+                        type="button"
+                        className="btn-decs-container"
+                        data-bs-toggle="modal"
+                        data-bs-target={`#latestPro${item._id}`}
+                      >
+                        <div className="decs-container">
+                          {item.img.data && (
+                            <img
+                              className="card-img-top"
+                              alt="p1"
+                              src={`data:image/${
+                                item.img.contentType
+                              };base64,${Buffer.from(item.img.data).toString(
+                                "base64"
+                              )}`}
+                            />
+                          )}
+
+                          <div className="card-body p-2">
+                            <h5 className="card-title text-white">
+                              {item.name}
+                            </h5>
+                            <p className="card-text">{item.category}</p>
+                          </div>
                         </div>
-                        {/* <% }) %> */}
-                </div>
-          <div class="vitaminProModal">
-                    {/* <% NutrientsCategory.forEach(function(image) { %> */}
-                        <div class="modal" id="vitaminPro<%=image._id%>">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
-                                        {/* <%= image.name %> */}
-                                    </h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="modal-product_img">
-                                        <img class="card-img-top-modal" alt="p2"
-                                            src="data:image/<%=image.img.contentType%>;base64, <%=image.img.data.toString('base64')%>" />
-                                    </div>
-                                    <div class="modal-product-description">
-                                        <h3 style={{textAlign: 'center'}} class="card-text">
-                                            Category :
-                                            {/* <%= image.category %> */}
-                                        </h3>
-                                        <h3>About</h3>
-                                        <p class="productsP" >
-                                            {/* <%= image.description %> */}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="modal-footer bg-black"
-                                    style={{display: 'flex', justifyContent: 'space-between' ,fontSize : 'larger'}}>
-                                    <p class="card-footer-price">Price : Rs. <span
-                                            id="product-modal-price">
-                                            {/* <%= image.price %> */}
-                                        </span></p>
-                                    <form method="post" action="/useractions/addtocart">
-                                        <input class="d-none" type="text" name="productid"
-                                            // value=<%=image._id%>
-                                            />
-                                        <button type="submit" class="btn bg-dark">Add To
-                                            Cart</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                      </button>
+                      <div
+                        className="card-footer"
+                        style={{ paddingLeft: "0%", paddingRight: "0%" }}
+                      >
+                        <p className="card-footer-price">
+                          Price : Rs.
+                          <span id="product-modal-price">{item.price}</span>
+                        </p>
+                        <button
+                          className="card-footer-AddToCart"
+                          data-bs-toggle="modal"
+                          data-bs-target={`#latestPro${item._id}`}
+                        >
+                          Add To Cart
+                        </button>
+                      </div>
                     </div>
-                        {/* <% }) %> */}
-                    
+                  </div>
                 </div>
+              ))}
+          </div>
+          
+          <div id="latestProModal">
+            {
+              data &&
+              data.LatestCategory !== undefined &&
+              data.LatestCategory !== null &&
+              data.LatestCategory.map((item) => (
+                <div className="modal" id={`latestPro${item._id}`}>
+              <div className="modal-dialog modal-lg">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h1
+                      className="modal-title fs-5 text-center"
+                      id="exampleModalLabel"
+                    >
+                      { item.name }
+                    </h1>
+                    <button
+                      type="button"
+                      className="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div className="modal-body">
+                    <div className="modal-product_img">
+                      <img
+                        className="card-img-top-modal"
+                        alt="p2"
+                        src={`data:image/${
+                          item.img.contentType
+                        };base64,${Buffer.from(item.img.data).toString(
+                          "base64"
+                        )}`}
+                      />
+                    </div>
+                    <div className="modal-product-description">
+                      <h3 style={{ textAlign: "center" }} className="card-text">
+                        Category :{item.category}
+                      </h3>
+                      <h3>About</h3>
+                      <p className="productsP">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="modal-footer bg-black"
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      fontSize: "larger",
+                    }}
+                  >
+                    <p className="card-footer-price">
+                      Price : Rs.{" "}
+                      <span id="product-modal-price">
+                        { item.price}
+                      </span>
+                    </p>
+                    <form >
+                      <input
+                        className="d-none"
+                        type="text"
+                        name="productid"
+                        value={item._id}
+                      />
+                      <button type="submit" className="btn bg-dark" onClick={handleAddToCart(item._id)}>
+                        Add To Cart
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+              ))
+            }
+          </div>
         </div>
       </div>
 
-      <div class="EnergyCategory">
-        <div class="latestProductsHeader">
-          <div class="latestTradings">
-            <h3 class="title_LT">Energy & Endurance</h3>
+      <div className="ProteinCategory">
+        <div className="latestProductsHeader">
+          <div className="latestTradings">
+            <h3 className="title_LT">Whey Proteins</h3>
             <i
               id="rightArrow"
-              class="fa fa-solid fa-2x fa-angle-right"
+              className="fa fa-solid fa-2x fa-angle-right"
               aria-hidden="true"
             ></i>
           </div>
         </div>
-        <div class="productsSection">
-          <button id="arrowLeft4" class="arrow arrow-left" type="button">
+        <div className="productsSection">
+          <button id="arrowLeft2" className="arrow arrow-left" type="button">
             <i
               id="latestProductsCategory"
-              class="fa fa-angle-double-left"
+              className="fa fa-angle-double-left"
               aria-hidden="true"
             ></i>
           </button>
-          <button id="arrowRight4" class="arrow arrow-right" type="button">
+          <button id="arrowRight2" className="arrow arrow-right" type="button">
             <i
               id="latestProductsCategory"
-              class="fa fa-angle-double-right"
+              className="fa fa-angle-double-right"
               aria-hidden="true"
             ></i>
           </button>
-
-          <div id="energyPro" class="allProduct mx-3">
-                    {/* <% EnergyCategory.forEach(function(image) { %> */}
-                        <div class="col mx-2">
-                            <div class="inner-col">
-                                <div class="card h-auto bg-dark">
-                                    <button type="button" class="btn-decs-container" data-bs-toggle="modal"
-                                        data-bs-target="#energyPro<%=image._id%>">
-                                        <div class="decs-container">
-                                            <img class="card-img-top-product" alt="p1"
-                                                src="data:image/<%=image.img.contentType%>;base64, <%=image.img.data.toString('base64')%>" />
-                                            <div class="card-body p-2">
-                                                <h5 class="card-title text-white">
-                                                    {/* <%= image.name %> */}
-                                                </h5>
-                                                <p class="card-text">
-                                                    {/* <%= image.category %> */}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </button>
-                                    <div class="card-footer" style={{paddingLeft: '0%' ,paddingRight: '0%' }}>
-                                        <p class="card-footer-price">Price : Rs.<span id="product-modal-price">
-                                                {/* <%= image.price %> */}
-                                            </span></p>
-                                        <button class="card-footer-AddToCart" data-bs-toggle="modal"
-                                            data-bs-target="#energyPro<%=image._id%>">Add To Cart</button>
-                                    </div>
-                                </div>
-                            </div>
+          <div id="wheyPro" className="allProduct mx-3">
+          {
+            data &&
+            data.ProteinCategory !== undefined &&
+            data.ProteinCategory !== null && 
+            data.ProteinCategory.map((item) => (    
+                <div className="col mx-2">
+                <div className="inner-col">
+                  <div className="card h-auto bg-dark">
+                    <button
+                      type="button"
+                      className="btn-decs-container"
+                      data-bs-toggle="modal"
+                      data-bs-target={`#wheyProModal${item._id}`}
+                    >
+                      <div className="decs-container">
+                        <img
+                          className="card-img-top"
+                          alt="p1"
+                          src={`data:image/${
+                            item.img.contentType
+                          };base64,${Buffer.from(item.img.data).toString(
+                            "base64"
+                          )}`}
+                        />
+                        <div className="card-body p-2">
+                          <h5 className="card-title text-white">
+                            { item.name}
+                          </h5>
+                          <p className="card-text">
+                            {item.category}
+                          </p>
                         </div>
-                        {/* <% }) %> */}
-
-
+                      </div>
+                    </button>
+                    <div
+                      className="card-footer"
+                      style={{ paddingLeft: "0%", paddingRight: "0%" }}
+                    >
+                      <p className="card-footer-price">
+                        Price : Rs.
+                        <span id="product-modal-price">
+                          { item.price }
+                        </span>
+                      </p>
+                      <button
+                        className="card-footer-AddToCart"
+                        data-bs-toggle="modal"
+                        data-bs-target={`#wheyProModal${item._id}`}
+                      >
+                        Add To Cart
+                      </button>
+                    </div>
+                  </div>
                 </div>
+              </div>
+            ))
+          }
+          </div>
+          <div id="wheyProModal">
+            {
+              data &&
+              data.ProteinCategory !== undefined &&
+              data.ProteinCategory !== null && 
+              data.ProteinCategory.map((item) => (    
+                <div className="modal" id={`wheyProModal${item._id}`}>
+                <div className="modal-dialog modal-dialog-centered modal-lg">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h1
+                        className="modal-title fs-5 text-center"
+                        id="exampleModalLabel"
+                      >
+                        { item.name}
+                      </h1>
+                      <button
+                        type="button"
+                        className="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div className="modal-body">
+                      <div className="modal-product_img">
+                        <img
+                          className="card-img-top-modal"
+                          alt="p2"
+                          src={`data:image/${
+                            item.img.contentType
+                          };base64,${Buffer.from(item.img.data).toString(
+                            "base64"
+                          )}`}
+                        />
+                      </div>
+                      <div className="modal-product-description">
+                        <h3 style={{ textAlign: "center" }} className="card-text">
+                          Category { item.category}
+                        </h3>
+                        <h3>About</h3>
+                        <p className="productsP">
+                          { item.description}
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      className="modal-footer bg-black"
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        fontSize: "larger",
+                      }}
+                    >
+                      <p className="card-footer-price">
+                        Price : Rs.{" "}
+                        <span id="product-modal-price">
+                          { item.price}
+                        </span>
+                      </p>
+                      <form >
+                        <input
+                          className="d-none"
+                          type="text"
+                          name="productid"
+                          value={item._id}
+                        />
+                        <button type="submit" className="btn bg-dark"  onClick={handleAddToCart(item._id)}>
+                          Add To Cart
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div className="NutrientsCategory">
+        <div className="latestProductsHeader">
+          <div className="latestTradings">
+            <h3 className="title_LT">Nutrients : Vitamins & Minerals</h3>
+            <i
+              id="rightArrow"
+              className="fa fa-solid fa-2x fa-angle-right"
+              aria-hidden="true"
+            ></i>
+          </div>
+        </div>
+        <div className="productsSection">
+          <button id="arrowLeft3" className="arrow arrow-left" type="button">
+            <i
+              id="latestProductsCategory"
+              className="fa fa-angle-double-left"
+              aria-hidden="true"
+            ></i>
+          </button>
+          <button id="arrowRight3" className="arrow arrow-right" type="button">
+            <i
+              id="latestProductsCategory"
+              className="fa fa-angle-double-right"
+              aria-hidden="true"
+            ></i>
+          </button>
+
+          <div id="vitaminPro" className="allProduct mx-3">
+            {
+              data && data.NutrientsCategory !== undefined && data.NutrientsCategory !== null &&
+                data.NutrientsCategory.map((item)=>(
+                  <div className="col mx-2">
+                  <div className="inner-col">
+                    <div className="card h-auto bg-dark">
+                      <button
+                        type="button"
+                        className="btn-decs-container"
+                        data-bs-toggle="modal"
+                        data-bs-target={`#vitaminPro${item._id}`}
+                      >
+                        <div className="decs-container">
+                          <img
+                            className="card-img-top"
+                            alt="p1"
+                            src={`data:image/${
+                              item.img.contentType
+                            };base64,${Buffer.from(item.img.data).toString(
+                              "base64"
+                            )}`}
+                          />
+                          <div className="card-body p-2">
+                            <h5 className="card-title text-white">
+                              {item.name}
+                            </h5>
+                            <p className="card-text">
+                              { item.category}
+                            </p>
+                          </div>
+                        </div>
+                      </button>
+                      <div
+                        className="card-footer"
+                        style={{ paddingLeft: "0%", paddingRight: "0%" }}
+                      >
+                        <p className="card-footer-price">
+                          Price : Rs.
+                          <span id="product-modal-price">
+                           {item.price}
+                          </span>
+                        </p>
+                        <button
+                          className="card-footer-AddToCart"
+                          data-bs-toggle="modal"
+                          data-bs-target={`#vitaminPro${item._id}`}
+                        >
+                          Add To Cart
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                ))
+            }
+          </div>
+          <div className="vitaminProModal">
+            {
+               data && data.NutrientsCategory !== undefined && data.NutrientsCategory !== null &&
+               data.NutrientsCategory.map((item)=>(
+                <div className="modal" id={`vitaminPro${item._id}`}>
+                <div className="modal-dialog modal-lg">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h1
+                        className="modal-title fs-5 text-center"
+                        id="exampleModalLabel"
+                      >
+                        { item.name}
+                      </h1>
+                      <button
+                        type="button"
+                        className="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div className="modal-body">
+                      <div className="modal-product_img">
+                        <img
+                          className="card-img-top-modal"
+                          alt="p2"
+                          src={`data:image/${
+                            item.img.contentType
+                          };base64,${Buffer.from(item.img.data).toString(
+                            "base64"
+                          )}`}
+                        />
+                      </div>
+                      <div className="modal-product-description">
+                        <h3 style={{ textAlign: "center" }} className="card-text">
+                          Category :{ item.category}
+                        </h3>
+                        <h3>About</h3>
+                        <p className="productsP">
+                          { item.description}
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      className="modal-footer bg-black"
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        fontSize: "larger",
+                      }}
+                    >
+                      <p className="card-footer-price">
+                        Price : Rs.{" "}
+                        <span id="product-modal-price">
+                          { item.price}
+                        </span>
+                      </p>
+                      <form method="post" action="/useractions/addtocart">
+                        <input
+                          className="d-none"
+                          type="text"
+                          name="productid"
+                          value={item._id}
+                        />
+                        <button type="submit" className="btn bg-dark"  onClick={handleAddToCart(item._id)}>
+                          Add To Cart
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+               ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div className="EnergyCategory">
+        <div className="latestProductsHeader">
+          <div className="latestTradings">
+            <h3 className="title_LT">Energy & Endurance</h3>
+            <i
+              id="rightArrow"
+              className="fa fa-solid fa-2x fa-angle-right"
+              aria-hidden="true"
+            ></i>
+          </div>
+        </div>
+        <div className="productsSection">
+          <button id="arrowLeft4" className="arrow arrow-left" type="button">
+            <i
+              id="latestProductsCategory"
+              className="fa fa-angle-double-left"
+              aria-hidden="true"
+            ></i>
+          </button>
+          <button id="arrowRight4" className="arrow arrow-right" type="button">
+            <i
+              id="latestProductsCategory"
+              className="fa fa-angle-double-right"
+              aria-hidden="true"
+            ></i>
+          </button>
+
+          <div id="energyPro" className="allProduct mx-3">
+
+            {
+              data && data.EnergyCategory!==undefined && data.EnergyCategory !== null &&
+                data.EnergyCategory.map((item)=>(
+                  <div className="col mx-2">
+                  <div className="inner-col">
+                    <div className="card h-auto bg-dark">
+                      <button
+                        type="button"
+                        className="btn-decs-container"
+                        data-bs-toggle="modal"
+                        data-bs-target={`#energyPro${item._id}`}
+                      >
+                        <div className="decs-container">
+                          <img
+                            className="card-img-top"
+                            alt="p1"
+                            src={`data:image/${
+                              item.img.contentType
+                            };base64,${Buffer.from(item.img.data).toString(
+                              "base64"
+                            )}`}
+                          />
+                          <div className="card-body p-2">
+                            <h5 className="card-title text-white">
+                              {item.name }
+                            </h5>
+                            <p className="card-text">
+                              {item.category }
+                            </p>
+                          </div>
+                        </div>
+                      </button>
+                      <div
+                        className="card-footer"
+                        style={{ paddingLeft: "0%", paddingRight: "0%" }}
+                      >
+                        <p className="card-footer-price">
+                          Price : Rs.
+                          <span id="product-modal-price">
+                            {item.price}
+                          </span>
+                        </p>
+                        <button
+                          className="card-footer-AddToCart"
+                          data-bs-toggle="modal"
+                          data-bs-target={`#energyPro${item._id}`}
+                        >
+                          Add To Cart
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                ))
+            }
+          </div>
           <div id="energyProModal">
-                    {/* <% EnergyCategory.forEach(function(image) { %> */}
-                        <div class="modal" id="energyPro<%=image._id%>">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
-                                            {/* <%= image.name %> */}
-                                        </h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="modal-product_img">
-                                            <img class="card-img-top-modal" alt="p2"
-                                                src="data:image/<%=image.img.contentType%>;base64, <%=image.img.data.toString('base64')%>" />
-                                        </div>
-                                        <div class="modal-product-description">
-                                            <h3 style={{textAlign: 'center'}} class="card-text">
-                                                Category :
-                                                {/* <%= image.category %> */}
-                                            </h3>
-                                            <h3>About</h3>
-                                            <p class="productsP" >
-                                                {/* <%= image.description %> */}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer bg-black"
-                                        style={{display: 'flex', justifyContent: 'space-between' ,fontSize : 'larger'}}>
-                                        <p class="card-footer-price">Price : Rs. <span
-                                                id="product-modal-price">
-                                                {/* <%= image.price %> */}
-                                            </span></p>
-                                        <form method="post" action="/useractions/addtocart">
-                                            <input class="d-none" type="text" name="productid"
-                                                // value=<%=image._id%>
-                                                />
-                                            <button type="submit" class="btn bg-dark">Add To
-                                                Cart</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/* <% }) %> */}
-
-
+            {
+              data && data.EnergyCategory!==undefined && data.EnergyCategory !== null &&
+              data.EnergyCategory.map((item)=>(
+                <div className="modal" id={`energyPro${item._id}`}>
+                <div className="modal-dialog modal-lg">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h1
+                        className="modal-title fs-5 text-center"
+                        id="exampleModalLabel"
+                      >
+                        { item.name}
+                      </h1>
+                      <button
+                        type="button"
+                        className="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div className="modal-body">
+                      <div className="modal-product_img">
+                        <img
+                          className="card-img-top-modal"
+                          alt="p2"
+                          src={`data:image/${
+                            item.img.contentType
+                          };base64,${Buffer.from(item.img.data).toString(
+                            "base64"
+                          )}`}
+                        />
+                      </div>
+                      <div className="modal-product-description">
+                        <h3 style={{ textAlign: "center" }} className="card-text">
+                          Category :{item.category}
+                        </h3>
+                        <h3>About</h3>
+                        <p className="productsP">
+                          { item.description }
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      className="modal-footer bg-black"
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        fontSize: "larger",
+                      }}
+                    >
+                      <p className="card-footer-price">
+                        Price : Rs.{" "}
+                        <span id="product-modal-price">
+                          {item.price }
+                        </span>
+                      </p>
+                      <form method="post" action="/useractions/addtocart">
+                        <input
+                          className="d-none"
+                          type="text"
+                          name="productid"
+                          value={item._id}
+                        />
+                        <button type="submit" className="btn bg-dark"  onClick={handleAddToCart(item._id)}>
+                          Add To Cart
+                        </button>
+                      </form>
+                    </div>
+                  </div>
                 </div>
+              </div>
+              ))
+            }
+          </div>
         </div>
       </div>
 
-      <div class="RecoveryCategory">
-        <div class="latestProductsHeader">
-          <div class="latestTradings">
-            <h3 class="title_LT">Recovery & Repairs</h3>
+      <div className="RecoveryCategory">
+        <div className="latestProductsHeader">
+          <div className="latestTradings">
+            <h3 className="title_LT">Recovery & Repairs</h3>
             <i
               id="rightArrow"
-              class="fa fa-solid fa-2x fa-angle-right"
+              className="fa fa-solid fa-2x fa-angle-right"
               aria-hidden="true"
             ></i>
           </div>
         </div>
-        <div class="productsSection">
-          <button id="arrowLeft5" class="arrow arrow-left" type="button">
+        <div className="productsSection">
+          <button id="arrowLeft5" className="arrow arrow-left" type="button">
             <i
               id="latestProductsCategory"
-              class="fa fa-angle-double-left"
+              className="fa fa-angle-double-left"
               aria-hidden="true"
             ></i>
           </button>
-          <button id="arrowRight5" class="arrow arrow-right" type="button">
+          <button id="arrowRight5" className="arrow arrow-right" type="button">
             <i
               id="latestProductsCategory"
-              class="fa fa-angle-double-right"
+              className="fa fa-angle-double-right"
               aria-hidden="true"
             ></i>
           </button>
 
-          <div id="repairPro" class="allProduct mx-3">
-                     {/* <% RecoveryCategory.forEach(function(image) { %> */}
-                        <div class="col mx-2">
-                            <div class="inner-col">
-                                <div class="card h-auto bg-dark">
-                                    <button type="button" class="btn-decs-container" data-bs-toggle="modal"
-                                        data-bs-target="#repairPro<%=image._id%>">
-                                        <div class="decs-container">
-                                            <img class="card-img-top-product" alt="p1"
-                                                src="data:image/<%=image.img.contentType%>;base64, <%=image.img.data.toString('base64')%>" />
-                                            <div class="card-body p-2">
-                                                <h5 class="card-title text-white">
-                                                    {/* <%= image.name %> */}
-                                                </h5>
-                                                <p class="card-text">
-                                                    {/* <%= image.category %> */}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </button>
-                                    <div class="card-footer" style={{paddingLeft: '0%' ,paddingRight: '0%' }}>
-                                        <p class="card-footer-price">Price : Rs.<span id="product-modal-price">
-                                                {/* <%= image.price %> */}
-                                            </span></p>
-                                        <button class="card-footer-AddToCart" data-bs-toggle="modal"
-                                            data-bs-target="#repairPro<%=image._id%>">Add To Cart</button>
-                                    </div>
-                                </div>
-                            </div>
+          <div id="repairPro" className="allProduct mx-3">
+            {
+              data && data.RecoveryCategory !== undefined && data.RecoveryCategory !== null &&
+                data.RecoveryCategory.map((item)=>(
+                  <div className="col mx-2">
+                  <div className="inner-col">
+                    <div className="card h-auto bg-dark">
+                      <button
+                        type="button"
+                        className="btn-decs-container"
+                        data-bs-toggle="modal"
+                        data-bs-target={`#repairPro${item._id}`}
+                      >
+                        <div className="decs-container">
+                          <img
+                            className="card-img-top"
+                            alt="p1"
+                            src={`data:image/${
+                              item.img.contentType
+                            };base64,${Buffer.from(item.img.data).toString(
+                              "base64"
+                            )}`}
+                          />
+                          <div className="card-body p-2">
+                            <h5 className="card-title text-white">
+                              {item.name }
+                            </h5>
+                            <p className="card-text">
+                              {item.category}
+                            </p>
+                          </div>
                         </div>
-                        {/* <% }) %> */}
-
-
+                      </button>
+                      <div
+                        className="card-footer"
+                        style={{ paddingLeft: "0%", paddingRight: "0%" }}
+                      >
+                        <p className="card-footer-price">
+                          Price : Rs.
+                          <span id="product-modal-price">
+                            {item.price}
+                          </span>
+                        </p>
+                        <button
+                          className="card-footer-AddToCart"
+                          data-bs-toggle="modal"
+                          data-bs-target={`#repairPro${item._id}`}
+                        >
+                          Add To Cart
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-          <div id="repairProModal" class="allProduct mx-3">
-                    {/* <% RecoveryCategory.forEach(function(image) { %> */}
-                        <div class="modal" id="repairPro<%=image._id%>">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
-                                            {/* <%= image.name %> */}
-                                        </h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="modal-product_img">
-                                            <img class="card-img-top-modal" alt="p2"
-                                                src="data:image/<%=image.img.contentType%>;base64, <%=image.img.data.toString('base64')%>" />
-                                        </div>
-                                        <div class="modal-product-description">
-                                            <h3 style={{textAlign: 'center'}} class="card-text">
-                                                Category :
-                                                {/* <%= image.category %> */}
-                                            </h3>
-                                            <h3>About</h3>
-                                            <p class="productsP" >
-                                                {/* <%= image.description %> */}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer bg-black"
-                                        style={{display: 'flex', justifyContent: 'space-between' ,fontSize : 'larger'}}>
-                                        <p class="card-footer-price">Price : Rs. <span
-                                                id="product-modal-price">
-                                                {/* <%= image.price %> */}
-                                            </span></p>
-                                        <form method="post" action="/useractions/addtocart">
-                                            <input class="d-none" type="text" name="productid"
-                                                // value=<%=image._id%>
-                                                />
-                                            <button type="submit" class="btn bg-dark">Add To
-                                                Cart</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/* <% }) %> */}
-
-
+                ))
+            }
+          </div>
+          <div id="repairProModal" className="allProduct mx-3">
+            {
+               data && data.RecoveryCategory !== undefined && data.RecoveryCategory !== null &&
+               data.RecoveryCategory.map((item)=>(
+                <div className="modal" id={`repairPro${item._id}`}>
+                <div className="modal-dialog modal-lg">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h1
+                        className="modal-title fs-5 text-center"
+                        id="exampleModalLabel"
+                      >
+                        { item.name}
+                      </h1>
+                      <button
+                        type="button"
+                        className="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div className="modal-body">
+                      <div className="modal-product_img">
+                        <img
+                          className="card-img-top-modal"
+                          alt="p2"
+                          src={`data:image/${
+                            item.img.contentType
+                          };base64,${Buffer.from(item.img.data).toString(
+                            "base64"
+                          )}`}
+                        />
+                      </div>
+                      <div className="modal-product-description">
+                        <h3 style={{ textAlign: "center" }} className="card-text">
+                          Category :{ item.category}
+                        </h3>
+                        <h3>About</h3>
+                        <p className="productsP">
+                          { item.description}
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      className="modal-footer bg-black"
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        fontSize: "larger",
+                      }}
+                    >
+                      <p className="card-footer-price">
+                        Price : Rs.{" "}
+                        <span id="product-modal-price">
+                          { item.price }
+                        </span>
+                      </p>
+                      <form method="post" action="/useractions/addtocart">
+                        <input
+                          className="d-none"
+                          type="text"
+                          name="productid"
+                          value={item._id}
+                        />
+                        <button type="submit" className="btn bg-dark"  onClick={handleAddToCart(item._id)}>
+                          Add To Cart
+                        </button>
+                      </form>
+                    </div>
+                  </div>
                 </div>
+              </div>
+               ))
+            }
+          </div>
         </div>
       </div>
     </div>

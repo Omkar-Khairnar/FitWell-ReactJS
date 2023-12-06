@@ -57,14 +57,12 @@ class UserActionServices{
     }
 
     //Product add to card: User Login required
-    async addToCart(req){
+    async addToCart(reqData){
         try{
-            if(!req.session.userDetails){
-                return {error:true, msg:'Please Login again. Session Expired.'}
-            }
-            const productid=req.body.productid;
+            const productid=reqData.productid;
+            const userid=reqData.userid;
             let product=await CartSchema.create({
-                user:req.session.userDetails.id,
+                user:userid,
                 productid:productid
             })
     
@@ -156,6 +154,24 @@ class UserActionServices{
                 return {error:true, msg:'Internal Server Error'}
             }
             return {error:false, msg:'Payments Fetched Successfully', data:res};
+        }
+        catch(error){
+            return {error:true, msg:error.message}
+        }
+    }
+
+    async getUserCartProducts(reqData){
+        try{
+            const id=reqData.userid;
+            const products=await CartSchema.find({
+                user:userid
+            });
+
+            if(!products){
+                return {error:true, msg:'Internal Server Error'}
+            }
+
+            return {error:false, msg:'Cart Products fetched Successfully!', data:products};
         }
         catch(error){
             return {error:true, msg:error.message}

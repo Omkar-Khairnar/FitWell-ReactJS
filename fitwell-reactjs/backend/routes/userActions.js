@@ -16,7 +16,7 @@ router.post('/putReview', async(req,res)=>{
 })
 
 router.post('/addtocart', async(req,res)=>{
-    const response=await UserActionServices.addToCart(req);
+    const response=await UserActionServices.addToCart(req.body);
     return res.send(response);
 })
 
@@ -34,6 +34,11 @@ router.post('/updateprofile', async(req,res)=>{
 router.post('/get-user-payments', async(req,res)=>{
     const response=await UserActionServices.getUserPayments(req.body);
     return res.send(response);
+})
+
+//getting particular user cart products
+router.post('/get-user-cart-products', async(req,res)=>{
+    // const response=await 
 })
 
 module.exports=router;

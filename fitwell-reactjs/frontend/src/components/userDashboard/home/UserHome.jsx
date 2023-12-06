@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import "../User_Dashboard.css";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
 
@@ -13,19 +13,20 @@ const UserHome = () => {
     (userDetails.weight / Math.pow((parseFloat(userDetails.height)/100),2)).toFixed(2)
   )
   const navigate=useNavigate();
+  
   //Checking User LoggedIn or Session Expired;
   const checkUserLoggedIn=()=>{
-    console.log(isLoggedIn);
+    // console.log(isLoggedIn);
     if(isLoggedIn === false || userDetails ===null){
       navigate('../UserSignIn')
       alert('User Session Expired. Please Login Again')
     }
   }
   useEffect(()=>{
-    checkUserLoggedIn();
+    // checkUserLoggedIn();
   },[])
 
-  console.log(userDetails);
+  // console.log(userDetails);
 
   return (
     <div class="dashboard-content active" id="dashboard-home-page">

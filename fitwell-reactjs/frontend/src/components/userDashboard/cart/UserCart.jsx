@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../User_Dashboard.css";
 import "./UserCart.css";
+import { useSelector } from "react-redux";
 
 // import CheckOut from './CheckOut';
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
+import UserActionService from "../../../services/UserActionService";
 const UserCart = () => {
+  const [products, setProducts] = useState(null);
+  const [totalAmount, setTotalAmount]=useState(1700);
+  const userDetails = useSelector((state) => state.user.userDetails);
+
+  const getCartProducts = async () => {
+    const userid = userDetails._id;
+    const res = await UserActionService.getUserCartProducts({ userid: userid });
+    if (!res.error) {
+      setProducts(res.data);
+    }
+  };
+
+  useEffect(()=>{
+    getCartProducts();
+  },[])
+  
   return (
     <div
       class="dashboard-content"
@@ -25,37 +43,64 @@ const UserCart = () => {
                 Subtotal
               </th>
             </tr>
-            {/* <%let amount=0%> */}
-            {/* <%for (var i = 0; i < products.length; i++) { %> */}
-            <tr>
-              <td>
-                <div class="cart-info">
-                  <div>
-                    <img
-                      className="userCartImg"
-                      src="data:image/<%=products[i][0].img.contentType%>;base64, <%=products[i][0].img.data.toString('base64')%>"
-                      alt=""
-                    />
-                    <h4>{/* <%=products[i][0].name%> */}</h4>
 
-                    {/* <%amount=amount+products[i][0].price%> */}
-                    <h5>
-                      price :Rs
-                      <span class="cart-product-price">
-                        {/* <%=products[i][0].price%> */}
-                      </span>
-                    </h5>
-                    <br />
-                  </div>
-                </div>
-              </td>
-              <td>{/* <%=products[i][0].category%> */}</td>
-              <td>
-                Rs
-                {/* <%=products[i][0].price%> */}
-              </td>
-            </tr>
-            {/* <%}%> */}
+            <tr>
+                  <td>
+                    <div class="cart-info">
+                      <div>
+                        <img
+                          className="userCartImg"
+                          src="data:image/<%=products[i][0].img.contentType%>;base64, <%=products[i][0].img.data.toString('base64')%>"
+                          alt=""
+                        />
+                        <h4>Whey Protein</h4>
+                        <h5>
+                          price :Rs
+                          <span class="cart-product-price">
+                            Rs 1700
+                          </span>
+                        </h5>
+                        <br />
+                      </div>
+                    </div>
+                  </td>
+                  <td>Protein</td>
+                  <td>
+                    Rs
+                    1700
+                  </td>
+                </tr>
+
+            {/* {products &&
+              products !== null &&
+              products.map((item) => (
+                <tr>
+                  <td>
+                    <div class="cart-info">
+                      <div>
+                        <img
+                          className="userCartImg"
+                          src="data:image/<%=products[i][0].img.contentType%>;base64, <%=products[i][0].img.data.toString('base64')%>"
+                          alt=""
+                        />
+                        <h4>{item.name}</h4>
+                        <h5>
+                          price :Rs
+                          <span class="cart-product-price">
+                            {item.price}
+                          </span>
+                        </h5>
+                        <br />
+                      </div>
+                    </div>
+                  </td>
+                  <td>{item.category}</td>
+                  <td>
+                    Rs
+                    {item.price}
+                  </td>
+                </tr>
+              ))} */}
           </table>
         </div>
 
@@ -66,33 +111,33 @@ const UserCart = () => {
                 Price Details
               </th>
             </tr>
-            <tr>
-              <td>Sub total</td>
+            <tr >
+              <td style={{marginLeft:'10px'}} >Sub total</td>
               <td>
                 Rs
-                {/* <%=amount%>.00 */}
+               {totalAmount}
               </td>
             </tr>
-            <tr>
-              <td>Discount 5%</td>
+            <tr >
+              <td style={{marginLeft:'10px'}} >Discount 5%</td>
               <td>
                 - Rs
-                {/* <%=Math.floor((amount*5)/100)%> */}
+                {Math.floor((totalAmount*5)/100)}
                 .00
               </td>
             </tr>
-            <tr>
-              <td>Delivery charges</td>
+            <tr >
+              <td style={{marginLeft:'10px'}} >Delivery charges</td>
               <td>+ Rs80.00</td>
             </tr>
-            <tr>
-              <td>Total Amount</td>
+            <tr >
+              <td style={{marginLeft:'10px'}} >Total Amount</td>
               <td>
                 = Rs
-                {/* <%=amount -Math.floor((amount*5)/100) +80 %> */}
+                {totalAmount -Math.floor((totalAmount*5)/100) +80}
               </td>
-              <br />
-              <br />
+              <br/>
+              <br/>
             </tr>
             <td>
               <button
@@ -109,7 +154,7 @@ const UserCart = () => {
           </table>
         </div>
       </div>
-      <Link id="back" tp="/Products">
+      <Link id="back" to="/Products">
         <h4>Continue Shopping</h4>
       </Link>
       <div
