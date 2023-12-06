@@ -52,7 +52,7 @@ const UserHome = () => {
                     <div class="row align-items-center mb-2 d-flex">
                       <div class="col-8">
                         <h2 class="d-flex align-items-center mb-0">
-                          {/* <%=Numoforders%> */}
+                          {3}
                         </h2>
                       </div>
                       <div class="col-4 text-right"></div>
@@ -89,7 +89,7 @@ const UserHome = () => {
                     <div class="row align-items-center mb-2 d-flex">
                       <div class="col-8">
                         <h2 class="d-flex align-items-center mb-0">
-                          {/* <%=Numofreviews%> */}
+                          {2}
                         </h2>
                       </div>
                       <div class="col-4 text-right"></div>
@@ -110,7 +110,7 @@ const UserHome = () => {
                       <div class="col-8">
                         <h3 class="d-flex align-items-center mb-0">
                           Rs.
-                          {/* <%= totalamount %> */}
+                          {14522}
                         </h3>
                       </div>
                       <div class="col-4 text-right"></div>
@@ -137,11 +137,11 @@ const UserHome = () => {
                 <h5 className="userHomeInfo">Email :{userDetails.email}</h5>
                 <h4 className="userHomeInfo">
                   Weight:
-                  <span id="bmiweight">{userDetails.weight}</span>kg
+                  <span id="bmiweight" style={{fontSize : "25px"}}>{userDetails.weight}</span>kg
                 </h4>
                 <h4 className="userHomeInfo">
                   Height:
-                  <span id="bmiweight">{userDetails.height}</span>cm
+                  <span id="bmiweight" style={{fontSize : "25px"}}>{userDetails.height}</span>cm
                 </h4>
                 {/* {userDetails.expiry=userDetails.DateOfJoin} */}
               </div>
