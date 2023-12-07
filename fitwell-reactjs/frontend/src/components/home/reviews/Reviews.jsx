@@ -29,8 +29,7 @@ const Reviews = () => {
 
 
 
-  // const setLeftIdx=()=>{setIdx(idx-1)}
-  // const setRightIdx=()=>{setIdx(idx+1)}
+
 
   return (
     <div>
@@ -41,16 +40,6 @@ const Reviews = () => {
 
       <section id="testim" className="testim">
         <div className="wrap">
-          {/* <span
-            id="right-arrow"
-            className="arrow right fa fa-chevron-right"
-            onClick={setRightIdx}
-          ></span>
-          <span
-            id="left-arrow"
-            className="arrow left fa fa-chevron-left "
-            onClick={setLeftIdx}
-          ></span> */}
           <ul id="testim-dots" className="dots">
             {reviews.length > 0 &&
               reviews.map((review, index) => (
