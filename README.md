@@ -62,6 +62,6 @@ Karthik Onteru (S20210010163)
 ```
 
 >## GitHub Repository 
->- [FitWell](https://github.com/Omkar-Khairnar/FitWell-ReactJS.git)
+>- [fitwell-reactjs](https://github.com/Omkar-Khairnar/FitWell-ReactJS.git)
 >- https://github.com/Omkar-Khairnar/FitWell-ReactJS.git 
 
