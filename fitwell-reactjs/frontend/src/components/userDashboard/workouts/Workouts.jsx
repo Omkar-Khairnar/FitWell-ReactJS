@@ -70,7 +70,7 @@ const Workouts = () => {
                           id="p5"
                         />
                       </button>
-                      <div class="modal" id={item._id}>
+                      <div class="modal" style={{padding :'0%',overflowY: 'auto'}} id={item._id}>
                         <div class="modal-dialog modal-fullscreen">
                           <div class="modal-content">
                             <div class="modal-header modal-header-userDashboard">

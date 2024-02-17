@@ -26,9 +26,8 @@ const AdminTrainers = () => {
     <div>
       <div class="container-fluid px-4 overflow-scroll">
         <button
-          className="adminTrainerButton"
+          class="button adminTrainerButton my-2"
           type="button"
-          class="button my-2"
           data-bs-toggle="modal"
           data-bs-target="#exampleModalAddTrainer"
         >
@@ -48,7 +47,7 @@ const AdminTrainers = () => {
                   <th scope="col">Email</th>
                   <th scope="col">Gender</th>
                   <th scope="col">DOJ</th>
-                  <th scope="col" class="text-center">
+                  <th scope="col">
                     Salary
                   </th>
                   <th scope="col" class="text-center">
@@ -69,19 +68,20 @@ const AdminTrainers = () => {
                       <td>{item.salary}</td>
                       <td style={{ padding: "0%" }}>
                         <form
-                          class="adminTrainerForm"
+                          // class="adminTrainerForm"
                           method="post"
                           action="/adminactions/deletetrainer"
-                          style={{ padding: "0%" }}
+                          style={{ padding: "0%"}}
                         >
                           <input
                             type="text"
                             value={item._id}
                             class="d-none"
                             name="trainerid"
+                            
                           />
                           <button
-                            className="adminTrainerButton"
+                            className="deleteTrainerButton"
                             type="submit"
                             style={{
                               border: "none",
@@ -119,14 +119,14 @@ const AdminTrainers = () => {
                     <form class="adminAddTrainerForm" name="regform" onchange="return Validation1()" method="POST" action="/adminactions/addTrainer">
                       <fieldset>
                         <input class="addTrainerFormInput"  type="text" id="namec" placeholder="Name" name="name" required />
-                        <span class="regemailver adminTrainerSpan">Enter Valid Email Address.</span>
-                        <input class="addTrainerFormInput" type="text" id="emailc" placeholder="Email" name="email" required />
+                        <span class="adminTrainerSpan">Enter Valid Email Address.</span>
+                        <input class="addTrainerFormInput" type="email" id="emailc" placeholder="Email" name="email" required />
                         <input class="addTrainerFormInput" type="text" id="genderc" placeholder="Gender" name="gender" required/>
                         <input class="addTrainerFormInput" type="number" id="salary-trainer" placeholder="Enter salary" name="salary" required/>
                         <input class="addTrainerFormInput" type="url" id="image" name="image"
                           placeholder="Enter Profile Image Url"/>
                       </fieldset>
-                      <button class="btnSubmitTrainers adminTrainerButton" id="signupbtn" type="submit">Add Trainer</button>
+                      <button class="btnSubmitTrainers" id="signupbtn" type="submit">Add Trainer</button>
                     </form>
                   </div>
                 </div>

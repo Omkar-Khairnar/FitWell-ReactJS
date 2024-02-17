@@ -1,18 +1,4 @@
 
-
-
-
-.adminTrainerSpan {
-  font-size: 12px;
-  color: red;
-  /* display: none; */
-}
-
-label {
-  font-weight: 600;
-  font-size: larger;
-}
-
 .adminAddTrainerForm {
   overflow-y: auto;
   width: 50vw;
@@ -41,23 +27,14 @@ fieldset {
   border: #121212 1px solid;
 }
 
-.inline {
-  width: unset;
-  margin: 0 0.5em 0 0;
-  vertical-align: middle;
-}
-
-#image {
-  border: 1px solid black;
-}
-
 .adminTrainerSpan {
   width: 80%;
   margin: auto;
+  display: none;
 }
 .btnSubmitTrainers {
   border-radius: 10px;
-  border: 3px solid #ff922b;
+  border: 2px solid #ff922b;
   background-color: #ff4b2b;
   color: #ffffff;
   font-size: 15px;
@@ -68,11 +45,30 @@ fieldset {
   margin: auto;
 }
 
-button:active {
-  transform: scale(0.95);
+.adminTrainerButton {
+  border-radius: 5px;
+  background-color: #ff4b2b;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  border: none;
 }
 
-.nevigate-to-signin-up {
-  width: 100%;
-  margin-left: 25%;
+.modal {
+  background: #000000e1;
+}
+
+.deleteTrainerButton {
+  padding: 0%;
+}
+
+.adminTrainerForm {
+  overflow-y: auto;
+  width: 50vw;
+  max-width: 500px;
+  min-width: 300px;
+  margin: 0 auto;
+  padding-bottom: 10px;
 }
