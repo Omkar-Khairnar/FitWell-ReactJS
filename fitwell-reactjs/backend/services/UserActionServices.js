@@ -2,6 +2,7 @@ const ContactUs=require('../models/contactform')
 const PaymentSchema=require('../models/payments')
 const UserSchema=require('../models/User')
 const ReviewSchema=require('../models/review')
+const CartSchema=require('../models/Cart')
 class UserActionServices{
 
     //submitting contact form :User login NOT required
@@ -133,7 +134,7 @@ class UserActionServices{
                 weight:weight,
                 height:height,
                 image:image
-            })
+            }).select("-password")
 
             if(!updated){
                 return {error:true, msg:'Internal Server Error'}

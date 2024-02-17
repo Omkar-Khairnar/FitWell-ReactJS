@@ -7,8 +7,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import UserActionService from "../../../services/UserActionService";
 const UserCart = () => {
-  const [products, setProducts] = useState(null);
-  const [totalAmount, setTotalAmount]=useState(1700);
+  const [products, setProducts] = useState(null); // eslint-disable-line 
+  const [totalAmount, setTotalAmount]=useState(1700); // eslint-disable-line 
   const userDetails = useSelector((state) => state.user.userDetails);
 
   const getCartProducts = async () => {
@@ -16,6 +16,7 @@ const UserCart = () => {
     const res = await UserActionService.getUserCartProducts({ userid: userid });
     if (!res.error) {
       setProducts(res.data);
+      console.log(res.data);
     }
   };
 
@@ -228,7 +229,7 @@ const UserCart = () => {
                             type="radio"
                             name="payment-method"
                             id="payment-method"
-                          />
+                          /> 
                           <label for="payment-method">
                             Net Banking/Credit/Debit Card
                           </label>

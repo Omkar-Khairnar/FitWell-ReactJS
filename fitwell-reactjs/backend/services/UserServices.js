@@ -7,6 +7,7 @@ class UserServices{
 
     async createUser(reqData){
         try{
+            console.log(reqData);
             let prevuser = await User.findOne({ email: reqData.email })
             if (prevuser) {
               return {error:true, msg:'Email Id already Registered.'}
@@ -24,6 +25,7 @@ class UserServices{
                 height: reqData.height,
                 image: reqData.image,
             })
+            delete user.password;
             const data = {
                 user: {
                     id: user._id,
@@ -31,7 +33,7 @@ class UserServices{
             }
             var authtoken = jwt.sign(data, process.env.JWT_SECRET);
 
-            return {error:false, msg:'User Created Successfully!', data:res, authtoken:authtoken}
+            return {error:false, msg:'User Created Successfully!', data:user, authtoken:authtoken}
         }
         catch(error){
             return {error:true, msg:error.message};
@@ -66,12 +68,10 @@ class UserServices{
                 gender: user.gender,
                 weight: user.weight,
                 height: user.height,
-                image: user.image,
+                image: user.image, 
                 DateOfJoin: user.DateOfJoin,
                 expirydate:user.expirydate.toDateString(),
             }
-            // req.session.userDetails = userDetails;
-            // req.session.save();
             
             return {error:false, msg:'User LoggedIn Successfully!', data:userDetails, authtoken:authtoken};
         }

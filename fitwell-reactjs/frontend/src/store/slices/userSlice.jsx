@@ -34,7 +34,7 @@ const userReducer=createSlice({
             const data=action.payload;
             state.authtoken=data;
         },
-        userLogout:(state, action)=>{
+        userLogout:(state, action)=>{ 
             state.userDetails=null;
             state.authtoken=null;
             state.isLoggedIn=false

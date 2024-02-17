@@ -16,17 +16,15 @@ const UserHome = () => {
   
   //Checking User LoggedIn or Session Expired;
   const checkUserLoggedIn=()=>{
-    // console.log(isLoggedIn);
     if(isLoggedIn === false || userDetails ===null){
       navigate('../UserSignIn')
-      alert('User Session Expired. Please Login Again')
+      // alert('User Session Expired. Please Login Again') 
     }
   }
   useEffect(()=>{
-    // checkUserLoggedIn();
+    checkUserLoggedIn();
   },[])
 
-  // console.log(userDetails);
 
   return (
     <div class="dashboard-content active" id="dashboard-home-page">

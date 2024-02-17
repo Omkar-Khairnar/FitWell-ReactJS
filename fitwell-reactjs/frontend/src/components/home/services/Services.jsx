@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import LoaderComp from '../../Loader'
 import "./Services.css";
 import home4 from '../../../assets/img/home4.jpg'
 import service1 from '../../../assets/img/services/service-1.jpg'
@@ -12,8 +13,31 @@ import service8 from '../../../assets/img/services/service-8.jpg'
 import service9 from '../../../assets/img/services/service-9.jpg'
 
 const Services = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let didMount = true; 
+    const setLoadingFalse = () => {
+        setTimeout(() => {
+            if (didMount) {
+                setIsLoading(false);
+            }
+        }, 1500); 
+    };
+
+    setLoadingFalse(); 
+    return () => {
+        didMount = false;
+    };
+}, [isLoading]); //
+
   return (
     <div>
+      {
+        isLoading && (
+          <LoaderComp/>
+        )
+      }
       <div class="topbg">
       <img src={home4} alt="" srcset="" style={{maxWidth: "100%"}} />
       <div class="toptitleService">
