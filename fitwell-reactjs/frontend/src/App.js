@@ -15,7 +15,7 @@ import Centers from './components/home/centers/Centers';
 import Reviews from './components/home/reviews/Reviews';
 import ContactUS from './components/home/contactUs/ContactUS';
 
-import AdminHome from './components/adminDashboard/adminHome/adminHome';
+import AdminHome from './components/adminDashboard/adminHome/AdminHome';
 import AdminOrder from './components/adminDashboard/order/AdminOrder';
 import AdminPayment from './components/adminDashboard/payment/AdminPayment';
 import AdminTrainers from './components/adminDashboard/trainers/AdminTrainers';

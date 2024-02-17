@@ -139,7 +139,8 @@
 
 .modal {
   background-color: rgba(14, 13, 13, 0.788);
-  position: absolute;
+  z-index: 100000;
+
 }
 .modal-body {
   background-color: rgb(31, 23, 23);
@@ -265,4 +266,9 @@
   .latestProductsHeader input[type=text] {
     border: 1px solid #ccc;  
   }
+}
+
+
+.modal-product-description {
+  padding: 10px 50px;
 }

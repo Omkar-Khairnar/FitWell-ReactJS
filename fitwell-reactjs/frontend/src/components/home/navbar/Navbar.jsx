@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <>
     <div class="container-fluid1">
-      <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-black p-0" style={{opacity : "1", zIndex:"88888"}}>
+      <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-black p-0 " style={{opacity : "1", zIndex:"88888"}}>
       <Link class="navbar-brand navbarlogo" style={{margin:"0%", padding:"0%"}} to="/Home">
         <img class="navbarLogoImg" src={logo} alt="fitwell Logo.png"/>
       </Link>
@@ -65,7 +65,7 @@ const Home = () => {
           </button>
           <ul class="dropdown-menu">
             <li><Link class="dropdown-item" to="/UserHome">Dashboard</Link></li>
-            <li><Link class="dropdown-item" to="/User_Dashboard_cart">Cart</Link></li>
+            <li><Link class="dropdown-item" to="/UserCart">Cart</Link></li>
             <li><Link class="dropdown-item" to="/Userlogout">Logout</Link></li>
           </ul>
         </div>

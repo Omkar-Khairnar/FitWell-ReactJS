@@ -501,7 +501,7 @@ label {
 	color: #FFD700;
 }
 
-#review-form input[type="text"], select, textarea {
+#review-form input[type="text"], select, #comment {
 	padding: 10px;
 	margin-bottom: 20px;
 	border: none;
@@ -516,7 +516,7 @@ label {
   font-size: 30px;
 }
 
-textarea {
+#comment  {
   min-height: 100px;
   font-size: 20px;
 }
@@ -970,6 +970,52 @@ input[type="submit"]:hover {
 /* User dashboard workout and challenge */
 
 /* User dashboard workout and challenge */
+
+.button-close {
+  
+}
+
+.timerBtnClass {
+  background-color: orange;
+  font-size: larger;
+  border: none;
+  margin: 0 5px;
+  padding : 0 5px;
+
+}
+
+#timerValue {
+  color: orangered;
+}
+
+.timer {
+  display: flex;
+  justify-content: space-between;
+  width: 55%;
+}
+
+.startBtn {
+  background-color: rgb(0, 248, 0);
+}
+
+.stopBtn {
+  background-color: rgb(255, 0, 0);
+}
+
+.timerInputClass {
+  border-radius: 5px;
+  font-size: larger;
+  width: 50px;
+  text-align: center;
+  padding: 0%;
+  border: none;
+  margin: 0%;
+
+}
+
+.timerCustomizer {
+  display: flex;
+}
 
 .card-workout {
   margin:  10px 10px;

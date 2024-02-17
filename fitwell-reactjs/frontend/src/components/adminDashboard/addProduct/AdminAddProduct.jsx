@@ -12,19 +12,19 @@ const AdminAddProduct = (props) => {
                         <div class="form-container add-product-container">
                             <form class="addProductFormAdmin" name="addProduct" action="/adminActions/newProduct" method="POST" enctype="multipart/form-data">
 
-                                <label for="name">Product Name
+                                <label className='adminAddProductLabel' for="name">Product Name
                                     <input class="addProductInputTextSelect" type="text" id="name" placeholder="Product Name" name="name" value=""
                                         required />
                                 </label>
-                                <label for="description">Description
+                                <label className='adminAddProductLabel' for="description">Description
                                     <textarea class="addProductInputTextSelect" type="text" id="description" placeholder="Enter Description of new Product"
                                         name="description" required></textarea>
                                 </label>
-                                <label for="price">Price
+                                <label className='adminAddProductLabel' for="price">Price
                                     <input class="addProductInputTextSelect" type="number" min="1" id="price" value=""
                                         placeholder="Enter Product Price($)" name="price" required />
                                 </label>
-                                <label for="category">Category of the Product</label>
+                                <label className='adminAddProductLabel' for="category">Category of the Product</label>
                                 <select class="addProductInputTextSelect" name="category" id="category" >
                                     {/* <!-- <option value="">Select Category</option> --> */}
                                     <option class="addProductInputTextSelect" value="Energy & Endurance">Energy & Endurance</option>
@@ -32,7 +32,7 @@ const AdminAddProduct = (props) => {
                                     <option class="addProductInputTextSelect" value="Whey Proteins">Whey Proteins</option>
                                     <option class="addProductInputTextSelect" value="Nutrients">Nutrients</option>
                                 </select>
-                                <label for="productImage">Product Image [Image type : png(only)]
+                                <label className='adminAddProductLabel' for="productImage">Product Image [Image type : png(only)]
                                     <input class="addProductInputTextSelect product-img"type="file" value="" id="productImage" name="productImage"
                                         placeholder="Upload Image" required/>
                                 </label>

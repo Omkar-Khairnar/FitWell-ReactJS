@@ -29,7 +29,7 @@
 
 .nav-item1 a:hover{
    color: #f36100;
-   text-decoration-line: line-through;
+   text-decoration-line: none;
    scale: 1.1;
 }
 
