@@ -129,7 +129,7 @@ const Products = (props) => {
                           <div className="decs-container">
                             {item.img.data && (
                               <img
-                                className="card-img-top"
+                                className="card-img-top-product"
                                 alt="p1"
                                 src={`data:image/${
                                   item.img.contentType
@@ -139,11 +139,11 @@ const Products = (props) => {
                               />
                             )}
   
-                            <div className="card-body p-2">
-                              <h5 className="card-title text-white">
+                            <div className="card-body-product p-2">
+                               <h5 style={{fontFamily: 'Ubuntu, sans-serif'}} className="card-title text-white">
                                 {item.name}
                               </h5>
-                              <p className="card-text">{item.category}</p>
+                              <p className="card-text-product">{item.category}</p>
                             </div>
                           </div>
                         </button>
@@ -151,9 +151,9 @@ const Products = (props) => {
                           className="card-footer"
                           style={{ paddingLeft: "0%", paddingRight: "0%" }}
                         >
-                          <p className="card-footer-price">
+                         <p className="card-footer-price card-text-product">
                             Price : Rs.
-                            <span id="product-modal-price">{item.price}</span>
+                            <span id="product-modal-price card-text-product">{item.price}</span>
                           </p>
                           <button
                             className="card-footer-AddToCart"
@@ -211,7 +211,7 @@ const Products = (props) => {
                       >
                         <div className="decs-container">
                           <img
-                            className="card-img-top"
+                            className="card-img-top-product"
                             alt="p1"
                             src={`data:image/${
                               item.img.contentType
@@ -219,11 +219,11 @@ const Products = (props) => {
                               "base64"
                             )}`}
                           />
-                          <div className="card-body p-2">
-                            <h5 className="card-title text-white">
+                          <div className="card-body-product p-2">
+                             <h5 style={{fontFamily: 'Ubuntu, sans-serif'}} className="card-title text-white">
                               { item.name}
                             </h5>
-                            <p className="card-text">
+                            <p className="card-text-product">
                               {item.category}
                             </p>
                           </div>
@@ -233,9 +233,9 @@ const Products = (props) => {
                         className="card-footer"
                         style={{ paddingLeft: "0%", paddingRight: "0%" }}
                       >
-                        <p className="card-footer-price">
+                       <p className="card-footer-price card-text-product">
                           Price : Rs.
-                          <span id="product-modal-price">
+                          <span id="product-modal-price card-text-product">
                             { item.price }
                           </span>
                         </p>
@@ -295,7 +295,7 @@ const Products = (props) => {
                         >
                           <div className="decs-container">
                             <img
-                              className="card-img-top"
+                              className="card-img-top-product"
                               alt="p1"
                               src={`data:image/${
                                 item.img.contentType
@@ -303,11 +303,11 @@ const Products = (props) => {
                                 "base64"
                               )}`}
                             />
-                            <div className="card-body p-2">
-                              <h5 className="card-title text-white">
+                            <div className="card-body-product p-2">
+                               <h5 style={{fontFamily: 'Ubuntu, sans-serif'}} className="card-title text-white">
                                 {item.name}
                               </h5>
-                              <p className="card-text">
+                              <p className="card-text-product">
                                 { item.category}
                               </p>
                             </div>
@@ -317,9 +317,9 @@ const Products = (props) => {
                           className="card-footer"
                           style={{ paddingLeft: "0%", paddingRight: "0%" }}
                         >
-                          <p className="card-footer-price">
+                         <p className="card-footer-price card-text-product">
                             Price : Rs.
-                            <span id="product-modal-price">
+                            <span id="product-modal-price card-text-product">
                              {item.price}
                             </span>
                           </p>
@@ -380,7 +380,7 @@ const Products = (props) => {
                         >
                           <div className="decs-container">
                             <img
-                              className="card-img-top"
+                              className="card-img-top-product"
                               alt="p1"
                               src={`data:image/${
                                 item.img.contentType
@@ -388,11 +388,11 @@ const Products = (props) => {
                                 "base64"
                               )}`}
                             />
-                            <div className="card-body p-2">
-                              <h5 className="card-title text-white">
+                            <div className="card-body-product p-2">
+                               <h5 style={{fontFamily: 'Ubuntu, sans-serif'}} className="card-title text-white">
                                 {item.name }
                               </h5>
-                              <p className="card-text">
+                              <p className="card-text-product">
                                 {item.category }
                               </p>
                             </div>
@@ -402,9 +402,9 @@ const Products = (props) => {
                           className="card-footer"
                           style={{ paddingLeft: "0%", paddingRight: "0%" }}
                         >
-                          <p className="card-footer-price">
+                         <p className="card-footer-price card-text-product">
                             Price : Rs.
-                            <span id="product-modal-price">
+                            <span id="product-modal-price card-text-product">
                               {item.price}
                             </span>
                           </p>
@@ -464,7 +464,7 @@ const Products = (props) => {
                         >
                           <div className="decs-container">
                             <img
-                              className="card-img-top"
+                              className="card-img-top-product"
                               alt="p1"
                               src={`data:image/${
                                 item.img.contentType
@@ -472,11 +472,11 @@ const Products = (props) => {
                                 "base64"
                               )}`}
                             />
-                            <div className="card-body p-2">
-                              <h5 className="card-title text-white">
+                            <div className="card-body-product p-2">
+                               <h5 style={{fontFamily: 'Ubuntu, sans-serif'}} className="card-title text-white">
                                 {item.name }
                               </h5>
-                              <p className="card-text">
+                              <p className="card-text-product">
                                 {item.category}
                               </p>
                             </div>
@@ -486,9 +486,9 @@ const Products = (props) => {
                           className="card-footer"
                           style={{ paddingLeft: "0%", paddingRight: "0%" }}
                         >
-                          <p className="card-footer-price">
+                         <p className="card-footer-price card-text-product">
                             Price : Rs.
-                            <span id="product-modal-price">
+                            <span id="product-modal-price card-text-product">
                               {item.price}
                             </span>
                           </p>

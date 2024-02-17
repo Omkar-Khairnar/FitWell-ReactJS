@@ -15,7 +15,7 @@ import Centers from './components/home/centers/Centers';
 import Reviews from './components/home/reviews/Reviews';
 import ContactUS from './components/home/contactUs/ContactUS';
 
-import AdminHome from './components/adminDashboard/adminHome/AdminHome';
+import AdminHome from './components/adminDashboard/adminHome/adminHome';
 import AdminOrder from './components/adminDashboard/order/AdminOrder';
 import AdminPayment from './components/adminDashboard/payment/AdminPayment';
 import AdminTrainers from './components/adminDashboard/trainers/AdminTrainers';
@@ -57,7 +57,7 @@ function App() {
         <Routes>
           <Route element={<LandingPage alert={alert} setmyAlert={setmyAlert}/>} >
             <Route path='/' element={<Navigate to="/Home" replace />} />
-            <Route path="/Navbar" element={<Navbar />} />
+            <Route path="/Navbar" element={<Navbar />} /> 
             <Route path="/Home" element={<Home />} />
             <Route path="/AboutUs" element={<AboutUs />} />
             <Route path="/Footer" element={<Footer />} />
