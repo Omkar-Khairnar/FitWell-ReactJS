@@ -2,24 +2,35 @@ import React, { useEffect, useState } from "react";
 import "../User_Dashboard.css";
 import { Buffer } from "buffer";
 import LoaderComp from "../../Loader";
+import { useSelector, useDispatch } from "react-redux";
+import { setWorkout } from "../../../store/slices/workoutSlice.jsx"
 
 const WorkoutService = require("../../../services/WorkoutService");
 
 const Workouts = () => {
   const [workouts, setWorkouts] = useState(null);
   const [isLoading, setIsloading] = useState(false);
+  const homeWorkout = useSelector(state => state.workouts.homeWorkout)
+  const dispatch = useDispatch()
+
   //Fetching workouts from backend
   const getWorkouts = async () => {
     setIsloading(true)
     const res = await WorkoutService.getAllWorkout();
     if (!res.error && res.data.length > 0) {
-      setWorkouts(res.data);
+      dispatch(setWorkout(res.data))
+      setWorkouts(res.data)
     }
     setIsloading(false)
   };
  
   useEffect(() => {
-    getWorkouts();
+    if(homeWorkout ===undefined ||  homeWorkout.length === 0){
+      getWorkouts();
+    }
+    else{
+      setWorkouts(homeWorkout);
+    }
   }, []);
 
   return (

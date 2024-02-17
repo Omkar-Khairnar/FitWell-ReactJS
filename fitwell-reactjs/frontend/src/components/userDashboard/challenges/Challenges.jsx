@@ -2,25 +2,35 @@ import React, { useEffect, useState } from "react";
 import "../User_Dashboard.css";
 import { Buffer } from "buffer";
 import LoaderComp from "../../Loader";
+import { useSelector, useDispatch } from "react-redux";
+import { setChallenges as setChallengesInStore } from "../../../store/slices/workoutSlice.jsx"
 
 const ChallengeService = require("../../../services/ChallengeService");
 
 const Challenges = () => {
   const [challenges, setChallenges] = useState(null);
   const [isLoading, setIsloading] = useState(false);
+  const dispatch = useDispatch();
+  const storeChallenges = useSelector(state => state.workouts.challenges)
 
   //Fetching challenges from backend
   const getChallenges = async () => {
     setIsloading(true);
     const res = await ChallengeService.getAllChallenge();
     if (!res.error && res.data.length > 0) {
+      dispatch(setChallengesInStore(res.data))
       setChallenges(res.data);
     }
     setIsloading(false);
   };
 
   useEffect(() => {
-    getChallenges();
+    if(storeChallenges ===undefined ||  storeChallenges.length === 0){
+      getChallenges();
+    }
+    else{
+      setChallenges(storeChallenges);
+    }
   }, []);
 
   return (
