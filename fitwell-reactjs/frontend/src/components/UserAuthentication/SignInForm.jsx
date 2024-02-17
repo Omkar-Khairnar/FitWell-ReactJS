@@ -52,7 +52,7 @@ function SignInForm(props) {
       ) : (
         <div className="form-container1 sign-in-container">
           <form onSubmit={handleOnSubmit} className="auth-form">
-            <h1>Sign in</h1>
+            <h1>Sign In</h1>
             <span className="auth-span">or use your account</span>
             <input
               type="email"
