@@ -7,7 +7,7 @@ function Alert(props) {
   };
 
   return (
-    <div style={{ position: 'fixed', top: '70px', right: '10px', zIndex: 9999 }}>
+    <div style={{ position: 'fixed', top: '70px', right: '10px', zIndex: 100009 }}>
       {props.alert && (
         <div
           className={`alert alert-${props.alert.type !== 'success' ? 'danger' : props.alert.type} alert-dismissible fade show`}
