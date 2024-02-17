@@ -1,8 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+/* @import url("https://fonts.googleapis.com/css?family=Montserrat:400,800"); */
 
-* {
-  box-sizing: border-box;
-}
 
 .authheader {
   background-image: linear-gradient(to right, rgba(255, 0, 0, 0.317), rgba(255,0,0,0));
@@ -34,7 +31,7 @@
 }
 
 .auth-span {
-  font-size: 12px;
+  font-size: 15px;
 }
 
 /* a {
@@ -45,15 +42,13 @@
 } */
 
 .auth-button {
-  border-radius: 20px;
   border: 1px solid #ff4b2b;
   background-color: #ff4b2b;
   color: #ffffff;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 12px 45px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  height: 6vh;
+  width: 13vw;
+  font-size: large;
+  border-radius: 15px;
   transition: transform 80ms ease-in;
 }
 
@@ -65,9 +60,21 @@
   outline: none;
 }
 
-button.ghost {
+/* .ghost {
   background-color: transparent;
   border-color: #ffffff;
+} */
+.ghost {
+  background-color: white;
+  border-color: orangered;
+  height: 6vh;
+  width: 13vw;
+  border-radius: 15px;
+  font-size: large;
+  font-weight: bold;
+  color: orangered;
+
+
 }
 
 .auth-form {
