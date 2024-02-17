@@ -64,12 +64,12 @@ const Profile = (props) => {
                  src={data.image}
                 />
                 <h1>
-                  <span class="font-weight-bold">
+                  <span class="font-weight-bold" style={{fontSize : "25px"}}>
                     {data.name}
                   </span>
                 </h1>
                 <h2>
-                  <span>{data.email}</span>
+                  <span style={{fontSize : "25px"}}>{data.email}</span>
                 </h2>
               </div>
             </div>

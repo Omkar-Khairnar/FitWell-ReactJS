@@ -69,8 +69,8 @@ const Home = () => {
         <div class="sliderContainer" id="frontinfo">
           <div class="firstline">SHAPE YOUR BODY</div>
           <div class="secondline">
-            BE <span id="colorToOrange">STRONG</span> TRAINING{" "}
-            <span id="colorToOrange">HARD</span>{" "}
+            BE <span id="colorToOrange" style={{fontSize : '60px'}}>STRONG</span> TRAINING{" "}
+            <span id="colorToOrange" style={{fontSize : '60px'}}>HARD</span>{" "}
           </div>
         </div>
 
@@ -191,12 +191,12 @@ const Home = () => {
               <h2>REGISTER NOW AND GET EXCITING DEALS</h2>
             </div>
             <div class=" appoint-secondline">
-              <div class="col-sm">
-                {/* <p id='my101' class="fs-2 text-light"><%= Numofusers %></p> */}
+              <div class="col-sm" style={{color : "orangered", fontSize : "30px"}}>
+                {18}
                 <p class="text-light">Total Members</p>
               </div>
-              <div class="col-sm">
-                {/* <p id='my102' class="fs-2 text-light"><%= Numoftrainers %></p> */}
+              <div class="col-sm" style={{color : "orangered", fontSize : "30px"}}>
+                {5}
                 <p class="text-light">Total Collaborators</p>
               </div>
             </div>

@@ -1,0 +1,64 @@
+
+          <div id="latestPro" className="allProduct mx-3">
+            {/* {data &&
+              data.LatestCategory !== undefined &&
+              data.LatestCategory !== null &&
+              data.LatestCategory.map((item) => ( */}
+                <div 
+                // key={item._id} 
+                className="col mx-2">
+                  <div className="inner-col">
+                    <div className="card h-auto bg-dark">
+                      <button
+                        type="button"
+                        className="btn-decs-container"
+                        data-bs-toggle="modal"
+                        // data-bs-target={`#latestPro${item._id}`}
+                      >
+                        <div className="decs-container">
+                          {/* {item.img.data && ( */}
+                            <img
+                              className="card-img-top-product"
+                              alt="p1"
+                              src="https://imgs.search.brave.com/mwvi1KnhCH81tOVZroq4bMJtzQifvZPHM0sCxKKwX5g/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jcmlj/dG9kYXkuY29tL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDI0LzAy/L1JvaGl0LVNoYXJt/YS0yLTEud2VicA"
+                              // src={`data:image/${
+                              //   item.img.contentType
+                              // };base64,${Buffer.from(item.img.data).toString(
+                              //   "base64"
+                              // )}`}
+                            />
+                          {/* )} */}
+
+                          <div className="card-body-product p-2">
+                            <h5 style={{fontFamily: 'Ubuntu, sans-serif'}} className="card-title text-white">
+                              {/* {item.name} */} kartik
+                            </h5>
+                            <p className="card-text-product">
+                              {/* {item.category} */}college
+                              </p>
+                          </div>
+                        </div>
+                      </button>
+                      <div
+                        className="card-footer"
+                        style={{ paddingLeft: "0%", paddingRight: "0%" }}
+                      >
+                        <p className="card-footer-price card-text-product">
+                          Price : Rs.
+                          <span id="product-modal-price card-text-product">
+                            95
+                          </span>
+                        </p>
+                        <button
+                          className="card-footer-AddToCart"
+                          data-bs-toggle="modal"
+                          // data-bs-target={`#latestPro${item._id}`}
+                        >
+                          Add To Cart
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {/* ))} */}
+          </div>

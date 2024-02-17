@@ -67,7 +67,7 @@ label {
   border-radius: 5px;
 }
 
-button {
+.buttonAdminHome {
   border-radius: 10px;
   border: 1px solid #FF4B2B;
   background-color: #FF4B2B;
@@ -78,6 +78,6 @@ button {
   letter-spacing: 1px;
 }
 
-button:active {
+.buttonAdminHome:active {
   transform: scale(0.95);
 }
