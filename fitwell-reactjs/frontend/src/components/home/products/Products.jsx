@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Products.css";
+// import "./ProductsScroll";
 import ProductSliderCorousel from "./ProductSliderCorousel";
 import { Link, useNavigate } from "react-router-dom";
 import ProductService from "../../../services/ProductService";
@@ -59,7 +60,7 @@ const Products = () => {
           </div>
           <div className="search-container">
             <Link to="/ProductSearch">Go to search result page</Link>
-            <form action="/productSearchResult" name="logform" method="POST">
+            <form style={{flexDirection : 'row'}} action="/productSearchResult" name="logform" method="POST">
               <input
                 style={{ marginTop: "0%" }}
                 type="text"
@@ -111,7 +112,7 @@ const Products = () => {
                         <div className="decs-container">
                           {item.img.data && (
                             <img
-                              className="card-img-top"
+                              className="card-img-top-product"
                               alt="p1"
                               src={`data:image/${
                                 item.img.contentType
@@ -121,11 +122,11 @@ const Products = () => {
                             />
                           )}
 
-                          <div className="card-body p-2">
-                            <h5 className="card-title text-white">
+                          <div className="card-body-product p-2">
+                            <h5 style={{fontFamily: 'Ubuntu, sans-serif'}} className="card-title text-white">
                               {item.name}
                             </h5>
-                            <p className="card-text">{item.category}</p>
+                            <p className="card-text-product">{item.category}</p>
                           </div>
                         </div>
                       </button>
@@ -133,9 +134,9 @@ const Products = () => {
                         className="card-footer"
                         style={{ paddingLeft: "0%", paddingRight: "0%" }}
                       >
-                        <p className="card-footer-price">
+                        <p className="card-footer-price card-text-product">
                           Price : Rs.
-                          <span id="product-modal-price">{item.price}</span>
+                          <span id="product-modal-price card-text-product">{item.price}</span>
                         </p>
                         <button
                           className="card-footer-AddToCart"
@@ -187,7 +188,7 @@ const Products = () => {
                       />
                     </div>
                     <div className="modal-product-description">
-                      <h3 style={{ textAlign: "center" }} className="card-text">
+                      <h3 style={{ textAlign: "center" }} className="card-text-product">
                         Category :{item.category}
                       </h3>
                       <h3>About</h3>
@@ -204,9 +205,9 @@ const Products = () => {
                       fontSize: "larger",
                     }}
                   >
-                    <p className="card-footer-price">
+                    <p className="card-footer-price card-text-product">
                       Price : Rs.{" "}
-                      <span id="product-modal-price">
+                      <span id="product-modal-price card-text-product">
                         { item.price}
                       </span>
                     </p>
@@ -274,7 +275,7 @@ const Products = () => {
                     >
                       <div className="decs-container">
                         <img
-                          className="card-img-top"
+                          className="card-img-top-product"
                           alt="p1"
                           src={`data:image/${
                             item.img.contentType
@@ -282,11 +283,11 @@ const Products = () => {
                             "base64"
                           )}`}
                         />
-                        <div className="card-body p-2">
-                          <h5 className="card-title text-white">
+                        <div className="card-body-product p-2">
+                          <h5 style={{fontFamily : 'Ubuntu, sans-serif'}} className="card-title text-white">
                             { item.name}
                           </h5>
-                          <p className="card-text">
+                          <p className="card-text-product">
                             {item.category}
                           </p>
                         </div>
@@ -296,9 +297,9 @@ const Products = () => {
                       className="card-footer"
                       style={{ paddingLeft: "0%", paddingRight: "0%" }}
                     >
-                      <p className="card-footer-price">
+                      <p className="card-footer-price card-text-product">
                         Price : Rs.
-                        <span id="product-modal-price">
+                        <span id="product-modal-price card-text-product">
                           { item.price }
                         </span>
                       </p>
@@ -352,7 +353,7 @@ const Products = () => {
                         />
                       </div>
                       <div className="modal-product-description">
-                        <h3 style={{ textAlign: "center" }} className="card-text">
+                        <h3 style={{ textAlign: "center" }} className="card-text-product">
                           Category { item.category}
                         </h3>
                         <h3>About</h3>
@@ -369,9 +370,9 @@ const Products = () => {
                         fontSize: "larger",
                       }}
                     >
-                      <p className="card-footer-price">
+                      <p className="card-footer-price card-text-product">
                         Price : Rs.{" "}
-                        <span id="product-modal-price">
+                        <span id="product-modal-price card-text-product">
                           { item.price}
                         </span>
                       </p>
@@ -438,7 +439,7 @@ const Products = () => {
                       >
                         <div className="decs-container">
                           <img
-                            className="card-img-top"
+                            className="card-img-top-product"
                             alt="p1"
                             src={`data:image/${
                               item.img.contentType
@@ -446,11 +447,11 @@ const Products = () => {
                               "base64"
                             )}`}
                           />
-                          <div className="card-body p-2">
-                            <h5 className="card-title text-white">
+                          <div className="card-body-product p-2">
+                            <h5 style={{fontFamily: 'Ubuntu, sans-serif'}} className="card-title text-white">
                               {item.name}
                             </h5>
-                            <p className="card-text">
+                            <p className="card-text-product">
                               { item.category}
                             </p>
                           </div>
@@ -460,9 +461,9 @@ const Products = () => {
                         className="card-footer"
                         style={{ paddingLeft: "0%", paddingRight: "0%" }}
                       >
-                        <p className="card-footer-price">
+                        <p className="card-footer-price card-text-product">
                           Price : Rs.
-                          <span id="product-modal-price">
+                          <span id="product-modal-price card-text-product">
                            {item.price}
                           </span>
                         </p>
@@ -514,7 +515,7 @@ const Products = () => {
                         />
                       </div>
                       <div className="modal-product-description">
-                        <h3 style={{ textAlign: "center" }} className="card-text">
+                        <h3 style={{ textAlign: "center" }} className="card-text-product">
                           Category :{ item.category}
                         </h3>
                         <h3>About</h3>
@@ -531,9 +532,9 @@ const Products = () => {
                         fontSize: "larger",
                       }}
                     >
-                      <p className="card-footer-price">
+                      <p className="card-footer-price card-text-product">
                         Price : Rs.{" "}
-                        <span id="product-modal-price">
+                        <span id="product-modal-price card-text-product">
                           { item.price}
                         </span>
                       </p>
@@ -601,7 +602,7 @@ const Products = () => {
                       >
                         <div className="decs-container">
                           <img
-                            className="card-img-top"
+                            className="card-img-top-product"
                             alt="p1"
                             src={`data:image/${
                               item.img.contentType
@@ -609,11 +610,11 @@ const Products = () => {
                               "base64"
                             )}`}
                           />
-                          <div className="card-body p-2">
-                            <h5 className="card-title text-white">
+                          <div className="card-body-product p-2">
+                            <h5 style={{fontFamily: 'Ubuntu, sans-serif'}} className="card-title text-white">
                               {item.name }
                             </h5>
-                            <p className="card-text">
+                            <p className="card-text-product">
                               {item.category }
                             </p>
                           </div>
@@ -623,9 +624,9 @@ const Products = () => {
                         className="card-footer"
                         style={{ paddingLeft: "0%", paddingRight: "0%" }}
                       >
-                        <p className="card-footer-price">
+                        <p className="card-footer-price card-text-product">
                           Price : Rs.
-                          <span id="product-modal-price">
+                          <span id="product-modal-price card-text-product">
                             {item.price}
                           </span>
                         </p>
@@ -677,7 +678,7 @@ const Products = () => {
                         />
                       </div>
                       <div className="modal-product-description">
-                        <h3 style={{ textAlign: "center" }} className="card-text">
+                        <h3 style={{ textAlign: "center" }} className="card-text-product">
                           Category :{item.category}
                         </h3>
                         <h3>About</h3>
@@ -694,9 +695,9 @@ const Products = () => {
                         fontSize: "larger",
                       }}
                     >
-                      <p className="card-footer-price">
+                      <p className="card-footer-price card-text-product">
                         Price : Rs.{" "}
-                        <span id="product-modal-price">
+                        <span id="product-modal-price card-text-product">
                           {item.price }
                         </span>
                       </p>
@@ -763,7 +764,7 @@ const Products = () => {
                       >
                         <div className="decs-container">
                           <img
-                            className="card-img-top"
+                            className="card-img-top-product"
                             alt="p1"
                             src={`data:image/${
                               item.img.contentType
@@ -771,11 +772,11 @@ const Products = () => {
                               "base64"
                             )}`}
                           />
-                          <div className="card-body p-2">
-                            <h5 className="card-title text-white">
+                          <div className="card-body-product p-2">
+                            <h5 style={{fontFamily: 'Ubuntu, sans-serif'}} className="card-title text-white">
                               {item.name }
                             </h5>
-                            <p className="card-text">
+                            <p className="card-text-product">
                               {item.category}
                             </p>
                           </div>
@@ -785,9 +786,9 @@ const Products = () => {
                         className="card-footer"
                         style={{ paddingLeft: "0%", paddingRight: "0%" }}
                       >
-                        <p className="card-footer-price">
+                        <p className="card-footer-price card-text-product">
                           Price : Rs.
-                          <span id="product-modal-price">
+                          <span id="product-modal-price card-text-product">
                             {item.price}
                           </span>
                         </p>
@@ -839,7 +840,7 @@ const Products = () => {
                         />
                       </div>
                       <div className="modal-product-description">
-                        <h3 style={{ textAlign: "center" }} className="card-text">
+                        <h3 style={{ textAlign: "center" }} className="card-text-product">
                           Category :{ item.category}
                         </h3>
                         <h3>About</h3>
@@ -856,9 +857,9 @@ const Products = () => {
                         fontSize: "larger",
                       }}
                     >
-                      <p className="card-footer-price">
+                      <p className="card-footer-price card-text-product">
                         Price : Rs.{" "}
-                        <span id="product-modal-price">
+                        <span id="product-modal-price card-text-product">
                           { item.price }
                         </span>
                       </p>

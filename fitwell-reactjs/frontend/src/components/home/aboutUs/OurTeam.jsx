@@ -31,7 +31,7 @@ const OurTeam = () => {
             trainers.length > 0 &&
             trainers.map((item) => (
               <div class="">
-                <div class="card h-auto bg-dark">
+                <div class="cardOurTeam h-auto bg-dark">
                   <div class="decs-container">
                     <img
                       src={item.image}

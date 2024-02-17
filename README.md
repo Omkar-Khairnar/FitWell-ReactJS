@@ -46,7 +46,7 @@
 ```
 IIIT SriCity : UG3 - FDFED Project (Batch 21-25)
 
-FDFED Section 1 - Group 12
+FDFED - Group 12
 
 Bucket -1 
 Omkar Kailash Khairnar (S20210010120)

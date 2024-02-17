@@ -11,14 +11,13 @@ const AdminHome = () => {
     if (!res.error && res.data.adminPaymentsHome.length > 0) {
       setPayments(res.data.adminPaymentsHome);
     }
-    
-    if(!res.error && res.data.totalamount>0){
+
+    if (!res.error && res.data.totalamount > 0) {
       setRevenue(res.data.totalamount);
     }
   };
-  console.log("🚀 ~ file: AdminHome.jsx:9 ~ AdminHome ~ revenue:", revenue)
-  console.log("🚀 ~ file: AdminHome.jsx:8 ~ AdminHome ~ payments:", payments)
-
+  console.log("🚀 ~ file: AdminHome.jsx:9 ~ AdminHome ~ revenue:", revenue);
+  console.log("🚀 ~ file: AdminHome.jsx:8 ~ AdminHome ~ payments:", payments);
 
   useEffect(() => {
     getAllPayments();
@@ -26,7 +25,7 @@ const AdminHome = () => {
 
   const [orders, setOrders] = useState(null);
   const [ordersCount, setOrdersCount] = useState(null);
-  
+
   const getAllOrders = async () => {
     const res = await AdminActions.getAllAdminOrder();
     if (!res.error && res.data.adminOrdersHOme.length > 0) {
@@ -36,41 +35,47 @@ const AdminHome = () => {
       setOrdersCount(res.data.totalOrders);
     }
   };
-  console.log("🚀 ~ file: AdminHome.jsx:29 ~ AdminHome ~ ordersCount:", ordersCount)
-  console.log("🚀 ~ file: AdminHome.jsx:24 ~ AdminHome ~ orders:", orders)
+  console.log(
+    "🚀 ~ file: AdminHome.jsx:29 ~ AdminHome ~ ordersCount:",
+    ordersCount
+  );
+  console.log("🚀 ~ file: AdminHome.jsx:24 ~ AdminHome ~ orders:", orders);
 
   useEffect(() => {
     getAllOrders();
   }, []);
 
-
-  const [trainersCount , setTrainersCount] = useState(null);
-  const getAllTrainerCount = async() => {
+  const [trainersCount, setTrainersCount] = useState(null);
+  const getAllTrainerCount = async () => {
     const res = await AdminActions.getAllAdminTrainerList();
-    if(!res.error && res.data.length > 0){
+    if (!res.error && res.data.length > 0) {
       setTrainersCount(res.data.length);
     }
   };
-  console.log("🚀 ~ file: AdminHome.jsx:40 ~ AdminHome ~ trainersCount:", trainersCount)
-  
-useEffect(() => {
-  getAllTrainerCount();
-},[]);
+  console.log(
+    "🚀 ~ file: AdminHome.jsx:40 ~ AdminHome ~ trainersCount:",
+    trainersCount
+  );
 
+  useEffect(() => {
+    getAllTrainerCount();
+  }, []);
 
   const [customersCount, setCustomersCount] = useState(null);
   const getAllCustomersCount = async () => {
     const res = await AdminActions.getAllAdminCustomer();
-    if(!res.error && res.data.length > 0){
+    if (!res.error && res.data.length > 0) {
       setCustomersCount(res.data.length);
     }
-  }
-  console.log("🚀 ~ file: AdminCustomers.jsx:9 ~ AdminCustomers ~ customersCount:", customersCount)
+  };
+  console.log(
+    "🚀 ~ file: AdminCustomers.jsx:9 ~ AdminCustomers ~ customersCount:",
+    customersCount
+  );
 
   useEffect(() => {
     getAllCustomersCount();
-  },[]);
-
+  }, []);
 
   return (
     <div class="container-fluid">
@@ -112,7 +117,7 @@ useEffect(() => {
                 Rs.
                 {revenue}
               </h3>
-              <p class="fs-5">Total Revenu</p>
+              <p class="fs-5">Total Revenue</p>
             </div>
             <i class="fas fa-money-bill-wave fs-1 primary-text border rounded-full secondary-bg p-3"></i>
           </div>
@@ -122,7 +127,7 @@ useEffect(() => {
       <div class="challenge-workout my-4 d-flex justify-content-evenly">
         <button
           type="button"
-          class="button my-2"
+          class="buttonAdminHome button   my-2"
           data-bs-toggle="modal"
           data-bs-target="#addChallenge"
         >
@@ -130,7 +135,7 @@ useEffect(() => {
         </button>
         <button
           type="button"
-          class="button my-2"
+          class="buttonAdminHome button   my-2"
           data-bs-toggle="modal"
           data-bs-target="#addWorkout"
         >
@@ -173,7 +178,7 @@ useEffect(() => {
                   />
                   <button
                     id="add-challenge-btn"
-                    class="addChallengeAdminHomeBtn"
+                    class="buttonAdminHome addChallengeAdminHomeBtn"
                     type="submit"
                   >
                     Add Challenge
@@ -218,7 +223,7 @@ useEffect(() => {
                     placeholder="Upload Image"
                     required
                   />
-                  <button id="add-workout-btn" type="submit">
+                  <button id="add-workout-btn" type="submit" className="buttonAdminHome">
                     Add Workout
                   </button>
                 </form>
@@ -248,9 +253,7 @@ useEffect(() => {
                   payments.length > 0 &&
                   payments.map((item, key) => (
                     <tr id="row1">
-                      <td scope="row" id="payment-date1">
-                        {item.Dateoforder}
-                      </td>
+                      <td id="payment-date1">{item.Dateoforder}</td>
                       <td id="payment-transactionID1">{item._id}</td>
                       <td id="payment-Method1">{item.paymentmethod}</td>
                       <td id="payment-desc1">{item.description}</td>
@@ -287,16 +290,15 @@ useEffect(() => {
               <tbody>
                 {orders !== null &&
                   orders.length > 0 &&
-                  orders.map((item,key) => (
+                  orders.map((item, key) => (
                     <tr>
-                      <th scope="row">{key+1}</th>
+                      <th scope="row">{key + 1}</th>
                       <td>{item.name}</td>
                       <td>{item.Dateoforder}</td>
                       <td>{item.amount}</td>
                       <td>{item.status}</td>
                       <td>{item.address}</td>
                     </tr>
-                    
                   ))}
               </tbody>
             </table>
