@@ -11,7 +11,7 @@ import { setProducts } from "../../../store/slices/productsSlice.jsx"
 
 
 const Products = (props) => {
-  const {setmyAlert} = props;
+  const {setmyAlert} = props; 
   const dispatch = useDispatch();
   const products=useSelector(state => state.productsState.products);
   const [data, setData] = useState();
