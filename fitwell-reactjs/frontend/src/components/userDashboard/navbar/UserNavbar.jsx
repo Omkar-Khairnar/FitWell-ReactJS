@@ -1,10 +1,12 @@
 import React from "react";
 import logo from "../../../assets/img/Logo/logo.png";
 import "../User_Dashboard.css";
-import Profile from "../profile/Profile";
+// import Profile from "../profile/Profile";
 import {Link} from 'react-router-dom'
 
 const UserNavbar = () => {
+
+
   return (
     <div class="dashboard-nav">
       <div class="top" style={{ height: "100%" }}>

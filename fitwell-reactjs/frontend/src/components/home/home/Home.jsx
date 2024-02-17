@@ -63,7 +63,7 @@ const Home = () => {
 
         <div id="infobutton">
           <button class="infohome">
-            <Link to="./about">Want More Info?</Link>
+            <Link to="/about">Want More Info?</Link>
           </button>
         </div>
         <div class="sliderContainer" id="frontinfo">

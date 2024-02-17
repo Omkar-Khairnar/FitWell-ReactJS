@@ -2,11 +2,15 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import "./Navbar.css"
 import logo from "../../../assets/img/Logo/logo.png"
+import { useSelector } from 'react-redux'
 
+ 
 const Home = () => {
+
+  const isLoggedIn= useSelector(state => state.user.isLoggedIn);
   return (
-    
-    <div class="container-fluid container-fluid1">
+    <>
+    <div class="container-fluid1">
       <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-black p-0" style={{opacity : "1", zIndex:"88888"}}>
       <Link class="navbar-brand navbarlogo" style={{margin:"0%", padding:"0%"}} to="/Home">
         <img class="navbarLogoImg" src={logo} alt="fitwell Logo.png"/>
@@ -40,8 +44,9 @@ const Home = () => {
           </li>
         </ul>
       </div>
-      {/* <% if(loginStatus==0){ %> */}
-        <div class="signinup">
+      {
+        (isLoggedIn === false || isLoggedIn ==null || isLoggedIn ===undefined) ? (
+          <div class="signinup">
           <ul class="navbar-nav me-auto mb-2 navbar-list-items">
             <li class="nav-item nav-item1 mx-2">
               <Link class="nav-link" to="/UserSignIn">SIGN IN</Link>
@@ -51,8 +56,10 @@ const Home = () => {
             </li>
           </ul>
         </div>   
-      {/* <% } else{ %> */}
-        <div class="dropdown">
+        )
+        :
+        (
+          <div class="dropdown">
           <button class="btn dropdown-toggle" style={{color: 'aliceblue', border: 'none'}} type="button" data-bs-toggle="dropdown" aria-expanded="false">
             My Account
           </button>
@@ -62,12 +69,12 @@ const Home = () => {
             <li><Link class="dropdown-item" to="/Userlogout">Logout</Link></li>
           </ul>
         </div>
-      {/* // <%} %> */}
-      
-
-
+        )
+      }
   </nav>
     </div>
+   
+    </>
   )
 }
 

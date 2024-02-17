@@ -12,7 +12,7 @@ router.post('/userLogin', async(req, res)=>{
 
 router.post('/createUser', async(req,res)=>{
     const response=await UserServices.createUser(req.body);
-    return res.send(response)
+    return res.send(response) 
 })
 
 router.get('/getAllUsers', async(req,res)=>{

@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 
 const Footer = () => {
 
-  const [date] = useState(new Date().getFullYear());
+  const [date,setDate] = useState(new Date().getFullYear());
 
   return (
 

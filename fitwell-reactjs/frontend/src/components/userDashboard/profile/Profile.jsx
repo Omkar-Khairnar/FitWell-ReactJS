@@ -3,10 +3,13 @@ import "../User_Dashboard.css";
 import UserActionService from "../../../services/UserActionService";
 import { useSelector, useDispatch } from 'react-redux';
 import {userLogin} from "../../../store/slices/userSlice";
+import LoaderComp from "../../Loader";
 
-const Profile = () => {
-  const userDetails= useSelector(state => state.user.userDetails);
+const Profile = (props) => {
+  let userDetails= useSelector(state => state.user.userDetails);
+  const {setmyAlert} = props;
   const dispatch = useDispatch()
+  const [isLoading, setIsloading] = useState(false);
   const [data, setData]=useState({
     name:userDetails.name,
     DateOfJoin:userDetails.DateOfJoin,
@@ -18,6 +21,10 @@ const Profile = () => {
     image:userDetails.image,
   })
 
+  const setUserData = ()=>{
+   setData(userDetails)
+  }
+
   const formHandler=(e)=>{
     const {name, value}=e.target;
     data[name]=value;
@@ -25,15 +32,26 @@ const Profile = () => {
   }
 
   const handleClickSubmit=async(e)=>{
+    setIsloading(true)
     e.preventDefault();
     data['_id']=userDetails._id;
     setData({...data});
     const res=await UserActionService.updateProfile(data);
-    dispatch(userLogin(res.data));
+    if(!res.error){
+      dispatch(userLogin(res.data));
+    }
+    setIsloading(false)
+    setmyAlert(res.msg, res.error ? 'error' : 'success')
   }
   return (
     <div class="dashboard-content" id="dashboard-review-page">
-      <div class="container">
+      {
+        isLoading ? (
+          <LoaderComp/>
+        )
+        :
+        (
+          <div class="container">
         <div class="container rounded bg-white mb-5">
           <div class="row d-flex justify-content-center">
             <div class="col-md-3 border-none  mx-5 my-4">
@@ -154,6 +172,8 @@ const Profile = () => {
           </div>
         </div>
       </div>
+        )
+      }
     </div>
   );
 };

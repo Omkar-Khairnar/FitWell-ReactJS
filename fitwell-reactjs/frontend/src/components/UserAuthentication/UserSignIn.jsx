@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import SignUpForm from "./SignUpForm";
 import SignInForm from "./SignInForm";
 import './style.css'
-const UserSignIn = () => {
+const UserSignIn = (props) => {
   const [type, setType] = useState("signIn");
+  const {setmyAlert} = props;
   const handleOnClick = text => {
     if (text !== type) {
       setType(text);
@@ -17,8 +18,8 @@ const UserSignIn = () => {
       <div className="authheader">
   
       <div className={containerClass} id="container">
-        <SignUpForm />
-        <SignInForm />
+        <SignUpForm setmyAlert={setmyAlert} />
+        <SignInForm  setmyAlert={setmyAlert}/>
         <div className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-left">
