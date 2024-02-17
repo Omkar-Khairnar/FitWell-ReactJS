@@ -78,6 +78,18 @@ class UserActionService{
         const json = await response.json();
         return json;
     }
+
+    async checkOutCart(reqData){
+        const response= await fetch(`${host}/api/userActions/checkoutcart`, {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(reqData),
+        })
+        const json = await response.json();
+        return json;
+    }
 }
 
 module.exports=new UserActionService();

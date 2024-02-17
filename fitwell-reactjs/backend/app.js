@@ -1,5 +1,6 @@
 const connectToMongo = require('./db')
 const express = require('express')
+const bodyParser = require('body-parser');
 connectToMongo()
 const app = express()
 var cors = require('cors')
@@ -8,6 +9,7 @@ const port = 5001;
 // respond with "hello world" when a GET request is made to the homepage
 app.use(cors())
 app.use(express.json())
+app.use(bodyParser.json({ limit: '20mb' }));
  
 app.get('/', (req, res) => {
   res.send('hello world')  

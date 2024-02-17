@@ -6,7 +6,7 @@ const OrderService = require('../services/OrderService')
 require('dotenv').config()
 
 
-router.post('/createOrder', async(req,res)=>{
+router.post('/createOrder', async(req,res)=>{ 
     const response=await OrderService.createOrder(req.body);
     return res.send(response);
 })
@@ -14,6 +14,11 @@ router.post('/createOrder', async(req,res)=>{
 router.post('/deleteOrder', async(req,res)=>{
     const response=await OrderService.deleteOrder(req.body);
     return res.send(response);
+})
+
+router.post('/getUserOrders', async(req,res)=>{
+    const response = await OrderService.getUserOrders(req.body);
+    return res.send(response)
 })
 
 

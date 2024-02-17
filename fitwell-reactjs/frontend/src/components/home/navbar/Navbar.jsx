@@ -65,8 +65,8 @@ const Home = () => {
           </button>
           <ul class="dropdown-menu">
             <li><Link class="dropdown-item" to="/UserHome">Dashboard</Link></li>
-            <li><Link class="dropdown-item" to="/User_Dashboard_cart">Cart</Link></li>
-            <li><Link class="dropdown-item" to="/Userlogout">Logout</Link></li>
+            <li><Link class="dropdown-item" to="/UserCart">Cart</Link></li>
+            {/* <li><Link class="dropdown-item" to="/Userlogout">Logout</Link></li> */}
           </ul>
         </div>
         )

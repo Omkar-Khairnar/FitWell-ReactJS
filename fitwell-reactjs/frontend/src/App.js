@@ -76,8 +76,8 @@ function App() {
             <Route path="/UserHome" element={<UserHome/>} />
             <Route path='/UserNavbar' element={<UserNavbar />} />
             <Route path='/UserProfile' element={<Profile setmyAlert={setmyAlert}/>}/>
-            <Route path='/UserOrders' element={<UserOrders />}/>
-            <Route path='/UserCart' element={<UserCart />}/>
+            <Route path='/UserOrders' element={<UserOrders setmyAlert={setmyAlert}/>}/>
+            <Route path='/UserCart' element={<UserCart setmyAlert={setmyAlert}/>}/>
             <Route path='/UserReviews' element={<UserReviews />}/>
             <Route path='/UserWorkout' element={<Workouts />}/>
             <Route path='/UserChallenges' element={<Challenges />}/>

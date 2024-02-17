@@ -12,7 +12,7 @@ const PaymentSchema=new Schema({
     },
     amount:{
         type:Number,
-        required:true,
+        // required:true,
     },
     paymentmethod:{
         type:String,

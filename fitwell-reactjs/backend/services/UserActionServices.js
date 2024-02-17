@@ -3,6 +3,7 @@ const PaymentSchema=require('../models/payments')
 const UserSchema=require('../models/User')
 const ReviewSchema=require('../models/review')
 const CartSchema=require('../models/Cart')
+const OrderSchema=require('../models/Order')
 class UserActionServices{
 
     //submitting contact form :User login NOT required
@@ -64,7 +65,7 @@ class UserActionServices{
             const userid=reqData.userid;
             let product=await CartSchema.create({
                 user:userid,
-                productid:productid
+                product:productid
             })
     
            if(!product){
@@ -79,31 +80,41 @@ class UserActionServices{
     }
        
     //Checkouting User Cart: User Login required
-    async checkoutcart(req){
+    async checkoutcart(reqData){
         try{
-            const userDetails=req.session.userDetails;
-            const userid=userDetails.id; 
-            CartSchema.deleteMany({user:userid})
 
             //Here this products should enter into order schema.
-            const address=req.body.address;
-            const finalamount=req.body.finalamount;
-            const products=req.session.products;
-            products.forEach(async(item) => {
-                OrderSchema.create({ 
+            const userid=reqData.userid;
+            const finalamount=reqData.finalamount;
+            const productIds=reqData.data;
+            const address=reqData.address;
+
+            if(userid === undefined || productIds === undefined || productIds.length == 0 || finalamount === undefined){
+                return {error:true, msg:'Insufficient Data'};
+            }
+
+            productIds.forEach(async(id) => {
+                await OrderSchema.create({ 
                    user:userid,
-                   name:item[0].name,
-                   image:item[0].img,
+                   product:id,
                    amount:finalamount,
-                   description:item[0].description,
                    address:address
                })
             });
+
+            const cartRes = await CartSchema.deleteMany({user:userid})
+            if(!cartRes){
+                return {error:true, mdg:'Internal Server Error'};
+            }
             
             const newPayment=await PaymentSchema.create({
                 user:userid,
                 amount:finalamount,
             });
+
+            if(!newPayment){
+                return {error:true, mdg:'Internal Server Error'};
+            }
 
             return {error:false, msg:'Cart Checkout Successfully', data:newPayment};
         }
@@ -164,8 +175,12 @@ class UserActionServices{
     async getUserCartProducts(reqData){
         try{
             const id=reqData.userid;
+            
             const products=await CartSchema.find({
-                user:userid
+                user:id
+            }).populate({
+                path:'product',
+                select:'_id name category price img description'
             });
 
             if(!products){
