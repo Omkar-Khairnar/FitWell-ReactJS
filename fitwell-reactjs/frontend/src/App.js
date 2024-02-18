@@ -15,7 +15,7 @@ import Centers from './components/home/centers/Centers';
 import Reviews from './components/home/reviews/Reviews';
 import ContactUS from './components/home/contactUs/ContactUS';
 
-import AdminHome from './components/adminDashboard/adminHome/AdminHome';
+import AdminHome from './components/adminDashboard/adminHome/adminHome';
 import AdminOrder from './components/adminDashboard/order/AdminOrder';
 import AdminPayment from './components/adminDashboard/payment/AdminPayment';
 import AdminTrainers from './components/adminDashboard/trainers/AdminTrainers';
@@ -91,11 +91,11 @@ function App() {
             <Route path='/AdminSideWrapper' element={<AdminSideWrapper />} />
             <Route path='/AdminTopWrapper' element={<AdminTopWrapper />}/>
             <Route path='/AdminAddProduct' element={<AdminAddProduct setmyAlert={setmyAlert}/>}/>
-            <Route path='/AdminCustomers' element={<AdminCustomers />}/>
-            <Route path='/AdminFeedback' element={<AdminFeedback />}/>
-            <Route path='/AdminOrder' element={<AdminOrder />}/>
+            <Route path='/AdminCustomers' element={<AdminCustomers setmyAlert={setmyAlert} />}/>
+            <Route path='/AdminFeedback' element={<AdminFeedback setmyAlert={setmyAlert}/>}/>
+            <Route path='/AdminOrder' element={<AdminOrder setmyAlert={setmyAlert}/>}/>
             <Route path='/AdminPayment' element={<AdminPayment />}/>
-            <Route path='/AdminTrainers' element={<AdminTrainers />}/>
+            <Route path='/AdminTrainers' element={<AdminTrainers setmyAlert={setmyAlert}/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
