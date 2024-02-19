@@ -16,21 +16,22 @@ const Pricing = () => {
     };
   }, []);
   const handlePayment = async (amount) => {
+    const amountInPaise = amount * 100;
+    console.log("Amount in paise:", amountInPaise);
     try {
       // Send a request to your backend to create a Razorpay order
       const response = await axios.post(
         "http://localhost:5001/api/payments/create-order",
         {
-          amount,
+          amount: amountInPaise,
           currency: "INR",
         }
       );
-      console.log(response);
+      console.log(amount);
       const { order_id } = await response.data;
-      console.log(order_id);
       const options = {
         key: "rzp_test_9x6rezEARWbqRW",
-        amount: amount * 100,
+        amount: amountInPaise,
         currency: "INR",
         order_id,
       };
