@@ -14,7 +14,7 @@ import ProductSearch from './components/home/products/ProductSearch';
 import Centers from './components/home/centers/Centers';
 import Reviews from './components/home/reviews/Reviews';
 import ContactUS from './components/home/contactUs/ContactUS';
-
+import RazorpayPayment from './components/razorpayPayment/razorpay';
 import AdminHome from './components/adminDashboard/adminHome/adminHome';
 import AdminOrder from './components/adminDashboard/order/AdminOrder';
 import AdminPayment from './components/adminDashboard/payment/AdminPayment';
@@ -67,6 +67,7 @@ function App() {
             <Route path="/ProductSearch" element={<ProductSearch setmyAlert={setmyAlert}/>} />
             <Route path="/Centers" element={<Centers />} />
             <Route path="/Reviews" element={<Reviews />} />
+            <Route path="/RazorpayPayment" element={<RazorpayPayment />} />
             <Route path="/ContactUS" element={<ContactUS setmyAlert={setmyAlert}/>} />
             <Route path="/UserSignIn" element={<Signin setmyAlert={setmyAlert}/>} />
           </Route>
