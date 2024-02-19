@@ -6,22 +6,36 @@ import { Link, useNavigate } from "react-router-dom";
 import UserActionService from "../../../services/UserActionService";
 import LoaderComp from "../../Loader";
 import { Buffer } from "buffer";
+import axios from "axios";
 
 const UserCart = (props) => {
-  const {setmyAlert} = props;
-  const [data, setData] = useState([]); // eslint-disable-line
-  const [productID, setProductID] = useState([])
-  const [totalAmount, setTotalAmount] = useState(0); // eslint-disable-line
+  const { setmyAlert } = props;
+  const [data, setData] = useState([]);
+  const [productID, setProductID] = useState([]);
+  const [totalAmount, setTotalAmount] = useState(0);
   const userDetails = useSelector((state) => state.user.userDetails);
-  const isLoggedIn=useSelector(state => state.user.isLoggedIn)
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const [isLoading, setIsloading] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Load Razorpay library script
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    // Cleanup function
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   const calculateAmount = () => {
     let sum = 0;
-      data.forEach((item) => {
-        sum += parseInt(item.product.price);
-      });
+    data.forEach((item) => {
+      sum += parseInt(item.product.price);
+    });
     setTotalAmount(sum);
   };
 
@@ -35,79 +49,107 @@ const UserCart = (props) => {
     setIsloading(false);
   };
 
-  const checkOutCart = async() =>{
-    if(data != null && data !== undefined){
-       data.forEach((item)=>{
-         productID.push(item.product._id)
-         setProductID([...productID])
-      })
+  const checkOutCart = async () => {
+    if (data != null && data !== undefined) {
+      data.forEach((item) => {
+        productID.push(item.product._id);
+        setProductID([...productID]);
+      });
       const res = await UserActionService.checkOutCart({
-        userid:userDetails._id,
-        finalamount:totalAmount,
-        address:'',
-        data:productID,
-      })
-      if(!res.error){
+        userid: userDetails._id,
+        finalamount: totalAmount,
+        address: "",
+        data: productID,
+      });
+      if (!res.error) {
         setTotalAmount(0);
         setData([]);
       }
       setProductID([]);
-      setmyAlert(res.msg, res.error ? 'error' : 'success');
+      setmyAlert(res.msg, res.error ? "error" : "success");
     }
-  }
+  };
 
-  const handleCheckOutCart = () => {
-    checkOutCart();
+  const handleCheckOutCart = async () => {
+    try {
+      const amountInPaise =
+        (totalAmount - Math.floor((totalAmount * 5) / 100) + 80) * 100; // Total amount including discount and delivery charges converted to paise
+      const response = await axios.post(
+        "http://localhost:5001/api/payments/create-order",
+        {
+          amount: amountInPaise,
+          currency: "INR",
+        }
+      );
+      const { order_id } = response.data;
+      const options = {
+        key: "rzp_test_9x6rezEARWbqRW",
+        amount: amountInPaise,
+        currency: "INR",
+        order_id,
+        handler: async function (response) {
+          // If payment is successful, proceed with checkout
+          await checkOutCart();
+        },
+      };
+      const razorpay = new window.Razorpay(options);
+      razorpay.open();
+    } catch (error) {
+      console.error("Error initiating payment:", error);
+      alert("Error initiating Razorpay payment");
+    }
   };
 
   useEffect(() => {
     getCartProducts();
+    // eslint-disable-next-line
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     calculateAmount();
-  },[data]) //eslint-disable-line
+    // eslint-disable-next-line
+  }, [data]);
 
-  //Checking User LoggedIn or Session Expired;
-  const checkUserLoggedIn=()=>{
-    if(isLoggedIn === false || userDetails ===null){
-      navigate('../UserSignIn')
-      // alert('User Session Expired. Please Login Again') 
+  const checkUserLoggedIn = () => {
+    if (isLoggedIn === false || userDetails === null) {
+      navigate("../UserSignIn");
     }
-  }
-  useEffect(()=>{
+  };
+
+  useEffect(() => {
     checkUserLoggedIn();
-  },[])
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div
-      class="dashboard-content"
+      className="dashboard-content"
       id="dashboard-review-page"
       style={{ backgroundColor: "white" }}
     >
       {isLoading ? (
         <LoaderComp />
       ) : (
-        <div class="parent-container">
-          <div class="cart-container">
+        <div className="parent-container">
+          <div className="cart-container">
             <table>
               <tr>
-                <th class="userCartTH" style={{ width: "100%" }}>
+                <th className="userCartTH" style={{ width: "100%" }}>
                   Product
                 </th>
-                <th class="userCartTH" style={{ width: "100%" }}>
+                <th className="userCartTH" style={{ width: "100%" }}>
                   Category
                 </th>
-                <th class="userCartTH" style={{ width: "100%" }}>
+                <th className="userCartTH" style={{ width: "100%" }}>
                   Subtotal
                 </th>
               </tr>
               {data &&
                 data !== null &&
                 data.map((item) => (
-                  <tr>
+                  <tr key={item.product._id}>
                     <td>
-                      <div class="cart-info">
+                      <div className="cart-info">
                         <div>
                           <img
                             className="userCartImg"
@@ -121,7 +163,7 @@ const UserCart = (props) => {
                           <h4>{item.product.name}</h4>
                           <h5>
                             price :Rs
-                            <span class="cart-product-price">
+                            <span className="cart-product-price">
                               {item.product.price}
                             </span>
                           </h5>
@@ -139,10 +181,14 @@ const UserCart = (props) => {
             </table>
           </div>
 
-          <div class="total-price">
-            <table class="UserCartTotalPrice">
+          <div className="total-price">
+            <table className="UserCartTotalPrice">
               <tr>
-                <th class="userCartTH" style={{ width: "100%" }} colspan="2">
+                <th
+                  className="userCartTH"
+                  style={{ width: "100%" }}
+                  colSpan="2"
+                >
                   Price Details
                 </th>
               </tr>
@@ -178,9 +224,7 @@ const UserCart = (props) => {
                 <button
                   type="button"
                   id="checkbut"
-                  class="btn btn-primary"
-                  data-toggle="modal"
-                  data-target="#exampleModalCenter"
+                  className="btn btn-primary"
                   onClick={() => {
                     handleCheckOutCart();
                   }}
