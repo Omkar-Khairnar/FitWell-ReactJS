@@ -1,20 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Pricing.css";
 import axios from "axios";
 
 const Pricing = () => {
+  useEffect(() => {
+    // Load Razorpay library script
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    // Cleanup function
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
   const handlePayment = async (amount) => {
     try {
       // Send a request to your backend to create a Razorpay order
       const response = await axios.post(
-        "http://localhost:5001/create-order",
+        "http://localhost:5001/api/payments/create-order",
         {
           amount,
+          currency: "INR",
         }
       );
-
-      const { order_id } = response.data;
-
+      console.log(response);
+      const { order_id } = await response.data;
+      console.log(order_id);
       const options = {
         key: "rzp_test_9x6rezEARWbqRW",
         amount: amount * 100,

@@ -6,8 +6,8 @@ const connectDB = require('../db');
 require('dotenv').config();
 
 const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET,
+  key_id: "rzp_test_9x6rezEARWbqRW",
+  key_secret: "kfEoV4dVNKGsJS2Lp2u5u5bQ",
 });
 
 connectDB();
@@ -26,14 +26,14 @@ router.post('/create-order', async (req, res) => {
     };
 
     const order = await razorpay.orders.create(options);
+    console.log(order)
 
     const newOrder = new Order({
       orderId: order.id,
       amount,
-      currency,
+      currency
     });
     await newOrder.save();
-
     res.json({ order_id: order.id });
   } catch (error) {
     console.error('Error creating payment order:', error);
