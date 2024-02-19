@@ -26,7 +26,7 @@ const RazorpayPayment = () => {
             contact: "1234567890",
           },
           theme: {
-            color: "#3399cc",
+            color: "#6FDE39",
           },
         };
         const razorpay = new window.Razorpay(options);
@@ -41,6 +41,7 @@ const RazorpayPayment = () => {
 
   return (
     <div>
+      <img src="/path/to/razorpay-logo.png" alt="Razorpay Logo" />
       <h1>Razorpay Payment</h1>
     </div>
   );

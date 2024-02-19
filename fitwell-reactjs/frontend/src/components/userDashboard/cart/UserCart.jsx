@@ -11,7 +11,6 @@ import axios from "axios";
 const UserCart = (props) => {
   const { setmyAlert } = props;
   const [data, setData] = useState([]);
-  const [productID, setProductID] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const userDetails = useSelector((state) => state.user.userDetails);
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -51,21 +50,17 @@ const UserCart = (props) => {
 
   const checkOutCart = async () => {
     if (data != null && data !== undefined) {
-      data.forEach((item) => {
-        productID.push(item.product._id);
-        setProductID([...productID]);
-      });
+      const productIDs = data.map((item) => item.product._id);
       const res = await UserActionService.checkOutCart({
         userid: userDetails._id,
         finalamount: totalAmount,
         address: "",
-        data: productID,
+        data: productIDs,
       });
       if (!res.error) {
         setTotalAmount(0);
         setData([]);
       }
-      setProductID([]);
       setmyAlert(res.msg, res.error ? "error" : "success");
     }
   };
@@ -102,24 +97,41 @@ const UserCart = (props) => {
 
   useEffect(() => {
     getCartProducts();
-    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     calculateAmount();
-    // eslint-disable-next-line
   }, [data]);
 
   const checkUserLoggedIn = () => {
-    if (isLoggedIn === false || userDetails === null) {
+    if (!isLoggedIn || !userDetails) {
       navigate("../UserSignIn");
     }
   };
 
   useEffect(() => {
     checkUserLoggedIn();
-    // eslint-disable-next-line
   }, []);
+
+  const handleDeleteCartItem = async (productId) => {
+    try {
+      const res = await UserActionService.deleteCartItem({
+        userid: userDetails._id,
+        productid: productId,
+      });
+      if (!res.error) {
+        const updatedData = data.filter(item => item.product._id !== productId);
+        setData(updatedData);
+        calculateAmount();
+        setmyAlert("Item removed from cart", "success");
+      } else {
+        setmyAlert("Failed to remove item from cart", "error");
+      }
+    } catch (error) {
+      console.error("Error deleting item from cart:", error);
+      setmyAlert("Error deleting item from cart", "error");
+    }
+  };
 
   return (
     <div
@@ -142,6 +154,9 @@ const UserCart = (props) => {
                 </th>
                 <th className="userCartTH" style={{ width: "100%" }}>
                   Subtotal
+                </th>
+                <th className="userCartTH" style={{ width: "100%" }}>
+                  Action
                 </th>
               </tr>
               {data &&
@@ -175,6 +190,15 @@ const UserCart = (props) => {
                     <td>
                       Rs
                       {item.product.price}
+                    </td>
+                    <td>
+                      <button
+                        type="button"
+                        className="delete-button"
+                        onClick={() => handleDeleteCartItem(item.product._id)}
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 ))}
