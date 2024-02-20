@@ -11,6 +11,7 @@ class UserActionService{
             },
             body:JSON.stringify(reqData),
         })
+            console.log("🚀 ~ UserActionService ~ contactUs ~ reqData:", reqData)
         const json = await response.json();
         return json;
     }

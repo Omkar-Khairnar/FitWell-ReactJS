@@ -15,6 +15,19 @@ class ProductService{
         const json = await res.json();
         return json;
     }
+
+    async getProductsSearchResult(reqdata){
+        const res=await fetch(`${host}/api/product/getProductsSearchResult`,{
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(reqdata),
+        })
+
+        const json = await res.json();
+        return json;
+    }
 }
 
 module.exports=new ProductService();
