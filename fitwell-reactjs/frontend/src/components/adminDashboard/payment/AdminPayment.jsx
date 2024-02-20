@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from "react";
 import "./AdminPayment.css";
 import AdminActions from "../../../services/AdminActions";
-
+import LoaderComp from "../../Loader";
 const AdminPayment = () => {
   const [payments, setPayments] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const getAllPayments = async () => {
+    setIsLoading(true);
     const res = await AdminActions.getAllAdminPayment();
     if (!res.error && res.data.adminPayments.length > 0) {
       setPayments(res.data.adminPayments);
     }
+    setIsLoading(false);
   };
-  console.log(
-    "🚀 ~ file: AdminPayment.jsx:8 ~ AdminPayment ~ payments:",
-    payments
-  );
-
   useEffect(() => {
     getAllPayments();
   }, []);
-
   return (
     <div class="container-fluid px-4">
       <h2 style={{ textAlign: "center" }}>All Payments...</h2>
@@ -39,7 +37,10 @@ const AdminPayment = () => {
             </tr>
           </thead>
           <tbody>
-            {payments !== null &&
+            {isLoading ? (
+              <LoaderComp />
+            ) : (
+              payments !== null &&
               payments.length > 0 &&
               payments.map((item) => (
                 <tr id="row1">
@@ -55,7 +56,8 @@ const AdminPayment = () => {
                   </td>
                   <td id="payment-status1">{item.status}</td>
                 </tr>
-              ))}
+              ))
+            )}
           </tbody>
         </table>
       </div>

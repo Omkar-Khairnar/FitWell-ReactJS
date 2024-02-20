@@ -6,20 +6,17 @@ const OrderSchema=new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
       },
-    name:{
-        type:String,
-      },
-    image:{
-        data: Buffer,
-        contentType: String,
-    },
+    product:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'product'
+    },  
     Dateoforder:{
         type:Date, 
         default:Date.now,
     },
     amount:{
         type:Number,
-        required:true,
+        // required:true,
     },
     status:{
         type:String,
@@ -31,7 +28,7 @@ const OrderSchema=new Schema({
     },
     address:{
         type:String,
-        required:true,
+        // required:true,
     }  
 })
 

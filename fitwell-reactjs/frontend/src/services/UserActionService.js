@@ -1,15 +1,32 @@
-const host="http://localhost:5001"
+const host = "http://localhost:5001"
 
-class UserActionService{
+class UserActionService {
+
+    constructor() {
+        this.fetchJSON = this.fetchJSON.bind(this);
+    }
+
+    async fetchJSON(url, options) {
+        try {
+            const response = await fetch(url, options);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Fetch error:', error);
+            throw error;
+        }
+    }
 
     //Submiiting Contact Form
-    async contactUs(reqData){
-        const response= await fetch(`${host}/api/userActions/contactus`, {
-            method:'POST',
+    async contactUs(reqData) {
+        const response = await fetch(`${host}/api/userActions/contactus`, {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body:JSON.stringify(reqData),
+            body: JSON.stringify(reqData),
         })
             console.log("🚀 ~ UserActionService ~ contactUs ~ reqData:", reqData)
         const json = await response.json();
@@ -17,68 +34,95 @@ class UserActionService{
     }
 
     //Updating User Profile
-    async updateProfile(reqData){
-        const response= await fetch(`${host}/api/userActions/updateProfile`, {
-            method:'POST',
+    async updateProfile(reqData) {
+        const response = await fetch(`${host}/api/userActions/updateProfile`, {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body:JSON.stringify(reqData),
+            body: JSON.stringify(reqData),
         })
         const json = await response.json();
         return json;
     }
-    
+
     //Putting a review
-    async putReview(reqData){
-        const response= await fetch(`${host}/api/userActions/putReview`, {
-            method:'POST',
+    async putReview(reqData) {
+        const response = await fetch(`${host}/api/userActions/putReview`, {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body:JSON.stringify(reqData),
+            body: JSON.stringify(reqData),
         })
         const json = await response.json();
         return json;
     }
 
     //Getting Particular User Payment
-    async getUserPayments(reqData){
-        const response= await fetch(`${host}/api/userActions/get-user-payments`, {
-            method:'POST',
+    async getUserPayments(reqData) {
+        const response = await fetch(`${host}/api/userActions/get-user-payments`, {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body:JSON.stringify(reqData),
+            body: JSON.stringify(reqData),
         })
         const json = await response.json();
         return json;
     }
 
     //async addToCart
-    async addToCart(reqData){
-        const response= await fetch(`${host}/api/userActions/addtocart`, {
-            method:'POST',
+    async addToCart(reqData) {
+        const response = await fetch(`${host}/api/userActions/addtocart`, {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body:JSON.stringify(reqData),
+            body: JSON.stringify(reqData),
         })
         const json = await response.json();
         return json;
     }
 
-    async getUserCartProducts(reqData){
-        const response= await fetch(`${host}/api/userActions/get-user-cart-products`, {
-            method:'POST',
+    async getUserCartProducts(reqData) {
+        const response = await fetch(`${host}/api/userActions/get-user-cart-products`, {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body:JSON.stringify(reqData),
+            body: JSON.stringify(reqData),
         })
         const json = await response.json();
         return json;
+    }
+
+    async checkOutCart(reqData) {
+        const response = await fetch(`${host}/api/userActions/checkoutcart`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(reqData),
+        })
+        const json = await response.json();
+        return json;
+    }
+    async deleteCartItem(payload) {
+        try {
+            const response = await this.fetchJSON(`${host}/cart`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
+            return response;
+        } catch (error) {
+            console.error('Error deleting cart item:', error);
+            throw error;
+        }
     }
 }
 
-module.exports=new UserActionService();
+module.exports = new UserActionService();

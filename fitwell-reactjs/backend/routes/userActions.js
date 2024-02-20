@@ -21,7 +21,7 @@ router.post('/addtocart', async(req,res)=>{
 })
 
 router.post('/checkoutcart', async(req,res)=>{
-    const response=await UserActionServices.checkoutcart(req);
+    const response=await UserActionServices.checkoutcart(req.body);
     return res.send(response);
 })
 
@@ -38,7 +38,8 @@ router.post('/get-user-payments', async(req,res)=>{
 
 //getting particular user cart products
 router.post('/get-user-cart-products', async(req,res)=>{
-    // const response=await 
+    const response=await UserActionServices.getUserCartProducts(req.body);
+    return res.send(response);
 })
 
 module.exports=router;

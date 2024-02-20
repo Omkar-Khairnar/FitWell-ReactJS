@@ -1,22 +1,39 @@
 import React, { useEffect, useState } from "react";
-
 import './AdminTrainerForm.css';
+import LoaderComp from "../../Loader";
 const AdminActions = require("../../../services/AdminActions");
-// import './Trainers.css';
 
-const AdminTrainers = () => {
+
+const AdminTrainers = (props) => {
+  const {setmyAlert} = props;
+  const [isLoading, setIsLoading] = useState(false)
   const [trainers, setTrainers] = useState(null);
   let count = 1;
   const getAllTrainerList = async () => {
+    setIsLoading(true)
     const res = await AdminActions.getAllAdminTrainerList();
     if (!res.error && res.data.length > 0) {
       setTrainers(res.data);
     }
+    setIsLoading(false);
   };
   console.log(
     "🚀 ~ file: AdminTrainers.jsx:11 ~ AdminTrainers ~ trainers:",
     trainers
   );
+
+  const handleDeleteTrainer =async(trainerid)=>{
+    setIsLoading(true)
+    const res = await AdminActions.deleteTrainer({trainerid});
+    if(!res.error){
+      setmyAlert(res.msg, 'success');
+      getAllTrainerList();
+    }
+    else{
+      setmyAlert(res.msg, 'error')
+    }
+    setIsLoading(false)
+  }
 
   useEffect(() => {
     getAllTrainerList();
@@ -36,75 +53,69 @@ const AdminTrainers = () => {
 
         <div class="row my-5">
           <h3 class="fs-4 mb-3">Trainers Information</h3>
-          <div class="col">
-            <table class="table bg-white rounded shadow-sm  table-hover">
-              <thead>
-                <tr>
-                  <th scope="col" width="50">
-                    Sr.
-                  </th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Gender</th>
-                  <th scope="col">DOJ</th>
-                  <th scope="col">
-                    Salary
-                  </th>
-                  <th scope="col" class="text-center">
-                    Remove Trainer
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {trainers !== null &&
-                  trainers.length > 0 &&
-                  trainers.map((item) => (
-                    <tr>
-                      <th scope="row">{count++}</th>
-                      <td>{item.name}</td>
-                      <td>{item.email}</td>
-                      <td>{item.gender}</td>
-                      <td>{item.DateOfJoin}</td>
-                      <td>{item.salary}</td>
-                      <td style={{ padding: "0%" }}>
-                        <form
-                          // class="adminTrainerForm"
-                          method="post"
-                          action="/adminactions/deletetrainer"
-                          style={{ padding: "0%"}}
-                        >
-                          <input
-                            type="text"
-                            value={item._id}
-                            class="d-none"
-                            name="trainerid"
-                            
-                          />
-                          <button
-                            className="deleteTrainerButton"
-                            type="submit"
-                            style={{
-                              border: "none",
-                              backgroundColor: "transparent",
-                              padding: "auto",
-                            }}
-                          >
-                            <i
-                              class="fa-solid fa-trash"
+          {
+            isLoading ? (
+              <LoaderComp/>
+            ) : (
+              <div class="col">
+              <table class="table bg-white rounded shadow-sm  table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col" width="50">
+                      Sr.
+                    </th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">DOJ</th>
+                    <th scope="col">
+                      Salary
+                    </th>
+                    <th scope="col" class="text-center">
+                      Remove Trainer
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {trainers !== null &&
+                    trainers.length > 0 &&
+                    trainers.map((item) => (
+                      <tr>
+                        <th scope="row">{count++}</th>
+                        <td>{item.name}</td>
+                        <td>{item.email}</td>
+                        <td>{item.gender}</td>
+                        <td>{item.DateOfJoin}</td>
+                        <td>{item.salary}</td>
+                        <td style={{ padding: "0%" }}>
+                         
+                            <button
+                              className="deleteTrainerButton"
                               style={{
-                                color: "red",
-                                cursor: "pointer",
+                                border: "none",
+                                backgroundColor: "transparent",
                                 padding: "auto",
                               }}
-                            ></i>
-                          </button>
-                        </form>
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-          </div>
+                              onClick={()=>{handleDeleteTrainer(item._id)}}
+                            >
+                              <i
+                                class="fa-solid fa-trash"
+                                style={{
+                                  color: "red",
+                                  cursor: "pointer",
+                                  padding: "auto",
+                                }}
+                              ></i>
+                            </button>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+            )
+
+          }
         </div>
       </div>
 

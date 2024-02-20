@@ -36,7 +36,7 @@ router.post('/getAllAdminCustomer', async(req,res)=>{
     return res.send(response);
 })
 
-router.post('/getAllAdminFeedback', async(req,res)=>{
+router.post('/getAllAdminFeedback', async(req,res)=>{ 
     const response=await AdminServices.getAllAdminFeedback(req.body);
     return res.send(response);
 })
@@ -46,5 +46,22 @@ router.post('/getAllAdminOrder', async(req,res)=>{
     return res.send(response);
 })
 
+router.post('/deleteTrainer', async(req, res)=>{
+    const response = await AdminServices.deleteTrainer(req.body);
+    return res.send(response);
+})
+
+router.post('/deleteCustomer', async(req, res)=>{
+    const response = await AdminServices.deleteCustomer(req.body);
+    return res.send(response);
+})
+router.post('/deleteOrder', async(req, res)=>{
+    const response = await AdminServices.deleteOrder(req.body);
+    return res.send(response);
+})
+router.post('/deleteFeedback', async(req, res)=>{
+    const response = await AdminServices.deleteFeedback(req.body);
+    return res.send(response);
+})
 
 module.exports=router;

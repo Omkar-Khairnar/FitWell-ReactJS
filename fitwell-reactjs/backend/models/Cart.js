@@ -5,27 +5,13 @@ const CarttSchema=new Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
+        require:true,
       },
-    productid:{
-        type:String,
+    product:{
+        type:Schema.Types.ObjectId,
+        ref:'product',
         required:true,
     }, 
-    // image:{
-    //     type:String,
-    //     required:true,
-    // },
-    // DateofInclusion:{
-    //     type:Date,
-    //     default:Date.now,
-    // },
-    // price:{ 
-    //     type:Number,
-    //     required:true,
-    // },
-    // description:{
-    //     type:String,
-    //     default:"Healthy Gym Product",
-    // },
 })
 
 let cart=mongoose.model('cart',CarttSchema)

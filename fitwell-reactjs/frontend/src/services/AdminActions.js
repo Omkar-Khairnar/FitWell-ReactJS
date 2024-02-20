@@ -24,7 +24,6 @@ class AdminAction{
             }),
         })
         const json = await response.json();
-        console.log("🚀 ~ file: AdminActions.js:27 ~ AdminAction ~ getAllAdminPayment ~ json:", json)
         return json;
     }
     
@@ -64,6 +63,53 @@ class AdminAction{
             },
             body:JSON.stringify({
             }),
+        })
+        const json = await response.json();
+        return json;
+    }
+    async deleteTrainer(reqData){
+        const response= await fetch(`${host}/api/adminTrainer/deleteTrainer`, {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(reqData),
+        })
+        const json = await response.json();
+        return json;
+    }
+
+    async deleteCustomer(reqData){
+        const response= await fetch(`${host}/api/adminCustomer/deleteCustomer`, {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(reqData),
+        })
+        const json = await response.json();
+        return json;
+    }
+
+    async deleteOrder(reqData){
+        const response= await fetch(`${host}/api/adminOrder/deleteOrder`, {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(reqData),
+        })
+        const json = await response.json();
+        return json;
+    }
+
+    async deleteFeedback(reqData){
+        const response= await fetch(`${host}/api/adminFeedback/deleteFeedback`, {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(reqData),
         })
         const json = await response.json();
         return json;

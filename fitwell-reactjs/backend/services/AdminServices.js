@@ -3,9 +3,10 @@ const AdminTrainer = require('../models/Trainer')
 const AdminPayment = require('../models/payments')
 const AdminFeedback = require('../models/contactform')
 const AdminCustomer = require('../models/User')
-const AdminOrder = require('../models/Order')
+const OrderSchema = require('../models/Order')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+
 class AdminServices {
     async adminLogin(reqData) {
         try {
@@ -116,7 +117,6 @@ class AdminServices {
                 }
               ]);
             const totalamount = revenue[0].totalamount;
-            console.log("🚀 ~ file: AdminServices.js:115 ~ AdminServices ~ getAllAdminPayment ~ totalamount:", totalamount)
 
             return { error: false, msg: 'Admins Fetched Successfully', data: {adminPayments, adminPaymentsHome, totalamount} };
         }
@@ -155,7 +155,7 @@ class AdminServices {
 
     async getAllAdminOrder(reqData) {
         try {
-            const adminOrders = await AdminOrder.find().sort({ _id: -1 });
+            const adminOrders = await OrderSchema.find().sort({ _id: -1 }).populate({path:'product', select:'name'});
             if (!adminOrders) {
                 return { error: true, msg: 'Internal Server Error' };
             }
@@ -165,17 +165,87 @@ class AdminServices {
                 return { error: true, msg: 'Internal Server Error' };
             }
 
-            const adminOrdersHOme = adminOrders.slice(0,5);
-            if (!adminOrdersHOme) {
+            const adminOrdersHome = adminOrders.slice(0,5);
+            if (!adminOrdersHome) {
                 return { error: true, msg: 'Internal Server Error' };
             }
 
-            return { error: false, msg: 'Admins Fetched Successfully', data: {adminOrders, totalOrders, adminOrdersHOme} };
+            return { error: false, msg: 'Admins Fetched Successfully', data: {adminOrders, totalOrders, adminOrdersHome} };
         }
         catch (error) {
             return { error: true, msg: error.message };
         }
     }
+
+    async deleteTrainer(reqData){
+        try{
+            const trainerid=reqData.trainerid;
+            const trainer=await AdminTrainer.findById(trainerid);
+            if(!trainer){
+                return {error:true, msg:'Trainer Not Exist'}
+            }
+            let deleted=await AdminTrainer.findByIdAndDelete(trainerid);
+            return  {error:false, msg:'Trainer Deleted Successfully', data:deleted}
+        }
+        catch(error){
+            return {error:true, msg:error.message}
+        }
+    }
+
+    async deleteCustomer(reqData){
+        try{
+            const userid = reqData.userid;
+            const user = await AdminCustomer.findById(userid);
+            if(!user){
+                return {error:true, msg:'Customer Not Exist'}
+            }
+
+            const deleted = await AdminCustomer.findByIdAndDelete(userid);
+            if(!deleted){
+                return {error:true, msg:'Internal Server Error'};
+            }
+
+            return {error:false, msg:'Customer Deleted Successfully', data:deleted};
+        }
+        catch(error){
+            return {error:true, msg:error.message}
+        }
+    }
+
+    async deleteOrder(reqData){
+        try{
+            const orderid=reqData.orderid;
+            const order = await OrderSchema.findById(orderid);
+            if(!order){
+                return {error:true, msg:'Order Not Exist In server'}
+            }
+            const deleted= await OrderSchema.findByIdAndDelete(orderid);
+            if(!deleted){
+                return {error:true, msg:'Internal Server Error'}
+            }
+
+            return {error:false, msg:'Order Deleted Successfully', data:deleted     };
+        }
+        catch(error){
+            return {error:true, msg:error.message}
+        }
+    }
+
+    async deleteFeedback(reqData){
+        try{
+            const feedbackid = reqData.feedbackid;
+            const deleted= await AdminFeedback.findByIdAndDelete(feedbackid);
+            if(!deleted){
+                return {error:true, msg:'Internal Server Error'}
+            }
+
+            return {error:false, msg:'Feedback Deleted Successfully', data:deleted };
+        }
+        catch(error){
+            return {error:true, msg:error.message}
+        }
+    }
+
 
 }
 module.exports = new AdminServices();

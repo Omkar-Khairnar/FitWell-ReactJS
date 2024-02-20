@@ -43,6 +43,28 @@ class OrderService{
             return {error:true, msg:error.message}
         }
     }
+
+    async getUserOrders(reqData){
+        try {
+            const userid = reqData.userid;
+            if(!userid || userid === undefined || userid === ''){
+                return {error:true, msg:'UserID not defined.'}
+            }
+
+            const orders = await OrderSchema.find({user:userid}).populate({
+                path:'product',
+                select:'_id price name category img '
+            })
+            if(!orders){
+                return {error:true, msg:'Internal Server Error'}
+            }
+
+            return {error:false, msg:'Orders Fetched Successfully', data:orders};
+            
+        } catch (error) {
+            return {error:true, msg:error.message}
+        }
+    }
 }
 
 module.exports=new OrderService();

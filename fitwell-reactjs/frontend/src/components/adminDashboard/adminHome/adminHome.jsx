@@ -16,8 +16,7 @@ const AdminHome = () => {
       setRevenue(res.data.totalamount);
     }
   };
-  console.log("🚀 ~ file: AdminHome.jsx:9 ~ AdminHome ~ revenue:", revenue);
-  console.log("🚀 ~ file: AdminHome.jsx:8 ~ AdminHome ~ payments:", payments);
+
 
   useEffect(() => {
     getAllPayments();
@@ -28,19 +27,16 @@ const AdminHome = () => {
 
   const getAllOrders = async () => {
     const res = await AdminActions.getAllAdminOrder();
-    if (!res.error && res.data.adminOrdersHOme.length > 0) {
-      setOrders(res.data.adminOrdersHOme);
+    if (!res.error && res.data.adminOrdersHome.length > 0) {
+      setOrders(res.data.adminOrdersHome);
     }
     if (!res.error && res.data.totalOrders > 0) {
       setOrdersCount(res.data.totalOrders);
     }
+    else{
+      console.log(res.msg);
+    }
   };
-  console.log(
-    "🚀 ~ file: AdminHome.jsx:29 ~ AdminHome ~ ordersCount:",
-    ordersCount
-  );
-  console.log("🚀 ~ file: AdminHome.jsx:24 ~ AdminHome ~ orders:", orders);
-
   useEffect(() => {
     getAllOrders();
   }, []);
@@ -52,10 +48,7 @@ const AdminHome = () => {
       setTrainersCount(res.data.length);
     }
   };
-  console.log(
-    "🚀 ~ file: AdminHome.jsx:40 ~ AdminHome ~ trainersCount:",
-    trainersCount
-  );
+
 
   useEffect(() => {
     getAllTrainerCount();
@@ -68,10 +61,7 @@ const AdminHome = () => {
       setCustomersCount(res.data.length);
     }
   };
-  console.log(
-    "🚀 ~ file: AdminCustomers.jsx:9 ~ AdminCustomers ~ customersCount:",
-    customersCount
-  );
+
 
   useEffect(() => {
     getAllCustomersCount();
@@ -293,7 +283,7 @@ const AdminHome = () => {
                   orders.map((item, key) => (
                     <tr>
                       <th scope="row">{key + 1}</th>
-                      <td>{item.name}</td>
+                      <td>{item.product.name}</td>
                       <td>{item.Dateoforder}</td>
                       <td>{item.amount}</td>
                       <td>{item.status}</td>

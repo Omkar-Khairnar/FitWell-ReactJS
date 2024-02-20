@@ -1,21 +1,40 @@
 import React, { useEffect, useState } from "react";
 import "./Order.css";
 import AdminActions from "../../../services/AdminActions";
+import LoaderComp from "../../Loader";
 
-const Order = () => {
-  const[orders, setOrders] = useState(null);
-  
+const Order = (props) => {
+  const [orders, setOrders] = useState(null);
+  const { setmyAlert } = props;
+  const [isLoading, setIsLoading] = useState(false);
+
   const getAllOrders = async () => {
+    setIsLoading(true);
     const res = await AdminActions.getAllAdminOrder();
-    if(!res.error && res.data.adminOrders.length > 0) {
+    if (!res.error && res.data.adminOrders.length > 0) {
       setOrders(res.data.adminOrders);
     }
+    else{
+      setmyAlert(res.msg, 'error')
+    }
+    setIsLoading(false);
   };
-  console.log("🚀 ~ file: AdminOrder.jsx:7 ~ Order ~ orders:", orders)
+
+  const handleDeleteOrder = async(id) => {
+    setIsLoading(true);
+    const res = await AdminActions.deleteOrder({ orderid: id });
+    if (!res.error) {
+      setmyAlert(res.msg, "success");
+      getAllOrders();
+    } else {
+      setmyAlert(res.msg, "error");
+    }
+    setIsLoading(false);
+  };
 
   useEffect(() => {
     getAllOrders();
-  },[]);
+  }, []);
   let count = 1;
   return (
     <div className="container-fluid px-4">
@@ -24,66 +43,63 @@ const Order = () => {
         <div className="container">
           <div className="container-fluid px-4 overflow-scroll">
             <div className="row my-5">
-              <h3 className="fs-4 mb-3">Total Members</h3>
-              <div className="col">
-                <table className="table bg-white rounded shadow-sm  table-hover">
-                  <thead>
-                    <tr>
-                      <th scope="col" width="50">
-                        Sr.
-                      </th>
-                      <th scope="col">Name</th>
-                      <th scope="col">DateOfOrder</th>
-                      <th scope="col">Amount</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Address</th>
-                      <th scope="col">Delete</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {orders !== null && orders.length > 0 && 
-                    orders.map((item)=> (
-                    
-                    <tr>
-                      <th scope="row">{count++}</th>
-                      <td>{item.name}</td>
-                      <td>{item.Dateoforder}</td>
-                      <td>{item.amount}</td>
-                      <td>{item.status}</td>
-                      <td>{item.address}</td>
-                        <td style={{padding : "0%"}}>
-                      <form method="post" action="/adminactions/deleteorder" style={{padding : "0%"}}>
-                        <input
-                          type="text"
-                          value={item._id}
-                          className="d-none"
-                          name="orderid"
-                        />
-                          <button
-                            type="submit"
-                            style={{
-                              border: "none",
-                              backgroundColor: "transparent",
-                              padding : "auto"
-                            }}
-                          >
-                            <i
-                              className="fa-solid fa-trash"
-                              style={{
-                                color: "red",
-                                backgroundColor: "transparent",
-                                cursor: "pointer",
-                                padding : "0%"
-                              }}
-                            ></i>
-                          </button>
-                      </form>
-                        </td>
-                    </tr>
-                    ))}
+              <h3 className="fs-4 mb-3">Total Active Orders:</h3>
+              {isLoading ? (
+                <LoaderComp />
+              ) : (
+                <div className="col">
+                  <table className="table bg-white rounded shadow-sm  table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col" width="50">
+                          Sr.
+                        </th>
+                        <th scope="col">Name</th>
+                        <th scope="col">DateOfOrder</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {orders !== null &&
+                        orders.length > 0 &&
+                        orders.map((item) => (
+                          <tr>
+                            <th scope="row">{count++}</th>
+                            <td>{item.product.name}</td>
+                            <td>{item.Dateoforder}</td>
+                            <td>{item.amount}</td>
+                            <td>{item.status}</td>
+                            <td>{item.address}</td>
+                            <td style={{ padding: "0%" }}>
+                              <button
+                                type="submit"
+                                style={{
+                                  border: "none",
+                                  backgroundColor: "transparent",
+                                  padding: "auto",
+                                }}
+                                onClick={()=> handleDeleteOrder(item._id)}
+                              >
+                                <i
+                                  className="fa-solid fa-trash"
+                                  style={{
+                                    color: "red",
+                                    backgroundColor: "transparent",
+                                    cursor: "pointer",
+                                    padding: "0%",
+                                  }}
+                                ></i>
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
                     </tbody>
-                </table>
-              </div>
+                  </table>
+                </div>
+              )}
             </div>
           </div>
         </div>
