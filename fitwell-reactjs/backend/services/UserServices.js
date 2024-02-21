@@ -7,7 +7,6 @@ class UserServices{
 
     async createUser(reqData){
         try{
-            console.log(reqData);
             let prevuser = await User.findOne({ email: reqData.email })
             if (prevuser) {
               return {error:true, msg:'Email Id already Registered.'}

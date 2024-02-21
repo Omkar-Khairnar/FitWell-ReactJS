@@ -40,8 +40,7 @@ const UserSchema= new Schema({
         required:true,
     },
     image:{
-        type:String,
-        default:"https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-9.png",
+        type:String, 
     },
 })
 
