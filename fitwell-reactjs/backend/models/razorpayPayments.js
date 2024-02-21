@@ -6,7 +6,7 @@ const orderModel = new mongoose.Schema({
         type: String,
         // required: true,
     },
-    amount: {
+    amount: { 
         type: Number,
         required: true,
     },
@@ -25,6 +25,6 @@ const orderModel = new mongoose.Schema({
     },
 });
 
-const Order = mongoose.model('Order', orderModel);
+const Order = mongoose.model('razorpaypayments', orderModel);
 
 module.exports =  Order ;

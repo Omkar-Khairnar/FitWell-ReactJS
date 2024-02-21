@@ -10,31 +10,47 @@ function SignUpForm(props) {
   const initialState = {
     name: "",
     email: "",
-    password: "",
+    password: "", 
     age: "",
     gender: "",
     weight: "",
     height: "",
     image: "",
+    fileType:"userProfile"
   };
   const [state, setState] = useState(initialState);
   const [isLoading, setIsloading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleChange = (evt) => {
-    const value = evt.target.value;
-    setState({
-      ...state,
-      [evt.target.name]: value,
-    });
+    const {name, value} = evt.target
+    if(name === 'image'){
+      console.log(evt.target.files[0]);
+      setState({...state, [name]:evt.target.files[0]})
+    }
+    else{
+      setState({
+        ...state,
+        [evt.target.name]: value,
+      });
+    }
   };
 
   const handleOnSubmit = async (evt) => {
-    setIsloading(true);
+    // setIsloading(true);
     evt.preventDefault();
-    const res = await UserService.createUser(state);
+
+    let formData = new FormData()
+    for (let key in state) {
+      formData.append(key, state[key]);
+    }
+
+    // for (var pair of formData.entries()) {
+    //     console.log(pair[0]+ ', ' + pair[1]); 
+    // }
+    
+    const res = await UserService.createUser(formData);  
     if (!res.error) {
-      alert(res.msg);
       setState(initialState);
       //Setting values to redux store
       dispatch(userLogin(res.data));
@@ -115,11 +131,10 @@ function SignUpForm(props) {
               className="auth-input signup-auth-input"
             />
             <input
-              type="text"
+              type="file"
               name="image"
-              value={state.image}
               onChange={handleChange}
-              placeholder="Image Link"
+              placeholder="Profile Image"
               className="auth-input signup-auth-input"
             />
             <button className="auth-button">Sign Up</button>

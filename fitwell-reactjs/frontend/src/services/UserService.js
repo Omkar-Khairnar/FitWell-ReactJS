@@ -18,13 +18,10 @@ class UserService{
 
     //Creating User Account
     async createUser(reqData){
-        console.log(reqData);
         const response= await fetch(`${host}/api/userAuth/createUser`, {
             method:'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body:JSON.stringify(reqData),
+            
+            body:reqData,
         })
         const json = await response.json();
         return json;

@@ -157,7 +157,7 @@ class AdminServices {
         try {
             const adminOrders = await OrderSchema.find().sort({ _id: -1 }).populate({path:'product', select:'name'});
             if (!adminOrders) {
-                return { error: true, msg: 'Internal Server Error' };
+                return { error: true, msg: 'Internal Server Error' }; 
             }
             
             const totalOrders = adminOrders.length;
@@ -169,6 +169,7 @@ class AdminServices {
             if (!adminOrdersHome) {
                 return { error: true, msg: 'Internal Server Error' };
             }
+            // console.log(adminOrders);
 
             return { error: false, msg: 'Admins Fetched Successfully', data: {adminOrders, totalOrders, adminOrdersHome} };
         }

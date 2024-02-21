@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import "../User_Dashboard.css";
 import { useSelector } from 'react-redux';
-
-
+import img1 from "../../../assets/uploads/userProfiles/img1.jpeg"
 
 
 const UserHome = () => {
   const userDetails= useSelector(state => state.user.userDetails);
   const isLoggedIn=useSelector(state => state.user.isLoggedIn)
+  const [imageUrl, setImageUrl] = useState(userDetails.image)
+  console.log(userDetails);
   const [bmi, setBmi]=useState(
     (userDetails.weight / Math.pow((parseFloat(userDetails.height)/100),2)).toFixed(2)
   )
@@ -25,10 +26,10 @@ const UserHome = () => {
     checkUserLoggedIn();
   },[])
 
-
   return (
     <div class="dashboard-content active" id="dashboard-home-page">
       <div class="container">
+
         <div class="container-profile-bmi">
           <link
             rel="stylesheet"
@@ -124,7 +125,7 @@ const UserHome = () => {
             <div class="userdetails no-gutters">
               <div class="userimg card-body w-100 d-flex justify-content-center" style={{backgroundColor : "white", height : "fit-content"}}>
                 <img
-                  src={userDetails.image}
+                  src={img1}
                   alt=""
                 />
               </div>

@@ -1,22 +1,23 @@
 const connectToMongo = require('./db');
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors');
-connectToMongo();
-
-const app = express();
+connectToMongo()
+const app = express()
+var cors = require('cors')
+const fs = require('fs');
 const port = 5001;
 
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json({ limit: '20mb' }));
-
+app.use(express.urlencoded({extended: true, limit:"100mb"}));
+app.use('./uploads/userProfiles/',express.static('/uploads'))
+ 
 app.get('/', (req, res) => {
-  res.send('hello world');
-});
+  res.send('hello world')
+})
 
-
-app.use('/api/payments', require('./routes/paymentRoutes'));
+app.use('/api/payments', require('./routes/razorpayPaymentRoutes'));
 app.use('/api/adminAuth', require('./routes/admin'));
 app.use('/api/userAuth', require('./routes/user'));
 app.use('/api/trainer', require('./routes/trainers'));

@@ -10,7 +10,6 @@ class ProductServices {
             const ProteinCategory = await ProductSchema.find({ category: 'Whey Proteins' }).limit(20);
             const EnergyCategory = await ProductSchema.find({ category: 'Energy & Endurance' }).limit(15);
             const RecoveryCategory = await ProductSchema.find({ category: 'Recovery & Repair' }).limit(13);
-
             return {
                 error: false, msg: 'Products Fetched Successfully', data: {
                     LatestCategory,
@@ -61,16 +60,6 @@ class ProductServices {
                 searchResult = await ProductSchema.find(searchQuery);
                 searchResultCount = await ProductSchema.find(searchQuery).count();
             }
-
-            // const userDetails = req.session.userDetails;
-            // var loginStatus = 1;
-            // if (!userDetails) {
-            //     loginStatus = 0;
-            // }
-            // res.render('productSearch', { searchResult, searchResultCount, loginStatus, search, filter });
-
-            console.log("🚀 ~ ProductServices ~ productSearchResult ~ searchResult:", searchResult)
-            console.log("🚀 ~ ProductServices ~ productSearchResult ~ searchResultCount:", searchResultCount)
             return {
                 error: false, msg: 'Products Fetched Successfully', data: {
                     searchResult,

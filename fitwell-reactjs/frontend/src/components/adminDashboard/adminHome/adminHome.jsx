@@ -28,6 +28,7 @@ const AdminHome = () => {
   const getAllOrders = async () => {
     const res = await AdminActions.getAllAdminOrder();
     if (!res.error && res.data.adminOrdersHome.length > 0) {
+      // console.log(res.data.adminOrdersHome);
       setOrders(res.data.adminOrdersHome);
     }
     if (!res.error && res.data.totalOrders > 0) {
