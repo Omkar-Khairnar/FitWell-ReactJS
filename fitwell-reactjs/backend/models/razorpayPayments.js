@@ -6,7 +6,7 @@ const orderModel = new mongoose.Schema({
         type: String,
         // required: true,
     },
-    amount: {
+    amount: { 
         type: Number,
         required: true,
     },

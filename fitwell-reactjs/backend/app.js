@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
   res.send('hello world')
 })
 
-app.use('/api/payments', require('./routes/paymentRoutes'));
+app.use('/api/payments', require('./routes/razorpayPaymentRoutes'));
 app.use('/api/adminAuth', require('./routes/admin'));
 app.use('/api/userAuth', require('./routes/user'));
 app.use('/api/trainer', require('./routes/trainers'));

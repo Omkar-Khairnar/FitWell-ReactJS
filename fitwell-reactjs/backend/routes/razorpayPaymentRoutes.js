@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Razorpay = require('razorpay');
-const Order = require('../models/orderModel');
+const razorpayPayments = require('../models/razorpayPayments');
 const connectDB = require('../db');
 require('dotenv').config();
 
@@ -26,13 +26,14 @@ router.post('/create-order', async (req, res) => {
     };
 
     const order = await razorpay.orders.create(options);
-    console.log(order)
+    // console.log(order)
 
-    const newOrder = new Order({
+    const newOrder = new razorpayPayments({
       orderId: order.id,
       amount,
       currency
     });
+    
     await newOrder.save();
     res.json({ order_id: order.id });
   } catch (error) {
