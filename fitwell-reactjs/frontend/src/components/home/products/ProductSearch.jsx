@@ -1,192 +1,261 @@
 import React from "react";
-import "./Products.css";
-import ProductSliderCorousel from "./ProductSliderCorousel";
+import { Buffer } from "buffer";
 
-const ProductSearch = () => {
+import "./Products.css";
+// import ProductSliderCorousel from "./ProductSliderCorousel";
+
+const ProductSearch = ({
+  formHandler,
+  handleOnSubmit,
+  formHandlerFilter,
+  handleOnSubmitFilter,
+  searchResult,
+  searchResultCount,
+  search,
+  filter,
+  handleAddToCart,
+  handleBackSubmit
+}) => {
   return (
     <div>
-      <ProductSliderCorousel />
-      <div class="latestProducts">
+      {/* <ProductSliderCorousel /> */}
+      
+      <div class="latestProducts py-0">
         <div class="latestProductsHeader">
           <div class="latestTradings">
-            <h3 class="title_LT">Searched Products</h3>
+          <button class="bg-black d-flex flex-row" style={{border : 'none'}} onClick={handleBackSubmit}>
             <i
               id="rightArrow"
-              class="fa fa-solid fa-2x fa-angle-right"
-              aria-hidden="true"
-            ></i>
+              class="fa fa-solid fa-2x fa-angle-left mx-2"
+              // aria-hidden="true"
+            >
+            </i>
+            <h3 style={{color : 'white', textDecoration : 'underline', textDecorationColor : 'gray'}}>Back to Main Product Page</h3>
+          </button>
           </div>
-          <div class="filters">
-            <form action="/productSearchResult" name="filterForm" method="POST">
-              <input
-                class="d-none"
-                type="text"
-                name="search"
-                value="<%= search %>"
-              />
-              <select
-                name="filter"
-                id="filterID"
-                style={{backgroundColor: 'orange',  borderRadius: '5px', fontWeight: 'bold'}}
-                class="p-2"
-              >
-                <option value="">Select Filters</option>
-                <option value="pricelow">Lowest Price</option>
-                <option value="pricehigh">Highest Price</option>
-                <option value="energy">Energy & Endurance</option>
-                <option value="nutrients">Nutrients</option>
-                <option value="repair">Recovery & Repair</option>
-                <option value="protein">Whey Protein</option>
-              </select>
-              <button
-                type="submit"
-                style={{backgroundColor: 'orange',  borderRadius: '5px', fontWeight: 'bold'}}
-                class="p-1"
-              >
-                Apply Filter
-              </button>
-            </form>
+          <div
+            class="filters d-flex py-2"
+            style={{
+              flexDirection: "row",
+              width: "20%",
+              alignContent: "center",
+            }}
+          >
+            <input
+              class="d-none "
+              type="text"
+              name="search"
+              value={search}
+              // onChange={(e) => formHandler(e)}
+            />
+            <select
+              name="filter"
+              onChange={(e) => formHandlerFilter(e)}
+              id="filterID"
+              style={{
+                color: "black",
+                borderRadius: "5px",
+                fontWeight: "bold",
+                fontSize: "2vh",
+                padding: "0",
+                margin: "0",
+              }}
+            >
+              <option value="">Select Filters</option>
+              <option value="pricelow">Lowest Price</option>
+              <option value="pricehigh">Highest Price</option>
+              <option value="energy">Energy & Endurance</option>
+              <option value="nutrients">Nutrients</option>
+              <option value="repair">Recovery & Repair</option>
+              <option value="protein">Whey Protein</option>
+            </select>
+            <button
+              style={{
+                marginLeft: "1vw",
+                borderRadius: "5px",
+                fontWeight: "bold",
+                color: "white",
+                width: "20vw",
+                fontSize: "2vh",
+              }}
+              class="bg-secondary"
+              onClick={() => handleOnSubmitFilter()}
+            >
+              Apply Filter
+            </button>
           </div>
 
-          <div class="search-container d-flex flex-row">
-            <form action="/productSearchResult" name="searchForm" method="POST">
-              <input
-                type="text"
-                placeholder="Search.."
-                name="search"
-                value=""
-              />
-              <input
-                class="d-none"
-                type="text"
-                name="filter"
-                value="pricelow"
-              />
-              <button class="searchIcon" type="submit">
-                <i class="fa p-1 fa-search"></i>
-              </button>
-            </form>
+          <div class="search-container d-flex flex-row my-2">
+            <input
+              class="m-0"
+              type="text"
+              placeholder="Search..."
+              name="search"
+              // value={search}
+              onChange={(e) => formHandler(e)}
+            />
+            <input
+              class=" d-none"
+              type="text"
+              name="filter"
+              value="pricelow"
+              onChange={(e) => formHandler(e)}
+            />
+            <button class="searchIcon m-0" onClick={() => handleOnSubmit()}>
+              <i class="fa p-1 fa-search m-auto"></i>
+            </button>
           </div>
         </div>
         <div class="productsSection">
           <div class="row row-cols-2 row-cols-md-5 container-fluid mx-0 my-4">
-            {/* <% if (searchResultCount===0) { %> */}
-            <h1 style={{textAlign: 'center',width: '100%'}}>No Product Found !</h1>
-
-            {/* <% } else { %> */}
-            <h1 style={{textAlign: 'center', width: '100%' , color: 'aliceblue', marginBottom: '20px'}}>
-              {/* <%- searchResultCount %> Results Found for Your Search : <%= search %> */}
-            </h1>
-            {/* <% searchResult.forEach(function(image) { %> */}
-
-            <div class="col  mx-0">
-              <div class="inner-col">
-                <div class="card h-auto bg-dark">
-                  <button
-                    type="button"
-                    class="btn-decs-container"
-                    data-bs-toggle="modal"
-                    data-bs-target="#<%=image._id%>"
-                  >
-                    <div class="decs-container">
-                      <img
-                        class="card-img-top-product"
-                        alt="p1"
-                        src="data:image/<%=image.img.contentType%>;base64, <%=image.img.data.toString('base64')%>"
-                      />
-                      <div class="card-body p-2">
-                        <h5 class="card-title text-white">
-                          {/* <%= image.name %> */}
-                        </h5>
-                        <p class="card-text">{/* <%= image.category %> */}</p>
-                      </div>
-                    </div>
-                  </button>
-                  <div class="modal" id="<%=image._id%>">
-                    <div class="modal-dialog modal-static modal-dialog-centered modal-lg">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1
-                            class="modal-title fs-5 text-center"
-                            id="exampleModalLabel"
-                          >
-                            {/* <%= image.name %> */}
-                          </h1>
-                          <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                          ></button>
-                        </div>
-                        <div class="modal-body">
-                          <div class="modal-product_img">
-                            <img
-                              class="card-img-top-modal"
-                              alt="p2"
-                              src="data:image/<%=image.img.contentType%>;base64, <%=image.img.data.toString('base64')%>"
-                            />
-                          </div>
-                          <div class="modal-product-description">
-                            <h3 style={{textAlign: 'center'}} class="card-text">
-                              Category :{/* <%= image.category %> */}
-                            </h3>
-                            <h3>About</h3>
-                            <p class="productsP" >{/* <%= image.description %> */}</p>
+            {searchResultCount === 0 ? (
+              <h1 style={{ textAlign: "center", color: "#f00", width: "100%" }}>
+                No Product Found !
+              </h1>
+            ) : (
+              <h3
+                style={{
+                  textAlign: "left",
+                  width: "100%",
+                  color: "#0f0",
+                  marginBottom: "20px",
+                }}
+              >
+                {searchResultCount} Results Found for Your Search : {search}
+              </h3>
+            )}
+            {searchResult !== null &&
+              searchResult &&
+              searchResult.map((item) => (
+                <div className="col mx-0">
+                  <div className="inner-col">
+                    <div className="card h-auto bg-dark">
+                      <button
+                        type="button"
+                        className="btn-decs-container"
+                        data-bs-toggle="modal"
+                        data-bs-target={`#Modal${item._id}`}
+                      >
+                        <div className="decs-container">
+                          <img
+                            className="card-img-top-product"
+                            alt="p1"
+                            src={`data:image/${
+                              item.img.contentType
+                            };base64,${Buffer.from(item.img.data).toString(
+                              "base64"
+                            )}`}
+                          />
+                          <div className="card-body-product p-2">
+                            <h5
+                              style={{
+                                fontFamily: "Ubuntu, sans-serif",
+                              }}
+                              className="card-title text-white"
+                            >
+                              {item.name}
+                            </h5>
+                            <p className="card-text-product">{item.category}</p>
                           </div>
                         </div>
-                        <div
-                          class="modal-footer bg-black"
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            fontSize: "larger",
-                          }}
+                      </button>
+                      <div
+                        className="card-footer"
+                        style={{
+                          paddingLeft: "0%",
+                          paddingRight: "0%",
+                        }}
+                      >
+                        <p className="card-footer-price card-text-product">
+                          Price : Rs.
+                          <span id="product-modal-price card-text-product">
+                            {item.price}
+                          </span>
+                        </p>
+                        <button
+                          className="card-footer-AddToCart"
+                          data-bs-toggle="modal"
+                          data-bs-target={`#Modal${item._id}`}
                         >
-                          <p class="card-footer-price">
-                            Price : Rs.{" "}
-                            <span id="product-modal-price">
-                              {/* <%= image.price %> */}
-                            </span>
-                          </p>
-                          <form method="post" action="/addtocart">
-                            <input
-                              class="d-none"
-                              type="text"
-                              name="productid"
-                              // value=<%=image._id%>
-                            />
-                            <button type="submit" class="btn bg-dark">
-                              Add To Cart
-                            </button>
-                          </form>
-                        </div>
+                          Add To Cart
+                        </button>
                       </div>
                     </div>
-                  </div>
-                  <div
-                    class="card-footer"
-                    style={{ paddingLeft: "0%", paddingRight: "0%" }}
-                  >
-                    <p class="card-footer-price">
-                      Price : Rs.
-                      <span id="product-modal-price">
-                        {/* <%= image.price %> */}
-                      </span>
-                    </p>
-                    <button
-                      class="card-footer-AddToCart"
-                      data-bs-toggle="modal"
-                      data-bs-target="#<%=image._id%>"
-                    >
-                      Add To Cart
-                    </button>
                   </div>
                 </div>
-              </div>
-            </div>
-            {/* <% }) %> */}
-            {/* <% } %> */}
+              ))}
+            {searchResult !== null &&
+              searchResult &&
+              searchResult.map((item) => (
+                <div className="modal" id={`Modal${item._id}`}>
+                  <div className="modal-dialog modal-dialog-centered modal-lg">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h1
+                          className="modal-title fs-5 text-center"
+                          id="exampleModalLabel"
+                        >
+                          {item.name}
+                        </h1>
+                        <button
+                          type="button"
+                          className="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div className="modal-body">
+                        <div className="modal-product_img">
+                          <img
+                            className="card-img-top-modal"
+                            alt="p2"
+                            src={`data:image/${
+                              item.img.contentType
+                            };base64,${Buffer.from(item.img.data).toString(
+                              "base64"
+                            )}`}
+                          />
+                        </div>
+                        <div className="modal-product-description">
+                          <h3
+                            style={{ textAlign: "center" }}
+                            className="card-text-product"
+                          >
+                            Category {item.category}
+                          </h3>
+                          <h3>About</h3>
+                          <p className="productsP">{item.description}</p>
+                        </div>
+                      </div>
+                      <div
+                        className="modal-footer bg-black"
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          fontSize: "larger",
+                        }}
+                      >
+                        <p className="card-footer-price card-text-product">
+                          Price : Rs.{" "}
+                          <span id="product-modal-price card-text-product">
+                            {item.price}
+                          </span>
+                        </p>
+
+                        <button
+                          type="submit"
+                          className="btn bg-dark"
+                          onClick={() => {
+                            handleAddToCart(item._id);
+                          }}
+                        >
+                          Add To Cart
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
           </div>
         </div>
       </div>

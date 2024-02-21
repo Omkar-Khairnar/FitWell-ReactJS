@@ -130,7 +130,7 @@ const AdminHome = () => {
           data-bs-toggle="modal"
           data-bs-target="#addWorkout"
         >
-          Add New HomeWorkout
+          Add New Workout
         </button>
       </div>
 

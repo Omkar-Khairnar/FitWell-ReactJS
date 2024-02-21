@@ -9,5 +9,10 @@ router.post('/getProducts', async(req,res)=>{
     const response=await ProductServices.getProducts();
     return res.send(response)
 })
+router.post('/getProductsSearchResult', async(req,res)=>{
+    const response=await ProductServices.getProductsSearchResult(req.body);
+    console.log("🚀 ~ router.post ~ response:", response)
+    return res.send(response)
+})
 
 module.exports=router;
