@@ -100,6 +100,7 @@ const UserCart = (props) => {
   }, []);
 
   useEffect(() => {
+    console.log("🚀 ~ UserCart ~ data:", data)
     calculateAmount();
   }, [data]);
 
@@ -120,7 +121,9 @@ const UserCart = (props) => {
         productid: productId,
       });
       if (!res.error) {
-        const updatedData = data.filter(item => item.product._id !== productId);
+        const updatedData = data.filter(
+          (item) => item.product._id !== productId
+        );
         setData(updatedData);
         calculateAmount();
         setmyAlert("Item removed from cart", "success");

@@ -21,7 +21,7 @@ const mapCategoryTitle = [
 ];
 
 const Products = (props) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { setmyAlert } = props;
   const dispatch = useDispatch();
   const products = useSelector((state) => state.productsState.products);
@@ -41,9 +41,6 @@ const Products = (props) => {
   const [filterData, setFilterData] = useState(null);
   const [searchFormData, setSearchFormData] = useState(null);
 
-  // const elementRef = useRef(null);
-  // const [arrowDisable, setArrowDisable] = useState(true);
-
   const getProducts = async () => {
     try {
       setIsLoading(true);
@@ -58,19 +55,16 @@ const Products = (props) => {
       console.error("Error fetching products:", error);
     }
   };
-  // console.log("🚀 ~ getProducts ~ data:", data)
 
   const formHandler = (e) => {
     const { name, value } = e.target;
     result[name] = value;
     setResult({ ...result });
-    // console.log("🚀 ~ formHandler ~ result:", result)
   };
   const formHandlerFilter = (e) => {
     const { name, value } = e.target;
     resultFilter[name] = value;
     setResultFilter({ ...resultFilter });
-    // console.log("🚀 ~ formHandler ~ result:", result)
   };
 
   const handleOnSubmit = async () => {
@@ -84,8 +78,6 @@ const Products = (props) => {
         setSearchData(res.data.search);
         setFilterData(res.data.filter);
         setSearchFormData(res.data);
-
-        // console.log("🚀 ~ handleOnSubmit ~ searchResultData:", searchResultData)
         setResultFilter(result);
         setResult(initialData);
         setIsLoading(false);
@@ -134,7 +126,7 @@ const Products = (props) => {
   };
   const handleBackSubmit = async () => {
     setSearchData(null);
-  }
+  };
 
   useEffect(() => {
     if (products == null || products === undefined) {
@@ -151,22 +143,7 @@ const Products = (props) => {
     filterData,
   ]);
 
-  // const handleHorizantalScroll = (element, speed, distance, step) => {
-  //   let scrollAmount = 0;
-  //   const slideTimer = setInterval(() => {
-  //     element.scrollLeft += step;
-  //     scrollAmount += Math.abs(step);
-  //     if (scrollAmount >= distance) {
-  //       clearInterval(slideTimer);
-  //     }
-  //     // if (element.scrollLeft === 0) {
-  //     //   setArrowDisable(true);
-  //     // } else {
-  //     //   setArrowDisable(false);
-  //     // }
-  //   }, speed);
-  // };
-
+  
   return (
     <div>
       <ProductSliderCorousel />
@@ -176,8 +153,8 @@ const Products = (props) => {
         ) : (
           <>
             {mapCategoryTitle &&
-              mapCategoryTitle.map((it) => (
-                <div>
+              mapCategoryTitle.map((it, index) => (
+                <div key={index}>
                   <div className="latestProductsHeader">
                     <div className="latestTradings">
                       <h3 className="title_LT">{it.title}</h3>
@@ -213,43 +190,33 @@ const Products = (props) => {
                     ) : null}
                   </div>
                   <div className="productsSection">
-                    <button
+                    <div
                       id={`arrowLeft${it.category}`}
                       className="arrow arrow-left"
-                      type="button"
-                      // onClick={() => {
-                      //   handleHorizantalScroll(
-                      //     elementRef.current,
-                      //     25,
-                      //     200,
-                      //     -20
-                      //   );
-                      // }}
+                      
                     >
                       <i
                         id="latestProductsCategory"
                         className="fa fa-angle-double-left"
                         aria-hidden="true"
                       ></i>
-                    </button>
-                    <button
+                    </div>
+                    <div
                       id={`arrowRight${it.category}`}
                       className="arrow arrow-right"
-                      type="button"
-                      // onClick={() => {
-                      //   handleHorizantalScroll(elementRef.current, 25, 200, 20);
-                      // }}
+                      
                     >
                       <i
                         id="latestProductsCategory"
                         className="fa fa-angle-double-right"
                         aria-hidden="true"
                       ></i>
-                    </button>
+                    </div>
+
                     <div
-                      // ref={elementRef}
                       id={it.category}
                       className="allProduct mx-3"
+                      
                     >
                       {data &&
                         data[it.category] !== undefined &&
@@ -404,7 +371,6 @@ const Products = (props) => {
         <LoaderComp />
       ) : (
         <>
-          
           <ProductSearch
             formHandler={formHandler}
             handleOnSubmit={handleOnSubmit}
