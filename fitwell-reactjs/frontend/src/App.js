@@ -15,16 +15,25 @@ import Centers from './components/home/centers/Centers';
 import Reviews from './components/home/reviews/Reviews';
 import ContactUS from './components/home/contactUs/ContactUS';
 import RazorpayPayment from './components/razorpayPayment/razorpay';
+
+
 import AdminHome from './components/adminDashboard/adminHome/adminHome';
 import AdminOrder from './components/adminDashboard/order/AdminOrder';
 import AdminPayment from './components/adminDashboard/payment/AdminPayment';
 import AdminTrainers from './components/adminDashboard/trainers/AdminTrainers';
 import AdminDashboard from './components/adminDashboard/AdminDashboard';
-import AdminAddProduct from './components/adminDashboard/addProduct/AdminAddProduct';
+// import AdminAddProduct from './components/adminDashboard/addProduct/AdminAddProduct';
 import AdminCustomers from './components/adminDashboard/customers/AdminCustomers';
 import AdminFeedback from './components/adminDashboard/feedback/AdminFeedback';
 import AdminSideWrapper from './components/adminDashboard/sideWrapper/AdminSideWrapper';
 import AdminTopWrapper from './components/adminDashboard/topWrapper/AdminTopWrapper';
+
+
+import CompanyDashboard from './components/company/Navbar/CompanyDashboard';
+import CompanyHome from './components/company/Home/CompanyHome';
+import CompanyAddProduct from './components/company/addProduct/CompanyAddProduct';
+import CompanySideWrapper from './components/company/Navbar/CompanySideWrapper';
+import CompanyTopWrapper from './components/company/Navbar/CompanyTopWrapper';
 
 import UserDashboard from './components/userDashboard/UserDashboard';
 import Challenges from './components/userDashboard/challenges/Challenges';
@@ -87,16 +96,26 @@ function App() {
           
           <Route element={<AdminDashboard alert={alert} setmyAlert={setmyAlert}/>} >
             <Route path="/AdminDashboard" element={<Navigate to="/AdminHome" replace />} />
-            <Route path="/AdminDashboard" element={<UserDashboard/>} />
+            <Route path="/AdminDashboard" element={<AdminDashboard/>} />
             <Route path="/AdminHome" element={<AdminHome/>} />
             <Route path='/AdminSideWrapper' element={<AdminSideWrapper />} />
             <Route path='/AdminTopWrapper' element={<AdminTopWrapper />}/>
-            <Route path='/AdminAddProduct' element={<AdminAddProduct setmyAlert={setmyAlert}/>}/>
+            {/* <Route path='/AdminAddProduct' element={<AdminAddProduct setmyAlert={setmyAlert}/>}/> */}
             <Route path='/AdminCustomers' element={<AdminCustomers setmyAlert={setmyAlert} />}/>
             <Route path='/AdminFeedback' element={<AdminFeedback setmyAlert={setmyAlert}/>}/>
             <Route path='/AdminOrder' element={<AdminOrder setmyAlert={setmyAlert}/>}/>
             <Route path='/AdminPayment' element={<AdminPayment />}/>
             <Route path='/AdminTrainers' element={<AdminTrainers setmyAlert={setmyAlert}/>}/>
+          </Route>
+          
+          
+          <Route element={<CompanyDashboard alert={alert} setmyAlert={setmyAlert}/>} >
+            <Route path="/CompanyDashboard" element={<Navigate to="/CompanyHome" replace />} />
+            <Route path="/CompanyDashboard" element={<CompanyDashboard/>} />
+            <Route path="/CompanyHome" element={<CompanyHome/>} />
+            <Route path='/CompanyAddProduct' element={<CompanyAddProduct setmyAlert={setmyAlert}/>}/>
+            <Route path='/CompanySideWrapper' element={<CompanySideWrapper />} />
+            <Route path='/CompanyTopWrapper' element={<CompanyTopWrapper />}/>
           </Route>
         </Routes>
       </BrowserRouter>

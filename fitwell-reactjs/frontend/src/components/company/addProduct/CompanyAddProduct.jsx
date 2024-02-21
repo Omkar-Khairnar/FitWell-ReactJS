@@ -1,8 +1,7 @@
 import React from 'react';
 import './AddProduct.css';
-import '../admin_dashboard.css';
 
-const AdminAddProduct = (props) => {
+const CompanyAddProduct = (props) => {
     //Used for setting Alert arguments: setmyAlert(msg, type)
     const {setmyAlert} = props;
 
@@ -45,4 +44,4 @@ const AdminAddProduct = (props) => {
   )
 }
 
-export default AdminAddProduct
+export default CompanyAddProduct

@@ -88,6 +88,15 @@ const Footer = () => {
                     <li><Link to="/AdminDashboard">Admin Dashboard</Link></li>
                 </ul>
             </div>
+            <div class="block">
+                <div class="head">
+                    <h2>Company</h2>
+                </div>
+                <ul>
+                    <li><Link to="./adminlogin">Login</Link></li>
+                    <li><Link to="/CompanyDashboard">Company Dashboard</Link></li>
+                </ul>
+            </div>
         </div>
         <div class="footer">
             <footer>&copy; Copyrights @ <span id="date">{date}</span> All rights reserved.</footer>
