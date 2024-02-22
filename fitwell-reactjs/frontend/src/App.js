@@ -48,6 +48,7 @@ import Signin from './components/UserAuthentication/UserSignIn';
 import UserReviews from './components/userDashboard/reviews/UserReviews';
 import UserPayment from './components/userDashboard/payment/UserPayment';
 import { useState } from 'react';
+import Error from './components/ErrorComponent/Error';
 
 
 function App() {
@@ -84,7 +85,7 @@ function App() {
           <Route element={<UserDashboard alert={alert} setmyAlert={setmyAlert}/>} >
             <Route path="/UserDashboard" element={<Navigate to="/UserHome" replace />} />
             <Route path="/UserDashboard" element={<UserDashboard/>} />
-            <Route path="/UserHome" element={<UserHome/>} />
+            <Route path="/UserHome" element={<UserHome setmyAlert={setmyAlert} />} />
             <Route path='/UserNavbar' element={<UserNavbar />} />
             <Route path='/UserProfile' element={<Profile setmyAlert={setmyAlert}/>}/>
             <Route path='/UserOrders' element={<UserOrders setmyAlert={setmyAlert}/>}/>
@@ -108,7 +109,7 @@ function App() {
             <Route path='/AdminPayment' element={<AdminPayment />}/>
             <Route path='/AdminTrainers' element={<AdminTrainers setmyAlert={setmyAlert}/>}/>
           </Route>
-          
+
           
           <Route element={<CompanyDashboard alert={alert} setmyAlert={setmyAlert}/>} >
             <Route path="/CompanyDashboard" element={<Navigate to="/CompanyHome" replace />} />
@@ -119,6 +120,8 @@ function App() {
             <Route path='/CompanyTopWrapper' element={<CompanyTopWrapper />}/>
             <Route path='/CompanyOurProducts' element={<CompanyOurProducts setmyAlert={setmyAlert}/>}/>
           </Route>
+
+          <Route path='*' element={<Error/>}/>
         </Routes>
       </BrowserRouter>
     </div>

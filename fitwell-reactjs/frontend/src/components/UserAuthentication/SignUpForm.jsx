@@ -55,7 +55,7 @@ function SignUpForm(props) {
       //Setting values to redux store
       dispatch(userLogin(res.data));
       dispatch(addAuthtoken(res.authtoken));
-
+      
       //Navigating To User Dashboard
       navigate("../UserHome");
     } 

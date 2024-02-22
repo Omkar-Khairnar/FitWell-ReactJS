@@ -14,7 +14,7 @@ connectDB();
 
 router.post('/create-order', async (req, res) => {
   try {
-    console.log('Request body:', req.body);
+    // console.log('Request body:', req.body);
 
     const { amount, currency } = req.body;
 

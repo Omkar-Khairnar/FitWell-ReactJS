@@ -3,13 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import "../User_Dashboard.css";
 import { useSelector } from 'react-redux';
 import img1 from "../../../assets/uploads/userProfiles/img1.jpeg"
+import UserService from "../../../services/UserService"
+const host="http://localhost:5001/api/getProfileImage"
 
-
-const UserHome = () => {
+const UserHome = (props) => {
+  const {setmyAlert} = props;
   const userDetails= useSelector(state => state.user.userDetails);
   const isLoggedIn=useSelector(state => state.user.isLoggedIn)
-  const [imageUrl, setImageUrl] = useState(userDetails.image)
-  console.log(userDetails);
+  const [imageName, setImageName]=useState(userDetails.image ? userDetails.image.split('/')[2] : '')
+
   const [bmi, setBmi]=useState(
     (userDetails.weight / Math.pow((parseFloat(userDetails.height)/100),2)).toFixed(2)
   )
@@ -18,13 +20,17 @@ const UserHome = () => {
   //Checking User LoggedIn or Session Expired;
   const checkUserLoggedIn=()=>{
     if(isLoggedIn === false || userDetails ===null){
+      setmyAlert("Session Expired, Log in again", "error")
       navigate('../UserSignIn')
       // alert('User Session Expired. Please Login Again') 
     }
   }
+
   useEffect(()=>{
     checkUserLoggedIn();
   },[])
+
+
 
   return (
     <div class="dashboard-content active" id="dashboard-home-page">
@@ -125,7 +131,7 @@ const UserHome = () => {
             <div class="userdetails no-gutters">
               <div class="userimg card-body w-100 d-flex justify-content-center" style={{backgroundColor : "white", height : "fit-content"}}>
                 <img
-                  src={img1}
+                  src={`${host}/${imageName}`}
                   alt=""
                 />
               </div>
