@@ -4,9 +4,10 @@ import UserActionService from "../../../services/UserActionService";
 import { useSelector, useDispatch } from 'react-redux';
 import {userLogin} from "../../../store/slices/userSlice";
 import LoaderComp from "../../Loader";
-
+const host="http://localhost:5001/api/getProfileImage"
 const Profile = (props) => {
   let userDetails= useSelector(state => state.user.userDetails);
+  const [imageName, setImageName]=useState(userDetails.image ? userDetails.image.split('/')[2] : '')
   const {setmyAlert} = props;
   const dispatch = useDispatch()
   const [isLoading, setIsloading] = useState(false);
@@ -61,7 +62,7 @@ const Profile = (props) => {
                   width="200px"
                   height="200px"
                   alt="profilePhoto"
-                 src={data.image}
+                  src={`${host}/${imageName}`}
                 />
                 <h1>
                   <span class="font-weight-bold" style={{fontSize : "25px"}}>
@@ -147,13 +148,10 @@ const Profile = (props) => {
                         Upload New Profile Image URL
                       </label>
                       <input
-                        type="text"
+                        type="file"
                         name="image"
                         class=" w-100 p-2 m-2"
                         style={{ fontSize: "medium", fontWeight: "bold" }}
-                        placeholder="Profile Image URL"
-                        value={data.image}
-                        onChange={formHandler}
                       />
                     </div>
                   </div>

@@ -41,7 +41,6 @@ class UserService{
         return json;
     }
 
-
 }
 
 module.exports=new UserService();

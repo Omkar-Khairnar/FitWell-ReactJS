@@ -68,7 +68,7 @@ const UserCart = (props) => {
   const handleCheckOutCart = async () => {
     try {
       const amountInPaise =
-        (totalAmount - Math.floor((totalAmount * 5) / 100) + 80) * 100; // Total amount including discount and delivery charges converted to paise
+        (totalAmount - Math.floor((totalAmount * 5) / 100) + 80)*100; // Total amount including discount and delivery charges converted to paise
       const response = await axios.post(
         "http://localhost:5001/api/payments/create-order",
         {
