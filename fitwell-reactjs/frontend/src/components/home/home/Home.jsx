@@ -54,7 +54,7 @@ const Home = () => {
             >
               <span
                 class="carousel-control-next-icon"
-                aria-hidden="true"
+                aria-hidden="true" 
               ></span>
               <span class="visually-hidden"></span>
             </button>
@@ -63,7 +63,7 @@ const Home = () => {
 
         <div id="infobutton">
           <button class="infohome">
-            <Link to="/about">Want More Info?</Link>
+            <Link to="/AboutUs">Want More Info?</Link>
           </button>
         </div>
         <div class="sliderContainer" id="frontinfo">

@@ -16,6 +16,26 @@ class ChallengeService{
             return {error:true, msg:error.message}
         }
     }
+
+    async addChallenge(reqData){
+        try{
+            // console.log(reqData);
+            if(!reqData.img){
+                return {error:true, msg:'Image Parsing Error'};
+            }
+
+            const res = await Challenge.create(reqData);
+
+            if(!res){
+                return {error:true, msg:'Internal Server Error'};
+            }
+
+            return {error:false, msg:'Challenge added successfully', data:{}}
+        }
+        catch(error){
+            return {error:true, msg:error.message}
+        }
+    }
     
 }
 

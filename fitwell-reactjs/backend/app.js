@@ -28,7 +28,7 @@ app.use('/api/payments', require('./routes/razorpayPaymentRoutes'));
 app.use('/api/adminAuth', require('./routes/admin'));
 app.use('/api/userAuth',userLogger, require('./routes/user'));
 app.use('/api/trainer', require('./routes/trainers'));
-app.use('/api/order', require('./routes/order'));
+app.use('/api/order', require('./routes/order')); 
 app.use('/api/review', require('./routes/reviews'));
 app.use('/api/userActions', require('./routes/userActions'));
 app.use('/api/product', require('./routes/products'));

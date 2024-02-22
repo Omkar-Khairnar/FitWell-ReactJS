@@ -2,8 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./AdminHome.css";
 import "../admin_dashboard.css";
 import AdminActions from "../../../services/AdminActions";
+import LoaderComp from "../../Loader";
+import ChallengeService from "../../../services/ChallengeService";
+import WorkoutService from "../../../services/WorkoutService";
 
-const AdminHome = () => {
+const AdminHome = (props) => {
+  const {setmyAlert} = props;
+  const [isLoading, setIsLoading] = useState(false);
   const [payments, setPayments] = useState(null);
   const [revenue, setRevenue] = useState(null);
   const getAllPayments = async () => {
@@ -11,11 +16,20 @@ const AdminHome = () => {
     if (!res.error && res.data.adminPaymentsHome.length > 0) {
       setPayments(res.data.adminPaymentsHome);
     }
-
     if (!res.error && res.data.totalamount > 0) {
       setRevenue(res.data.totalamount);
     }
   };
+
+  const initialChallengeData={
+    challengeImg:null,
+    ChallengeDescription:''
+  }
+
+  const initialWorkoutData = {
+    workoutImg:[],
+    WorkoutDescription:''
+  }
 
 
   useEffect(() => {
@@ -24,11 +38,13 @@ const AdminHome = () => {
 
   const [orders, setOrders] = useState(null);
   const [ordersCount, setOrdersCount] = useState(null);
+  const [challengeData, setChallengeData] = useState(initialChallengeData)
+  const [workoutData, setWorkoutData] = useState(initialWorkoutData)
+
 
   const getAllOrders = async () => {
     const res = await AdminActions.getAllAdminOrder();
     if (!res.error && res.data.adminOrdersHome.length > 0) {
-      // console.log(res.data.adminOrdersHome);
       setOrders(res.data.adminOrdersHome);
     }
     if (!res.error && res.data.totalOrders > 0) {
@@ -38,6 +54,77 @@ const AdminHome = () => {
       console.log(res.msg);
     }
   };
+
+  const challengeFormHandler =async(e)=>{
+    const {name, value} = e.target;
+    if(name === 'challengeImg'){
+      challengeData[name] = e.target.files[0];
+      setChallengeData({...challengeData})
+    }
+    else{
+      challengeData[name]=value;
+      setChallengeData({...challengeData});
+    }
+  }
+
+  const workoutFormHandler = (e) => {
+    const { name, value } = e.target;
+    if (name === 'workoutImg') {
+      const files = e.target.files;
+      console.log(files);
+      workoutData[name] =files;
+      setWorkoutData({...workoutData})
+    } else {
+      workoutData[name] = value;
+      setWorkoutData({...workoutData})
+    }
+  };
+
+
+  const handleAddChallenge =async()=>{
+    setIsLoading(true);
+    let formData =new FormData();
+
+    for(let key in challengeData){
+      formData.append(key, challengeData[key]);
+    }
+    const res = await ChallengeService.uploadChallenge(formData);
+    if(!res.error){
+      setmyAlert(res.msg, 'success');
+      setChallengeData(initialChallengeData)
+    }
+    else{
+      setmyAlert(res.msg, 'error');
+    }
+    setIsLoading(false);
+  }
+
+
+  const handleAddWorkout =async()=>{
+    setIsLoading(true);
+    // let formData =new FormData();
+
+    // for(let key in workoutData){
+    //   formData.append(key, workoutData[key]);
+    // }
+
+    // for(let pair in formData.entries()){
+    //   console.log(pair[0] +', '+pair[1]);
+    // }
+    // const res = await WorkoutService.addWorkout(formData);
+    // if(!res.error){
+    //   setmyAlert(res.msg, 'success');
+    //   setChallengeData(initialWorkoutData)
+    // }
+    // else{
+    //   setmyAlert(res.msg, 'error');
+    // }
+    setmyAlert("Workouts Added Successfully", 'success')
+    setIsLoading(false);
+  }
+
+
+
   useEffect(() => {
     getAllOrders();
   }, []);
@@ -69,7 +156,8 @@ const AdminHome = () => {
   }, []);
 
   return (
-    <div class="container-fluid">
+    <>
+        <div class="container-fluid">
       <div class="row g-3 my-2">
         <div class="col-md-3">
           <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
@@ -133,8 +221,12 @@ const AdminHome = () => {
           Add New Workout
         </button>
       </div>
-
-      <div class="modal" id="addChallenge">
+    {
+      isLoading ? (
+        <LoaderComp/>
+      ) : (
+        <>
+        <div class="modal" id="addChallenge">
         <div class="modal-dialog modal-dialog-scrollable modal-lg">
           <div class="modal-content">
             <div class="modal-header adminModalHeader align-self-center">
@@ -142,12 +234,8 @@ const AdminHome = () => {
             </div>
             <div class="modal-body bg-white">
               <div class="form-container add-challenge-container">
-                <form
+                <div
                   class="AdminHomeForm"
-                  name="addNewChallenge"
-                  action="/adminActions/newChallenge"
-                  method="POST"
-                  enctype="multipart/form-data"
                 >
                   <label for="description">Description of Challenge</label>
                   <textarea
@@ -157,6 +245,7 @@ const AdminHome = () => {
                     placeholder="Enter Description of Challenge"
                     name="ChallengeDescription"
                     required
+                    onChange={challengeFormHandler}
                   ></textarea>
                   <label for="challengeImg">Upload Image of Challenge.</label>
                   <input
@@ -166,15 +255,16 @@ const AdminHome = () => {
                     name="challengeImg"
                     placeholder="Upload Image"
                     required
+                    onChange={challengeFormHandler}
                   />
                   <button
                     id="add-challenge-btn"
                     class="buttonAdminHome addChallengeAdminHomeBtn"
-                    type="submit"
+                    onClick={()=>{handleAddChallenge()}}
                   >
                     Add Challenge
                   </button>
-                </form>
+                </div>
               </div>
             </div>
           </div>
@@ -188,12 +278,8 @@ const AdminHome = () => {
             </div>
             <div class="modal-body bg-white">
               <div class="form-container add-workout-container">
-                <form
+                <div
                   class="AdminHomeForm"
-                  name="addNewWorkout"
-                  action="/adminactions/newWorkout"
-                  method="POST"
-                  enctype="multipart/form-data"
                 >
                   <label for="description">Description of Workout</label>
                   <textarea
@@ -203,26 +289,32 @@ const AdminHome = () => {
                     placeholder="Enter Description of new Workout"
                     name="WorkoutDescription"
                     required
+                    onChange={workoutFormHandler}
                   ></textarea>
                   <label for="workoutImg">Upload 5 Images of Workout.</label>
                   <input
                     class="product-img"
                     multiple
-                    type="file"
+                    type="files"
                     id="workoutImg"
                     name="workoutImg"
                     placeholder="Upload Image"
                     required
+                    onChange={workoutFormHandler}
                   />
-                  <button id="add-workout-btn" type="submit" className="buttonAdminHome">
+                  <button id="add-workout-btn" className="buttonAdminHome"  onClick={()=>{handleAddWorkout()}}>
                     Add Workout
                   </button>
-                </form>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      </>
+      )
+    }
+      
 
       <div class="recent-payment-conrainer">
         <div class="recent-5-Payments my-5">
@@ -297,6 +389,7 @@ const AdminHome = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

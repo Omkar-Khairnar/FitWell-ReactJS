@@ -14,6 +14,14 @@ class WorkoutService{
         const json = await response.json();
         return json;
     }
+    async addWorkout(reqData){
+        const response= await fetch(`${host}/api/workout/uploadWorkouts`, {
+            method:'POST',
+            body:reqData
+        })
+        const json = await response.json();
+        return json;
+    }
 }
 
 module.exports=new WorkoutService();

@@ -54,6 +54,16 @@ class ProductService{
         const json = await res.json();
         return json;
     }
+
+    async addProduct(reqData){
+        const res=await fetch(`${host}/api/product/addProduct`,{
+            method:'POST',
+            body:reqData
+        })
+
+        const json = await res.json();
+        return json;
+    }
 }
 
 module.exports=new ProductService();

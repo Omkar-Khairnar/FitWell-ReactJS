@@ -86,8 +86,6 @@ class ProductServices {
 
     async getProductsSearchResult(reqData) {
         try {
-            // console.log("🚀 ~ ProductServices ~ getProductsSearchResult ~ reqData:", reqData)
-
             const filter = reqData.filter;
             const search = reqData.search;
             var searchResult;
@@ -131,6 +129,25 @@ class ProductServices {
             return { error: true, msg: error.message }
         }
     };
+
+    async addProduct(reqData){
+        try{
+            if(!reqData.img){
+                return {error:true, msg:'Image Parsing Error'};
+            }
+
+            const res = await ProductSchema.create(reqData);
+
+            if(!res){
+                return {error:true, msg:'Internal Server Error'};
+            }
+
+            return {error:false, msg:'Product added successfully', data:{}}
+        } catch (error) {
+            return { error: true, msg: error.message }
+        }
+
+    }
 
 }
 

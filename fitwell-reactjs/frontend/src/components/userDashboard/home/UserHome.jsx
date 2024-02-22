@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import "../User_Dashboard.css";
 import { useSelector } from 'react-redux';
-import img1 from "../../../assets/uploads/userProfiles/img1.jpeg"
 import UserService from "../../../services/UserService"
 const host="http://localhost:5001/api/getProfileImage"
+// import LoaderComp from "../../Loader";
+
 
 const UserHome = (props) => {
   const {setmyAlert} = props;
@@ -29,7 +30,6 @@ const UserHome = (props) => {
   useEffect(()=>{
     checkUserLoggedIn();
   },[])
-
 
 
   return (

@@ -103,9 +103,9 @@ function App() {
           
           <Route element={<AdminDashboard alert={alert} setmyAlert={setmyAlert}/>} >
             <Route path="/AdminDashboard" element={<Navigate to="/AdminHome" replace />} />
-            <Route path="/AdminDashboard" element={<AdminDashboard/>} />
-            <Route path="/AdminHome" element={<AdminHome/>} />
-            <Route path='/AdminSideWrapper' element={<AdminSideWrapper />} />
+            <Route path="/AdminDashboard" element={<AdminDashboard setmyAlert={setmyAlert}/>} />
+            <Route path="/AdminHome" element={<AdminHome setmyAlert={setmyAlert}/>} />
+            <Route path='/AdminSideWrapper' element={<AdminSideWrapper setmyAlert={setmyAlert}/>} />
             <Route path='/AdminTopWrapper' element={<AdminTopWrapper />}/>
             {/* <Route path='/AdminAddProduct' element={<AdminAddProduct setmyAlert={setmyAlert}/>}/> */}
             <Route path='/AdminCustomers' element={<AdminCustomers setmyAlert={setmyAlert} />}/>
