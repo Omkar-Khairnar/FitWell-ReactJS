@@ -5,7 +5,7 @@ import "./Products.css";
 
 const mapCategoryTitle = [
   { title: "Latest Product", category: "LatestCategory" },
-  // { title: "Whey Proteins", category: "ProteinCategory" },
+  { title: "Whey Proteins", category: "ProteinCategory" },
   // { title: "Nutrients : Vitamins & Minerals", category: "NutrientsCategory" },
 
 ];
@@ -16,16 +16,11 @@ const ProductsScrolling = () => {
   return (
     <div>
       {mapCategoryTitle &&
-        mapCategoryTitle.map((it, index) => (
-          <div key={index}>
+        mapCategoryTitle.map((it) => (
+          <div >
             <div className="latestProductsHeader">
               <div className="latestTradings">
                 <h3 className="title_LT">{it.title}</h3>
-                <i
-                  id="rightArrow"
-                  className="fa fa-solid fa-2x fa-angle-right"
-                  aria-hidden="true"
-                ></i>
               </div>
             </div>
             <div className="productsSection">
