@@ -8,6 +8,7 @@ import LoaderComp from "../../Loader";
 import { useSelector, useDispatch } from "react-redux";
 import { setProducts } from "../../../store/slices/productsSlice.jsx";
 import ProductSearch from "./ProductSearch.jsx";
+import ProductSlider from "./ProductSlider.jsx";
 
 const mapCategoryTitle = [
   { title: "Latest Product", category: "LatestCategory" },
@@ -140,7 +141,6 @@ const Products = (props) => {
     filterData,
   ]);
 
-  
   return (
     <div>
       <ProductSliderCorousel />
@@ -187,7 +187,7 @@ const Products = (props) => {
                     ) : null}
                   </div>
                   <div className="productsSection">
-                    <div
+                    {/* <div
                       id={`arrowLeft${it.category}`}
                       className="arrow arrow-left"
                       
@@ -208,77 +208,77 @@ const Products = (props) => {
                         className="fa fa-angle-double-right"
                         aria-hidden="true"
                       ></i>
-                    </div>
+                    </div> */}
 
-                    <div
-                      id={it.category}
-                      className="allProduct mx-3"
-                      
-                    >
-                      {data &&
-                        data[it.category] !== undefined &&
-                        data[it.category] !== null &&
-                        data[it.category].map((item) => (
-                          <div className="col mx-2">
-                            <div className="inner-col">
-                              <div className="card h-auto bg-dark">
-                                <button
-                                  type="button"
-                                  className="btn-decs-container"
-                                  data-bs-toggle="modal"
-                                  data-bs-target={`#${it.category}Modal${item._id}`}
-                                >
-                                  <div className="decs-container">
-                                    <img
-                                      className="card-img-top-product"
-                                      alt="p1"
-                                      src={`data:image/${
-                                        item.img.contentType
-                                      };base64,${Buffer.from(
-                                        item.img.data
-                                      ).toString("base64")}`}
-                                    />
-                                    <div className="card-body-product p-2">
-                                      <h5
-                                        style={{
-                                          fontFamily: "Ubuntu, sans-serif",
-                                        }}
-                                        className="card-title text-white"
-                                      >
-                                        {item.name}
-                                      </h5>
-                                      <p className="card-text-product">
-                                        {item.category}
-                                      </p>
-                                    </div>
-                                  </div>
-                                </button>
-                                <div
-                                  className="card-footer"
-                                  style={{
-                                    paddingLeft: "0%",
-                                    paddingRight: "0%",
-                                  }}
-                                >
-                                  <p className="card-footer-price card-text-product">
-                                    Price : Rs.
-                                    <span id="product-modal-price card-text-product">
-                                      {item.price}
-                                    </span>
-                                  </p>
+                    {/* <div  className="allProduct mx-3"> */}
+                      <ProductSlider id={it.category}
+                        children={
+                          data &&
+                          data[it.category] !== undefined &&
+                          data[it.category] !== null &&
+                          data[it.category].map((item) => (
+                            <div className="col mx-2">
+                              <div className="inner-col">
+                                <div className="card h-auto bg-dark">
                                   <button
-                                    className="card-footer-AddToCart"
+                                    type="button"
+                                    className="btn-decs-container"
                                     data-bs-toggle="modal"
                                     data-bs-target={`#${it.category}Modal${item._id}`}
                                   >
-                                    Add To Cart
+                                    <div className="decs-container">
+                                      <img
+                                        className="card-img-top-product"
+                                        alt="p1"
+                                        src={`data:image/${
+                                          item.img.contentType
+                                        };base64,${Buffer.from(
+                                          item.img.data
+                                        ).toString("base64")}`}
+                                      />
+                                      <div className="card-body-product p-2">
+                                        <h5
+                                          style={{
+                                            fontFamily: "Ubuntu, sans-serif",
+                                          }}
+                                          className="card-title text-white"
+                                        >
+                                          {item.name}
+                                        </h5>
+                                        <p className="card-text-product">
+                                          {item.category}
+                                        </p>
+                                      </div>
+                                    </div>
                                   </button>
+                                  <div
+                                    className="card-footer"
+                                    style={{
+                                      paddingLeft: "0%",
+                                      paddingRight: "0%",
+                                    }}
+                                  >
+                                    <p className="card-footer-price card-text-product">
+                                      Price : Rs.
+                                      <span id="product-modal-price card-text-product">
+                                        {item.price}
+                                      </span>
+                                    </p>
+                                    <button
+                                      className="card-footer-AddToCart"
+                                      data-bs-toggle="modal"
+                                      data-bs-target={`#${it.category}Modal${item._id}`}
+                                    >
+                                      Add To Cart
+                                    </button>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        ))}
-                    </div>
+                          ))
+                        }
+                      />
+                    {/* </div> */}
                     <div id={`${it.category}${"Modal"}`}>
                       {data &&
                         data[it.category] !== undefined &&

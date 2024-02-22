@@ -17,8 +17,6 @@ import ContactUS from './components/home/contactUs/ContactUS';
 import RazorpayPayment from './components/razorpayPayment/razorpay';
 
 
-import ProductsScrolling from './components/home/products/ProductsScrolling';
-
 
 import AdminHome from './components/adminDashboard/adminHome/adminHome';
 import AdminOrder from './components/adminDashboard/order/AdminOrder';
@@ -85,11 +83,6 @@ function App() {
             <Route path="/ContactUS" element={<ContactUS setmyAlert={setmyAlert}/>} />
             <Route path="/UserSignIn" element={<Signin setmyAlert={setmyAlert}/>} />
 
-
-            <Route path="/ProductsScrolling" element={<ProductsScrolling />} />
-
-
-            
 
 
 

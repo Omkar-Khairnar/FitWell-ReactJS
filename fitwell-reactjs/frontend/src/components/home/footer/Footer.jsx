@@ -100,7 +100,6 @@ const Footer = () => {
         </div>
         <div class="footer">
             <footer>&copy; Copyrights @ <span id="date">{date}</span> All rights reserved.</footer>
-            <Link to="/ProductsScrolling"> Product Scrolling</Link>
         </div>
     </div>
 

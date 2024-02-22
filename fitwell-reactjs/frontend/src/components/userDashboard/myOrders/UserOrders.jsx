@@ -6,9 +6,8 @@ import { Buffer } from "buffer";
 import { useNavigate } from "react-router-dom";
 import OrderService from "../../../services/OrderService";
 
-
 const UserOrders = (props) => {
-  const {setmyAlert}=props;
+  const { setmyAlert } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
@@ -25,13 +24,13 @@ const UserOrders = (props) => {
     setIsLoading(false);
   };
 
-  const handleDeleteOrder =async(productId)=>{
-    const res = await OrderService.deleteOrder({orderid:productId});
-    if(!res.error){
+  const handleDeleteOrder = async (productId) => {
+    const res = await OrderService.deleteOrder({ orderid: productId });
+    if (!res.error) {
       getOrders();
     }
-    setmyAlert(res.msg, res.error ? 'error' : 'success')
-  }
+    setmyAlert(res.msg, res.error ? "error" : "success");
+  };
 
   //Checking User LoggedIn or Session Expired;
   const checkUserLoggedIn = () => {
@@ -65,7 +64,7 @@ const UserOrders = (props) => {
                         "base64"
                       )}`}
                       alt=""
-                      style={{ height: "100px" }}
+                      style={{ height: "100%", borderRadius : '5px' }}
                     />
                   </div>
                   <div class="past-order-info-content mx-auto">
@@ -88,7 +87,25 @@ const UserOrders = (props) => {
                       Delivery Address :{" "}
                       <span id="order-address">{item.address}</span>
                     </p>
-                      <td> <button onClick={()=>{ handleDeleteOrder(item._id)}} style={{border: 'none', backgroundColor: 'white', width: '50px', alignSelf: 'center' }}><i class="fa-solid fa-trash" style={{color: 'red', cursor: 'pointer'}}></i></button></td>
+                    {/* <td> */}
+                      {/* {" "} */}
+                      <button
+                        onClick={() => {
+                          handleDeleteOrder(item._id);
+                        }}
+                        style={{
+                          border: "none",
+                          backgroundColor: "white",
+                          width: "50px",
+                          alignSelf: "center",
+                        }}
+                      >
+                        <i
+                          class="fa-solid fa-trash"
+                          style={{ color: "red", cursor: "pointer" }}
+                        ></i>
+                      </button>
+                    {/* </td> */}
                   </div>
                 </div>
               </div>
