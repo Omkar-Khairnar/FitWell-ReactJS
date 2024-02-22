@@ -15,6 +15,32 @@ class ProductService{
         const json = await res.json();
         return json;
     }
+    async getProductsList(){
+        const res=await fetch(`${host}/api/product/getProductsList`,{
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify({
+            }),
+        })
+
+        const json = await res.json();
+        return json;
+    }
+
+    async deleteProduct(reqdata){
+        const res=await fetch(`${host}/api/product/deleteProduct`,{
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(reqdata),
+        })
+
+        const json = await res.json();
+        return json;
+    }
 
     async getProductsSearchResult(reqdata){
         const res=await fetch(`${host}/api/product/getProductsSearchResult`,{

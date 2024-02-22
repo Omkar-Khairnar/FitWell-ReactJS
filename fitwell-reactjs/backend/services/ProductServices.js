@@ -25,6 +25,37 @@ class ProductServices {
         }
     }
 
+    async getProductsList() {
+        try {
+
+            const ourProducts = await ProductSchema.find().sort({ id: 1 });
+            return {
+                error: false, msg: 'ProductsList Fetched Successfully', data: {ourProducts}
+            }
+        }
+        catch (error) {
+            return { error: true, msg: error.message }
+        }
+    }
+
+    async deleteProduct(reqData){
+        try{
+            const id=reqData.productId;
+            // console.log("🚀 ~ ProductServices ~ deleteProduct ~ id:", id)
+            const product = await ProductSchema.findByIdAndDelete(id);
+
+            if(!product){
+                return {error:true, msg:'Internal Server Error'}
+            }
+
+            return {error:false, msg:'Product Deleted Successfully', data:product};
+        }
+        catch(error){
+            console.log("🚀 ~ ProductServices ~ deleteProduct ~ error:", error)
+            return {error:true, msg:error.message}
+        }
+    }
+
     async getProductsSearchResult(reqData) {
         try {
             // console.log("🚀 ~ ProductServices ~ getProductsSearchResult ~ reqData:", reqData)

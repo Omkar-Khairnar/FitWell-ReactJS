@@ -19,6 +19,9 @@ const CompanySideWrapper = () => {
                 <Link to="/CompanyAddProduct"
                         class="list-group-item list-group-item-action bg-transparent text-light fw-bold"><i
                                 class="fas fa-plus me-2"></i>Add New Product</Link>
+                <Link to="/CompanyOurProducts"
+                        class="list-group-item list-group-item-action bg-transparent text-light fw-bold"><i
+                                class="fas fa-list me-2"></i>Our Products</Link>
 
 
                 <Link to="/" style={{marginTop: '60px', borderTop: '2px solid rgba(0, 0, 0, 0.247)'}} class="list-group-item list-group-item-action bg-transparent text-light active"><i
