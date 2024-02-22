@@ -36,6 +36,7 @@ import CompanyAddProduct from './components/company/addProduct/CompanyAddProduct
 import CompanySideWrapper from './components/company/Navbar/CompanySideWrapper';
 import CompanyTopWrapper from './components/company/Navbar/CompanyTopWrapper';
 import CompanyOurProducts from './components/company/OurProducts/CompanyOurProducts';
+import CompanyOrders from './components/company/Orders/CompanyOrders';
 
 import UserDashboard from './components/userDashboard/UserDashboard';
 import Challenges from './components/userDashboard/challenges/Challenges';
@@ -124,6 +125,7 @@ function App() {
             <Route path='/CompanySideWrapper' element={<CompanySideWrapper />} />
             <Route path='/CompanyTopWrapper' element={<CompanyTopWrapper />}/>
             <Route path='/CompanyOurProducts' element={<CompanyOurProducts setmyAlert={setmyAlert}/>}/>
+            <Route path='/CompanyOrders' element={<CompanyOrders setmyAlert={setmyAlert}/>}/>
           </Route>
 
           <Route path='*' element={<Error/>}/>
