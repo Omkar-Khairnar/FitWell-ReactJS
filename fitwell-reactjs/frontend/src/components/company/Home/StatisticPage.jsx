@@ -1,61 +1,67 @@
 import React, { useState, useEffect } from 'react';
-import { Pie } from 'react-chartjs-2';
-import ProductService from '../../../services/ProductService';
+import axios from 'axios';
+import { Line } from 'react-chartjs-2';
+import AdminActions from '../../../services/AdminActions';
 
-const StatisticsPage = () => {
-  const [categoryStatistics, setCategoryStatistics] = useState({});
+const OrderStatisticsPage = () => {
+  const [dailyOrderData, setDailyOrderData] = useState({});
+  const [totalIncome, setTotalIncome] = useState(0);
+  const [totalOrders, setTotalOrders] = useState(0);
 
   useEffect(() => {
-    fetchData();
+    fetchOrderData();
   }, []);
 
-  const fetchData = async () => {
+  const fetchOrderData = async () => {
     try {
-      const response = await ProductService.getProductsList(); // Adjust the API endpoint based on your backend route
-      const products = response.data;
+      const response = await AdminActions.getAllAdminOrder() // Adjust the API endpoint based on your backend route
+      const orders = response.data.adminOrders;
 
-      // Calculate category statistics
-      const categoryCounts = {};
-      products.forEach((product) => {
-        categoryCounts[product.category] = (categoryCounts[product.category] || 0) + 1;
+      // Calculate daily order statistics
+      const dailyOrders = {};
+      let totalIncomeCount = 0;
+      let totalOrdersCount = 0;
+
+      orders.forEach((order) => {
+        const date = new Date(order.Dateoforder).toLocaleDateString();
+        dailyOrders[date] = (dailyOrders[date] || 0) + 1;
+        totalIncomeCount += order.amount;
+        totalOrdersCount++;
       });
 
-      const totalProducts = products.length;
-      const categoryPercentages = {};
-      Object.keys(categoryCounts).forEach((category) => {
-        categoryPercentages[category] = (categoryCounts[category] / totalProducts) * 100;
-      });
-
-      setCategoryStatistics(categoryPercentages);
+      setDailyOrderData(dailyOrders);
+      setTotalIncome(totalIncomeCount);
+      setTotalOrders(totalOrdersCount);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching order data:', error);
     }
   };
 
   return (
-    <div className="statistics-container">
-      <h2>Category Statistics</h2>
-      <div className="pie-chart-container">
-        <Pie
+    <div className="order-statistics-container">
+      <h2>Order Statistics</h2>
+      <div>
+        <p>Total Income: {totalIncome}</p>
+        <p>Total Orders: {totalOrders}</p>
+      </div>
+      <div className="chart-container">
+        <Line
           data={{
-            labels: Object.keys(categoryStatistics),
+            labels: Object.keys(dailyOrderData),
             datasets: [
               {
-                data: Object.values(categoryStatistics),
-                backgroundColor: [
-                  'rgba(255, 99, 132, 0.6)',
-                  'rgba(54, 162, 235, 0.6)',
-                  'rgba(255, 206, 86, 0.6)',
-                  'rgba(75, 192, 192, 0.6)',
-                  'rgba(153, 102, 255, 0.6)',
-                ],
+                label: 'Daily Orders',
+                data: Object.values(dailyOrderData),
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1,
               },
             ],
           }}
         />
       </div>
     </div>
-  );
+  )
 };
 
-export default StatisticsPage;
+export default OrderStatisticsPage;

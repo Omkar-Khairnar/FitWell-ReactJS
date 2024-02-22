@@ -153,7 +153,7 @@ class AdminServices {
         }
     }
 
-    async getAllAdminOrder(reqData) {
+    async getAllAdminOrder() {
         try {
             const adminOrders = await OrderSchema.find().sort({ _id: -1 }).populate({path:'product', select:'name'});
             if (!adminOrders) {
