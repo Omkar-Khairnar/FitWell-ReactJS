@@ -1,8 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-
+import React, { useEffect, useState } from "react";
 import "./Products.css";
-// import "./ProductsScroll";
 import ProductSliderCorousel from "./ProductSliderCorousel";
 import ProductService from "../../../services/ProductService";
 import { Buffer } from "buffer";
