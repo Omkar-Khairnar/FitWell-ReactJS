@@ -25,7 +25,7 @@ function SignUpForm(props) {
   const handleChange = (evt) => {
     const {name, value} = evt.target
     if(name === 'image'){
-      console.log(evt.target.files[0]);
+      // console.log(evt.target.files[0]);
       setState({...state, [name]:evt.target.files[0]})
     }
     else{

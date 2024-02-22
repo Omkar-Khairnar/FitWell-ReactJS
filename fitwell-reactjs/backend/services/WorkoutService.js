@@ -16,6 +16,25 @@ class WorkoutService{
             return {error:true, msg:error.message}
         }
     }
+
+    async addWorkout(reqData){
+        try{
+            if(!reqData.img){
+                return {error:true, msg:'Image Parsing Error'};
+            }
+
+            const res = await Workout.create(reqData);
+
+            if(!res){
+                return {error:true, msg:'Internal Server Error'};
+            }
+
+            return {error:false, msg:'Workout added successfully', data:{}}
+        }
+        catch(error){
+            return {error:true, msg:error.message}
+        }
+    }
     
 }
 
