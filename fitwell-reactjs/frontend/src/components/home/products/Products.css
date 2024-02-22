@@ -163,6 +163,7 @@
 
 .col {
   margin: 15px 10px;
+  /* width: 50vw; */
   /* padding: 0px 0px; */
   /* height: max-content; */
 }
@@ -175,8 +176,22 @@
 }
 .inner-col {
   padding: 0%;
-  margin: 0%;
+  margin: 5%;
+  margin-bottom: 10%;
+  width: 13vw;
+
 }
+
+.KO_item-container {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+  margin-left: 10px;
+  transition: transform 0.5s ease-in-out;
+
+}
+
 .inner-col:hover {
   transition-delay: 100ms;
   box-shadow: 5px 5px 10px rgb(177, 61, 11);

@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../../../store/slices/productsSlice.jsx";
 
 const CompanyOurProducts = (props) => {
-  
   const [data, setData] = useState(null);
   const { setmyAlert } = props;
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +29,7 @@ const CompanyOurProducts = (props) => {
     }
   };
 
-  const handleDeleteProduct = async(id) => {
+  const handleDeleteProduct = async (id) => {
     setIsLoading(true);
     const res = await ProductService.deleteProduct({ productId: id });
     if (!res.error) {
@@ -86,37 +85,58 @@ const CompanyOurProducts = (props) => {
                                 data-bs-toggle="modal"
                                 data-bs-target={`#Modal${item._id}`}
                                 style={{
-                                  
-                                  border : "none",
-                                  backgroundColor : "inherit",
-                                  fontWeight : 'bold',
-                                  
+                                  border: "none",
+                                  backgroundColor: "inherit",
+                                  fontWeight: "bold",
+
                                   // color : '#09f'
                                 }}
-                              ><i>{item.name}</i></button>
+                              >
+                                <i>{item.name}</i>
+                              </button>
                             </td>
                             <td>{item.category}</td>
                             <td>{item.price}</td>
-                            <td style={{ color: "green" }}>In Stock</td>
+                            <td style={{ color: "green" }}>
+                              <select
+                                name="productStatus"
+                                id="productStatus"
+                                style={{
+                                  fontWeight: "bold",
+                                  fontSize: "15px",
+                                  padding: "0",
+                                  margin: "0",
+                                  width : '5vw',
+                                  boxShadow : 'none',
+                                  border : 'none',
+                                  borderBox :'0'
+                                }}
+                              >
+                                <option style={{color : 'green'}} value="inStock">In Stocks</option>
+                                <option style={{color : 'red'}} value="outOfStock">Out of Stock</option>
+                              </select>
+                            </td>
                             <td style={{ padding: "0%" }}>
                               <button
                                 type="submit"
                                 style={{
                                   border: "none",
+                                  fontWeight : 'bold',
                                   backgroundColor: "transparent",
                                   padding: "auto",
                                 }}
-                                onClick={()=> handleDeleteProduct(item._id)}
+                                onClick={() => handleDeleteProduct(item._id)}
                               >
-                              <i
-                                className="fa-solid fa-trash"
-                                style={{
-                                  color: "red",
-                                  backgroundColor: "transparent",
-                                  cursor: "pointer",
-                                  padding: "0%",
-                                }}
-                              ></i>
+                                <i
+                                  className="fa-solid fa-trash"
+                                  style={{
+                                    color: "red",
+                                    backgroundColor: "transparent",
+                                    fontWeight : '900',
+                                    cursor: "pointer",
+                                    padding: "0%",
+                                  }}
+                                ></i>
                               </button>
                             </td>
                           </tr>
@@ -175,10 +195,13 @@ const CompanyOurProducts = (props) => {
                                     fontSize: "larger",
                                   }}
                                 >
-                                  <p className="card-footer-price card-text-product" >
-                                    Price : {" "} 
-                                    <span id="product-modal-price card-text-product" style={{ color:"green"}}>
-                                     Rs.{item.price}
+                                  <p className="card-footer-price card-text-product">
+                                    Price :{" "}
+                                    <span
+                                      id="product-modal-price card-text-product"
+                                      style={{ color: "green" }}
+                                    >
+                                      Rs.{item.price}
                                     </span>
                                   </p>
                                 </div>

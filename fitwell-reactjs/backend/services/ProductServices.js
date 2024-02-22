@@ -29,8 +29,34 @@ class ProductServices {
         try {
 
             const ourProducts = await ProductSchema.find().sort({ id: 1 });
+            // const countCategory = {
+            //     proteinCount : 0,
+            //     energyCount : 0,
+            //     repairCount : 0,
+            //     nutrientsCount : 0,
+            // }
+            // const totalProducts = 0;
+
+            // proteinQuery = {category: 'Whey Proteins' };
+            // countCategory.proteinCount = await ProductSchema.find(proteinQuery).count();
+
+            // energyQuery = {category: 'Energy & Endurance' };
+            // countCategory.energyCount = await ProductSchema.find(energyQuery).count();
+
+            // repairQuery = {category: 'Recovery & Repair' };
+            // countCategory.repairCount = await ProductSchema.find(repairQuery).count();
+
+            // nutrientsQuery = {category: 'Nutrients' };
+            // countCategory.nutrientsCount = await ProductSchema.find(nutrientsQuery).count();
+
+            // totalProducts = await ProductSchema.count();
+
             return {
-                error: false, msg: 'ProductsList Fetched Successfully', data: {ourProducts}
+                error: false, msg: 'ProductsList Fetched Successfully', data: {
+                    ourProducts
+                    // countCategory, 
+                    // totalProducts
+                }
             }
         }
         catch (error) {
@@ -38,21 +64,21 @@ class ProductServices {
         }
     }
 
-    async deleteProduct(reqData){
-        try{
-            const id=reqData.productId;
+    async deleteProduct(reqData) {
+        try {
+            const id = reqData.productId;
             // console.log("🚀 ~ ProductServices ~ deleteProduct ~ id:", id)
             const product = await ProductSchema.findByIdAndDelete(id);
 
-            if(!product){
-                return {error:true, msg:'Internal Server Error'}
+            if (!product) {
+                return { error: true, msg: 'Internal Server Error' }
             }
 
-            return {error:false, msg:'Product Deleted Successfully', data:product};
+            return { error: false, msg: 'Product Deleted Successfully', data: product };
         }
-        catch(error){
+        catch (error) {
             console.log("🚀 ~ ProductServices ~ deleteProduct ~ error:", error)
-            return {error:true, msg:error.message}
+            return { error: true, msg: error.message }
         }
     }
 

@@ -42,6 +42,7 @@ const UserCart = (props) => {
     setIsloading(true);
     const userid = userDetails._id;
     const res = await UserActionService.getUserCartProducts({ userid: userid });
+    console.log(res);
     if (!res.error) {
       setData(res.data);
     }
@@ -68,7 +69,7 @@ const UserCart = (props) => {
   const handleCheckOutCart = async () => {
     try {
       const amountInPaise =
-        (totalAmount - Math.floor((totalAmount * 5) / 100) + 80)*100; // Total amount including discount and delivery charges converted to paise
+        (totalAmount - Math.floor((totalAmount * 5) / 100) + 80) * 100; // Total amount including discount and delivery charges converted to paise
       const response = await axios.post(
         "http://localhost:5001/api/payments/create-order",
         {
@@ -100,7 +101,7 @@ const UserCart = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log("🚀 ~ UserCart ~ data:", data)
+    console.log("🚀 ~ UserCart ~ data:", data);
     calculateAmount();
   }, [data]);
 
