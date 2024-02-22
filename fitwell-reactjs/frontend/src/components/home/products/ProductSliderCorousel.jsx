@@ -7,7 +7,7 @@ import proSlider3 from "../../../assets/img/slider/rev3.png";
 const ProductSliderCorousel = () => {
   return (
     
-      <div class="sliderContainer" style={{marginBottom : '3vh'}}>
+      <div class="sliderContainer" style={{marginBottom : '5vh'}}>
         <div
           id="carouselExampleAutoplaying"
           class="carousel slide"

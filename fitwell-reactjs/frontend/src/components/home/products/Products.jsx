@@ -152,7 +152,7 @@ const Products = (props) => {
             {mapCategoryTitle &&
               mapCategoryTitle.map((it, index) => (
                 <div key={index}>
-                  <div className="latestProductsHeader">
+                  <div className="latestProductsHeader" >
                     <div className="latestTradings">
                       <h3 className="title_LT">{it.title}</h3>
                       <i
@@ -219,7 +219,7 @@ const Products = (props) => {
                           data[it.category].map((item) => (
                             <div className="col mx-2">
                               <div className="inner-col">
-                                <div className="card h-auto bg-dark">
+                                <div className="card h-auto bg-dark" style={{borderTopRightRadius : '10px', borderTopLeftRadius : '10px'}}>
                                   <button
                                     type="button"
                                     className="btn-decs-container"
@@ -229,6 +229,7 @@ const Products = (props) => {
                                     <div className="decs-container">
                                       <img
                                         className="card-img-top-product"
+                                        style={{borderTopRightRadius : '5px', borderTopLeftRadius : '5px'}}
                                         alt="p1"
                                         src={`data:image/${
                                           item.img.contentType
