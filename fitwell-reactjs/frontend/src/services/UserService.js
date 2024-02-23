@@ -20,7 +20,6 @@ class UserService{
     async createUser(reqData){
         const response= await fetch(`${host}/api/userAuth/createUser`, {
             method:'POST',
-            
             body:reqData,
         })
         const json = await response.json();

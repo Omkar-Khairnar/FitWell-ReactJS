@@ -146,7 +146,8 @@ class UserActionServices{
                 height:height,
                 image:image
             }).select("-password")
-
+            
+            // console.log(updated);
             if(!updated){
                 return {error:true, msg:'Internal Server Error'}
             }

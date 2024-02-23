@@ -74,7 +74,7 @@ const AdminCustomers = (props) => {
                       <td>{item.gender}</td>
                       <td>{item.weight}</td>
                       <td>{item.height}</td>
-                      <td style={{padding : "0%"}}>
+                      {/* <td style={{padding : "0%"}}>
                           <button
                             type="submit"
                             style={{
@@ -89,7 +89,7 @@ const AdminCustomers = (props) => {
                               style={{ color: "red", cursor: "pointer", padding : "auto" }}
                             ></i>
                           </button>
-                      </td>
+                      </td> */}
                     </tr>
                   ))}
               </tbody>

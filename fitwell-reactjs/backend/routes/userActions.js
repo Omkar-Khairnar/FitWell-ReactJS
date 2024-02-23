@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const UserActionServices = require('../services/UserActionServices')
 require('dotenv').config()
+const upload = require('../middlewares/multer.js')
+const path =require('path')
 
 router.post('/contactus', async(req,res)=>{
     const response=await UserActionServices.contactUs(req.body);
@@ -25,7 +27,8 @@ router.post('/checkoutcart', async(req,res)=>{
     return res.send(response);
 })
 
-router.post('/updateprofile', async(req,res)=>{
+router.post('/updateprofile', upload.single('image'),  async(req,res)=>{
+    req.body.image =req.file.path.replace(/\\/g, '/');
     const response=await UserActionServices.updateProfile(req.body);
     return res.send(response);
 })
