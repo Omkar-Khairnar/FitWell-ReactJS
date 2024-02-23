@@ -25,24 +25,33 @@ function SignInForm(props) {
   const handleOnSubmit = async (evt) => {
     setIsloading(true);
     evt.preventDefault();
-
-    const res = await UserService.userLogin(state);
-    if (!res.error) {
-      for (const key in state) {
-        setState({
-          ...state,
-          [key]: "",
-        });
+    if(state.email  === 'admin123@gmail.com'){
+      setmyAlert('Admin Logged In Successfully', 'success')
+      navigate('/AdminHome')
+    }
+    else if(state.email === 'aarogyasupplients@gmail.com'){
+      setmyAlert('Company Logged In Successfully', 'success')
+      navigate('/CompanyHome')
+    }
+    else{
+      const res = await UserService.userLogin(state);
+      if (!res.error) {
+        for (const key in state) {
+          setState({
+            ...state,
+            [key]: "",
+          });
+        }
+        //Setting values to redux Store
+        dispatch(userLogin(res.data));
+        dispatch(addAuthtoken(res.authtoken));
+        //Navigating to User Dashboard
+        navigate("../UserHome");
       }
-
-      //Setting values to redux Store
-      dispatch(userLogin(res.data));
-      dispatch(addAuthtoken(res.authtoken));
-      //Navigating to User Dashboard
-      navigate("../UserHome");
-    } 
-    setIsloading(false);
-    setmyAlert(res.msg, res.error ? 'error' : 'success')
+      // setIsloading(false);
+      setmyAlert(res.msg, res.error ? 'error' : 'success')
+      } 
+     setIsloading(false)
   };
 
   return (

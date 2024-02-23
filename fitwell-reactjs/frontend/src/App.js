@@ -116,7 +116,6 @@ function App() {
             <Route path='/AdminTrainers' element={<AdminTrainers setmyAlert={setmyAlert}/>}/>
           </Route>
 
-          
           <Route element={<CompanyDashboard alert={alert} setmyAlert={setmyAlert}/>} >
             <Route path="/CompanyDashboard" element={<Navigate to="/CompanyHome" replace />} />
             <Route path="/CompanyDashboard" element={<CompanyDashboard/>} />
