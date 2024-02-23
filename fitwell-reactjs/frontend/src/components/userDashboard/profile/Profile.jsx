@@ -15,11 +15,11 @@ const Profile = (props) => {
     name:userDetails.name,
     DateOfJoin:userDetails.DateOfJoin,
     email:userDetails.email,
-    age:userDetails.age,
+    age:userDetails.age, 
     gender:userDetails.gender,
     weight:userDetails.weight,
     height:userDetails.height,
-    image:userDetails.image,
+    image:null,
   })
 
   const setUserData = ()=>{
@@ -28,18 +28,33 @@ const Profile = (props) => {
 
   const formHandler=(e)=>{
     const {name, value}=e.target;
-    data[name]=value;
-    setData({...data});
+    if(name === 'image'){
+      setData({...data, [name]:e.target.files[0]})
+    }
+    else{
+      setData({
+        ...data,
+        [e.target.name]: value,
+      });
+    }
   }
 
-  const handleClickSubmit=async(e)=>{
+  const handleClickSubmit=async()=>{
     setIsloading(true)
-    e.preventDefault();
     data['_id']=userDetails._id;
     setData({...data});
-    const res=await UserActionService.updateProfile(data);
+
+    let formData = new FormData()
+
+    for (let key in data) {
+      formData.append(key, data[key]);
+    }
+
+    const res=await UserActionService.updateProfile(formData);
     if(!res.error){
+      console.log(res.data);
       dispatch(userLogin(res.data));
+      setImageName(res.data.image.split('/')[2])
     }
     setIsloading(false)
     setmyAlert(res.msg, res.error ? 'error' : 'success')
@@ -82,7 +97,6 @@ const Profile = (props) => {
                   </h1>
                 </div>
                 <div class="row mt-1"></div>
-                <form onSubmit={handleClickSubmit}>
                   <div class="row">
                     <div class="col-md-12 p-0">
                       <label class="labels m-0">Name</label>
@@ -151,6 +165,7 @@ const Profile = (props) => {
                         type="file"
                         name="image"
                         class=" w-100 p-2 m-2"
+                        onChange={formHandler}
                         style={{ fontSize: "medium", fontWeight: "bold" }}
                       />
                     </div>
@@ -158,13 +173,12 @@ const Profile = (props) => {
                   <div class="mt-5 text-center">
                     <button
                       class="btn fa-2x btn-primary profile-button"
-                      type="submit"
                       style={{ backgroundColor: "orangered" }}
+                      onClick={()=>{handleClickSubmit()}}
                     >
                       Update Profile
                     </button>
                   </div>
-                </form>
               </div>
             </div>
           </div>

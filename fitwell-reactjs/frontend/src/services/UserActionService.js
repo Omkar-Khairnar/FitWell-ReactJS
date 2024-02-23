@@ -37,10 +37,7 @@ class UserActionService {
     async updateProfile(reqData) {
         const response = await fetch(`${host}/api/userActions/updateProfile`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(reqData),
+            body: reqData,
         })
         const json = await response.json();
         return json;

@@ -53,7 +53,7 @@ function SignUpForm(props) {
     if (!res.error) {
       setState(initialState);
       //Setting values to redux store
-      dispatch(userLogin(res.data));
+      dispatch(userLogin(res.data)); 
       dispatch(addAuthtoken(res.authtoken));
       
       //Navigating To User Dashboard
