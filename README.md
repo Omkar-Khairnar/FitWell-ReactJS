@@ -38,9 +38,22 @@
 5. Now you are redirected to our website.
 
 ## Sample Admin/User Login
+User-1.Admin
+    Admin Credentials
 > - Email : admin123@gmail.com
-> - Password : Admin@123
- 
+> - Password : @User123
+
+User-2.User
+    User Credentials
+> - Email : mainUser@gmail.com
+> - Password : @User123
+
+User-3.Company
+    Company Credentials
+> - Email : aarogyasupplients@gmail.com
+> - Password : @User123
+
+
 
 ## Contributors
 ```
@@ -49,17 +62,27 @@ IIIT SriCity : UG3 - FDFED Project (Batch 21-25)
 FDFED - Group 12
 
 Bucket -1 
-Omkar Kailash Khairnar (S20210010120)
+Omkar Kailas Khairnar (S20210010120) (Team Lead)
+--> 1. Added Backend Services for various schemas
+    2. Multer, Authorization, application and third party middlewares
+
+
 Kartik Niranjan Patel  (S20210010171)
+--> 1. Added third user and company dashboard
+    2. Backend middlewares added
 
 Bucket -2
 Shivang Shingh (S20210010207)
-Chirag Dhiwar  (S20210010064)
+--> 1. Created DDD for project
 
+Chirag Dhiwar  (S20210010064)
+--> 1. Updated DDD for Project
 Bucket -3
 Karthik Onteru (S20210010163)
-
+--> 1. Added Razorpay payment services for subscription and checkout cart
 ```
+
+## Contributions
 
 >## GitHub Repository 
 >- [fitwell-reactjs](https://github.com/Omkar-Khairnar/FitWell-ReactJS.git)

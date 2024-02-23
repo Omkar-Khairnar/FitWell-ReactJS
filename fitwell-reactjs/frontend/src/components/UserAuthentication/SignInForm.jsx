@@ -25,11 +25,11 @@ function SignInForm(props) {
   const handleOnSubmit = async (evt) => {
     setIsloading(true);
     evt.preventDefault();
-    if(state.email  === 'admin123@gmail.com'){
+    if(state.email  === 'admin123@gmail.com' && state.password ==='@User123'){
       setmyAlert('Admin Logged In Successfully', 'success')
       navigate('/AdminHome')
     }
-    else if(state.email === 'aarogyasupplients@gmail.com'){
+    else if(state.email === 'aarogyasupplients@gmail.com' && state.password === '@User123'){
       setmyAlert('Company Logged In Successfully', 'success')
       navigate('/CompanyHome')
     }
