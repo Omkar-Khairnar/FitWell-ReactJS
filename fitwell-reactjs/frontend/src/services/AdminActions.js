@@ -116,4 +116,4 @@ class AdminAction{
     }
 }
 
-module.exports=new AdminAction();
+module.exports = new AdminAction();

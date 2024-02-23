@@ -29,33 +29,35 @@ class ProductServices {
         try {
 
             const ourProducts = await ProductSchema.find().sort({ id: 1 });
-            // const countCategory = {
-            //     proteinCount : 0,
-            //     energyCount : 0,
-            //     repairCount : 0,
-            //     nutrientsCount : 0,
-            // }
-            // const totalProducts = 0;
+            let categoryCounts = {
+                ProteinCategory : 0,
+                EnergyCategory : 0,
+                RecoveryCategory : 0,
+                NutrientsCategory : 0,
+            }
+            let totalProducts ;
+            const totalCategories = 4;
 
-            // proteinQuery = {category: 'Whey Proteins' };
-            // countCategory.proteinCount = await ProductSchema.find(proteinQuery).count();
+            const proteinQuery = { category: 'Whey Proteins' };
+            categoryCounts.ProteinCategory = await ProductSchema.find(proteinQuery).count();
 
-            // energyQuery = {category: 'Energy & Endurance' };
-            // countCategory.energyCount = await ProductSchema.find(energyQuery).count();
+            const energyQuery = { category: 'Energy & Endurance' };
+            categoryCounts.EnergyCategory = await ProductSchema.find(energyQuery).count();
 
-            // repairQuery = {category: 'Recovery & Repair' };
-            // countCategory.repairCount = await ProductSchema.find(repairQuery).count();
+            const repairQuery = { category: 'Recovery & Repair' };
+            categoryCounts.RecoveryCategory = await ProductSchema.find(repairQuery).count();
 
-            // nutrientsQuery = {category: 'Nutrients' };
-            // countCategory.nutrientsCount = await ProductSchema.find(nutrientsQuery).count();
+            const nutrientsQuery = { category: 'Nutrients' };
+            categoryCounts.NutrientsCategory = await ProductSchema.find(nutrientsQuery).count();
 
-            // totalProducts = await ProductSchema.count();
+            totalProducts = await ProductSchema.find().count();
 
             return {
                 error: false, msg: 'ProductsList Fetched Successfully', data: {
-                    ourProducts
-                    // countCategory, 
-                    // totalProducts
+                    ourProducts,
+                    categoryCounts, 
+                    totalProducts,
+                    totalCategories
                 }
             }
         }

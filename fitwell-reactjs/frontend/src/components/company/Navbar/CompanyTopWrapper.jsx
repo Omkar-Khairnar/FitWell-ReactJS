@@ -20,7 +20,7 @@ const CompanyTopWrapper = () => {
       <li class="nav-item dropdown">
         <Link class="nav-link dropdown-toggle second-text fw-bold" to="#" id="navbarDropdown" role="button"
           data-bs-toggle="dropdown" aria-expanded="false" style={{textDecoration : "none"}}>
-          <i class="fas fa-user me-2"></i><span id="admin-dashboard-username" style={{fontSize : "20px", color : "black"}}>Admin</span>
+          <i class="fas fa-user me-2"></i><span id="admin-dashboard-username" style={{fontSize : "20px", color : "black"}}>Aarogya Suppliments</span>
         </Link>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li><Link class="dropdown-item" to="/">Logout</Link></li>

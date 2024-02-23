@@ -13,6 +13,11 @@ router.post('/userLogin', async(req, res)=>{
     return res.send(response);
 })
 
+router.post('/updateDate', async(req, res)=>{
+    const response= await UserServices.updateDate(req.body);
+    return res.send(response);
+})
+
 router.post('/createUser', upload.single('image') ,async(req,res)=>{
     req.body.image =req.file.path.replace(/\\/g, '/');
     console.log(req.body.image);
