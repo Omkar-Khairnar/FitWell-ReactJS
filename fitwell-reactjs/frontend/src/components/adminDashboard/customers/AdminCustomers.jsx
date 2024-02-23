@@ -59,7 +59,7 @@ const AdminCustomers = (props) => {
                   <th scope="col">Gender</th>
                   <th scope="col">Weight</th>
                   <th scope="col">Height</th>
-                  <th scope="col">Remove</th>
+                  {/* <th scope="col">Status</th> */}
                 </tr>
               </thead>
               <tbody>
