@@ -23,7 +23,6 @@ const UserHome = (props) => {
     if(isLoggedIn === false || userDetails ===null){
       setmyAlert("Session Expired, Log in again", "error")
       navigate('../UserSignIn')
-      // alert('User Session Expired. Please Login Again') 
     }
   }
 
@@ -77,7 +76,7 @@ const UserHome = (props) => {
                     </div>
                     <div class="row">
                       <div class="w-100 m-0 p-0">
-                        <h4>{userDetails.expirydate}</h4>
+                        <h4>{new Date(userDetails.expirydate).toDateString()}</h4>
                       </div>
                     </div>
                   </div>
@@ -95,7 +94,7 @@ const UserHome = (props) => {
                     <div class="row align-items-center mb-2 d-flex">
                       <div class="col-8">
                         <h2 class="d-flex align-items-center mb-0">
-                          {2}
+                          {0}
                         </h2>
                       </div>
                       <div class="col-4 text-right"></div>
@@ -116,7 +115,7 @@ const UserHome = (props) => {
                       <div class="col-8">
                         <h3 class="d-flex align-items-center mb-0">
                           Rs.
-                          {14522}
+                          {1452}
                         </h3>
                       </div>
                       <div class="col-4 text-right"></div>
@@ -129,7 +128,7 @@ const UserHome = (props) => {
 
           <div class="topinfo" >
             <div class="userdetails no-gutters">
-              <div class="userimg card-body w-100 d-flex justify-content-center" style={{backgroundColor : "white", height : "fit-content"}}>
+              <div class="userimg card-body w-100 d-flex justify-content-center" style={{backgroundColor : "white"}}>
                 <img
                   src={`${host}/${imageName}`}
                   alt=""

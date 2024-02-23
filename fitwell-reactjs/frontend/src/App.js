@@ -70,10 +70,10 @@ function App() {
           <Route element={<LandingPage alert={alert} setmyAlert={setmyAlert}/>} >
             <Route path='/' element={<Navigate to="/Home" replace />} />
             <Route path="/Navbar" element={<Navbar />} /> 
-            <Route path="/Home" element={<Home />} />
+            <Route path="/Home" element={<Home setmyAlert={setmyAlert}/>} />
             <Route path="/AboutUs" element={<AboutUs />} />
             <Route path="/Footer" element={<Footer />} />
-            <Route path="/Pricing" element={<Pricing />} />
+            <Route path="/Pricing" element={<Pricing setmyAlert={setmyAlert}/>} />
             <Route path="/Services" element={<Services />} />
             <Route path="/Products" element={<Products setmyAlert={setmyAlert} />} />
             <Route path="/ProductSearch" element={<ProductSearch setmyAlert={setmyAlert}/>} />

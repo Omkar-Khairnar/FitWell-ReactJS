@@ -1,8 +1,15 @@
 import React, { useEffect } from "react";
 import "./Pricing.css";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import {updateUserField} from "../../../store/slices/userSlice";
 
-const Pricing = () => {
+const Pricing = (props) => {
+  const isLoggedIn=useSelector(state => state.user.isLoggedIn)
+  let userDetails= useSelector(state => state.user.userDetails);
+  const dispatch = useDispatch();
+  const {setmyAlert} = props;
+
   useEffect(() => {
     // Load Razorpay library script
     const script = document.createElement("script");
@@ -15,9 +22,13 @@ const Pricing = () => {
       document.body.removeChild(script);
     };
   }, []);
+
   const handlePayment = async (amount) => {
+    if(isLoggedIn === false){
+      setmyAlert("Please Login First to make subscription payment.", "error");
+      return ;
+    }
     const amountInPaise = amount * 100;
-    console.log("Amount in paise:", amountInPaise);
     try {
       // Send a request to your backend to create a Razorpay order
       const response = await axios.post(
@@ -27,7 +38,6 @@ const Pricing = () => {
           currency: "INR",
         }
       );
-      console.log(amount);
       const { order_id } = await response.data;
       const options = {
         key: "rzp_test_9x6rezEARWbqRW",
@@ -35,14 +45,29 @@ const Pricing = () => {
         currency: "INR",
         order_id,
       };
-
+      console.log('yha');
+      const updatedDate = addMonths(userDetails.expirydate,6);
+      dispatch(updateUserField({name:'expirydate', value:updatedDate}))
       const razorpay = new window.Razorpay(options);
       razorpay.open();
+
     } catch (error) {
       console.error("Error initiating payment:", error);
-      alert("Error initiating Razorpay:");
+      setmyAlert("Error initiating Razorpay", 'error')
     }
   };
+
+  function addMonths(date, months) {
+    var d = new Date(date);
+    d.setMonth(d.getMonth() + months);
+    
+    // Check for overflow
+    if (d.getMonth() !== (new Date(date).getMonth() + months) % 12) {
+        d.setFullYear(d.getFullYear() + 1);
+    }
+
+    return d;
+}
 
   return (
     <div>

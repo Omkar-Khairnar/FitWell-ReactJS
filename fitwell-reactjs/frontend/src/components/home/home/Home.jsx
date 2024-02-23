@@ -13,7 +13,9 @@ import home8 from "../../../assets/img/home8.jpg";
 import Pricing from "../pricing/Pricing";
 import {Link} from 'react-router-dom'
 
-const Home = () => {
+
+const Home = (props) => {
+  const {setmyAlert} = props;
   return (
     <div>
       <div>
@@ -203,7 +205,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Pricing />
+      <Pricing setmyAlert={setmyAlert} />
     </div>
   );
 };

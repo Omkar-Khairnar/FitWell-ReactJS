@@ -39,8 +39,15 @@ const userReducer=createSlice({
             state.authtoken=null;
             state.isLoggedIn=false
         },
+        updateUserField:(state, action)=>{
+            const { name, value } = action.payload;
+            state.userDetails = {
+                ...state.userDetails,
+                [name]: value
+            };
+        }
     }
 })
 
-export const {userLogin, addAuthtoken, userLogout} = userReducer.actions;
+export const {userLogin, addAuthtoken, userLogout, updateUserField} = userReducer.actions;
 export default userReducer.reducer;
