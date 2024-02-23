@@ -68,8 +68,8 @@ Omkar Kailas Khairnar (S20210010120) (Team Lead)
 
 
 Kartik Niranjan Patel  (S20210010171)
---> 1. Added third user and company dashboard
-    2. Backend middlewares added
+--> 1. Added third user (company) dashboard
+    2. Backend middlewares added, morgan middleware added
 
 Bucket -2
 Shivang Shingh (S20210010207)
@@ -79,7 +79,7 @@ Chirag Dhiwar  (S20210010064)
 --> 1. Updated DDD for Project
 Bucket -3
 Karthik Onteru (S20210010163)
---> 1. Added Razorpay payment services for subscription and checkout cart
+--> 1. Added Razorpay payment micro services for subscription and checkout cart
 ```
 
 ## Contributions
