@@ -155,7 +155,7 @@ class AdminServices {
 
     async getAllAdminOrder() {
         try {
-            const adminOrders = await OrderSchema.find().sort({ _id: -1 }).populate({path:'product', select:'name'});
+            const adminOrders = await OrderSchema.find().sort({ _id: 1 }).populate({path:'product', select:'name'});
             if (!adminOrders) {
                 return { error: true, msg: 'Internal Server Error' }; 
             }

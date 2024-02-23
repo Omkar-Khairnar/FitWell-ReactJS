@@ -4,6 +4,7 @@ import { Buffer } from "buffer";
 import LoaderComp from "../../Loader";
 import { useSelector, useDispatch } from "react-redux";
 import { setWorkout } from "../../../store/slices/workoutSlice.jsx"
+import Timer from "../timer/Timer.jsx";
 
 const WorkoutService = require("../../../services/WorkoutService");
 
@@ -12,6 +13,7 @@ const Workouts = () => {
   const [isLoading, setIsloading] = useState(false);
   const homeWorkout = useSelector(state => state.workouts.homeWorkout)
   const dispatch = useDispatch()
+
 
   //Fetching workouts from backend
   const getWorkouts = async () => {
@@ -23,7 +25,9 @@ const Workouts = () => {
     }
     setIsloading(false)
   };
- 
+
+
+
   useEffect(() => {
     if(homeWorkout ===undefined ||  homeWorkout.length === 0){
       getWorkouts();
@@ -74,7 +78,7 @@ const Workouts = () => {
                         <div class="modal-dialog modal-fullscreen">
                           <div class="modal-content">
                             <div class="modal-header modal-header-userDashboard">
-                              <div
+                              {/* <div
                                 class="timer"
                                 style={{
                                   display: "flex",
@@ -118,6 +122,7 @@ const Workouts = () => {
                                   </button>
                                   <input
                                     class="timerInputClass"
+                                    name="min"
                                     style={{
                                       borderRadius: " 5px",
                                       fontSize: "larger",
@@ -128,13 +133,14 @@ const Workouts = () => {
                                     }}
                                     id={`inputMin${item._id}`}
                                     type="number"
-                                    value="0"
                                     min="0"
                                     max="59"
+                                    onChange={(e) => handleClock(e)}
                                   />
                                   <h3>:</h3>
                                   <input
                                     class="timerInputClass"
+                                    name="sec"
                                     style={{
                                       borderRadius: " 5px",
                                       fontSize: "larger",
@@ -145,9 +151,10 @@ const Workouts = () => {
                                     }}
                                     id={`inputSec${item._id}`}
                                     type="number"
-                                    value="0"
                                     min="0"
                                     max="59"
+                                    onChange={(e) => handleClock(e)}
+
                                   />
                                 </div>
 
@@ -158,7 +165,8 @@ const Workouts = () => {
                                   Time Left -{" "}
                                   <span id={`timer${item._id}`}>0:00</span>
                                 </h3>
-                              </div>
+                              </div> */}
+                              <Timer />
                               <button
                                 type="button"
                                 class="button-close"

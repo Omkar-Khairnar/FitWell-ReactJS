@@ -4,6 +4,7 @@ import { Buffer } from "buffer";
 import LoaderComp from "../../Loader";
 import { useSelector, useDispatch } from "react-redux";
 import { setChallenges as setChallengesInStore } from "../../../store/slices/workoutSlice.jsx"
+import Timer from "../timer/Timer.jsx";
 
 const ChallengeService = require("../../../services/ChallengeService");
 
@@ -74,91 +75,7 @@ const Challenges = () => {
                         <div class="modal-dialog modal-fullscreen">
                           <div class="modal-content">
                             <div class="modal-header modal-header-userDashboard">
-                              <div
-                                class="timer"
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                  width: "55%",
-                                }}
-                              >
-                                <div
-                                  class="timerCustomizer"
-                                  style={{ display: "flex" }}
-                                >
-                                  <button
-                                    class="timerBtnClass startBtn"
-                                    style={{
-                                      backgroundColor: "rgb(0, 248, 0)",
-                                    }}
-                                    id={`startBtn${item._id}`}
-                                  >
-                                    Start
-                                  </button>
-                                  <button
-                                    class="timerBtnClass stopBtn"
-                                    style={{
-                                      backgroundColor: "rgb(255, 0, 0)",
-                                    }}
-                                    id={`stopBtn${item._id}`}
-                                  >
-                                    Stop
-                                  </button>
-                                  <button
-                                    class="timerBtnClass"
-                                    style={{
-                                      backgroundColor: "orange",
-                                      fontSize: "larger",
-                                      border: "none",
-                                      margin: "0px 5px",
-                                    }}
-                                    id={`setBtn${item._id}`}
-                                  >
-                                    Set Time
-                                  </button>
-                                  <input
-                                    class="timerInputClass"
-                                    style={{
-                                      borderRadius: " 5px",
-                                      fontSize: "larger",
-                                      width: "50px",
-                                      textAlign: "center",
-                                      padding: "0%",
-                                      border: "none",
-                                    }}
-                                    id={`inputMin${item._id}`}
-                                    type="number"
-                                    value="0"
-                                    min="0"
-                                    max="59"
-                                  />
-                                  <h3>:</h3>
-                                  <input
-                                    class="timerInputClass"
-                                    style={{
-                                      borderRadius: " 5px",
-                                      fontSize: "larger",
-                                      width: "50px",
-                                      textAlign: "center",
-                                      padding: "0%",
-                                      border: "none",
-                                    }}
-                                    id={`inputSec${item._id}`}
-                                    type="number"
-                                    value="0"
-                                    min="0"
-                                    max="59"
-                                  />
-                                </div>
-
-                                <h3
-                                  id="timerValue"
-                                  style={{ color: "orangered" }}
-                                >
-                                  Time Left -{" "}
-                                  <span id={`timer${item._id}`}>0:00</span>
-                                </h3>
-                              </div>
+                              <Timer/>
                               <button
                                 type="button"
                                 class="button-close"
