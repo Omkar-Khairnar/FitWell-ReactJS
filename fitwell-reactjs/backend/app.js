@@ -20,7 +20,7 @@ app.use(morgan('combined', { stream: accessLogStream }));
 const userLogger = morgan('combined', { stream: accessLogStream });
  
 app.get('/', (req, res) => {
-  res.send('hello world')
+  res.send({msg:"Hello"})
 })
 
 app.use('/api/getProfileImage', express.static(path.join(__dirname,"/uploads/userProfiles")))
