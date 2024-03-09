@@ -1,1 +1,1 @@
-export const PUBLIC_SERVER_URL="https://fitwell-backend.vercel.app"
+export const PUBLIC_SERVER_URL="https://fitwell-reactjs.onrender.com"

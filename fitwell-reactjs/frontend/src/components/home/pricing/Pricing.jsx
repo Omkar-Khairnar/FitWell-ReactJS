@@ -3,6 +3,7 @@ import "./Pricing.css";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import {updateUserField} from "../../../store/slices/userSlice";
+import { PUBLIC_SERVER_URL } from "../../../api";
 
 const Pricing = (props) => {
   const isLoggedIn=useSelector(state => state.user.isLoggedIn)
@@ -32,7 +33,7 @@ const Pricing = (props) => {
     try {
       // Send a request to your backend to create a Razorpay order
       const response = await axios.post(
-        "http://localhost:5001/api/payments/create-order",
+        `${PUBLIC_SERVER_URL}/api/payments/create-order`,
         {
           amount: amountInPaise,
           currency: "INR",

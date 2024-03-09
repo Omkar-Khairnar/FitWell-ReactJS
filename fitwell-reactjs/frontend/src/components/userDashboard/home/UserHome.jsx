@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import "../User_Dashboard.css";
 import { useSelector } from 'react-redux';
 import UserService from "../../../services/UserService"
-const host="http://localhost:5001/api/getProfileImage"
-// import LoaderComp from "../../Loader";
+import { PUBLIC_SERVER_URL } from "../../../api";
 
+const host=`${PUBLIC_SERVER_URL}/api/getProfileImage`
 
 const UserHome = (props) => {
   const {setmyAlert} = props;

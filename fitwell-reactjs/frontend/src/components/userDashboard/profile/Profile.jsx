@@ -4,7 +4,10 @@ import UserActionService from "../../../services/UserActionService";
 import { useSelector, useDispatch } from 'react-redux';
 import {userLogin} from "../../../store/slices/userSlice";
 import LoaderComp from "../../Loader";
-const host="http://localhost:5001/api/getProfileImage"
+import { PUBLIC_SERVER_URL } from "../../../api";
+
+
+const host=`${PUBLIC_SERVER_URL}/api/getProfileImage`
 const Profile = (props) => {
   let userDetails= useSelector(state => state.user.userDetails);
   const [imageName, setImageName]=useState(userDetails.image ? userDetails.image.split('/')[2] : '')
