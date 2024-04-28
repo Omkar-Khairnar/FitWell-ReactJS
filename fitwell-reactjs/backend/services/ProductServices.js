@@ -1,7 +1,6 @@
 const ProductSchema = require('../models/product');
 
 class ProductServices {
-
     //getting products for landing home page based on categories;
     async getProducts() {
         try {
@@ -152,3 +151,4 @@ class ProductServices {
 }
 
 module.exports = new ProductServices();
+ 
