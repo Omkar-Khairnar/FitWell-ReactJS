@@ -1,39 +1,70 @@
 import React, { useEffect, useState } from "react";
-import './AdminTrainerForm.css';
+import "./AdminTrainerForm.css";
 import LoaderComp from "../../Loader";
+import TrainerService  from "../../../services/TrainerService"
 const AdminActions = require("../../../services/AdminActions");
 
-
 const AdminTrainers = (props) => {
-  const {setmyAlert} = props;
-  const [isLoading, setIsLoading] = useState(false)
+  const { setmyAlert } = props;
+  const [isLoading, setIsLoading] = useState(false);
   const [trainers, setTrainers] = useState(null);
+  const initialTrainerData = {
+    name: '',
+    email: '',
+    gender: '',
+    salary: '',
+    image: ''
+  }
+  const [trainerData, setTrainerData] = useState({});
+
   let count = 1;
   const getAllTrainerList = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     const res = await AdminActions.getAllAdminTrainerList();
     if (!res.error && res.data.length > 0) {
       setTrainers(res.data);
     }
     setIsLoading(false);
   };
-  console.log(
-    "🚀 ~ file: AdminTrainers.jsx:11 ~ AdminTrainers ~ trainers:",
-    trainers
-  );
+  // console.log(
+  //   "🚀 ~ file: AdminTrainers.jsx:11 ~ AdminTrainers ~ trainers:",
+  //   trainers
+  // );
 
-  const handleDeleteTrainer =async(trainerid)=>{
-    setIsLoading(true)
-    const res = await AdminActions.deleteTrainer({trainerid});
-    if(!res.error){
-      setmyAlert(res.msg, 'success');
+  const handleDeleteTrainer = async (trainerid) => {
+    setIsLoading(true);
+    const res = await AdminActions.deleteTrainer({ trainerid });
+    if (!res.error) {
+      setmyAlert(res.msg, "success");
       getAllTrainerList();
+    } else {
+      setmyAlert(res.msg, "error");
     }
-    else{
-      setmyAlert(res.msg, 'error')
+    setIsLoading(false);
+  };
+  const handleChange = async (e) => {
+    const { name, value } = e.target;
+    
+      trainerData[name] = value;
+      setTrainerData({ ...trainerData });
+      console.log("🚀 ~ handleChange ~ trainerData:", trainerData)
+    
+  };
+
+  const handleAddTrainer = async () => {
+    setIsLoading(true);
+
+    console.log("🚀 ~ handleAddTrainer ~ trainerData:", trainerData)
+    const res = await TrainerService.addTrainer(trainerData);
+    console.log("🚀 ~ handleAddTrainer ~ res:", res)
+    if (!res.error) {
+      setmyAlert(res.msg, "success");
+      setTrainerData({initialTrainerData});
+    } else {
+      setmyAlert(res.msg, "error");
     }
-    setIsLoading(false)
-  }
+    setIsLoading(false);
+  };
 
   useEffect(() => {
     getAllTrainerList();
@@ -53,11 +84,10 @@ const AdminTrainers = (props) => {
 
         <div class="row my-5">
           <h3 class="fs-4 mb-3">Trainers Information</h3>
-          {
-            isLoading ? (
-              <LoaderComp/>
-            ) : (
-              <div class="col">
+          {isLoading ? (
+            <LoaderComp />
+          ) : (
+            <div class="col">
               <table class="table bg-white rounded shadow-sm  table-hover">
                 <thead>
                   <tr>
@@ -68,9 +98,7 @@ const AdminTrainers = (props) => {
                     <th scope="col">Email</th>
                     <th scope="col">Gender</th>
                     <th scope="col">DOJ</th>
-                    <th scope="col">
-                      Salary
-                    </th>
+                    <th scope="col">Salary</th>
                     <th scope="col" class="text-center">
                       Remove Trainer
                     </th>
@@ -88,63 +116,191 @@ const AdminTrainers = (props) => {
                         <td>{item.DateOfJoin}</td>
                         <td>{item.salary}</td>
                         <td style={{ padding: "0%" }}>
-                         
-                            <button
-                              className="deleteTrainerButton"
+                          <button
+                            className="deleteTrainerButton"
+                            style={{
+                              border: "none",
+                              backgroundColor: "transparent",
+                              padding: "auto",
+                            }}
+                            onClick={() => {
+                              handleDeleteTrainer(item._id);
+                            }}
+                          >
+                            <i
+                              class="fa-solid fa-trash"
                               style={{
-                                border: "none",
-                                backgroundColor: "transparent",
+                                color: "red",
+                                cursor: "pointer",
                                 padding: "auto",
                               }}
-                              onClick={()=>{handleDeleteTrainer(item._id)}}
-                            >
-                              <i
-                                class="fa-solid fa-trash"
-                                style={{
-                                  color: "red",
-                                  cursor: "pointer",
-                                  padding: "auto",
-                                }}
-                              ></i>
-                            </button>
+                            ></i>
+                          </button>
                         </td>
                       </tr>
                     ))}
                 </tbody>
               </table>
             </div>
-            )
-
-          }
+          )}
         </div>
       </div>
 
-      <div class="modal" id="exampleModalAddTrainer">
-            <div class="modal-dialog modal-dialog-scrollable modal-lg">
-              <div class="modal-content">
-                <div class="modal-header adminModalHeader align-self-center">
-                  <h2 style={{fontWeight : 'bold'}}>Fill Out Appropriate Details of Trainer</h2> 
-                </div> 
-                <div class="modal-body" style={{backgroundColor : "white", color : "black"}}>
-                  <div class="form-container" >
-                    <form class="adminAddTrainerForm" name="regform" onchange="return Validation1()" method="POST" action="/adminactions/addTrainer">
-                      <fieldset>
-                        <input class="addTrainerFormInput"  type="text" id="namec" placeholder="Name" name="name" required />
-                        <span class="adminTrainerSpan">Enter Valid Email Address.</span>
-                        <input class="addTrainerFormInput" type="email" id="emailc" placeholder="Email" name="email" required />
-                        <input class="addTrainerFormInput" type="text" id="genderc" placeholder="Gender" name="gender" required/>
-                        <input class="addTrainerFormInput" type="number" id="salary-trainer" placeholder="Enter salary" name="salary" required/>
-                        <input class="addTrainerFormInput" type="url" id="image" name="image"
-                          placeholder="Enter Profile Image Url"/>
-                      </fieldset>
-                      <button class="btnSubmitTrainers" id="signupbtn" type="submit">Add Trainer</button>
-                    </form>
-                  </div>
+      <div className="modal" id="exampleModalAddTrainer">
+        <div className="modal-dialog modal-dialog-scrollable modal-lg">
+          <div className="modal-content">
+            <div className="modal-header adminModalHeader align-self-center">
+              <h2 style={{ fontWeight: "bold" }}>
+                Fill Out Appropriate Details of Trainer
+              </h2>
+            </div>
+            <div
+              className="modal-body"
+              style={{ backgroundColor: "white", color: "black" }}
+            >
+              <div className="form-container">
+                <div
+                  className="adminAddTrainerForm"
+                >
+                  <fieldset>
+                    <input
+                      className="addTrainerFormInput"
+                      type="text"
+                      id="namec"
+                      placeholder="Name"
+                      name="name"
+                      onChange={handleChange}
+                      required
+                    />
+                    <input
+                      className="addTrainerFormInput"
+                      type="email"
+                      id="emailc"
+                      placeholder="Email"
+                      name="email"
+                      onChange={handleChange}
+                      required
+                    />
+                    <input
+                      className="addTrainerFormInput"
+                      type="text"
+                      id="genderc"
+                      placeholder="Gender"
+                      name="gender"
+                      onChange={handleChange}
+                      required
+                    />
+                    <input
+                      className="addTrainerFormInput"
+                      type="number"
+                      id="salary-trainer"
+                      placeholder="Enter salary"
+                      name="salary"
+                      onChange={handleChange}
+                      required
+                    />
+                    <input
+                      className="addTrainerFormInput"
+                      type="url"
+                      id="image"
+                      name="image"
+                      placeholder="Enter Profile Image Url"
+                      onChange={handleChange}
+                    />
+                  </fieldset>
+                  <button
+                    class="btnSubmitTrainers"
+                    id="signupbtn"
+                    onClick={() => {
+                      handleAddTrainer();
+                    }}
+                  >
+                    Add Trainer
+                  </button>
                 </div>
-
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* <div class="modal" id="exampleModalAddTrainer">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+          <div class="modal-content">
+            <div class="modal-header adminModalHeader align-self-center">
+              <h2 style={{ fontWeight: "bold" }}>
+                Fill Out Appropriate Details of Trainer
+              </h2>
+            </div>
+            <div
+              class="modal-body"
+              style={{ backgroundColor: "white", color: "black" }}
+            >
+              <div class="form-container">
+                <form
+                  class="adminAddTrainerForm"
+                  name="regform"
+                  onchange="return Validation1()"
+                  method="POST"
+                  action="/adminactions/addTrainer"
+                >
+                  <fieldset>
+                    <input
+                      class="addTrainerFormInput"
+                      type="text"
+                      id="namec"
+                      placeholder="Name"
+                      name="name"
+                      required
+                    />
+                    <span class="adminTrainerSpan">
+                      Enter Valid Email Address.
+                    </span>
+                    <input
+                      class="addTrainerFormInput"
+                      type="email"
+                      id="emailc"
+                      placeholder="Email"
+                      name="email"
+                      required
+                    />
+                    <input
+                      class="addTrainerFormInput"
+                      type="text"
+                      id="genderc"
+                      placeholder="Gender"
+                      name="gender"
+                      required
+                    />
+                    <input
+                      class="addTrainerFormInput"
+                      type="number"
+                      id="salary-trainer"
+                      placeholder="Enter salary"
+                      name="salary"
+                      required
+                    />
+                    <input
+                      class="addTrainerFormInput"
+                      type="url"
+                      id="image"
+                      name="image"
+                      placeholder="Enter Profile Image Url"
+                    />
+                  </fieldset>
+                  <button
+                    class="btnSubmitTrainers"
+                    id="signupbtn"
+                    type="submit"
+                  >
+                    Add Trainer
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> */}
     </div>
   );
 };
