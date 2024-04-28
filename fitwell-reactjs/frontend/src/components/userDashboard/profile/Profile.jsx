@@ -10,7 +10,7 @@ import { PUBLIC_SERVER_URL } from "../../../api";
 const host=`${PUBLIC_SERVER_URL}/api/getProfileImage`
 const Profile = (props) => {
   let userDetails= useSelector(state => state.user.userDetails);
-  const [imageName, setImageName]=useState(userDetails.image ? userDetails.image.split('/')[2] : '')
+  // const [imageName, setImageName]=useState(userDetails.image ? userDetails.image.split('/')[2] : '')
   const {setmyAlert} = props;
   const dispatch = useDispatch()
   const [isLoading, setIsloading] = useState(false);
@@ -22,7 +22,7 @@ const Profile = (props) => {
     gender:userDetails.gender,
     weight:userDetails.weight,
     height:userDetails.height,
-    image:null,
+    image:userDetails.image,
   })
 
   const setUserData = ()=>{
@@ -57,7 +57,7 @@ const Profile = (props) => {
     if(!res.error){
       console.log(res.data);
       dispatch(userLogin(res.data));
-      setImageName(res.data.image.split('/')[2])
+      // setData(res.data)
     }
     setIsloading(false)
     setmyAlert(res.msg, res.error ? 'error' : 'success')
@@ -80,7 +80,7 @@ const Profile = (props) => {
                   width="200px"
                   height="200px"
                   alt="profilePhoto"
-                  src={`${host}/${imageName}`}
+                  src={userDetails.image}
                 />
                 <h1>
                   <span class="font-weight-bold" style={{fontSize : "25px"}}>

@@ -22,7 +22,7 @@ const Home = () => {
       <div class="collapse navbar-collapse collap " id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 navbar-list-items">
           <li class="nav-item nav-item1 mx-2">
-            <Link class="nav-link " aria-current="page" to="/Home">HOME</Link>
+            
           </li>
           <li class="nav-item nav-item1 mx-2">
             <Link class="nav-link" to="/AboutUs">ABOUT US</Link>

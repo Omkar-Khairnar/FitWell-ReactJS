@@ -6,6 +6,8 @@ const UserActionServices = require('../services/UserActionServices')
 require('dotenv').config()
 const upload = require('../middlewares/multer.js')
 const path =require('path')
+const cloudinary = require('../utils/cloudinary.js')
+
 
 router.post('/contactus', async(req,res)=>{
     const response=await UserActionServices.contactUs(req.body);
@@ -27,11 +29,20 @@ router.post('/checkoutcart', async(req,res)=>{
     return res.send(response);
 })
 
-router.post('/updateprofile', upload.single('image'),  async(req,res)=>{
-    req.body.image =req.file.path.replace(/\\/g, '/');
-    const response=await UserActionServices.updateProfile(req.body);
-    return res.send(response);
-})
+
+router.post('/updateprofile', upload.single('image'), async (req, res) => {
+    try {
+      if(req.file !== undefined && req.file !== null && req.file.path !== null && req.file.path !== undefined){
+        const result = await cloudinary.uploader.upload(req.file.path);  
+        req.body.image = result.secure_url;
+      }  
+      const response = await UserActionServices.updateProfile(req.body);
+      return res.send(response);
+    } catch (error) {
+      console.error('Error uploading image and updating profile:', error);
+      return res.status(500).json({ success: false, message: 'Server error' });
+    }
+});
 
 //getting particular user payments
 router.post('/get-user-payments', async(req,res)=>{

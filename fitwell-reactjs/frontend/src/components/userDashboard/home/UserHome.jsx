@@ -11,7 +11,7 @@ const UserHome = (props) => {
   const {setmyAlert} = props;
   const userDetails= useSelector(state => state.user.userDetails);
   const isLoggedIn=useSelector(state => state.user.isLoggedIn)
-  const [imageName, setImageName]=useState(userDetails.image ? userDetails.image.split('/')[2] : '')
+  // const [imageName, setImageName]=useState(userDetails.image ? userDetails.image.split('/')[2] : '')
 
   const [bmi, setBmi]=useState(
     (userDetails.weight / Math.pow((parseFloat(userDetails.height)/100),2)).toFixed(2)
@@ -130,7 +130,8 @@ const UserHome = (props) => {
             <div class="userdetails no-gutters">
               <div class="userimg card-body w-100 d-flex justify-content-center" style={{backgroundColor : "white"}}>
                 <img
-                  src={`${host}/${imageName}`}
+                  // src={`${host}/${imageName}`}
+                  src={userDetails.image}
                   alt=""
                 />
               </div>

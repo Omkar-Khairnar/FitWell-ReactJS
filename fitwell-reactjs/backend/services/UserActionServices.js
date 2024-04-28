@@ -138,14 +138,14 @@ class UserActionServices{
             if(!user){
                 return {error:true, msg:'User Not Exist'};
             }
-
+            console.log(image);
             const updated=await UserSchema.findByIdAndUpdate(id, {
                 name:name, 
                 age:age, 
                 weight:weight,
                 height:height,
                 image:image
-            }).select("-password")
+            }, {new:true}).select("-password")
             
             // console.log(updated);
             if(!updated){
