@@ -2,20 +2,12 @@ const Trainer=require('../models/Trainer')
 
 
 class TrainerService{
-    async createTrainer(reqData){
+    async createTrainer(req){
+        console.log("🚀 ~ TrainerService ~ createTrainer ~ req:", req)
         try{
-            const name=req.body.name;
-            const email=req.body.email;
-            const salary=req.body.salary;
-            const gender=req.body.gender;
-            const image=req.body.image;
-            let trainer=await Trainer.create({
-                name:name,
-                email:email,
-                salary:salary,
-                image:image,
-                gender:gender
-            })
+
+            let trainer=await Trainer.create(req)
+            console.log("🚀 ~ TrainerService ~ createTrainer ~ trainer:", trainer)
             if(!trainer){
                 return {error:true, msg:"Internal Server Error"}
             }

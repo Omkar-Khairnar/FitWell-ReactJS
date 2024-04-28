@@ -58,7 +58,7 @@ const Order = (props) => {
                         <th scope="col">DateOfOrder</th>
                         <th scope="col">Amount</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Address</th>
+                        {/* <th scope="col">Address</th> */}
                         <th scope="col">Delete</th>
                       </tr>
                     </thead>
@@ -72,7 +72,7 @@ const Order = (props) => {
                             <td>{item.Dateoforder}</td>
                             <td>{item.amount}</td>
                             <td>{item.status}</td>
-                            <td>{item.address}</td>
+                            {/* <td>{item.address}</td> */}
                             <td style={{ padding: "0%" }}>
                               <button
                                 type="submit"
