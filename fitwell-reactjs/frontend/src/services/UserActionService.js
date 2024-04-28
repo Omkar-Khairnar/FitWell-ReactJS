@@ -1,4 +1,6 @@
-const host = "http://localhost:5001"
+const { PUBLIC_SERVER_URL } = require("../api");
+
+const host=PUBLIC_SERVER_URL
 
 class UserActionService {
 

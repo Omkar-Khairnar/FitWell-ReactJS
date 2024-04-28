@@ -7,6 +7,7 @@ import UserActionService from "../../../services/UserActionService";
 import LoaderComp from "../../Loader";
 import { Buffer } from "buffer";
 import axios from "axios";
+import { PUBLIC_SERVER_URL } from "../../../api";
 
 const UserCart = (props) => {
   const { setmyAlert } = props;
@@ -71,7 +72,7 @@ const UserCart = (props) => {
       const amountInPaise =
         (totalAmount - Math.floor((totalAmount * 5) / 100) + 80)*100 ; // Total amount including discount and delivery charges converted to paise
       const response = await axios.post(
-        "http://localhost:5001/api/payments/create-order",
+        `${PUBLIC_SERVER_URL}/api/payments/create-order`,
         {
           amount: amountInPaise,
           currency: "INR",
