@@ -1,0 +1,36 @@
+version: "1"
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: fitwell-frontend
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true  
+    depends_on:
+      - backend
+    networks:
+      - mern-network  
+
+  backend:
+    build: ./backend
+    container_name: fitwell-backend
+    ports:
+      - "5001:5001"
+    restart: always
+    depends_on:
+      - database-mongo
+    networks:
+      - mern-network  
+
+  database-mongo:
+    image: mongo
+    container_name: fitwell-database-mongo
+    ports:
+      - "27017:27017"
+    restart: always
+
+networks:
+  mern-network:
+    driver: bridge
