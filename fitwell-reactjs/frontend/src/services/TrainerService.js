@@ -17,7 +17,7 @@ class TrainerService{
         return json;
     }
     async addTrainer(reqData){
-        console.log("🚀 ~ TrainerService ~ addTrainer ~ reqData:", reqData)
+        // console.log("🚀 ~ TrainerService ~ addTrainer ~ reqData:", reqData);
         const response= await fetch(`${host}/api/trainer/createTrainer`, {
             method:'POST',
             headers: {

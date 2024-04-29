@@ -3,11 +3,11 @@ const Trainer=require('../models/Trainer')
 
 class TrainerService{
     async createTrainer(req){
-        console.log("🚀 ~ TrainerService ~ createTrainer ~ req:", req)
+        // console.log("🚀 ~ TrainerService ~ createTrainer ~ req:", req)
         try{
 
             let trainer=await Trainer.create(req)
-            console.log("🚀 ~ TrainerService ~ createTrainer ~ trainer:", trainer)
+            // console.log("🚀 ~ TrainerService ~ createTrainer ~ trainer:", trainer)
             if(!trainer){
                 return {error:true, msg:"Internal Server Error"}
             }
