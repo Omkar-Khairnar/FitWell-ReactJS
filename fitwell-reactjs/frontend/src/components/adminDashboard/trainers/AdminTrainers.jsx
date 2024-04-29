@@ -15,7 +15,7 @@ const AdminTrainers = (props) => {
     salary: '',
     image: ''
   }
-  const [trainerData, setTrainerData] = useState({});
+  const [trainerData, setTrainerData] = useState(initialTrainerData);
 
   let count = 1;
   const getAllTrainerList = async () => {
@@ -26,10 +26,7 @@ const AdminTrainers = (props) => {
     }
     setIsLoading(false);
   };
-  // console.log(
-  //   "🚀 ~ file: AdminTrainers.jsx:11 ~ AdminTrainers ~ trainers:",
-  //   trainers
-  // );
+
 
   const handleDeleteTrainer = async (trainerid) => {
     setIsLoading(true);
@@ -212,7 +209,7 @@ const AdminTrainers = (props) => {
                     class="btnSubmitTrainers"
                     id="signupbtn"
                     onClick={() => {
-                      handleAddTrainer();
+                      handleAddTrainer()
                     }}
                   >
                     Add Trainer
@@ -223,84 +220,6 @@ const AdminTrainers = (props) => {
           </div>
         </div>
       </div>
-
-      {/* <div class="modal" id="exampleModalAddTrainer">
-        <div class="modal-dialog modal-dialog-scrollable modal-lg">
-          <div class="modal-content">
-            <div class="modal-header adminModalHeader align-self-center">
-              <h2 style={{ fontWeight: "bold" }}>
-                Fill Out Appropriate Details of Trainer
-              </h2>
-            </div>
-            <div
-              class="modal-body"
-              style={{ backgroundColor: "white", color: "black" }}
-            >
-              <div class="form-container">
-                <form
-                  class="adminAddTrainerForm"
-                  name="regform"
-                  onchange="return Validation1()"
-                  method="POST"
-                  action="/adminactions/addTrainer"
-                >
-                  <fieldset>
-                    <input
-                      class="addTrainerFormInput"
-                      type="text"
-                      id="namec"
-                      placeholder="Name"
-                      name="name"
-                      required
-                    />
-                    <span class="adminTrainerSpan">
-                      Enter Valid Email Address.
-                    </span>
-                    <input
-                      class="addTrainerFormInput"
-                      type="email"
-                      id="emailc"
-                      placeholder="Email"
-                      name="email"
-                      required
-                    />
-                    <input
-                      class="addTrainerFormInput"
-                      type="text"
-                      id="genderc"
-                      placeholder="Gender"
-                      name="gender"
-                      required
-                    />
-                    <input
-                      class="addTrainerFormInput"
-                      type="number"
-                      id="salary-trainer"
-                      placeholder="Enter salary"
-                      name="salary"
-                      required
-                    />
-                    <input
-                      class="addTrainerFormInput"
-                      type="url"
-                      id="image"
-                      name="image"
-                      placeholder="Enter Profile Image Url"
-                    />
-                  </fieldset>
-                  <button
-                    class="btnSubmitTrainers"
-                    id="signupbtn"
-                    type="submit"
-                  >
-                    Add Trainer
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };
