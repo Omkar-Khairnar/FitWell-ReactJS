@@ -21,6 +21,7 @@ services:
     restart: always
     depends_on:
       - database-mongo
+      - redis-cache
     networks:
       - mern-network  
 
@@ -30,6 +31,13 @@ services:
     ports:
       - "27017:27017"
     restart: always
+
+  redis-cache:
+    image: redis/redis-stack
+    container_name: fitwell-redis-cache
+    ports:
+      - "6379:6379"
+    restart: always  
 
 networks:
   mern-network:

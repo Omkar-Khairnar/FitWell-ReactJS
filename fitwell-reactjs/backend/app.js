@@ -8,13 +8,14 @@ var cors = require('cors')
 const fs = require('fs');
 const path = require('path');
 const port = 5001;
+// const {redis, setRedisCache, getRedisCache} = require('./utils/redis.js')
+
 
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(express.urlencoded({extended: true, limit:"100mb"}));
 app.use('./uploads/userProfiles/',express.static('/uploads'))
-
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
 app.use(morgan('combined', { stream: accessLogStream }));
 const userLogger = morgan('combined', { stream: accessLogStream });
@@ -46,6 +47,8 @@ app.use((error, req, res, next) => {
   const data = error.data || null;
   res.status(status).json({ message, data });
 });
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

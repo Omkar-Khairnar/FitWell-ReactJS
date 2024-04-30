@@ -49,7 +49,7 @@ class ProductServices {
             const nutrientsQuery = { category: 'Nutrients' };
             categoryCounts.NutrientsCategory = await ProductSchema.find(nutrientsQuery).count();
 
-            totalProducts = await ProductSchema.find().count();
+            totalProducts = ourProducts.length;
 
             return {
                 error: false, msg: 'ProductsList Fetched Successfully', data: {
@@ -68,7 +68,6 @@ class ProductServices {
     async deleteProduct(reqData) {
         try {
             const id = reqData.productId;
-            // console.log("🚀 ~ ProductServices ~ deleteProduct ~ id:", id)
             const product = await ProductSchema.findByIdAndDelete(id);
 
             if (!product) {
@@ -90,31 +89,30 @@ class ProductServices {
             var searchResult;
             var searchResultCount;
             var searchQuery;
-
             if (filter == 'pricelow' || filter == "") {
                 searchQuery = { name: { $regex: search, $options: 'i' } };
                 searchResult = await ProductSchema.find(searchQuery).sort({ price: 1 });
-                searchResultCount = await ProductSchema.find(searchQuery).sort({ price: 1 }).count();
+                searchResultCount = searchResult.length;
             } else if (filter == 'pricehigh') {
                 searchQuery = { name: { $regex: search, $options: 'i' } };
                 searchResult = await ProductSchema.find(searchQuery).sort({ price: -1 });
-                searchResultCount = await ProductSchema.find(searchQuery).sort({ price: -1 }).count();
+                searchResultCount = searchResult.length;
             } else if (filter == 'energy') {
                 searchQuery = { name: { $regex: search, $options: 'i' }, category: 'Energy & Endurance' };
                 searchResult = await ProductSchema.find(searchQuery);
-                searchResultCount = await ProductSchema.find(searchQuery).count();
+                searchResultCount = searchResult.length
             } else if (filter == 'nutrients') {
                 searchQuery = { name: { $regex: search, $options: 'i' }, category: 'Nutrients' };
                 searchResult = await ProductSchema.find(searchQuery);
-                searchResultCount = await ProductSchema.find(searchQuery).count();
+                searchResultCount = searchResult.length;
             } else if (filter == 'repair') {
                 searchQuery = { name: { $regex: search, $options: 'i' }, category: 'Recovery & Repair' };
                 searchResult = await ProductSchema.find(searchQuery);
-                searchResultCount = await ProductSchema.find(searchQuery).count();
+                searchResultCount = searchResult.length;
             } else {
                 searchQuery = { name: { $regex: search, $options: 'i' }, category: 'Whey Proteins' };
                 searchResult = await ProductSchema.find(searchQuery);
-                searchResultCount = await ProductSchema.find(searchQuery).count();
+                searchResultCount = searchResult.length;
             }
             return {
                 error: false, msg: 'Products Fetched Successfully', data: {

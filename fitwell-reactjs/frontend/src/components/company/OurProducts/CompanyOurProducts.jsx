@@ -22,7 +22,6 @@ const CompanyOurProducts = (props) => {
       } else {
         setmyAlert(res.msg, "error");
       }
-      console.log("🚀 ~ getProductsInfo ~ res.data:", res.data);
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching products:", error);

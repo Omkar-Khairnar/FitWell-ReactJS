@@ -44,6 +44,8 @@ const UserSchema= new Schema({
     },
 })
 
+const res = UserSchema.index({email:1},{unique:true});
+
 let user=mongoose.model('user', UserSchema)
 
 module.exports=user
