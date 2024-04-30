@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Buffer } from "buffer";
 import LoaderComp from "../../Loader.js";
 import { useSelector, useDispatch } from "react-redux";
-import { setWorkout } from "../../../store/slices/workoutSlice.jsx"
+import { setWorkout, deleteWorkout } from "../../../store/slices/workoutSlice.jsx"
 // import Timer from "../timer/Timer.jsx";
 
 const WorkoutService = require("../../../services/WorkoutService.js");
@@ -32,9 +32,9 @@ const AdminWorkouts = (props) => {
     setIsloading(true);
     const res = await WorkoutService.deleteWorkout({ workoutid: id });
     if (!res.error) {
-          
+      dispatch(deleteWorkout({ workoutId: id }));
       setmyAlert(res.msg, "success");
-      // getWorkouts();
+      
     } else {
       setmyAlert(res.msg, "error");
     }
@@ -50,7 +50,6 @@ const AdminWorkouts = (props) => {
     else{
       setWorkouts(homeWorkout);
     }
-    handleDeleteWorkout()
   }, []);
 
   return (
@@ -144,6 +143,7 @@ const AdminWorkouts = (props) => {
                               <button
                                 type="button"
                                 class="btn btn-primary"
+                                data-bs-dismiss="modal"
                                 onClick={() => handleDeleteWorkout(item._id)}
                               >
                                 Delete

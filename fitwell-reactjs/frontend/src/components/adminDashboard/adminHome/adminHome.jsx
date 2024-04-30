@@ -251,6 +251,7 @@ const AdminHome = (props) => {
                         <button
                           id="add-challenge-btn"
                           class="buttonAdminHome addChallengeAdminHomeBtn"
+                          data-bs-dismiss="modal"
                           onClick={() => {
                             handleAddChallenge();
                           }}
@@ -298,6 +299,7 @@ const AdminHome = (props) => {
                         <button
                           id="add-workout-btn"
                           className="buttonAdminHome"
+                          data-bs-dismiss="modal"
                           onClick={() => {
                             handleAddWorkout();
                           }}

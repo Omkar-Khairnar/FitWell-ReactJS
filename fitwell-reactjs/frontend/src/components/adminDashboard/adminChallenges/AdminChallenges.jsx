@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Buffer } from "buffer";
 import LoaderComp from "../../Loader.js";
 import { useSelector, useDispatch } from "react-redux";
-import { setChallenges as setChallengesInStore } from "../../../store/slices/workoutSlice.jsx";
+import { setChallenges as setChallengesInStore, deleteChallenge } from "../../../store/slices/workoutSlice.jsx";
 // import Timer from "../timer/Timer.jsx";
 
 const ChallengeService = require("../../../services/ChallengeService.js");
@@ -33,16 +33,9 @@ const AdminChallenges = (props) => {
     setIsloading(true);
     const res = await ChallengeService.deleteChallenge({ challengeid: id });
     if (!res.error) {
-    // dispatch(setChallenges(challenges.filter(workout => workout._id !== id)));
+      dispatch(deleteChallenge({ challengeid: id }));
+      setChallenges(res.data);
       setmyAlert(res.msg, "success");
-      const modal = document.getElementById(id);
-    if (modal) {
-      modal.classList.remove('show'); // Hide the modal
-      modal.setAttribute('aria-hidden', 'true');
-      modal.setAttribute('style', 'display: none'); // Hide the modal backdrop
-    }
-
-      // getChallenges();
     } else {
       setmyAlert(res.msg, "error");
     }

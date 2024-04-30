@@ -47,7 +47,9 @@ class ChallengeService{
                 return {error:true, msg:'Internal Server Error'}
             }
 
-            return {error:false, msg:'Challenge Deleted Successfully', data:challenge};
+            const data = await Challenge.find();
+
+            return {error:false, msg:'Challenge Deleted Successfully', data:data};
         }
         catch(error){
             return {error:true, msg:error.message}
