@@ -12,6 +12,42 @@ const razorpay = new Razorpay({
 
 connectDB();
 
+/**
+ * @swagger
+ * /api/payments/create-order:
+ *   post:
+ *     summary: Create a new order
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               amount:
+ *                 type: number
+ *               currency:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Order created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 order_id:
+ *                   type: string
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
 router.post('/create-order', async (req, res) => {
   try {
     // console.log('Request body:', req.body);
