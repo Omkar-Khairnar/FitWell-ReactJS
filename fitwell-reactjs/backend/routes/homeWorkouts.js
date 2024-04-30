@@ -27,6 +27,11 @@ router.post('/getAllWorkouts',getRedisCachedWorkouts, async(req,res)=>{
   }
 })
 
+router.post('/deleteWorkout', async(req,res)=>{
+  const response=await WorkoutService.deleteWorkout(req.body);
+  return res.send(response);
+})
+
 router.post('/uploadWorkouts',upload.array('workoutImg',5), async(req, res)=>{
   try{
     if(!req.files || req.files === undefined){

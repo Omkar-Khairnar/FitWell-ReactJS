@@ -208,6 +208,7 @@ const AdminTrainers = (props) => {
                   <button
                     class="btnSubmitTrainers"
                     id="signupbtn"
+                    data-bs-dismiss="modal"
                     onClick={() => {
                       handleAddTrainer()
                     }}

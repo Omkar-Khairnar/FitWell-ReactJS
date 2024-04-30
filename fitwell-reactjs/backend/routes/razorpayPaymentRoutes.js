@@ -6,8 +6,8 @@ const connectDB = require('../db');
 require('dotenv').config();
 
 const razorpay = new Razorpay({
-  key_id: "rzp_test_9x6rezEARWbqRW",
-  key_secret: "kfEoV4dVNKGsJS2Lp2u5u5bQ",
+  key_id: "rzp_test_m7AmqAwlafnIao",
+  key_secret: "pn3p3BQhQBoVM0fYcCH7qZYp",
 });
 
 connectDB();

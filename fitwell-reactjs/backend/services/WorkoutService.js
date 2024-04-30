@@ -35,6 +35,23 @@ class WorkoutService{
             return {error:true, msg:error.message}
         }
     }
+
+
+    async deleteWorkout(reqData){
+        try{
+            const workoutid=reqData.workoutid;
+            const workout= await Workout.findByIdAndDelete(workoutid);
+
+            if(!workout){
+                return {error:true, msg:'Internal Server Error'}
+            }
+
+            return {error:false, msg:'Workout Deleted Successfully', data:workout};
+        }
+        catch(error){
+            return {error:true, msg:error.message}
+        }
+    }
     
 }
 

@@ -80,7 +80,7 @@ const UserCart = (props) => {
       );
       const { order_id } = response.data;
       const options = {
-        key: "rzp_test_9x6rezEARWbqRW",
+        key: "rzp_test_m7AmqAwlafnIao",
         amount: amountInPaise,
         currency: "INR",
         order_id,

@@ -36,6 +36,25 @@ class ChallengeService{
             return {error:true, msg:error.message}
         }
     }
+
+
+    async deleteChallenge(reqData){
+        try{
+            const challengeid=reqData.challengeid;
+            const challenge= await Challenge.findByIdAndDelete(challengeid);
+
+            if(!challenge){
+                return {error:true, msg:'Internal Server Error'}
+            }
+
+            const data = await Challenge.find();
+
+            return {error:false, msg:'Challenge Deleted Successfully', data:data};
+        }
+        catch(error){
+            return {error:true, msg:error.message}
+        }
+    }
     
 }
 

@@ -27,6 +27,12 @@ router.post('/getAllChallenges', getRedisCachedChallenges, async(req,res)=>{
   }
 })
 
+
+router.post('/deleteChallenge', async(req,res)=>{
+  const response=await ChallengeService.deleteChallenge(req.body);
+  return res.send(response);
+})
+
 router.post('/uploadChallenge',upload.single('challengeImg'), async(req, res)=>{
   try{
     let fileName = req.file ? req.file.filename : '';

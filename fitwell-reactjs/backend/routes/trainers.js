@@ -6,7 +6,7 @@ require('dotenv').config()
 
 
 router.post('/createTrainer', async(req, res)=>{
-    console.log("backend : welcome", req.body);
+    // console.log("backend : welcome", req.body);
     const response=await TrainerService.createTrainer(req.body);
     return res.send(response); 
 })
