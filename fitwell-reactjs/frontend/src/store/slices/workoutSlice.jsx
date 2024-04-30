@@ -17,7 +17,7 @@ const workoutReducer = createSlice({
         setChallenges:(state, action)=>{
             const data = action.payload;
             state.challenges=data
-        }
+        },
     }
 })
 
