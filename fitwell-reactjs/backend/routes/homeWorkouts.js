@@ -11,6 +11,11 @@ router.post('/getAllWorkouts', async(req,res)=>{
   return res.send(response);
 })
 
+router.post('/deleteWorkout', async(req,res)=>{
+  const response=await WorkoutService.deleteWorkout(req.body);
+  return res.send(response);
+})
+
 router.post('/uploadWorkouts',upload.array('workoutImg',5), async(req, res)=>{
   try{
     if(!req.files || req.files === undefined){

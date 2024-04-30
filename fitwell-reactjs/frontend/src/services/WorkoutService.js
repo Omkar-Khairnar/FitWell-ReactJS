@@ -23,6 +23,19 @@ class WorkoutService{
         const json = await response.json();
         return json;
     }
+
+    async deleteWorkout(reqData){
+        console.log(reqData);
+        const response= await fetch(`${host}/api/workout/deleteWorkout`, {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(reqData),
+        })
+        const json = await response.json();
+        return json;
+    }
 }
 
 module.exports=new WorkoutService();

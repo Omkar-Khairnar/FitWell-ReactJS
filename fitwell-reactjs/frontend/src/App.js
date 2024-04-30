@@ -28,6 +28,8 @@ import AdminCustomers from './components/adminDashboard/customers/AdminCustomers
 import AdminFeedback from './components/adminDashboard/feedback/AdminFeedback';
 import AdminSideWrapper from './components/adminDashboard/sideWrapper/AdminSideWrapper';
 import AdminTopWrapper from './components/adminDashboard/topWrapper/AdminTopWrapper';
+import AdminWorkouts from './components/adminDashboard/adminWorkouts/AdminWorkouts';
+import AdminChallenges from './components/adminDashboard/adminChallenges/AdminChallenges';
 
 
 import CompanyDashboard from './components/company/Navbar/CompanyDashboard';
@@ -114,6 +116,8 @@ function App() {
             <Route path='/AdminOrder' element={<AdminOrder setmyAlert={setmyAlert}/>}/>
             <Route path='/AdminPayment' element={<AdminPayment />}/>
             <Route path='/AdminTrainers' element={<AdminTrainers setmyAlert={setmyAlert}/>}/>
+            <Route path='/AdminWorkouts' element={<AdminWorkouts setmyAlert={setmyAlert}/>}/>
+            <Route path='/AdminChallenges' element={<AdminChallenges setmyAlert={setmyAlert}/>}/>
           </Route>
 
           <Route element={<CompanyDashboard alert={alert} setmyAlert={setmyAlert}/>} >

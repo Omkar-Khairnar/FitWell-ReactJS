@@ -26,6 +26,18 @@ class ChallengeService{
         const json = await response.json();
         return json;
     }
+    async deleteChallenge(reqData){
+        console.log(reqData);
+        const response= await fetch(`${host}/api/challenge/deleteChallenge`, {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(reqData),
+        })
+        const json = await response.json();
+        return json;
+    }
 }
 
 module.exports=new ChallengeService();
