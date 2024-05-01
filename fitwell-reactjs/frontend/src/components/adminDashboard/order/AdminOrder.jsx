@@ -68,7 +68,7 @@ const Order = (props) => {
                         orders.map((item) => (
                           <tr>
                             <th scope="row">{count++}</th>
-                            <td>{item.product.name}</td>
+                            <td>{item.product !== null ? item.product.name : item._id}</td>
                             <td>{item.Dateoforder}</td>
                             <td>{item.amount}</td>
                             <td>{item.status}</td>

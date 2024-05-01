@@ -20,6 +20,7 @@
     "axios": "^1.6.7",
     "babel-plugin-macros": "^3.1.0",
     "buffer": "^6.0.3",
+    "jest": "^27.5.1",
     "razorpay": "^2.9.2",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
@@ -57,6 +58,20 @@
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "jest": {
+    "transform": {
+      "^.+\\.(js|jsx)$": "babel-jest"
+    }
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.24.5",
+    "@babel/preset-react": "^7.24.1",
+    "babel-jest": "^29.7.0"
+  }
 }

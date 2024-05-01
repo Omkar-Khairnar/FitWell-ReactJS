@@ -13,15 +13,17 @@ const CompanyOrders = (props) => {
     const res = await AdminActions.getAllAdminOrder();
     if (!res.error && res.data.adminOrders.length > 0) {
       setOrders(res.data.adminOrders);
-      console.log("🚀 ~ getAllOrders ~ res.data.adminOrders:", res.data.adminOrders)
-    }
-    else{
-      setmyAlert(res.msg, 'error')
+      console.log(
+        "🚀 ~ getAllOrders ~ res.data.adminOrders:",
+        res.data.adminOrders
+      );
+    } else {
+      setmyAlert(res.msg, "error");
     }
     setIsLoading(false);
   };
 
-  const handleDeleteOrder = async(id) => {
+  const handleDeleteOrder = async (id) => {
     setIsLoading(true);
     const res = await AdminActions.deleteOrder({ orderid: id });
     if (!res.error) {
@@ -70,11 +72,13 @@ const CompanyOrders = (props) => {
                         orders.map((item) => (
                           <tr>
                             <th scope="row">{count++}</th>
-                            <td>{item.product.name}</td>
+                            <td>
+                              {item.product !== null ? item.product.name : item._id}
+                            </td>
                             <td>{item.Dateoforder}</td>
                             <td>{item.amount}</td>
                             <td>
-                            <select
+                              <select
                                 name="productStatus"
                                 id="productStatus"
                                 style={{
@@ -82,15 +86,30 @@ const CompanyOrders = (props) => {
                                   fontSize: "15px",
                                   padding: "0",
                                   margin: "0",
-                                  width : '5vw',
-                                  boxShadow : 'none',
-                                  border : 'none',
-                                  borderBox :'0'
+                                  width: "5vw",
+                                  boxShadow: "none",
+                                  border: "none",
+                                  borderBox: "0",
                                 }}
                               >
-                                <option style={{color : 'blue'}} value="outOfStock">In Progress</option>
-                                <option style={{color : 'green'}} value="inStock">Delivered</option>
-                                <option style={{color : 'red'}} value="inStock">Cancelled</option>
+                                <option
+                                  style={{ color: "blue" }}
+                                  value="outOfStock"
+                                >
+                                  In Progress
+                                </option>
+                                <option
+                                  style={{ color: "green" }}
+                                  value="inStock"
+                                >
+                                  Delivered
+                                </option>
+                                <option
+                                  style={{ color: "red" }}
+                                  value="inStock"
+                                >
+                                  Cancelled
+                                </option>
                               </select>
                             </td>
                             {/* <td>{item.address}</td> */}
@@ -102,7 +121,7 @@ const CompanyOrders = (props) => {
                                   backgroundColor: "transparent",
                                   padding: "auto",
                                 }}
-                                onClick={()=> handleDeleteOrder(item._id)}
+                                onClick={() => handleDeleteOrder(item._id)}
                               >
                                 <i
                                   className="fa-solid fa-trash"

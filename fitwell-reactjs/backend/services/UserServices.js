@@ -91,7 +91,7 @@ class UserServices{
             return {error:false, msg:'Users Fetched Successfully', data:users};
         }
         catch(error){
-            return {error:true, msg:error.message};
+            return {error:true, msg:"Database Error"};
         }
     }
 
