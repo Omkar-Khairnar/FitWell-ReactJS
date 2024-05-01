@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./AdminTrainerForm.css";
 import LoaderComp from "../../Loader";
 import TrainerService  from "../../../services/TrainerService"
-import { set } from "mongoose";
 const AdminActions = require("../../../services/AdminActions");
 
 const AdminTrainers = (props) => {
