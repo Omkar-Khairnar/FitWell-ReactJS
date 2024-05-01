@@ -41,7 +41,13 @@ const CompanyOurProducts = (props) => {
   };
 
   useEffect(() => {
-    getProductsInfo();
+    if(products ===null || products === undefined ){
+
+      getProductsInfo();
+    }else{
+      setData(products);
+    }
+    
   }, []);
   let count = 1;
   return (

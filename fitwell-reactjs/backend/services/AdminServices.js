@@ -127,7 +127,7 @@ class AdminServices {
 
     async getAllAdminFeedback(reqData) {
         try {
-            const adminFeedbacks = await AdminFeedback.find().sort({ _id: -1 });
+            const adminFeedbacks = await AdminFeedback.find();
             if (!adminFeedbacks) {
                 return { error: true, msg: 'Internal Server Error' };
             }
@@ -135,7 +135,7 @@ class AdminServices {
             return { error: false, msg: 'Admins Fetched Successfully', data: adminFeedbacks };
         }
         catch (error) {
-            return { error: true, msg: error.message };
+            return { error: true, msg: "Database error" };
         }
     }
 
