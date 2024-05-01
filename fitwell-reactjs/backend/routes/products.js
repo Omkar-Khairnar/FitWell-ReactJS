@@ -10,6 +10,33 @@ const path = require('path')
 const redis = require('../utils/redis') 
 require('dotenv').config()
 
+/**
+ * @swagger
+ * tags:
+ *   - name: products
+ *     description: routes for all products
+ * /api/product/getProducts:
+ *   post:
+ *     tags:
+ *       - products
+ *     summary: Get all products
+ *     requestBody:
+ *       required: false
+ *     responses:
+ *       200:
+ *         description: Products fetched successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: boolean
+ *                 msg:
+ *                   type: string
+ *                 data:
+ *                   type: object
+ */
 router.post('/getProducts', getRedisCachedProducts, async(req,res)=>{
     if(req.cachedProducts !== null && req.cachedProducts !== undefined){
         const response =  {
@@ -47,19 +74,141 @@ router.post('/getProducts', getRedisCachedProducts, async(req,res)=>{
 //     }
 // })
 
+/**
+ * @swagger
+ * /api/product/getProductsList:
+ *   post:
+ *     tags:
+ *       - products
+ *     summary: Get products list
+ *     requestBody:
+ *       required: false
+ *     responses:
+ *       200:
+ *         description: Products list fetched successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: boolean
+ *                 msg:
+ *                   type: string
+ *                 data:
+ *                   type: object
+ */
 router.post('/getProductsList', async(req,res)=>{
     const response=await ProductServices.getProductsList();
     return res.send(response)
 })
+
+/**
+ * @swagger
+ * /api/product/deleteProduct:
+ *   post:
+ *     tags:
+ *       - products
+ *     summary: Delete a product
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               productId:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Product deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: boolean
+ *                 msg:
+ *                   type: string
+ *                 data:
+ *                   type: object
+ */
 router.post('/deleteProduct', async(req,res)=>{
     const response=await ProductServices.deleteProduct(req.body);
     return res.send(response)
 })
+
+/**
+ * @swagger
+ * /api/product/getProductsSearchResult:
+ *   post:
+ *     tags:
+ *       - products
+ *     summary: Get products search result
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               filter:
+ *                 type: string
+ *               search:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Products search result fetched successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: boolean
+ *                 msg:
+ *                   type: string
+ *                 data:
+ *                   type: object
+ */
 router.post('/getProductsSearchResult', async(req,res)=>{
     const response=await ProductServices.getProductsSearchResult(req.body);
     return res.send(response)
 })
 
+/**
+ * @swagger
+ * /api/product/addProduct:
+ *   post:
+ *     tags:
+ *       - products
+ *     summary: Add a product
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               productImage:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       200:
+ *         description: Product added successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: boolean
+ *                 msg:
+ *                   type: string
+ *                 data:
+ *                   type: object
+ */
 router.post('/addProduct', upload.single('productImage'), async(req, res)=>{
     try{
         let fileName = req.file ? req.file.filename : '';

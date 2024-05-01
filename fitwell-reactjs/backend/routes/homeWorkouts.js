@@ -8,6 +8,48 @@ const path = require('path')
 const redis = require('../utils/redis') 
 const {getRedisCachedWorkouts} = require('../middlewares/redisMiddlewares/getCachedWorkouts.js')
 
+/**
+ * @swagger
+ * tags:
+ *   - name: homeWorkouts
+ *     description: routes for home workouts
+ * /api/workout/getAllWorkouts:
+ *   post:
+ *     tags:
+ *       - homeWorkouts
+ *     summary: Get all workouts
+ *     requestBody:
+ *       required: false
+ *     responses:
+ *       200:
+ *         description: Workouts fetched successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: boolean
+ *                 msg:
+ *                   type: string
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *       default:
+ *         description: Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: boolean
+ *                 msg:
+ *                   type: string
+ *                 data:
+ *                   type: object
+ */
 router.post('/getAllWorkouts',getRedisCachedWorkouts, async(req,res)=>{
   if(req.cachedWorkouts !== null && req.cachedWorkouts !== undefined){
     const response =  {
@@ -27,11 +69,97 @@ router.post('/getAllWorkouts',getRedisCachedWorkouts, async(req,res)=>{
   }
 })
 
+/**
+ * @swagger
+ * /api/workout/deleteWorkouts:
+ *   post:
+ *     tags:
+ *       - homeWorkouts
+ *     summary: Get all workouts
+ *     requestBody:
+ *       required: false
+ *     responses:
+ *       200:
+ *         description: Workouts fetched successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: boolean
+ *                 msg:
+ *                   type: string
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *       default:
+ *         description: Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: boolean
+ *                 msg:
+ *                   type: string
+ *                 data:
+ *                   type: object
+ */
 router.post('/deleteWorkout', async(req,res)=>{
   const response=await WorkoutService.deleteWorkout(req.body);
   return res.send(response);
 })
 
+/**
+ * @swagger
+ * /api/workout/uploadWorkouts:
+ *   post:
+ *     tags:
+ *       - homeWorkouts
+ *     summary: Upload workouts
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               workoutImg:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   format: binary
+ *     responses:
+ *       200:
+ *         description: Workouts uploaded successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: boolean
+ *                 msg:
+ *                   type: string
+ *                 data:
+ *                   type: object
+ *       default:
+ *         description: Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: boolean
+ *                 msg:
+ *                   type: string
+ *                 data:
+ *                   type: object
+ */
 router.post('/uploadWorkouts',upload.array('workoutImg',5), async(req, res)=>{
   try{
     if(!req.files || req.files === undefined){
