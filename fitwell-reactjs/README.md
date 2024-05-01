@@ -41,11 +41,11 @@
 User-1.Admin
     Admin Credentials
 > - Email : admin123@gmail.com
-> - Password : @User123
+> - Password : admin
 
 User-2.User
     User Credentials
-> - Email : mainUser@gmail.com
+> - Email : omkar@gmail.com
 > - Password : @User123
 
 User-3.Company
@@ -63,28 +63,29 @@ FDFED - Group 12
 
 Bucket -1 
 Omkar Kailas Khairnar (S20210010120) (Team Lead)
---> 1. Added Backend Services for various schemas
-    2. Multer, Authorization, application and third party middlewares
-
 
 Kartik Niranjan Patel  (S20210010171)
---> 1. Added third user (company) dashboard
-    2. Backend middlewares added, morgan middleware added
 
 Bucket -2
 Shivang Shingh (S20210010207)
---> 1. Created DDD for project
 
 Chirag Dhiwar  (S20210010064)
---> 1. Updated DDD for Project
+
 Bucket -3
 Karthik Onteru (S20210010163)
---> 1. Added Razorpay payment micro services for subscription and checkout cart
-```
+
 
 ## Contributions
 
 >## GitHub Repository 
 >- [fitwell-reactjs](https://github.com/Omkar-Khairnar/FitWell-ReactJS.git)
 >- https://github.com/Omkar-Khairnar/FitWell-ReactJS.git 
+
+## DEPLOYED LINK - VERCEL LINK
+>- https://fitwell-fitnessapp.vercel.app/Home
+
+## DEPLOYED BACKEND - RENDER LINK
+>- https://fitwell-reactjs.onrender.com
+
+
 
