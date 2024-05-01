@@ -5,8 +5,13 @@ require('dotenv').config()
 
 /**
  * @swagger
+ * tags:
+ *   - name: reviews
+ *     description: routes for all reviews
  * /api/review/getAllReviews:
  *   post:
+ *     tags:
+ *       - reviews
  *     summary: Get all reviews
  *     requestBody:
  *       required: false

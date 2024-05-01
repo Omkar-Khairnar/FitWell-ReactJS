@@ -8,8 +8,13 @@ require('dotenv').config()
 
 /**
  * @swagger
+ * tags:
+ *   - name: order
+ *     description: routes for all orders
  * /api/order/createOrder:
  *   post:
+ *     tags:
+ *       - order
  *     summary: Create an order
  *     requestBody:
  *       required: true
@@ -67,6 +72,8 @@ router.post('/createOrder', async(req,res)=>{
  * @swagger
  * /api/order/deleteOrder:
  *   post:
+ *     tags:
+ *       - order
  *     summary: Delete an order
  *     requestBody:
  *       required: true
@@ -114,6 +121,8 @@ router.post('/deleteOrder', async(req,res)=>{
  * @swagger
  * /api/order/getUserOrders:
  *   post:
+ *     tags:
+ *       - order
  *     summary: Get user orders
  *     requestBody:
  *       required: true

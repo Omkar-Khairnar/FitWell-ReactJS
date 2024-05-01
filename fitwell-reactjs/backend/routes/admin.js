@@ -7,8 +7,13 @@ require('dotenv').config()
 
 /**
  * @swagger
+ * tags:
+ *   - name: admin
+ *     description: Admin operations
  * /api/adminAuth/adminLogin:
  *   post:
+ *     tags:
+ *       - admin
  *     summary: Admin login
  *     requestBody:
  *       required: true
@@ -54,6 +59,7 @@ require('dotenv').config()
  *                 data:
  *                   type: object
  */
+
 router.post('/adminLogin', async(req, res)=>{
     const response= await AdminServices.adminLogin(req.body);
     return res.send(response);
@@ -63,6 +69,8 @@ router.post('/adminLogin', async(req, res)=>{
  * @swagger
  * /api/adminAuth/createAdmin:
  *   post:
+ *     tags:
+ *       - admin
  *     summary: Create a new admin
  *     requestBody:
  *       required: true
@@ -118,7 +126,9 @@ router.post('/createAdmin', async(req,res)=>{
 /**
  * @swagger
  * /api/adminAuth/getAllAdmins:
- *   post:
+ *   get:
+ *     tags:
+ *       - admin
  *     summary: Get all admins
  *     requestBody:
  *       required: false
@@ -152,7 +162,7 @@ router.post('/createAdmin', async(req,res)=>{
  *                 data:
  *                   type: object
  */
-router.post('/getAllAdmins', async(req,res)=>{
+router.get('/getAllAdmins', async(req,res)=>{
     const response=await AdminServices.getAllAdmins(req.body);
     return res.send(response);
 })
@@ -161,6 +171,8 @@ router.post('/getAllAdmins', async(req,res)=>{
  * @swagger
  * /api/adminAuth/getAllAdminTrainer:
  *   post:
+ *     tags:
+ *       - admin
  *     summary: Get all admin trainers
  *     requestBody:
  *       required: false
@@ -203,6 +215,8 @@ router.post('/getAllAdminTrainer', async(req,res)=>{
  * @swagger
  * /api/adminAuth/getAllAdminPayment:
  *   post:
+ *     tags:
+ *       - admin
  *     summary: Get all admin payments
  *     requestBody:
  *       required: false
@@ -254,6 +268,8 @@ router.post('/getAllAdminPayment', async(req,res)=>{
  * @swagger
  * /api/adminAuth/getAllAdminCustomer:
  *   post:
+ *     tags:
+ *       - admin
  *     summary: Get all admin customers
  *     requestBody:
  *       required: false
@@ -296,6 +312,8 @@ router.post('/getAllAdminCustomer', async(req,res)=>{
  * @swagger
  * /api/adminAuth/getAllAdminFeedback:
  *   post:
+ *     tags:
+ *       - admin
  *     summary: Get all admin feedbacks
  *     requestBody:
  *       required: false
@@ -338,6 +356,8 @@ router.post('/getAllAdminFeedback', async(req,res)=>{
  * @swagger
  * /api/adminAuth/getAllAdminOrder:
  *   post:
+ *     tags:
+ *       - admin
  *     summary: Get all admin orders
  *     requestBody:
  *       required: false
@@ -387,18 +407,18 @@ router.post('/getAllAdminOrder', async(req,res)=>{
 
 /**
  * @swagger
- * /api/adminAuth/deleteTrainer:
- *   post
+ * /api/adminAuth/deleteTrainer/{id}:
+ *   delete:
+ *     tags:
+ *       - admin
  *     summary: Delete a trainer
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               trainerid:
- *                 type: string
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID of the trainer to delete
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: Trainer deleted successfully
@@ -427,8 +447,9 @@ router.post('/getAllAdminOrder', async(req,res)=>{
  *                 data:
  *                   type: object
  */
-router.post('/deleteTrainer', async(req, res)=>{
-    const response = await AdminServices.deleteTrainer(req.body);
+router.delete('/deleteTrainer/:id', async(req, res)=>{
+    const trainerid = req.params.id;
+    const response = await AdminServices.deleteTrainer({trainerid});
     return res.send(response);
 })
 
@@ -436,6 +457,8 @@ router.post('/deleteTrainer', async(req, res)=>{
  * @swagger
  * /api/adminAuth/deleteCustomer:
  *   post:
+ *     tags:
+ *       - admin
  *     summary: Delete a customer
  *     requestBody:
  *       required: true
@@ -483,6 +506,8 @@ router.post('/deleteCustomer', async(req, res)=>{
  * @swagger
  * /api/adminAuth/deleteOrder:
  *   post:
+ *     tags:
+ *       - admin
  *     summary: Delete an order
  *     requestBody:
  *       required: true
@@ -530,6 +555,8 @@ router.post('/deleteOrder', async(req, res)=>{
  * @swagger
  * /api/adminAuth/deleteFeedback:
  *   post:
+ *     tags:
+ *       - admin
  *     summary: Delete a feedback
  *     requestBody:
  *       required: true

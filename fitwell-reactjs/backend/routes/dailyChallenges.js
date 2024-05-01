@@ -10,8 +10,13 @@ const {getRedisCachedChallenges} = require('../middlewares/redisMiddlewares/getC
 
 /**
  * @swagger
+ * tags:
+ *   - name: dailyChallenges
+ *     description: routes for daily challenges
  * /api/challenge/getAllChallenges:
  *   post:
+ *     tags:
+ *       - dailyChallenges
  *     summary: Get all challenges
  *     requestBody:
  *       required: false
@@ -68,6 +73,8 @@ router.post('/getAllChallenges', getRedisCachedChallenges, async(req,res)=>{
  * @swagger
  * /api/challenge/deleteChallenge:
  *   post:
+ *     tags:
+ *       - dailyChallenges
  *     summary: Delete a challenge
  *     requestBody:
  *       required: true
@@ -115,6 +122,8 @@ router.post('/deleteChallenge', async(req,res)=>{
  * @swagger
  * /api/challenge/uploadChallenge:
  *   post:
+ *     tags:
+ *       - dailyChallenges
  *     summary: Upload a challenge
  *     requestBody:
  *       required: true

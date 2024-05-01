@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./AdminTrainerForm.css";
 import LoaderComp from "../../Loader";
 import TrainerService  from "../../../services/TrainerService"
+import { set } from "mongoose";
 const AdminActions = require("../../../services/AdminActions");
 
 const AdminTrainers = (props) => {
@@ -9,6 +10,7 @@ const AdminTrainers = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [trainers, setTrainers] = useState(null);
   const initialTrainerData = {
+    _id:'',
     name: '',
     email: '',
     gender: '',
@@ -27,7 +29,7 @@ const AdminTrainers = (props) => {
     setIsLoading(false);
   };
 
-
+  
   const handleDeleteTrainer = async (trainerid) => {
     setIsLoading(true);
     const res = await AdminActions.deleteTrainer({ trainerid });
@@ -50,10 +52,7 @@ const AdminTrainers = (props) => {
 
   const handleAddTrainer = async () => {
     setIsLoading(true);
-
-    console.log("🚀 ~ handleAddTrainer ~ trainerData:", trainerData)
     const res = await TrainerService.addTrainer(trainerData);
-    console.log("🚀 ~ handleAddTrainer ~ res:", res)
     if (!res.error) {
       setmyAlert(res.msg, "success");
       setTrainerData({initialTrainerData});
@@ -61,6 +60,19 @@ const AdminTrainers = (props) => {
       setmyAlert(res.msg, "error");
     }
     setIsLoading(false);
+  };
+
+  const handleUpdateTrainer = async (trainer) => {
+      setIsLoading(true);
+      const res = await TrainerService.updateTrainer(trainerData);
+      if (!res.error) {
+        setmyAlert(res.msg, "success");
+        setTrainerData({initialTrainerData});
+        getAllTrainerList();
+      } else {
+        setmyAlert(res.msg, "error");
+      }
+      setIsLoading(false);
   };
 
   useEffect(() => {
@@ -97,6 +109,9 @@ const AdminTrainers = (props) => {
                     <th scope="col">DOJ</th>
                     <th scope="col">Salary</th>
                     <th scope="col" class="text-center">
+                      Edit Trainer
+                    </th>
+                    <th scope="col" class="text-center">
                       Remove Trainer
                     </th>
                   </tr>
@@ -114,7 +129,33 @@ const AdminTrainers = (props) => {
                         <td>{item.salary}</td>
                         <td style={{ padding: "0%" }}>
                           <button
-                            className="deleteTrainerButton"
+                            style={{
+                              border: "none",
+                              backgroundColor: "transparent",
+                              padding: "auto",
+                            }}
+                            onClick={() => {
+                              setTrainerData(item);
+                              
+                            }}
+                            className=" px-5 button  my-2"
+                              type="button"
+                              data-bs-toggle="modal"
+                              data-bs-target="#exampleModalEditTrainer"
+                          >
+                            <i
+                              class="fa-solid fa-edit"
+                              style={{
+                                color: "red",
+                                cursor: "pointer",
+                                padding: "auto",
+                              }}
+                            ></i>
+                          </button>
+                        </td>
+                        <td style={{ padding: "0%" }}>
+                          <button
+                            className=""
                             style={{
                               border: "none",
                               backgroundColor: "transparent",
@@ -134,6 +175,8 @@ const AdminTrainers = (props) => {
                             ></i>
                           </button>
                         </td>
+                        
+
                       </tr>
                     ))}
                 </tbody>
@@ -166,6 +209,7 @@ const AdminTrainers = (props) => {
                       id="namec"
                       placeholder="Name"
                       name="name"
+                      value={trainerData.name}
                       onChange={handleChange}
                       required
                     />
@@ -175,6 +219,7 @@ const AdminTrainers = (props) => {
                       id="emailc"
                       placeholder="Email"
                       name="email"
+                      value={trainerData.email}
                       onChange={handleChange}
                       required
                     />
@@ -184,6 +229,7 @@ const AdminTrainers = (props) => {
                       id="genderc"
                       placeholder="Gender"
                       name="gender"
+                      value={trainerData.gender}
                       onChange={handleChange}
                       required
                     />
@@ -193,6 +239,7 @@ const AdminTrainers = (props) => {
                       id="salary-trainer"
                       placeholder="Enter salary"
                       name="salary"
+                      value={trainerData.salary}
                       onChange={handleChange}
                       required
                     />
@@ -201,6 +248,7 @@ const AdminTrainers = (props) => {
                       type="url"
                       id="image"
                       name="image"
+                      value={trainerData.image}
                       placeholder="Enter Profile Image Url"
                       onChange={handleChange}
                     />
@@ -221,6 +269,94 @@ const AdminTrainers = (props) => {
           </div>
         </div>
       </div>
+
+
+      <div className="modal" id="exampleModalEditTrainer">
+        <div className="modal-dialog modal-dialog-scrollable modal-lg">
+          <div className="modal-content">
+            <div className="modal-header adminModalHeader align-self-center">
+              <h2 style={{ fontWeight: "bold" }}>
+                Fill Out Appropriate Details of Trainer
+              </h2>
+            </div>
+            <div
+              className="modal-body"
+              style={{ backgroundColor: "white", color: "black" }}
+            >
+              <div className="form-container">
+                <div
+                  className="adminAddTrainerForm"
+                >
+                  <fieldset>
+                    <input
+                      className="addTrainerFormInput"
+                      type="text"
+                      id="namec"
+                      placeholder="Name"
+                      name="name"
+                      value={trainerData.name}
+                      onChange={handleChange}
+                      required
+                    />
+                    <input
+                      className="addTrainerFormInput"
+                      type="email"
+                      id="emailc"
+                      placeholder="Email"
+                      name="email"
+                      value={trainerData.email}
+                      onChange={handleChange}
+                      required
+                    />
+                    <input
+                      className="addTrainerFormInput"
+                      type="text"
+                      id="genderc"
+                      placeholder="Gender"
+                      name="gender"
+                      value={trainerData.gender}
+                      onChange={handleChange}
+                      required
+                    />
+                    <input
+                      className="addTrainerFormInput"
+                      type="number"
+                      id="salary-trainer"
+                      placeholder="Enter salary"
+                      name="salary"
+                      value={trainerData.salary}
+                      onChange={handleChange}
+                      required
+                    />
+                    <input
+                      className="addTrainerFormInput"
+                      type="url"
+                      id="image"
+                      name="image"
+                      value={trainerData.image}
+                      placeholder="Enter Profile Image Url"
+                      onChange={handleChange}
+                    />
+                  </fieldset>
+                  <button
+                    class="btnSubmitTrainers"
+                    id="signupbtn"
+                    data-bs-dismiss="modal"
+                    onClick={() => {
+                      handleUpdateTrainer()
+                    }}
+                  >
+                    Update Trainer
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
     </div>
   );
 };

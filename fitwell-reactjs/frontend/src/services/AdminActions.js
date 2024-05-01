@@ -70,12 +70,13 @@ class AdminAction{
         return json;
     }
     async deleteTrainer(reqData){
-        const response= await fetch(`${host}/api/adminTrainer/deleteTrainer`, {
-            method:'POST',
+        const trainerid = reqData.trainerid;
+        const response= await fetch(`${host}/api/adminTrainer/deleteTrainer/${trainerid}`, {
+            method:'DELETE',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body:JSON.stringify(reqData),
+            // body:JSON.stringify(reqData),
         })
         const json = await response.json();
         return json;

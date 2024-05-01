@@ -12,8 +12,13 @@ require('dotenv').config()
 
 /**
  * @swagger
+ * tags:
+ *   - name: products
+ *     description: routes for all products
  * /api/product/getProducts:
  *   post:
+ *     tags:
+ *       - products
  *     summary: Get all products
  *     requestBody:
  *       required: false
@@ -73,6 +78,8 @@ router.post('/getProducts', getRedisCachedProducts, async(req,res)=>{
  * @swagger
  * /api/product/getProductsList:
  *   post:
+ *     tags:
+ *       - products
  *     summary: Get products list
  *     requestBody:
  *       required: false
@@ -100,6 +107,8 @@ router.post('/getProductsList', async(req,res)=>{
  * @swagger
  * /api/product/deleteProduct:
  *   post:
+ *     tags:
+ *       - products
  *     summary: Delete a product
  *     requestBody:
  *       required: true
@@ -134,6 +143,8 @@ router.post('/deleteProduct', async(req,res)=>{
  * @swagger
  * /api/product/getProductsSearchResult:
  *   post:
+ *     tags:
+ *       - products
  *     summary: Get products search result
  *     requestBody:
  *       required: true
@@ -170,6 +181,8 @@ router.post('/getProductsSearchResult', async(req,res)=>{
  * @swagger
  * /api/product/addProduct:
  *   post:
+ *     tags:
+ *       - products
  *     summary: Add a product
  *     requestBody:
  *       required: true

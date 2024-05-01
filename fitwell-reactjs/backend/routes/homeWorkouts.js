@@ -10,8 +10,13 @@ const {getRedisCachedWorkouts} = require('../middlewares/redisMiddlewares/getCac
 
 /**
  * @swagger
+ * tags:
+ *   - name: homeWorkouts
+ *     description: routes for home workouts
  * /api/workout/getAllWorkouts:
  *   post:
+ *     tags:
+ *       - homeWorkouts
  *     summary: Get all workouts
  *     requestBody:
  *       required: false
@@ -66,8 +71,10 @@ router.post('/getAllWorkouts',getRedisCachedWorkouts, async(req,res)=>{
 
 /**
  * @swagger
- * /api/workout/getAllWorkouts:
+ * /api/workout/deleteWorkouts:
  *   post:
+ *     tags:
+ *       - homeWorkouts
  *     summary: Get all workouts
  *     requestBody:
  *       required: false
@@ -110,6 +117,8 @@ router.post('/deleteWorkout', async(req,res)=>{
  * @swagger
  * /api/workout/uploadWorkouts:
  *   post:
+ *     tags:
+ *       - homeWorkouts
  *     summary: Upload workouts
  *     requestBody:
  *       required: true

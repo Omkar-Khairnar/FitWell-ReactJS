@@ -47,6 +47,21 @@ class TrainerService{
             return {error:true, msg:error.message}
         }
     }
+
+    async updateTrainer(reqData){
+        try{
+            const trainerid=reqData._id;
+            const trainer=await Trainer.findById(trainerid);
+            if(!trainer){
+                return {error:true, msg:'Trainer Not Exist'}
+            }
+            let updated=await Trainer.findByIdAndUpdate(trainerid, reqData, {new:true});
+            return  {error:false, msg:'Trainer Updated Successfully', data:updated}
+        }
+        catch(error){
+            return {error:true, msg:error.message}
+        }
+    }
     
 }
 

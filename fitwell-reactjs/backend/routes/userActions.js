@@ -10,8 +10,13 @@ const cloudinary = require('../utils/cloudinary.js')
 
 /**
  * @swagger
+ * tags:
+ *   - name: userActions
+ *     description: routes for all userActions
  * /api/userActions/contactus:
  *   post:
+ *     tags:
+ *       - userActions
  *     summary: Submit a contact form
  *     requestBody:
  *       required: true
@@ -65,6 +70,8 @@ router.post('/contactus', async(req,res)=>{
  * @swagger
  * /api/userActions/putReview:
  *   post:
+ *     tags:
+ *       - userActions
  *     summary: Submit a review
  *     requestBody:
  *       required: true
@@ -116,6 +123,8 @@ router.post('/putReview', async(req,res)=>{
  * @swagger
  * /api/userActions/addtocart:
  *   post:
+ *     tags:
+ *       - userActions
  *     summary: Add a product to the cart
  *     requestBody:
  *       required: true
@@ -163,6 +172,8 @@ router.post('/addtocart', async(req,res)=>{
  * @swagger
  * /api/userActions/checkoutcart:
  *   post:
+ *     tags:
+ *       - userActions
  *     summary: Checkout the user's cart
  *     requestBody:
  *       required: true
@@ -216,6 +227,8 @@ router.post('/checkoutcart', async(req,res)=>{
  * @swagger
  * /api/userActions/updateprofile:
  *   post:
+ *     tags:
+ *       - userActions
  *     summary: Update the user's profile
  *     requestBody:
  *       required: true
@@ -282,6 +295,8 @@ router.post('/updateprofile', upload.single('image'), async (req, res) => {
  * @swagger
  * /api/userActions/get-user-payments:
  *   post:
+ *     tags:
+ *       - userActions
  *     summary: Get a user's payments
  *     requestBody:
  *       required: true
@@ -330,6 +345,8 @@ router.post('/get-user-payments', async(req,res)=>{
  * @swagger
  * /api/userActions/get-user-cart-products:
  *   post:
+ *     tags:
+ *       - userActions
  *     summary: Get a user's cart products
  *     requestBody:
  *       required: true

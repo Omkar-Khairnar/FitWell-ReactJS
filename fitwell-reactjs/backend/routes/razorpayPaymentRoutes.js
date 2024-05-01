@@ -14,8 +14,13 @@ connectDB();
 
 /**
  * @swagger
+ * tags:
+ *   - name: razorPayPayments
+ *     description: routes for razorPay Payments
  * /api/payments/create-order:
  *   post:
+ *     tags:
+ *       - razorPayPayments
  *     summary: Create a new order
  *     requestBody:
  *       required: true

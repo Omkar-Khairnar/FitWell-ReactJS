@@ -10,8 +10,13 @@ const cloudinary = require('../utils/cloudinary.js')
 
 /**
  * @swagger
+ * tags:
+ *   - name: user
+ *     description: routes for all users
  * /api/userAuth/userLogin:
  *   post:
+ *     tags:
+ *       - user
  *     summary: Login a user
  *     requestBody:
  *       required: true
@@ -57,6 +62,7 @@ router.post('/userLogin', async(req, res)=>{
     return res.send(response);
 })
 
+
 router.post('/updateDate', async(req, res)=>{
     const response= await UserServices.updateDate(req.body);
     return res.send(response);
@@ -66,6 +72,8 @@ router.post('/updateDate', async(req, res)=>{
  * @swagger
  * /api/userAuth/createUser:
  *   post:
+ *     tags:
+ *       - user
  *     summary: Create a new user
  *     requestBody:
  *       required: true
@@ -135,6 +143,8 @@ router.post('/createUser', upload.single('image'), async (req, res) => {
  * @swagger
  * /api/userAuth/getAllUsers:
  *   get:
+ *     tags:
+ *       - user
  *     summary: Get all users
  *     responses:
  *       200:
