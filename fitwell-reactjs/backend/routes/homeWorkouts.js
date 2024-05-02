@@ -6,7 +6,7 @@ const upload = require('../middlewares/workoutMulter')
 const fs=require('fs')
 const path = require('path')
 const redis = require('../utils/redis') 
-const {getRedisCachedWorkouts} = require('../middlewares/redisMiddlewares/getCachedWorkouts.js')
+// const {getRedisCachedWorkouts} = require('../middlewares/redisMiddlewares/getCachedWorkouts.js')
 
 /**
  * @swagger
@@ -50,7 +50,7 @@ const {getRedisCachedWorkouts} = require('../middlewares/redisMiddlewares/getCac
  *                 data:
  *                   type: object
  */
-router.post('/getAllWorkouts',getRedisCachedWorkouts, async(req,res)=>{
+router.post('/getAllWorkouts', async(req,res)=>{
   if(req.cachedWorkouts !== null && req.cachedWorkouts !== undefined){
     const response =  {
         error: false, 

@@ -1,7 +1,7 @@
 const AdminServices = require('../services/AdminServices');
 const AdminFeedback = require('../models/contactform');
 
-jest.mock('../models/contactform'); // Mocking the database model
+jest.mock('../models/contactform');
 
 describe('AdminServices', () => {
   describe('getAllAdminFeedback', () => {
