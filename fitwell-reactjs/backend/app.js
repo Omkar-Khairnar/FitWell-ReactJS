@@ -10,7 +10,8 @@ const path = require('path');
 const port = 5001;
 // const {redis, setRedisCache, getRedisCache} = require('./utils/redis.js')
 
-
+const swaggerDocs = require('./swagger')
+swaggerDocs(app, port);
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json({ limit: '20mb' }));
