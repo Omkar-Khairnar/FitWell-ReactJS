@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const ProductServices = require('../services/ProductServices')
 const upload = require('../middlewares/productMulter')
-// const {getRedisCachedProducts} = require('../middlewares/redisMiddlewares/getCachedProducts.js')
+const {getRedisCachedProducts} = require('../middlewares/redisMiddlewares/getCachedProducts.js')
 const fs = require('fs')
 const path = require('path')
 const redis = require('../utils/redis') 
@@ -37,7 +37,7 @@ require('dotenv').config()
  *                 data:
  *                   type: object
  */
-router.post('/getProducts', async(req,res)=>{
+router.post('/getProducts',getRedisCachedProducts ,async(req,res)=>{
     if(req.cachedProducts !== null && req.cachedProducts !== undefined){
         const response =  {
             error: false, 

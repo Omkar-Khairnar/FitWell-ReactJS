@@ -6,7 +6,7 @@ const upload = require('../middlewares/challengesMulter')
 const fs=require('fs')
 const path = require('path')
 const redis = require('../utils/redis') 
-// const {getRedisCachedChallenges} = require('../middlewares/redisMiddlewares/getCachedChallenges.js')
+const {getRedisCachedChallenges} = require('../middlewares/redisMiddlewares/getCachedChallenges.js')
 
 /**
  * @swagger
@@ -50,7 +50,7 @@ const redis = require('../utils/redis')
  *                 data:
  *                   type: object
  */
-router.post('/getAllChallenges', async(req,res)=>{
+router.post('/getAllChallenges',getRedisCachedChallenges, async(req,res)=>{
   if(req.cachedChallenges !== null && req.cachedChallenges !== undefined){
     const response =  {
         error: false, 
