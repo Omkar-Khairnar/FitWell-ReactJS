@@ -14,7 +14,6 @@ describe('AdminServices', () => {
       AdminFeedback.find.mockResolvedValue(mockFeedbacks);
       const result = await AdminServices.getAllAdminFeedback();
 
-      // Assertions
       //console.log("🚀 ~ it ~ result:", result)
       expect(result.error).toBe(false);
       expect(result.msg).toBe('Admins Fetched Successfully');
@@ -22,11 +21,10 @@ describe('AdminServices', () => {
     });
 
     it('should handle errors', async () => {
-      // Mock the behavior of the AdminFeedback model's `find` method to throw an error
+      // Mock AdminFeedback model's `find` method to throw an error
       AdminFeedback.find.mockRejectedValue(new Error('Database error'));
       const result = await AdminServices.getAllAdminFeedback();
 
-      // Assertions
       expect(result.error).toBe(true);
       expect(result.msg).toBe('Database error');
     });
