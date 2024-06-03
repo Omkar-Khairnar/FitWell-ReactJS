@@ -4,10 +4,10 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const ProductServices = require('../services/ProductServices')
 const upload = require('../middlewares/productMulter')
-const {getRedisCachedProducts} = require('../middlewares/redisMiddlewares/getCachedProducts.js')
 const fs = require('fs')
 const path = require('path')
-const redis = require('../utils/redis') 
+// const {getRedisCachedProducts} = require('../middlewares/redisMiddlewares/getCachedProducts.js')
+// const redis = require('../utils/redis') 
 require('dotenv').config()
 
 /**
@@ -37,42 +37,41 @@ require('dotenv').config()
  *                 data:
  *                   type: object
  */
-router.post('/getProducts', getRedisCachedProducts, async(req,res)=>{
-    if(req.cachedProducts !== null && req.cachedProducts !== undefined){
-        const response =  {
-            error: false, 
-            msg: 'Products Fetched Successfully', 
-            data: {
-                LatestCategory:req.cachedProducts.LatestCategory,
-                NutrientsCategory:req.cachedProducts.NutrientsCategory,
-                ProteinCategory:req.cachedProducts.ProteinCategory,
-                EnergyCategory:req.cachedProducts.EnergyCategory,
-                RecoveryCategory:req.cachedProducts.RecoveryCategory,        
-            }
-        }
-
-        return res.send(response);
-    }
-    else{
+router.post('/getProducts', async(req,res)=>{
         const response=await ProductServices.getProducts();
         if(!response.error){
             const parsedData = await JSON.stringify(response.data)
-            await redis.set('products', parsedData, 'EX', 3000);
+            // await redis.set('products', parsedData, 'EX', 3000);
         }
         return res.send(response)
-    }
 })
+// router.post('/getProducts', getRedisCachedProducts, async(req,res)=>{
+//     if(req.cachedProducts !== null && req.cachedProducts !== undefined){
+//         const response =  {
+//             error: false, 
+//             msg: 'Products Fetched Successfully', 
+//             data: {
+//                 LatestCategory:req.cachedProducts.LatestCategory,
+//                 NutrientsCategory:req.cachedProducts.NutrientsCategory,
+//                 ProteinCategory:req.cachedProducts.ProteinCategory,
+//                 EnergyCategory:req.cachedProducts.EnergyCategory,
+//                 RecoveryCategory:req.cachedProducts.RecoveryCategory,        
+//             }
+//         }
 
-// router.post('/getCachedData', async(req,res)=>{
-//     const data = await redis.get('products');
-//     if(data != null){
-//         data = JSON.parse(data.LatestCategory);
-//         return res.send(data);
+//         return res.send(response);
 //     }
 //     else{
-//         return res.send("Nhi mila cache mein");
+//         const response=await ProductServices.getProducts();
+//         if(!response.error){
+//             const parsedData = await JSON.stringify(response.data)
+//             await redis.set('products', parsedData, 'EX', 3000);
+//         }
+//         return res.send(response)
 //     }
 // })
+
+
 
 /**
  * @swagger

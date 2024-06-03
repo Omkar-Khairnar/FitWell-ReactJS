@@ -5,8 +5,8 @@ require('dotenv').config()
 const upload = require('../middlewares/challengesMulter')
 const fs=require('fs')
 const path = require('path')
-const redis = require('../utils/redis') 
-const {getRedisCachedChallenges} = require('../middlewares/redisMiddlewares/getCachedChallenges.js')
+// const redis = require('../utils/redis') 
+// const {getRedisCachedChallenges} = require('../middlewares/redisMiddlewares/getCachedChallenges.js')
 
 /**
  * @swagger
@@ -50,24 +50,32 @@ const {getRedisCachedChallenges} = require('../middlewares/redisMiddlewares/getC
  *                 data:
  *                   type: object
  */
-router.post('/getAllChallenges', getRedisCachedChallenges, async(req,res)=>{
-  if(req.cachedChallenges !== null && req.cachedChallenges !== undefined){
-    const response =  {
-        error: false, 
-        msg: 'Products Fetched Successfully', 
-        data: req.cachedChallenges
-    }
-    return res.send(response);
-  }
-  else{
+router.post('/getAllChallenges', async(req,res)=>{
     const response=await ChallengeService.getAllChallenges(req.body);
     if(!response.error){
       const parsedData = await JSON.stringify(response.data)
-      await redis.set('challenges', parsedData, 'EX', 3000);
+      // await redis.set('challenges', parsedData, 'EX', 3000);
     }
     return res.send(response);
-  }
 })
+// router.post('/getAllChallenges', getRedisCachedChallenges, async(req,res)=>{
+//   if(req.cachedChallenges !== null && req.cachedChallenges !== undefined){
+//     const response =  {
+//         error: false, 
+//         msg: 'Products Fetched Successfully', 
+//         data: req.cachedChallenges
+//     }
+//     return res.send(response);
+//   }
+//   else{
+//     const response=await ChallengeService.getAllChallenges(req.body);
+//     if(!response.error){
+//       const parsedData = await JSON.stringify(response.data)
+//       await redis.set('challenges', parsedData, 'EX', 3000);
+//     }
+//     return res.send(response);
+//   }
+// })
 
 /**
  * @swagger

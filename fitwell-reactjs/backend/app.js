@@ -2,6 +2,7 @@ const connectToMongo = require('./db');
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const swaggerDocs = require('./swagger');
 connectToMongo()
 const app = express()
 var cors = require('cors')
@@ -10,7 +11,7 @@ const path = require('path');
 const port = 5001;
 // const {redis, setRedisCache, getRedisCache} = require('./utils/redis.js')
 
-
+swaggerDocs(app, port)
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json({ limit: '20mb' }));

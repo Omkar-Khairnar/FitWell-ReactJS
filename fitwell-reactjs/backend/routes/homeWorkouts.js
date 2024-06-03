@@ -5,8 +5,8 @@ require('dotenv').config()
 const upload = require('../middlewares/workoutMulter')
 const fs=require('fs')
 const path = require('path')
-const redis = require('../utils/redis') 
-const {getRedisCachedWorkouts} = require('../middlewares/redisMiddlewares/getCachedWorkouts.js')
+// const redis = require('../utils/redis') 
+// const {getRedisCachedWorkouts} = require('../middlewares/redisMiddlewares/getCachedWorkouts.js')
 
 /**
  * @swagger
@@ -50,24 +50,32 @@ const {getRedisCachedWorkouts} = require('../middlewares/redisMiddlewares/getCac
  *                 data:
  *                   type: object
  */
-router.post('/getAllWorkouts',getRedisCachedWorkouts, async(req,res)=>{
-  if(req.cachedWorkouts !== null && req.cachedWorkouts !== undefined){
-    const response =  {
-        error: false, 
-        msg: 'Products Fetched Successfully', 
-        data: req.cachedWorkouts
-    }
-    return res.send(response);
-  }
-  else{
+router.post('/getAllWorkouts', async(req,res)=>{
     const response=await WorkoutService.getAllWorkouts(req.body);
     if(!response.error){
       const parsedData = await JSON.stringify(response.data)
-      await redis.set('workouts', parsedData, 'EX', 3000);
+      // await redis.set('workouts', parsedData, 'EX', 3000);
     }
     return res.send(response);
-  }
 })
+// router.post('/getAllWorkouts',getRedisCachedWorkouts, async(req,res)=>{
+//   if(req.cachedWorkouts !== null && req.cachedWorkouts !== undefined){
+//     const response =  {
+//         error: false, 
+//         msg: 'Products Fetched Successfully', 
+//         data: req.cachedWorkouts
+//     }
+//     return res.send(response);
+//   }
+//   else{
+//     const response=await WorkoutService.getAllWorkouts(req.body);
+//     if(!response.error){
+//       const parsedData = await JSON.stringify(response.data)
+//       await redis.set('workouts', parsedData, 'EX', 3000);
+//     }
+//     return res.send(response);
+//   }
+// })
 
 /**
  * @swagger
