@@ -20,7 +20,7 @@ app.use('./uploads/userProfiles/',express.static('/uploads'))
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
 app.use(morgan('combined', { stream: accessLogStream }));
 const userLogger = morgan('combined', { stream: accessLogStream });
-swaggerDocs(app, port);
+
 
 app.get('/', (req, res) => {
   res.send({msg:"Hello"})
