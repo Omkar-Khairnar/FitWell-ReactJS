@@ -9,7 +9,6 @@ var cors = require('cors')
 const fs = require('fs');
 const path = require('path');
 const port = 5001;
-const swaggerDocs = require('./swagger')
 // const {redis, setRedisCache, getRedisCache} = require('./utils/redis.js')
 swaggerDocs(app, port)
 app.use(cors());
