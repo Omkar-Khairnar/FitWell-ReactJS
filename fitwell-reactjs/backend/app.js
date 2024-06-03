@@ -9,8 +9,8 @@ var cors = require('cors')
 const fs = require('fs');
 const path = require('path');
 const port = 5001;
+const swaggerDocs = require('./swagger')
 // const {redis, setRedisCache, getRedisCache} = require('./utils/redis.js')
-
 swaggerDocs(app, port)
 app.use(cors());
 app.use(express.json());
@@ -20,7 +20,8 @@ app.use('./uploads/userProfiles/',express.static('/uploads'))
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
 app.use(morgan('combined', { stream: accessLogStream }));
 const userLogger = morgan('combined', { stream: accessLogStream });
- 
+swaggerDocs(app, port);
+
 app.get('/', (req, res) => {
   res.send({msg:"Hello"})
 })

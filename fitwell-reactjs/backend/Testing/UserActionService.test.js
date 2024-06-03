@@ -1,7 +1,6 @@
 const UserActionServices = require('../services/UserActionServices');
 const Review = require('../models/review');
 
-// Mocking the Review model
 jest.mock('../models/review', () => ({
   create: jest.fn(),
 }));
@@ -10,10 +9,10 @@ describe('UserActionServices', () => {
   describe('putReview', () => {
     it('should return error for internal server error', async () => {
       const reqData = {
-        comment: 'This is a test comment',
-        _id: 'user_id',
-        image: 'image_url',
-        name: 'Test User',
+        comment: 'test comment',
+        _id: '1',
+        image: 'image.png',
+        name: 'User',
       };
 
       // Mocking Review.create to return null (error occurred)
@@ -26,13 +25,12 @@ describe('UserActionServices', () => {
 
     it('should return success message and review data for successful review submission', async () => {
       const reqData = {
-        comment: 'This is a test comment',
-        _id: 'user_id',
-        image: 'image_url',
-        name: 'Test User',
+        comment: 'test comment',
+        _id: '1',
+        image: 'image.png',
+        name: 'User',
       };
 
-      // Mocking Review.create to return a review object
       const reviewObject = {
         _id: 'review_id',
         user: 'user_id',
